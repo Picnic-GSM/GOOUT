@@ -1,4 +1,4 @@
-## <p align="center"> <img src="READMEData/AppIcon.png" width="130px"> </p>
+## <p align="center"> <img src="READMEImage/AppIcon.png" width="130px"> </p>
 
 <br>
 
