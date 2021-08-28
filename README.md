@@ -1,4 +1,4 @@
-## <p align="center"> <img src="/Users/yujin/Desktop/2021_GOOUT/GOOUT/READMEImage" width="130px"> </p>
+## <p align="center"> <img src="/Users/yujin/Desktop/2021_GOOUT/GOOUT/READMEImage/AppIcon.png" width="130px"> </p>
 
 <br>
 
