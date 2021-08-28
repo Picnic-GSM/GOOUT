@@ -2,7 +2,7 @@
 
 <br>
 
-GOOUT은 더 나은 GSM을 위해 노력합니다.
+**GOOUT**은 더 나은 **GSM**을 위해 노력합니다.
 > Goout tries to make better GSM.
 
 <br>
