@@ -1,4 +1,4 @@
-![AppIcon](https://user-images.githubusercontent.com/71479613/131217787-73630d86-149e-446d-90e7-e40584ac7a6b.png)
+![AppIcon](https://user-images.githubusercontent.com/71479613/131217834-0188803a-93fb-4b8d-bf57-4094aef0c0ce.png)
 
 <br>
 
