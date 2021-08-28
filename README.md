@@ -1,4 +1,4 @@
-![AppIcon](https://user-images.githubusercontent.com/71479613/131217834-0188803a-93fb-4b8d-bf57-4094aef0c0ce.png)
+<p align="center"><img src="READMEImage.AppIcon.png"></p>
 
 <br>
 
