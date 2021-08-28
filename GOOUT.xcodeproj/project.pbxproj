@@ -54,6 +54,9 @@
 		6AA3A55E26D8B4FA00CA03F3 /* GOOUT */ = {
 			isa = PBXGroup;
 			children = (
+				6AA3A57526DA4ED200CA03F3 /* Model */,
+				6AA3A57426DA4ECE00CA03F3 /* View */,
+				6AA3A57326DA4EC200CA03F3 /* Controller */,
 				6AA3A55F26D8B4FA00CA03F3 /* AppDelegate.swift */,
 				6AA3A56126D8B4FA00CA03F3 /* SceneDelegate.swift */,
 				6AA3A56326D8B4FA00CA03F3 /* ViewController.swift */,
@@ -62,6 +65,27 @@
 				6AA3A56D26D8B4FC00CA03F3 /* Info.plist */,
 			);
 			path = GOOUT;
+			sourceTree = "<group>";
+		};
+		6AA3A57326DA4EC200CA03F3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6AA3A57426DA4ECE00CA03F3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6AA3A57526DA4ED200CA03F3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
