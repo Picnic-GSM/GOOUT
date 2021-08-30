@@ -41,6 +41,7 @@ class InquiryByGradeViewController : UIViewController {
         mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedAllClassInquiryButtonImage"), for: .normal)
     }
     
+    //MARK: - addButtonClicked
     @objc func addButtonClicked(sender:UIButton){
         let nextVC = AddViewController()
         present(nextVC, animated: true)
