@@ -7,6 +7,7 @@ target 'GOOUT' do
   pod 'SnapKit', '~> 5.0.0'
   pod 'Then'
   pod 'Alamofire', '~> 5.4'
+  pod 'DropDown'
   # Pods for GOOUT
 
 end
