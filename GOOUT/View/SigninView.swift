@@ -29,6 +29,12 @@ class SigninView: UIView{
         $0.spacing = self.bounds.height*0.035
     }
     
+    lazy var passwordVisibilityBtn = UIButton(frame: CGRect(x: 0, y: 0, width: self.bounds.width*0.02, height: self.bounds.height*0.014)).then {
+        $0.setImage(UIImage(systemName: "eye"), for: .normal)
+        $0.tintColor = UIColor(red: 0.424, green: 0.424, blue: 0.424, alpha: 1)
+        $0.addTarget(self, action: #selector(changePasswordVisibilityToggle(_:)), for: .touchUpInside)
+    }
+    
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -46,6 +52,7 @@ class SigninView: UIView{
     // MARK: - addView
     func addView(){
         addSubview(stack)
+        addSubview(passwordVisibilityBtn)
     }
     
     // MARK: - configureUI
@@ -55,6 +62,12 @@ class SigninView: UIView{
             $0.right.equalTo(self.snp.right).inset(self.bounds.width*0.168)
             $0.top.equalTo(self.snp.top).offset(self.bounds.height*0.129)
         }
+        
+        passwordVisibilityBtn.snp.makeConstraints {
+            $0.right.equalTo(passwordTextField.snp.right)
+            $0.centerY.equalTo(passwordTextField)
+        }
+        
     }
     
     // MARK: - configureShadow
@@ -127,5 +140,16 @@ class SigninView: UIView{
             $0.height.equalTo(1)
         }
         return view
+    }
+    // MARK: - Actions
+    
+    // MARK: changePasswordVisibility
+    @objc func changePasswordVisibilityToggle(_ sender: UIButton){
+        passwordTextField.isSecureTextEntry.toggle()
+        if passwordTextField.isSecureTextEntry{
+            sender.setImage(UIImage(systemName: "eye"), for: .normal)
+        }else{
+            sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        }
     }
 }
