@@ -35,6 +35,13 @@ class SigninView: UIView{
         $0.addTarget(self, action: #selector(changePasswordVisibilityToggle(_:)), for: .touchUpInside)
     }
     
+    let findPasswordButton = UIButton().then {
+        $0.setTitle("비밀번호 찾기", for: .normal)
+        $0.dynamicFont(fontSize: 8, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.setTitleColor(UIColor(red: 0.463, green: 0.463, blue: 0.463, alpha: 1), for: .normal)
+        $0.addTarget(self, action: #selector(showFindPasswordController), for: .touchUpInside)
+    }
+    
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -49,13 +56,16 @@ class SigninView: UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - addView
+    // MARK: - Helpers
+    
+    // MARK: addView
     func addView(){
         addSubview(stack)
         addSubview(passwordVisibilityBtn)
+        addSubview(findPasswordButton)
     }
     
-    // MARK: - configureUI
+    // MARK: configureUI
     func configureUI(){
         stack.snp.makeConstraints {
             $0.left.equalTo(self.snp.left).offset(self.bounds.width*0.168)
@@ -68,9 +78,13 @@ class SigninView: UIView{
             $0.centerY.equalTo(passwordTextField)
         }
         
+        findPasswordButton.snp.makeConstraints {
+            $0.left.equalTo(passwordView.snp.left)
+            $0.top.equalTo(passwordView.snp.bottom).offset(self.bounds.height*0.016)
+        }
     }
     
-    // MARK: - configureShadow
+    // MARK: configureShadow
     func configureShadow(){
         
         let shadows = UIView().then{
@@ -108,7 +122,7 @@ class SigninView: UIView{
         shapes.layer.addSublayer(layer1)
     }
     
-    // MARK: - loginTextFieldViewMaker
+    // MARK: loginTextFieldViewMaker
     func loginTextFieldView(textField: UITextField, text: String, fontsize: Int) -> UIView{
         let view = UIView()
         let label = UILabel()
@@ -151,5 +165,10 @@ class SigninView: UIView{
         }else{
             sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         }
+    }
+    
+    // MARK: showFindPassword
+    @objc func showFindPasswordController(){
+        print("FINDPASS")
     }
 }
