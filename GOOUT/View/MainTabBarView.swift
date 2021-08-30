@@ -12,8 +12,16 @@ import SnapKit
 class MainTabBarView: UIView{
     var lineViewGradient: CAGradientLayer!
     
-    lazy var homeButton = UIButton().then{
+    lazy var AllClassInquiryButton = UIButton().then{
         $0.setImage(UIImage(named: "GOOUT_HomeButtonImage"), for: .normal)
+    }
+    
+    lazy var addButton = UIButton().then{
+        $0.setImage(UIImage(named: "GOOUT_AddButtonImage"), for: .normal)
+    }
+    
+    lazy var MyClassInquiryButton = UIButton().then{
+        $0.setImage(UIImage(named: "GOOUT_MyClassInquiryButtonImage"), for: .normal)
     }
     
     lazy var lineView = UIView().then{
