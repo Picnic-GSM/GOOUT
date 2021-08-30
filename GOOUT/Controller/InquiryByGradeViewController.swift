@@ -27,16 +27,19 @@ class InquiryByGradeViewController : UIViewController {
         mainTabBarViewSetting()
     }
     
+    // MARK: - myClassInquiryButtonClicked
     @objc func myClassInquiryButtonClicked(sender:UIButton){
-
         viewControllerView.isHidden = false
+        mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedMyClassInquiryButtonImage"), for: .normal)
+        mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_AllClassInquiryButtonImage"), for: .normal)
     }
     
+    // MARK: - allClassInquiryButtonClicked
     @objc func allClassInquiryButtonClicked(sender:UIButton){
         viewControllerView.isHidden = true
+        mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_MyClassInquiryButtonImage"), for: .normal)
+        mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedAllClassInquiryButtonImage"), for: .normal)
     }
-    
-    
     
     // MARK: - layoutSetting
     func layoutSetting(){
@@ -51,12 +54,12 @@ class InquiryByGradeViewController : UIViewController {
             make.bottom.equalToSuperview().offset(-self.view.frame.height/10.15)
         }
 
-
-        let vc = MyClassInquiryViewController()
-        self.addChild(vc)
-        vc.view.frame = viewControllerView.frame
+        // myClassInquiryViewController 화면전환 준비
+        let myClassInquiryViewController = MyClassInquiryViewController()
+        self.addChild(myClassInquiryViewController)
+        myClassInquiryViewController.view.frame = viewControllerView.frame
         
-        viewControllerView.addSubview(vc.view)
+        viewControllerView.addSubview(myClassInquiryViewController.view)
         
         viewControllerView.isHidden = true
     }
