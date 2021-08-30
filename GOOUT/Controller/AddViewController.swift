@@ -30,6 +30,10 @@ class AddViewController: UIViewController{
         $0.layer.cornerRadius = 15
     }
     
+    lazy var gooutButton = UIButton().then{
+        
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
