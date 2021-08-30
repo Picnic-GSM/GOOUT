@@ -9,7 +9,7 @@ import UIKit
 import Then
 import SnapKit
 
-class AddViewController : UIViewController {
+class InquiryByGradeViewController : UIViewController {
     
     // MARK: - property
     lazy var mainTabBarView = MainTabBarView()
