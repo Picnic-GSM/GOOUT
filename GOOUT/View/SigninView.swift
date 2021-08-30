@@ -56,7 +56,7 @@ class SigninView: UIView{
     
     lazy var loginFailedMessage = UILabel().then {
         $0.text = "회원정보가 일치하지 않습니다!"
-        $0.dynamicFont(fontSize: 12, currentFontName: "Apple SD Gothic Neo")
+        $0.dynamicFont(fontSize: 10, currentFontName: "Apple SD Gothic Neo")
         $0.isHidden = true
         $0.textColor = .red
     }
@@ -257,9 +257,15 @@ class SigninView: UIView{
         email = emailTextField.text ?? ""
         password = passwordTextField.text ?? ""
         // authService login...
-        // if err = err
-        loginFailedMessage.isHidden = false
+        
+        // if let err = err
+        self.loginFailedMessage.isHidden = false
+        let dispatchTime = DispatchTime.now()+2
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {self.loginFailedMessage.isHidden = true})
+        
     }
+    
+    
     
     
     
