@@ -32,6 +32,8 @@ class InquiryByGradeViewController : UIViewController {
     
     // MARK: - mainTabBarViewSetting
     func mainTabBarViewSetting(){
+        mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedAllClassInquiryButtonImage"), for: .normal)
+        
         mainTabBarView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
             make.width.equalToSuperview()
