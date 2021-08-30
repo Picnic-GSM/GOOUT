@@ -46,7 +46,7 @@ class SigninView: UIView{
     
     lazy var loginBtn = UIButton(frame: CGRect(x: 0, y: 0, width: self.bounds.width*0.66, height: self.bounds.height*0.06)).then {
         $0.setTitle("Sign in", for: .normal)
-        $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 14)
+        $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.layer.cornerRadius = 8
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(red: 0.408, green: 0.525, blue: 0.773, alpha: 0.7)
@@ -60,6 +60,14 @@ class SigninView: UIView{
         $0.isHidden = true
         $0.textColor = .red
     }
+    
+    let makeAccountBtn = UIButton().then {
+        $0.setTitle("아직 계정이 없으신가요?", for: .normal)
+        $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.setTitleColor(UIColor(red: 0.463, green: 0.463, blue: 0.463, alpha: 1), for: .normal)
+        $0.addTarget(self, action: #selector(showRegsiterController), for: .touchUpInside)
+    }
+    
     
     
     // MARK: - Lifecycle
@@ -85,6 +93,7 @@ class SigninView: UIView{
         addSubview(findPasswordButton)
         addSubview(loginBtn)
         addSubview(loginFailedMessage)
+        addSubview(makeAccountBtn)
     }
     
     // MARK: configureUI
@@ -113,6 +122,11 @@ class SigninView: UIView{
         
         loginFailedMessage.snp.makeConstraints {
             $0.top.equalTo(loginBtn.snp.bottom).offset(self.bounds.height*0.01)
+            $0.centerX.equalTo(self)
+        }
+        
+        makeAccountBtn.snp.makeConstraints {
+            $0.bottom.equalTo(self.snp.bottom).inset(self.bounds.height*0.102)
             $0.centerX.equalTo(self)
         }
     }
@@ -232,6 +246,11 @@ class SigninView: UIView{
         print("FINDPASS")
     }
     
+    // MARK: showRegisterController
+    @objc func showRegsiterController(){
+        print("REGISTER")
+    }
+    
     // MARK: handleLoin
     @objc func handleLogin(){
         print("HANDLELOGIN")
@@ -241,4 +260,7 @@ class SigninView: UIView{
         // if err = err
         loginFailedMessage.isHidden = false
     }
+    
+    
+    
 }
