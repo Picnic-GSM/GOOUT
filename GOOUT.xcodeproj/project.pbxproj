@@ -10,7 +10,7 @@
 		103D1968787D358E836C9299 /* Pods_GOOUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184173D073AE8D44E55B428A /* Pods_GOOUT.framework */; };
 		6AA3A56026D8B4FA00CA03F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3A55F26D8B4FA00CA03F3 /* AppDelegate.swift */; };
 		6AA3A56226D8B4FA00CA03F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3A56126D8B4FA00CA03F3 /* SceneDelegate.swift */; };
-		6AA3A56426D8B4FA00CA03F3 /* InquiryByGradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3A56326D8B4FA00CA03F3 /* InquiryByGradeViewController.swift */; };
+		6AA3A56426D8B4FA00CA03F3 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3A56326D8B4FA00CA03F3 /* AddViewController.swift */; };
 		6AA3A56926D8B4FC00CA03F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3A56826D8B4FC00CA03F3 /* Assets.xcassets */; };
 		6AA3A56C26D8B4FC00CA03F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3A56A26D8B4FC00CA03F3 /* LaunchScreen.storyboard */; };
 		6AA3A57926DA509700CA03F3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3A57826DA509700CA03F3 /* Extension.swift */; };
@@ -24,7 +24,7 @@
 		6AA3A55C26D8B4FA00CA03F3 /* GOOUT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GOOUT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AA3A55F26D8B4FA00CA03F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AA3A56126D8B4FA00CA03F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6AA3A56326D8B4FA00CA03F3 /* InquiryByGradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryByGradeViewController.swift; sourceTree = "<group>"; };
+		6AA3A56326D8B4FA00CA03F3 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		6AA3A56826D8B4FC00CA03F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AA3A56B26D8B4FC00CA03F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6AA3A56D26D8B4FC00CA03F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		6AA3A57326DA4EC200CA03F3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6AA3A56326D8B4FA00CA03F3 /* InquiryByGradeViewController.swift */,
+				6AA3A56326D8B4FA00CA03F3 /* AddViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -252,7 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AB0369726DC58A100D1F80E /* MainTabBarView.swift in Sources */,
-				6AA3A56426D8B4FA00CA03F3 /* InquiryByGradeViewController.swift in Sources */,
+				6AA3A56426D8B4FA00CA03F3 /* AddViewController.swift in Sources */,
 				6AA3A56026D8B4FA00CA03F3 /* AppDelegate.swift in Sources */,
 				6AA3A56226D8B4FA00CA03F3 /* SceneDelegate.swift in Sources */,
 				6AA3A57926DA509700CA03F3 /* Extension.swift in Sources */,

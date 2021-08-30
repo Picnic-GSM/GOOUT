@@ -9,14 +9,11 @@ import UIKit
 import Then
 import SnapKit
 
-class InquiryByGradeViewController : UIViewController {
+class AddViewController : UIViewController {
     
     // MARK: - property
     lazy var mainTabBarView = MainTabBarView()
     
-
-    
-
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +25,7 @@ class InquiryByGradeViewController : UIViewController {
     
     // MARK: - layoutSetting
     func layoutSetting(){
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .yellow
         
         self.view.addSubview(mainTabBarView)
     }
