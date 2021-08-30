@@ -31,7 +31,11 @@ class AddViewController: UIViewController{
     }
     
     lazy var gooutButton = UIButton().then{
-        
+        $0.setImage(UIImage(named: "GOOUT_SelectedCheckButtonImage"), for: .normal)
+    }
+    
+    lazy var earlyLeaveButton = UIButton().then{
+        $0.setImage(UIImage(named: "GOOUT_CheckButtonImage"), for: .normal)
     }
     
     // MARK: - lifeCycle
