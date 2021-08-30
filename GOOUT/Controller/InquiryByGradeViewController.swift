@@ -14,6 +14,10 @@ class InquiryByGradeViewController : UIViewController {
     // MARK: - property
     lazy var mainTabBarView = MainTabBarView()
     
+    lazy var viewControllerView = UIView().then{
+        $0.backgroundColor = .systemPink
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +27,46 @@ class InquiryByGradeViewController : UIViewController {
         mainTabBarViewSetting()
     }
     
+    @objc func myClassInquiryButtonClicked(sender:UIButton){
+
+        viewControllerView.isHidden = false
+    }
+    
+    @objc func allClassInquiryButtonClicked(sender:UIButton){
+        viewControllerView.isHidden = true
+    }
+    
+    
+    
     // MARK: - layoutSetting
     func layoutSetting(){
         self.view.backgroundColor = .yellow
         
         self.view.addSubview(mainTabBarView)
+        self.view.addSubview(viewControllerView)
+        
+        viewControllerView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.width.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-self.view.frame.height/10.15)
+        }
+
+
+        let vc = MyClassInquiryViewController()
+        self.addChild(vc)
+        vc.view.frame = viewControllerView.frame
+        
+        viewControllerView.addSubview(vc.view)
+        
+        viewControllerView.isHidden = true
     }
     
     // MARK: - mainTabBarViewSetting
     func mainTabBarViewSetting(){
         mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedAllClassInquiryButtonImage"), for: .normal)
+        
+        mainTabBarView.myClassInquiryButton.addTarget(self, action: #selector(myClassInquiryButtonClicked(sender:)), for: .touchUpInside)
+        mainTabBarView.allClassInquiryButton.addTarget(self, action: #selector(allClassInquiryButtonClicked(sender:)), for: .touchUpInside)
         
         mainTabBarView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
