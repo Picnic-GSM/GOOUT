@@ -69,6 +69,7 @@ class SigninView: UIView{
         configureShadow()
         addView()
         configureUI()
+        addTextFieldObservers()
     }
     
     required init?(coder: NSCoder) {
@@ -113,6 +114,23 @@ class SigninView: UIView{
         loginFailedMessage.snp.makeConstraints {
             $0.top.equalTo(loginBtn.snp.bottom).offset(self.bounds.height*0.01)
             $0.centerX.equalTo(self)
+        }
+    }
+    
+    // MARK: addTextFieldObservers
+    func addTextFieldObservers(){
+        emailTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
+    }
+    
+    // MARK: updateLoginBtn
+    func updateLoginbtn(){
+        if !email.isEmpty && !password.isEmpty{
+            loginBtn.backgroundColor = UIColor(red: 0.408, green: 0.525, blue: 0.773, alpha: 1)
+            loginBtn.isEnabled = true
+        }else{
+            loginBtn.backgroundColor = UIColor(red: 0.408, green: 0.525, blue: 0.773, alpha: 0.7)
+            loginBtn.isEnabled = false
         }
     }
     
@@ -197,6 +215,16 @@ class SigninView: UIView{
         }else{
             sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         }
+    }
+    
+    // MARK: textDidChange
+    @objc func textDidChange(_ sender: UITextField){
+        if sender == emailTextField{
+            email = sender.text ?? ""
+        }else{
+            password = sender.text ?? ""
+        }
+        updateLoginbtn()
     }
     
     // MARK: showFindPassword
