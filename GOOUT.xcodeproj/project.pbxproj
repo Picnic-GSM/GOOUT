@@ -30,7 +30,7 @@
 		6AA3A56B26D8B4FC00CA03F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6AA3A56D26D8B4FC00CA03F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AA3A57826DA509700CA03F3 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		6AA3A57B26DA536400CA03F3 /* FugazOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "FugazOne-Regular.ttf"; path = "../../../../../Downloads/Fugaz_One/FugazOne-Regular.ttf"; sourceTree = "<group>"; };
+		6AA3A57B26DA536400CA03F3 /* FugazOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FugazOne-Regular.ttf"; sourceTree = "<group>"; };
 		6AB0369626DC58A100D1F80E /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		6AB0369826DC9C5200D1F80E /* MyClassInquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClassInquiryViewController.swift; sourceTree = "<group>"; };
 		F2FFB1C4F6341B178C5D1896 /* Pods-GOOUT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GOOUT.release.xcconfig"; path = "Target Support Files/Pods-GOOUT/Pods-GOOUT.release.xcconfig"; sourceTree = "<group>"; };
