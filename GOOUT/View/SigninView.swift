@@ -12,6 +12,8 @@ import SnapKit
 class SigninView: UIView{
     // MARK: - Properties
     private let mainBound = UIScreen.main.bounds
+    private var email: String = ""
+    private var password: String = ""
     
     let emailTextField = UITextField().then{
         $0.placeholder = "이메일을 입력하세요."
@@ -35,11 +37,28 @@ class SigninView: UIView{
         $0.addTarget(self, action: #selector(changePasswordVisibilityToggle(_:)), for: .touchUpInside)
     }
     
-    let findPasswordButton = UIButton().then {
+    lazy var findPasswordButton = UIButton().then {
         $0.setTitle("비밀번호 찾기", for: .normal)
         $0.dynamicFont(fontSize: 8, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.setTitleColor(UIColor(red: 0.463, green: 0.463, blue: 0.463, alpha: 1), for: .normal)
         $0.addTarget(self, action: #selector(showFindPasswordController), for: .touchUpInside)
+    }
+    
+    lazy var loginBtn = UIButton(frame: CGRect(x: 0, y: 0, width: self.bounds.width*0.66, height: self.bounds.height*0.06)).then {
+        $0.setTitle("Sign in", for: .normal)
+        $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 14)
+        $0.layer.cornerRadius = 8
+        $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColor = UIColor(red: 0.408, green: 0.525, blue: 0.773, alpha: 0.7)
+        $0.isEnabled = false
+        $0.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+    }
+    
+    lazy var loginFailedMessage = UILabel().then {
+        $0.text = "회원정보가 일치하지 않습니다!"
+        $0.dynamicFont(fontSize: 12, currentFontName: "Apple SD Gothic Neo")
+        $0.isHidden = true
+        $0.textColor = .red
     }
     
     
@@ -63,6 +82,8 @@ class SigninView: UIView{
         addSubview(stack)
         addSubview(passwordVisibilityBtn)
         addSubview(findPasswordButton)
+        addSubview(loginBtn)
+        addSubview(loginFailedMessage)
     }
     
     // MARK: configureUI
@@ -81,6 +102,17 @@ class SigninView: UIView{
         findPasswordButton.snp.makeConstraints {
             $0.left.equalTo(passwordView.snp.left)
             $0.top.equalTo(passwordView.snp.bottom).offset(self.bounds.height*0.016)
+        }
+        
+        loginBtn.snp.makeConstraints {
+            $0.top.equalTo(findPasswordButton.snp.bottom).offset(self.bounds.height*0.05)
+            $0.left.right.equalTo(emailView)
+            $0.height.equalTo(self.bounds.height*0.06)
+        }
+        
+        loginFailedMessage.snp.makeConstraints {
+            $0.top.equalTo(loginBtn.snp.bottom).offset(self.bounds.height*0.01)
+            $0.centerX.equalTo(self)
         }
     }
     
@@ -170,5 +202,15 @@ class SigninView: UIView{
     // MARK: showFindPassword
     @objc func showFindPasswordController(){
         print("FINDPASS")
+    }
+    
+    // MARK: handleLoin
+    @objc func handleLogin(){
+        print("HANDLELOGIN")
+        email = emailTextField.text ?? ""
+        password = passwordTextField.text ?? ""
+        // authService login...
+        // if err = err
+        loginFailedMessage.isHidden = false
     }
 }
