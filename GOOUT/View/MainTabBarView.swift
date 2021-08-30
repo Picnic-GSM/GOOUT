@@ -12,6 +12,10 @@ import SnapKit
 class MainTabBarView: UIView{
     var lineViewGradient: CAGradientLayer!
     
+    lazy var homeButton = UIButton().then{
+        $0.setImage(UIImage(named: "GOOUT_HomeButtonImage"), for: .normal)
+    }
+    
     lazy var lineView = UIView().then{
         $0.backgroundColor = .white
     }

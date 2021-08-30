@@ -15,6 +15,8 @@ class InquiryByGradeViewController : UIViewController {
     lazy var mainTabBarView = MainTabBarView()
     
 
+    
+
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,7 @@ class InquiryByGradeViewController : UIViewController {
             make.centerX.equalToSuperview()
         }
         
+        // MARK: - lineView gradient
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 2))
         let gradient = CAGradientLayer()
 
