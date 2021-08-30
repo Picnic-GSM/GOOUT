@@ -14,7 +14,7 @@ class MainTabBarView: UIView{
     //MARK: - property
     var lineViewGradient: CAGradientLayer!
     
-    lazy var AllClassInquiryButton = UIButton().then{
+    lazy var allClassInquiryButton = UIButton().then{
         $0.setImage(UIImage(named: "GOOUT_AllClassInquiryButtonImage"), for: .normal)
     }
     
@@ -22,7 +22,7 @@ class MainTabBarView: UIView{
         $0.setImage(UIImage(named: "GOOUT_AddButtonImage"), for: .normal)
     }
     
-    lazy var MyClassInquiryButton = UIButton().then{
+    lazy var myClassInquiryButton = UIButton().then{
         $0.setImage(UIImage(named: "GOOUT_MyClassInquiryButtonImage"), for: .normal)
     }
     
@@ -46,6 +46,9 @@ class MainTabBarView: UIView{
         self.backgroundColor = .white
         
         self.addSubview(lineView)
+        self.addSubview(addButton)
+        self.addSubview(myClassInquiryButton)
+        self.addSubview(allClassInquiryButton)
         
     }
 }

@@ -48,6 +48,25 @@ class InquiryByGradeViewController : UIViewController {
             make.centerX.equalToSuperview()
         }
         
+        mainTabBarView.addButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(14.37)
+            make.height.equalTo(mainTabBarView.addButton.snp.width)
+            make.top.equalTo(mainTabBarView.lineView.snp.bottom).offset(self.view.frame.height/58)
+        }
+        
+        mainTabBarView.allClassInquiryButton.snp.makeConstraints { make in
+            make.centerY.equalTo(mainTabBarView.addButton)
+            make.height.width.equalTo(mainTabBarView.addButton)
+            make.left.equalToSuperview().offset(self.view.frame.width/8.1)
+        }
+        
+        mainTabBarView.myClassInquiryButton.snp.makeConstraints { make in
+            make.centerY.equalTo(mainTabBarView.addButton)
+            make.height.width.equalTo(mainTabBarView.addButton)
+            make.right.equalToSuperview().offset(-self.view.frame.width/8.1)
+        }
+        
         // MARK: - lineView gradient
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 2))
         let gradient = CAGradientLayer()
