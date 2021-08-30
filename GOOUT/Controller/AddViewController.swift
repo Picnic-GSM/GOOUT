@@ -38,6 +38,18 @@ class AddViewController: UIViewController{
         $0.setImage(UIImage(named: "GOOUT_CheckButtonImage"), for: .normal)
     }
     
+    lazy var gooutLabel = UILabel().then{
+        $0.text = "외출"
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-Regular")
+        $0.textColor = UIColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1)
+    }
+    
+    lazy var earlyLeaveLabel = UILabel().then{
+        $0.text = "조퇴"
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-Regular")
+        $0.textColor = UIColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1)
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
