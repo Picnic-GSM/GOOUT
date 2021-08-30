@@ -10,6 +10,8 @@ import Then
 import SnapKit
 
 class MainTabBarView: UIView{
+    
+    //MARK: - property
     var lineViewGradient: CAGradientLayer!
     
     lazy var AllClassInquiryButton = UIButton().then{
@@ -28,6 +30,7 @@ class MainTabBarView: UIView{
         $0.backgroundColor = .white
     }
     
+    //MARK: - lifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -38,6 +41,7 @@ class MainTabBarView: UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - layoutSetting
     func layoutSetting(){
         self.backgroundColor = .white
         
