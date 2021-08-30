@@ -1,5 +1,5 @@
 //
-//  MyClassInquiryViewController.swift
+//  AddViewController.swift
 //  GOOUT
 //
 //  Created by 김유진 on 2021/08/30.
@@ -8,10 +8,9 @@
 import UIKit
 import Then
 import SnapKit
-
-class MyClassInquiryViewController: UIViewController{
+ 
+class AddViewController: UIViewController{
     // MARK: - property
-    lazy var mainTabBarView = MainTabBarView()
     
     // MARK: - lifeCycle
     override func viewDidLoad() {
@@ -22,7 +21,7 @@ class MyClassInquiryViewController: UIViewController{
     
     // MARK: - layoutSetting
     func layoutSetting(){
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .blue
         
     }
 }
