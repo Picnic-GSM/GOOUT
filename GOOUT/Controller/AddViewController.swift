@@ -65,6 +65,8 @@ class AddViewController: UIViewController{
         self.view.addSubview(whiteView)
         whiteView.addSubview(gooutButton)
         whiteView.addSubview(earlyLeaveButton)
+        whiteView.addSubview(gooutLabel)
+        whiteView.addSubview(earlyLeaveLabel)
         
         titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -85,14 +87,27 @@ class AddViewController: UIViewController{
         }
         
         gooutButton.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-self.view.frame.width/11.71)
-            make.width.equalTo(self.view.frame.width).dividedBy(25)
+            make.left.equalToSuperview().offset(self.view.frame.width/10.78)
+            make.width.equalToSuperview().dividedBy(17.6)
             make.height.equalTo(gooutButton.snp.width)
             make.centerY.equalToSuperview()
         }
         
+        gooutLabel.snp.makeConstraints { make in
+            make.left.equalTo(gooutButton.snp.right).offset(self.view.frame.width/38.33)
+            make.centerY.equalTo(gooutButton).offset(self.view.frame.height/600)
+        }
+        
+        earlyLeaveLabel.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-self.view.frame.width/10.79)
+            make.centerY.equalToSuperview().offset(self.view.frame.height/600)
+        }
+        
         earlyLeaveButton.snp.makeConstraints { make in
-
+            make.width.equalToSuperview().dividedBy(17.6)
+            make.height.equalTo(gooutButton.snp.width)
+            make.centerY.equalTo(gooutButton)
+            make.right.equalTo(earlyLeaveLabel.snp.left).offset(-self.view.frame.width/38.33)
         }
         
         // MARK: - lineView gradient
