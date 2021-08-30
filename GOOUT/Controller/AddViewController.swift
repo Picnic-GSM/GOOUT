@@ -41,8 +41,21 @@ class AddViewController: UIViewController{
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(self.view.frame.height/200)
+            make.centerX.equalToSuperview()
         }
+        
+        // MARK: - lineView gradient
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/10.38))
+        let gradient = CAGradientLayer()
+
+        gradient.frame = view.bounds
+        gradient.colors = [UIColor(red: 255/255, green: 173/255, blue: 172/255, alpha: 1).cgColor, UIColor(red: 104/255, green: 134/255, blue: 197/255, alpha: 1).cgColor]
+        gradient.locations = [0.0 , 1.0]
+        gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
+        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+
+        titleView.layer.insertSublayer(gradient, at: 0)
         
     }
 }
