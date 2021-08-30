@@ -21,6 +21,15 @@ class AddViewController: UIViewController{
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-Bold")
     }
     
+    lazy var whiteView = UIView().then{
+        $0.backgroundColor = UIColor.white
+        $0.layer.shadowColor = UIColor.lightGray.cgColor
+        $0.layer.shadowOffset = CGSize(width: 0, height: 3)
+        $0.layer.shadowRadius = 10
+        $0.layer.shadowOpacity = 0.3
+        $0.layer.cornerRadius = 15
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +42,7 @@ class AddViewController: UIViewController{
         self.view.backgroundColor = .white
         self.view.addSubview(titleView)
         titleView.addSubview(titleLabel)
+        self.view.addSubview(whiteView)
         
         titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -43,6 +53,13 @@ class AddViewController: UIViewController{
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(self.view.frame.height/200)
             make.centerX.equalToSuperview()
+        }
+        
+        whiteView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.left.equalToSuperview().offset(self.view.frame.width/6.16)
+            make.height.equalToSuperview().dividedBy(15.14)
+            make.top.equalTo(titleView.snp.bottom).offset(self.view.frame.height/12.75)
         }
         
         // MARK: - lineView gradient
