@@ -51,6 +51,8 @@ class AddViewController: UIViewController{
         self.view.addSubview(titleView)
         titleView.addSubview(titleLabel)
         self.view.addSubview(whiteView)
+        whiteView.addSubview(gooutButton)
+        whiteView.addSubview(earlyLeaveButton)
         
         titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -68,6 +70,17 @@ class AddViewController: UIViewController{
             make.left.equalToSuperview().offset(self.view.frame.width/6.16)
             make.height.equalToSuperview().dividedBy(15.14)
             make.top.equalTo(titleView.snp.bottom).offset(self.view.frame.height/12.75)
+        }
+        
+        gooutButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-self.view.frame.width/11.71)
+            make.width.equalTo(self.view.frame.width).dividedBy(25)
+            make.height.equalTo(gooutButton.snp.width)
+            make.centerY.equalToSuperview()
+        }
+        
+        earlyLeaveButton.snp.makeConstraints { make in
+
         }
         
         // MARK: - lineView gradient
