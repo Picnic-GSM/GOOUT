@@ -66,6 +66,24 @@ class AddViewController: UIViewController{
         $0.backgroundColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
     }
     
+    lazy var classLabel = UILabel().then{
+        $0.text = "반"
+        $0.textColor = UIColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1)
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+    }
+    
+    lazy var numberLabel = UILabel().then{
+        $0.text = "반"
+        $0.textColor = UIColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1)
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+    }
+    
+    lazy var gooutTimeLabel = UILabel().then{
+        $0.text = "외출시간"
+        $0.textColor = UIColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1)
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
