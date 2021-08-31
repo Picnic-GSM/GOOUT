@@ -146,19 +146,19 @@ class AddViewController: UIViewController{
         $0.shadowOpacity = 0.3
     }
     
-    lazy var gooutTimeButton = UIButton().then{
+    lazy var gooutStartTimeButton = UIButton().then{
         $0.layer.borderWidth = 0.6
         $0.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
         $0.layer.cornerRadius = 7
     }
     
-    lazy var selectedGooutTimeLabel = UILabel().then{
+    lazy var selectedGooutStartTimeLabel = UILabel().then{
         $0.text = "1교시(08:40)"
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Light")
         $0.textColor = UIColor(red: 112/255, green: 112/255, blue: 112/255, alpha: 1)
     }
     
-    lazy var gooutTimeUnderButton = UIButton().then{
+    lazy var gooutStartTimeUnderButton = UIButton().then{
         $0.setImage(UIImage(named: "GOOUT_UnderButtonImage"), for: .normal)
     }
     
@@ -235,6 +235,10 @@ class AddViewController: UIViewController{
         self.view.addSubview(selectedNumberLabel)
         self.view.addSubview(numberUnderButton)
         self.view.addSubview(numberDropDown)
+        self.view.addSubview(gooutStartTimeButton)
+        self.view.addSubview(selectedGooutStartTimeLabel)
+        self.view.addSubview(gooutStartTimeUnderButton)
+        self.view.addSubview(gooutStartTimeDropDown)
         
         gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
         earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
