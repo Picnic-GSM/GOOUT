@@ -140,6 +140,9 @@ class AddViewController: UIViewController{
         self.view.addSubview(classLabel)
         self.view.addSubview(numberLabel)
         self.view.addSubview(gooutTimeLabel)
+        self.view.addSubview(classButton)
+        self.view.addSubview(selectedClassLabel)
+        self.view.addSubview(classUnderButton)
         
         gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
         earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
@@ -208,6 +211,13 @@ class AddViewController: UIViewController{
         classLabel.snp.makeConstraints { make in
             make.left.equalTo(studentNameTextFieldUnderLineView)
             make.top.equalTo(studentNameTextFieldUnderLineView.snp.bottom).offset(self.view.frame.height/26.92)
+        }
+        
+        classButton.snp.makeConstraints { make in
+            make.left.equalTo(classLabel)
+            make.width.equalToSuperview().dividedBy(3.52)
+            make.height.equalToSuperview().dividedBy(25.96)
+            make.top.equalTo(classLabel.snp.bottom).offset(self.view.frame.height/103.85)
         }
         
         // MARK: - lineView gradient
