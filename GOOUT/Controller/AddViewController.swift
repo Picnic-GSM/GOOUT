@@ -100,6 +100,9 @@ class AddViewController: UIViewController{
         $0.setImage(UIImage(named: "GOOUT_UnderButtonImage"), for: .normal)
     }
     
+    lazy var classDropDown = DropDown()
+
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -232,6 +235,8 @@ class AddViewController: UIViewController{
             make.height.equalTo(classButton).dividedBy(1.2)
             make.width.equalTo(classUnderButton.snp.height)
         }
+        
+        classDropDown.dataSource = ["1반", "2반", "3반", "4반"]
         
         // MARK: - lineView gradient
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/10.38))
