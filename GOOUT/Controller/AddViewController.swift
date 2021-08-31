@@ -161,6 +161,13 @@ class AddViewController: UIViewController{
             make.top.equalTo(studentNameLabel.snp.bottom)
         }
         
+        studentNameTextFieldUnderLineView.snp.makeConstraints { make in
+            make.top.equalTo(studentNameTextField.snp.bottom)
+            make.width.equalTo(studentNameTextField)
+            make.height.equalTo(0.6)
+            make.centerX.equalToSuperview()
+        }
+        
         // MARK: - lineView gradient
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/10.38))
         let gradient = CAGradientLayer()
