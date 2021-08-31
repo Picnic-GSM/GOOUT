@@ -73,7 +73,7 @@ class AddViewController: UIViewController{
     }
     
     lazy var numberLabel = UILabel().then{
-        $0.text = "반"
+        $0.text = "번호"
         $0.textColor = UIColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1)
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
@@ -321,6 +321,11 @@ class AddViewController: UIViewController{
             make.centerY.equalTo(numberButton)
             make.height.equalTo(numberButton).dividedBy(1.2)
             make.width.equalTo(numberUnderButton.snp.height)
+        }
+        
+        numberLabel.snp.makeConstraints { make in
+            make.left.equalTo(numberButton)
+            make.bottom.equalTo(numberButton.snp.top).offset(-self.view.frame.height/103.85)
         }
         
         // MARK: - lineView gradient
