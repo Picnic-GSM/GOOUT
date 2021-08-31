@@ -301,6 +301,8 @@ class AddViewController: UIViewController{
         self.view.addSubview(gooutEndTimeDropDown)
         self.view.addSubview(gooutEndTimeUnderButton)
         self.view.addSubview(selectedGooutEndTimeLabel)
+        self.view.addSubview(reasonLabel)
+        self.view.addSubview(reasonTextField)
         
         gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
         earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
@@ -483,6 +485,11 @@ class AddViewController: UIViewController{
             make.centerY.equalTo(gooutEndTimeButton)
             make.height.equalTo(gooutEndTimeButton).dividedBy(1.2)
             make.width.equalTo(gooutEndTimeUnderButton.snp.height)
+        }
+        
+        reasonLabel.snp.makeConstraints { make in
+            make.left.equalTo(gooutTimeLabel)
+            make.top.equalTo(gooutStartTimeButton.snp.bottom).offset(self.view.frame.height/18.04)
         }
         
         // MARK: - lineView gradient
