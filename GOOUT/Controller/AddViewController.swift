@@ -455,7 +455,13 @@ class AddViewController: UIViewController{
         
         selectedGooutEndTimeLabel.snp.makeConstraints { make in            make.left.equalTo(gooutEndTimeButton).offset(self.view.frame.width/26.53)
             make.centerY.equalTo(gooutEndTimeButton)
-            
+        }
+        
+        gooutEndTimeUnderButton.snp.makeConstraints { make in
+            make.right.equalTo(gooutEndTimeButton).offset(-self.view.frame.width/50)
+            make.centerY.equalTo(gooutEndTimeButton)
+            make.height.equalTo(gooutEndTimeButton).dividedBy(1.2)
+            make.width.equalTo(gooutEndTimeUnderButton.snp.height)
         }
         
         // MARK: - lineView gradient
