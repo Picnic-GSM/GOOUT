@@ -227,6 +227,14 @@ class AddViewController: UIViewController{
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-Light")
     }
     
+    lazy var addButton = UIButton().then{
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.systemPink.cgColor
+        $0.setTitle("추가", for: .normal)
+        $0.setTitleColor(UIColor.blue, for: .normal)
+        $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
