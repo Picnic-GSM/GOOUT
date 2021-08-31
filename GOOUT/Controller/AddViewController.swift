@@ -130,6 +130,20 @@ class AddViewController: UIViewController{
         $0.setImage(UIImage(named: "GOOUT_UnderButtonImage"), for: .normal)
     }
     
+    lazy var numberDropDown = DropDown().then{
+        $0.dataSource = ["1번", "2번", "3번", "4번","5번", "6번", "7번", "8번","9번", "10번", "11번", "12번","13번", "14번", "15번", "16번","17번", "18번", "19번", "20번"]
+        $0.anchorView = numberButton
+        $0.bottomOffset = CGPoint(x: 0, y: self.view.frame.height/20)
+        $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 11)!
+        $0.backgroundColor = UIColor.white
+        $0.cornerRadius = 7
+        $0.cellHeight = self.view.frame.height/22
+        $0.shadowColor = UIColor.lightGray
+        $0.shadowOffset = CGSize(width: 0, height: 3)
+        $0.shadowRadius = 10
+        $0.shadowOpacity = 0.3
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
