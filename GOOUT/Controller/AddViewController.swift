@@ -375,6 +375,13 @@ class AddViewController: UIViewController{
             make.height.width.equalTo(classButton)
         }
         
+        gooutStartTimeUnderButton.snp.makeConstraints { make in
+            make.right.equalTo(gooutStartTimeButton).offset(-self.view.frame.width/50)
+            make.centerY.equalTo(gooutStartTimeButton)
+            make.height.equalTo(gooutStartTimeButton).dividedBy(1.2)
+            make.width.equalTo(numberUnderButton.snp.height)
+        }
+        
         // MARK: - lineView gradient
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/10.38))
         let gradient = CAGradientLayer()
