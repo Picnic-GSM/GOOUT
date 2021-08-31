@@ -128,6 +128,10 @@ class AddViewController: UIViewController{
         }
     }
     
+    @objc func classButtonClicked(sender:UIButton){
+        classDropDown.show()
+    }
+    
     // MARK: - layoutSetting
     func layoutSetting(){
         self.view.backgroundColor = .white
@@ -150,6 +154,9 @@ class AddViewController: UIViewController{
         
         gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
         earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
+        classButton.addTarget(self, action: #selector(classButtonClicked(sender:)), for: .touchUpInside)
+        classUnderButton.addTarget(self, action: #selector(classButtonClicked(sender:)), for: .touchUpInside)
+
         
         titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
