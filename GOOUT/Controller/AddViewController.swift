@@ -89,6 +89,12 @@ class AddViewController: UIViewController{
         $0.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
     }
     
+    lazy var selectedClassLabel = UILabel().then{
+        $0.text = "1반"
+        $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Light")
+        $0.textColor = UIColor(red: 112/255, green: 112/255, blue: 112/255, alpha: 1)
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
