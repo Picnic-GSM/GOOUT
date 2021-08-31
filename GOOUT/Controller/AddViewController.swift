@@ -60,6 +60,10 @@ class AddViewController: UIViewController{
         $0.placeholder = "이름을 입력해주세요."
     }
     
+    lazy var studentNameTextFieldUnderLineView = UIView().then{
+        $0.backgroundColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
