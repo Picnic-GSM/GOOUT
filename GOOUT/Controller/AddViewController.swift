@@ -113,7 +113,6 @@ class AddViewController: UIViewController{
         $0.shadowRadius = 10
         $0.shadowOpacity = 0.3
     }
-
     
     // MARK: - lifeCycle
     override func viewDidLoad() {
@@ -255,7 +254,9 @@ class AddViewController: UIViewController{
             make.width.equalTo(classUnderButton.snp.height)
         }
         
-
+        classDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            selectedClassLabel.text = "\(item)"
+        }
         
         // MARK: - lineView gradient
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/10.38))
