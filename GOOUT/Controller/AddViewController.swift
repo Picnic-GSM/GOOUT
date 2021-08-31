@@ -146,6 +146,38 @@ class AddViewController: UIViewController{
         $0.shadowOpacity = 0.3
     }
     
+    lazy var gooutTimeButton = UIButton().then{
+        $0.layer.borderWidth = 0.6
+        $0.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
+        $0.layer.cornerRadius = 7
+    }
+    
+    lazy var selectedGooutTimeLabel = UILabel().then{
+        $0.text = "1교시(08:40)"
+        $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Light")
+        $0.textColor = UIColor(red: 112/255, green: 112/255, blue: 112/255, alpha: 1)
+    }
+    
+    lazy var gooutTimeUnderButton = UIButton().then{
+        $0.setImage(UIImage(named: "GOOUT_UnderButtonImage"), for: .normal)
+    }
+    
+    lazy var gooutStartTimeDropDown = DropDown().then{
+        $0.dataSource = ["점심시간 시작(12:30~)","저녁시간 시작(08:30~)","1교시 시작(08:40~)","2교시 시작(08:40~)","3교시 시작(08:40~)","4교시 시작(08:40~)","5교시 시작(08:40~)","6교시 시작(08:40~)","7교시 시작(08:40~)","8교시 시작(08:40~)","9교시 시작(08:40~)","10교시 시작(08:40~)","11교시 시작(08:40~)"]
+        $0.anchorView = numberButton
+        $0.direction = .bottom
+        $0.offsetFromWindowBottom = self.view.frame.height/3.5
+        $0.bottomOffset = CGPoint(x: 0, y: self.view.frame.height/20)
+        $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 11)!
+        $0.backgroundColor = UIColor.white
+        $0.cornerRadius = 7
+        $0.cellHeight = self.view.frame.height/26
+        $0.shadowColor = UIColor.lightGray
+        $0.shadowOffset = CGSize(width: 0, height: 3)
+        $0.shadowRadius = 10
+        $0.shadowOpacity = 0.3
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
