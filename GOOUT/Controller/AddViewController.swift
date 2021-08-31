@@ -216,6 +216,11 @@ class AddViewController: UIViewController{
             self.classDropDown.clearSelection()
         }
         
+        numberDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            selectedNumberLabel.text = "\(item)"
+            self.numberDropDown.clearSelection()
+        }
+        
         titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.width.equalToSuperview()
