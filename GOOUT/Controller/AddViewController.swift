@@ -194,7 +194,7 @@ class AddViewController: UIViewController{
         
         whiteView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.left.equalToSuperview().offset(self.view.frame.width/6.16)
+            make.left.equalToSuperview().offset(self.view.frame.width/7)
             make.height.equalToSuperview().dividedBy(15.14)
             make.top.equalTo(titleView.snp.bottom).offset(self.view.frame.height/12.75)
         }
@@ -225,7 +225,7 @@ class AddViewController: UIViewController{
         
         studentNameLabel.snp.makeConstraints { make in
             make.top.equalTo(whiteView.snp.bottom).offset(self.view.frame.height/14)
-            make.left.equalToSuperview().offset(self.view.frame.width/5.47)
+            make.left.equalToSuperview().offset(self.view.frame.width/6.7)
         }
         
         studentNameTextField.snp.makeConstraints { make in
