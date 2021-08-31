@@ -95,6 +95,10 @@ class AddViewController: UIViewController{
         $0.textColor = UIColor(red: 112/255, green: 112/255, blue: 112/255, alpha: 1)
     }
     
+    lazy var classUnderButton = UIButton().then{
+        $0.setImage(UIImage(named: ""), for: .normal)
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
