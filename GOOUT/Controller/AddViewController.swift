@@ -107,7 +107,7 @@ class AddViewController: UIViewController{
         $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 11)!
         $0.backgroundColor = UIColor.white
         $0.cornerRadius = 7
-        $0.cellHeight = self.view.frame.height/22
+        $0.cellHeight = self.view.frame.height/26
         $0.shadowColor = UIColor.lightGray
         $0.shadowOffset = CGSize(width: 0, height: 3)
         $0.shadowRadius = 10
@@ -133,11 +133,13 @@ class AddViewController: UIViewController{
     lazy var numberDropDown = DropDown().then{
         $0.dataSource = ["1번", "2번", "3번", "4번","5번", "6번", "7번", "8번","9번", "10번", "11번", "12번","13번", "14번", "15번", "16번","17번", "18번", "19번", "20번"]
         $0.anchorView = numberButton
+        $0.direction = .bottom
+        $0.offsetFromWindowBottom = self.view.frame.height/3.5
         $0.bottomOffset = CGPoint(x: 0, y: self.view.frame.height/20)
         $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 11)!
         $0.backgroundColor = UIColor.white
         $0.cornerRadius = 7
-        $0.cellHeight = self.view.frame.height/22
+        $0.cellHeight = self.view.frame.height/26
         $0.shadowColor = UIColor.lightGray
         $0.shadowOffset = CGSize(width: 0, height: 3)
         $0.shadowRadius = 10
@@ -167,6 +169,10 @@ class AddViewController: UIViewController{
             gooutButton.isSelected.toggle()
             earlyLeaveButton.isSelected.toggle()
         }
+    }
+    
+    @objc func numberButtonClicked(sender:UIButton){
+        numberDropDown.show()
     }
     
     @objc func classButtonClicked(sender:UIButton){
@@ -202,6 +208,8 @@ class AddViewController: UIViewController{
         earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
         classButton.addTarget(self, action: #selector(classButtonClicked(sender:)), for: .touchUpInside)
         classUnderButton.addTarget(self, action: #selector(classButtonClicked(sender:)), for: .touchUpInside)
+        numberButton.addTarget(self, action: #selector(numberButtonClicked(sender:)), for: .touchUpInside)
+        numberUnderButton.addTarget(self, action: #selector(numberButtonClicked(sender:)), for: .touchUpInside)
         
         classDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             selectedClassLabel.text = "\(item)"
