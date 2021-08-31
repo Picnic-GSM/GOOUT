@@ -104,7 +104,7 @@ class AddViewController: UIViewController{
         $0.dataSource = ["1반", "2반", "3반", "4반"]
         $0.anchorView = classButton
         $0.bottomOffset = CGPoint(x: 0, y: self.view.frame.height/20)
-        $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 11)!
+        $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 10)!
         $0.backgroundColor = UIColor.white
         $0.cornerRadius = 7
         $0.cellHeight = self.view.frame.height/26
@@ -136,7 +136,7 @@ class AddViewController: UIViewController{
         $0.direction = .bottom
         $0.offsetFromWindowBottom = self.view.frame.height/3.5
         $0.bottomOffset = CGPoint(x: 0, y: self.view.frame.height/20)
-        $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 11)!
+        $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 10)!
         $0.backgroundColor = UIColor.white
         $0.cornerRadius = 7
         $0.cellHeight = self.view.frame.height/26
@@ -164,11 +164,11 @@ class AddViewController: UIViewController{
     
     lazy var gooutStartTimeDropDown = DropDown().then{
         $0.dataSource = ["점심시간 시작(12:30~)","저녁시간 시작(08:30~)","1교시 시작(08:40~)","2교시 시작(08:40~)","3교시 시작(08:40~)","4교시 시작(08:40~)","5교시 시작(08:40~)","6교시 시작(08:40~)","7교시 시작(08:40~)","8교시 시작(08:40~)","9교시 시작(08:40~)","10교시 시작(08:40~)","11교시 시작(08:40~)"]
-        $0.anchorView = numberButton
+        $0.anchorView = gooutStartTimeButton
         $0.direction = .bottom
-        $0.offsetFromWindowBottom = self.view.frame.height/3.5
+        $0.offsetFromWindowBottom = 100
         $0.bottomOffset = CGPoint(x: 0, y: self.view.frame.height/20)
-        $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 11)!
+        $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 10)!
         $0.backgroundColor = UIColor.white
         $0.cornerRadius = 7
         $0.cellHeight = self.view.frame.height/26
@@ -176,6 +176,12 @@ class AddViewController: UIViewController{
         $0.shadowOffset = CGSize(width: 0, height: 3)
         $0.shadowRadius = 10
         $0.shadowOpacity = 0.3
+    }
+    
+    lazy var waveLabel = UILabel().then{
+        $0.text = "-"
+        $0.textColor = UIColor(red: 168/255, green: 168/255, blue: 168/255, alpha: 1)
+        $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-UltraLight")
     }
     
     // MARK: - lifeCycle
@@ -209,6 +215,10 @@ class AddViewController: UIViewController{
     
     @objc func classButtonClicked(sender:UIButton){
         classDropDown.show()
+    }
+    
+    @objc func gooutStartTimeButtonClicked(sender:UIButton){
+        gooutStartTimeDropDown.show()
     }
     
     // MARK: - layoutSetting
@@ -246,6 +256,9 @@ class AddViewController: UIViewController{
         classUnderButton.addTarget(self, action: #selector(classButtonClicked(sender:)), for: .touchUpInside)
         numberButton.addTarget(self, action: #selector(numberButtonClicked(sender:)), for: .touchUpInside)
         numberUnderButton.addTarget(self, action: #selector(numberButtonClicked(sender:)), for: .touchUpInside)
+        gooutStartTimeButton.addTarget(self, action: #selector(gooutStartTimeButtonClicked(sender:)), for: .touchUpInside)
+        gooutStartTimeUnderButton.addTarget(self, action: #selector(gooutStartTimeButtonClicked(sender:)), for: .touchUpInside)
+        
         
         classDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             selectedClassLabel.text = "\(item)"
