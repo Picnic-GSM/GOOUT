@@ -492,6 +492,13 @@ class AddViewController: UIViewController{
             make.top.equalTo(gooutStartTimeButton.snp.bottom).offset(self.view.frame.height/18.04)
         }
         
+        reasonTextField.snp.makeConstraints { make in
+            make.left.equalTo(reasonLabel)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(reasonLabel.snp.bottom)
+            make.height.equalToSuperview().dividedBy(23)
+        }
+        
         // MARK: - lineView gradient
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/10.38))
         let gradient = CAGradientLayer()
