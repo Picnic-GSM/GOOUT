@@ -96,7 +96,7 @@ class AddViewController: UIViewController{
     }
     
     lazy var classUnderButton = UIButton().then{
-        $0.setImage(UIImage(named: ""), for: .normal)
+        $0.setImage(UIImage(named: "GOOUT_UnderButtonImage"), for: .normal)
     }
     
     // MARK: - lifeCycle
