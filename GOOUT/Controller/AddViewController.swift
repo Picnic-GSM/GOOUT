@@ -216,6 +216,17 @@ class AddViewController: UIViewController{
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-UltraLight")
     }
     
+    lazy var reasonLabel = UILabel().then{
+        $0.text = "사유"
+        $0.textColor = UIColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1)
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+    }
+    
+    lazy var reasonTextField = UITextField().then{
+        $0.placeholder = "사유를 입력해주세요."
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-Light")
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
