@@ -157,7 +157,7 @@ class AddViewController: UIViewController{
         studentNameTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.left.equalTo(studentNameLabel)
-            make.height.equalToSuperview().dividedBy(29)
+            make.height.equalToSuperview().dividedBy(23)
             make.top.equalTo(studentNameLabel.snp.bottom)
         }
         
