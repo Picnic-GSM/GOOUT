@@ -221,6 +221,11 @@ class AddViewController: UIViewController{
             make.top.equalTo(classLabel.snp.bottom).offset(self.view.frame.height/103.85)
         }
         
+        selectedClassLabel.snp.makeConstraints { make in
+            make.left.equalTo(classButton).offset(self.view.frame.width/26.53)
+            make.centerY.equalTo(classButton)
+        }
+        
         // MARK: - lineView gradient
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/10.38))
         let gradient = CAGradientLayer()
