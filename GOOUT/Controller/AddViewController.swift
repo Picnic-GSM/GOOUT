@@ -87,6 +87,7 @@ class AddViewController: UIViewController{
     lazy var classButton = UIButton().then{
         $0.layer.borderWidth = 0.6
         $0.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
+        $0.layer.cornerRadius = 7
     }
     
     lazy var selectedClassLabel = UILabel().then{
