@@ -163,7 +163,7 @@ class AddViewController: UIViewController{
     }
     
     lazy var gooutStartTimeDropDown = DropDown().then{
-        $0.dataSource = ["점심시간 시작(12:30~)","저녁시간 시작(08:30~)","1교시 시작(08:40~)","2교시 시작(08:40~)","3교시 시작(08:40~)","4교시 시작(08:40~)","5교시 시작(08:40~)","6교시 시작(08:40~)","7교시 시작(08:40~)","8교시 시작(08:40~)","9교시 시작(08:40~)","10교시 시작(08:40~)","11교시 시작(08:40~)"]
+        $0.dataSource = ["1교시(08:40)","2교시(09:40)","3교시(10:40)","4교시(11:40)","점심시간(12:30)","5교시(13:30)","6교시(14:30)","7교시(15:30)","8교시(16:40)","9교시(17:40)","저녁시간(18:30)","10교시(19:40)","11교시(20:40)"]
         $0.anchorView = gooutStartTimeButton
         $0.direction = .bottom
         $0.offsetFromWindowBottom = 100
@@ -179,8 +179,8 @@ class AddViewController: UIViewController{
     }
     
     lazy var waveLabel = UILabel().then{
-        $0.text = "-"
-        $0.textColor = UIColor(red: 168/255, green: 168/255, blue: 168/255, alpha: 1)
+        $0.text = "ㅡ"
+        $0.textColor = UIColor(red: 180/255, green: 180/255, blue: 180/255, alpha: 1)
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-UltraLight")
     }
     
@@ -249,6 +249,7 @@ class AddViewController: UIViewController{
         self.view.addSubview(selectedGooutStartTimeLabel)
         self.view.addSubview(gooutStartTimeUnderButton)
         self.view.addSubview(gooutStartTimeDropDown)
+        self.view.addSubview(waveLabel)
         
         gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
         earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
@@ -268,6 +269,11 @@ class AddViewController: UIViewController{
         numberDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             selectedNumberLabel.text = "\(item)"
             self.numberDropDown.clearSelection()
+        }
+        
+        gooutStartTimeDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            selectedGooutStartTimeLabel.text = "\(item)"
+            self.gooutStartTimeDropDown.clearSelection()
         }
         
         titleView.snp.makeConstraints { make in
@@ -398,6 +404,11 @@ class AddViewController: UIViewController{
         selectedGooutStartTimeLabel.snp.makeConstraints { make in
             make.left.equalTo(gooutStartTimeButton).offset(self.view.frame.width/26.53)
             make.centerY.equalTo(gooutStartTimeButton)
+        }
+        
+        waveLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(gooutStartTimeButton)
+            make.centerX.equalToSuperview()
         }
         
         // MARK: - lineView gradient
