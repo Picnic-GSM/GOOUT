@@ -84,6 +84,11 @@ class AddViewController: UIViewController{
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
     
+    lazy var classButton = UIButton().then{
+        $0.layer.borderWidth = 0.6
+        $0.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
