@@ -273,6 +273,10 @@ class AddViewController: UIViewController{
         gooutStartTimeDropDown.show()
     }
     
+    @objc func addButtonClicked(sender:UIButton){
+        dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - layoutSetting
     func layoutSetting(){
         self.view.backgroundColor = .white
@@ -320,6 +324,7 @@ class AddViewController: UIViewController{
         gooutStartTimeUnderButton.addTarget(self, action: #selector(gooutStartTimeButtonClicked(sender:)), for: .touchUpInside)
         gooutEndTimeButton.addTarget(self, action: #selector(gooutEndTimeButtonClicked(sender:)), for: .touchUpInside)
         gooutEndTimeUnderButton.addTarget(self, action: #selector(gooutEndTimeButtonClicked(sender:)), for: .touchUpInside)
+        addButton.addTarget(self, action: #selector(addButtonClicked(sender:)), for: .touchUpInside)
         
         gooutEndTimeDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             selectedGooutEndTimeLabel.text = "\(item)"
