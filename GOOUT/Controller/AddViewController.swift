@@ -178,6 +178,38 @@ class AddViewController: UIViewController{
         $0.shadowOpacity = 0.3
     }
     
+    lazy var gooutEndTimeButton = UIButton().then{
+        $0.layer.borderWidth = 0.6
+        $0.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
+        $0.layer.cornerRadius = 7
+    }
+    
+    lazy var selectedGooutEndTimeLabel = UILabel().then{
+        $0.text = "1교시(08:40)"
+        $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Light")
+        $0.textColor = UIColor(red: 112/255, green: 112/255, blue: 112/255, alpha: 1)
+    }
+    
+    lazy var gooutEndTimeUnderButton = UIButton().then{
+        $0.setImage(UIImage(named: "GOOUT_UnderButtonImage"), for: .normal)
+    }
+    
+    lazy var gooutEndTimeDropDown = DropDown().then{
+        $0.dataSource = ["1교시(08:40)","2교시(09:40)","3교시(10:40)","4교시(11:40)","점심시간(12:30)","5교시(13:30)","6교시(14:30)","7교시(15:30)","8교시(16:40)","9교시(17:40)","저녁시간(18:30)","10교시(19:40)","11교시(20:40)"]
+        $0.anchorView = gooutStartTimeButton
+        $0.direction = .bottom
+        $0.offsetFromWindowBottom = 100
+        $0.bottomOffset = CGPoint(x: 0, y: self.view.frame.height/20)
+        $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 10)!
+        $0.backgroundColor = UIColor.white
+        $0.cornerRadius = 7
+        $0.cellHeight = self.view.frame.height/26
+        $0.shadowColor = UIColor.lightGray
+        $0.shadowOffset = CGSize(width: 0, height: 3)
+        $0.shadowRadius = 10
+        $0.shadowOpacity = 0.3
+    }
+    
     lazy var waveLabel = UILabel().then{
         $0.text = "ㅡ"
         $0.textColor = UIColor(red: 180/255, green: 180/255, blue: 180/255, alpha: 1)
@@ -250,6 +282,10 @@ class AddViewController: UIViewController{
         self.view.addSubview(gooutStartTimeUnderButton)
         self.view.addSubview(gooutStartTimeDropDown)
         self.view.addSubview(waveLabel)
+        self.view.addSubview(gooutEndTimeButton)
+        self.view.addSubview(gooutEndTimeDropDown)
+        self.view.addSubview(gooutEndTimeUnderButton)
+        self.view.addSubview(selectedGooutEndTimeLabel)
         
         gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
         earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
@@ -409,6 +445,12 @@ class AddViewController: UIViewController{
         waveLabel.snp.makeConstraints { make in
             make.centerY.equalTo(gooutStartTimeButton)
             make.centerX.equalToSuperview()
+        }
+        
+        gooutEndTimeButton.snp.makeConstraints { make in
+            make.centerY.equalTo(gooutStartTimeButton)
+            make.width.height.equalTo(gooutStartTimeButton)
+            make.left.equalTo(numberButton)
         }
         
         // MARK: - lineView gradient
