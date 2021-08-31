@@ -114,6 +114,12 @@ class AddViewController: UIViewController{
         $0.shadowOpacity = 0.3
     }
     
+    lazy var numberButton = UIButton().then{
+        $0.layer.borderWidth = 0.6
+        $0.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
+        $0.layer.cornerRadius = 7
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
