@@ -196,7 +196,7 @@ class AddViewController: UIViewController{
     
     lazy var gooutEndTimeDropDown = DropDown().then{
         $0.dataSource = ["1교시(08:40)","2교시(09:40)","3교시(10:40)","4교시(11:40)","점심시간(12:30)","5교시(13:30)","6교시(14:30)","7교시(15:30)","8교시(16:40)","9교시(17:40)","저녁시간(18:30)","10교시(19:40)","11교시(20:40)"]
-        $0.anchorView = gooutStartTimeButton
+        $0.anchorView = gooutEndTimeButton
         $0.direction = .bottom
         $0.offsetFromWindowBottom = 100
         $0.bottomOffset = CGPoint(x: 0, y: self.view.frame.height/20)
@@ -239,6 +239,10 @@ class AddViewController: UIViewController{
             gooutButton.isSelected.toggle()
             earlyLeaveButton.isSelected.toggle()
         }
+    }
+    
+    @objc func gooutEndTimeButtonClicked(sender:UIButton){
+        gooutEndTimeDropDown.show()
     }
     
     @objc func numberButtonClicked(sender:UIButton){
@@ -295,6 +299,9 @@ class AddViewController: UIViewController{
         numberUnderButton.addTarget(self, action: #selector(numberButtonClicked(sender:)), for: .touchUpInside)
         gooutStartTimeButton.addTarget(self, action: #selector(gooutStartTimeButtonClicked(sender:)), for: .touchUpInside)
         gooutStartTimeUnderButton.addTarget(self, action: #selector(gooutStartTimeButtonClicked(sender:)), for: .touchUpInside)
+        gooutEndTimeButton.addTarget(self, action: #selector(gooutEndTimeButtonClicked(sender:)), for: .touchUpInside)
+        gooutEndTimeUnderButton.addTarget(self, action: #selector(gooutEndTimeButtonClicked(sender:)), for: .touchUpInside)
+        
         
         
         classDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
