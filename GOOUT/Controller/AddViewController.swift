@@ -256,6 +256,7 @@ class AddViewController: UIViewController{
         
         classDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             selectedClassLabel.text = "\(item)"
+            self.classDropDown.clearSelection()
         }
         
         // MARK: - lineView gradient
