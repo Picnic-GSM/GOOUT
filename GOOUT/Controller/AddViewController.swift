@@ -56,6 +56,10 @@ class AddViewController: UIViewController{
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
     
+    lazy var studentNameTextField = UITextField().then{
+        $0.placeholder = "이름을 입력해주세요."
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
