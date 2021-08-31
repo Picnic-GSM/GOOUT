@@ -100,7 +100,19 @@ class AddViewController: UIViewController{
         $0.setImage(UIImage(named: "GOOUT_UnderButtonImage"), for: .normal)
     }
     
-    lazy var classDropDown = DropDown()
+    lazy var classDropDown = DropDown().then{
+        $0.dataSource = ["1반", "2반", "3반", "4반"]
+        $0.anchorView = classButton
+        $0.bottomOffset = CGPoint(x: 0, y: self.view.frame.height/20)
+        $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 11)!
+        $0.backgroundColor = UIColor.white
+        $0.cornerRadius = 7
+        $0.cellHeight = self.view.frame.height/22
+        $0.shadowColor = UIColor.lightGray
+        $0.shadowOffset = CGSize(width: 0, height: 3)
+        $0.shadowRadius = 10
+        $0.shadowOpacity = 0.3
+    }
 
     
     // MARK: - lifeCycle
@@ -151,12 +163,12 @@ class AddViewController: UIViewController{
         self.view.addSubview(classButton)
         self.view.addSubview(selectedClassLabel)
         self.view.addSubview(classUnderButton)
+        self.view.addSubview(classDropDown)
         
         gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
         earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
         classButton.addTarget(self, action: #selector(classButtonClicked(sender:)), for: .touchUpInside)
         classUnderButton.addTarget(self, action: #selector(classButtonClicked(sender:)), for: .touchUpInside)
-
         
         titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -243,7 +255,7 @@ class AddViewController: UIViewController{
             make.width.equalTo(classUnderButton.snp.height)
         }
         
-        classDropDown.dataSource = ["1반", "2반", "3반", "4반"]
+
         
         // MARK: - lineView gradient
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/10.38))
