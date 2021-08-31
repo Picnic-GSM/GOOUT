@@ -50,6 +50,12 @@ class AddViewController: UIViewController{
         $0.textColor = UIColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1)
     }
     
+    lazy var studentNameLabel = UILabel().then{
+        $0.text = "학생이름"
+        $0.textColor = UIColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1)
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
