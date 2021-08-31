@@ -58,6 +58,7 @@ class AddViewController: UIViewController{
     
     lazy var studentNameTextField = UITextField().then{
         $0.placeholder = "이름을 입력해주세요."
+        $0.dynamicFont(fontSize: 11, currentFontName: "AppleSDGothicNeo-Light")
     }
     
     lazy var studentNameTextFieldUnderLineView = UIView().then{
@@ -151,6 +152,13 @@ class AddViewController: UIViewController{
         studentNameLabel.snp.makeConstraints { make in
             make.top.equalTo(whiteView.snp.bottom).offset(self.view.frame.height/14)
             make.left.equalToSuperview().offset(self.view.frame.width/5.47)
+        }
+        
+        studentNameTextField.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.left.equalTo(studentNameLabel)
+            make.height.equalToSuperview().dividedBy(29)
+            make.top.equalTo(studentNameLabel.snp.bottom)
         }
         
         // MARK: - lineView gradient
