@@ -166,7 +166,7 @@ class AddViewController: UIViewController{
         $0.dataSource = ["1교시(08:40)","2교시(09:40)","3교시(10:40)","4교시(11:40)","점심시간(12:30)","5교시(13:30)","6교시(14:30)","7교시(15:30)","8교시(16:40)","9교시(17:40)","저녁시간(18:30)","10교시(19:40)","11교시(20:40)"]
         $0.anchorView = gooutStartTimeButton
         $0.direction = .bottom
-        $0.offsetFromWindowBottom = 100
+        $0.offsetFromWindowBottom = 120
         $0.bottomOffset = CGPoint(x: 0, y: self.view.frame.height/20)
         $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 10)!
         $0.backgroundColor = UIColor.white
@@ -198,7 +198,7 @@ class AddViewController: UIViewController{
         $0.dataSource = ["1교시(08:40)","2교시(09:40)","3교시(10:40)","4교시(11:40)","점심시간(12:30)","5교시(13:30)","6교시(14:30)","7교시(15:30)","8교시(16:40)","9교시(17:40)","저녁시간(18:30)","10교시(19:40)","11교시(20:40)"]
         $0.anchorView = gooutEndTimeButton
         $0.direction = .bottom
-        $0.offsetFromWindowBottom = 100
+        $0.offsetFromWindowBottom = 120
         $0.bottomOffset = CGPoint(x: 0, y: self.view.frame.height/20)
         $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 10)!
         $0.backgroundColor = UIColor.white
@@ -228,12 +228,9 @@ class AddViewController: UIViewController{
     }
     
     lazy var addButton = UIButton().then{
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.systemPink.cgColor
-        $0.setTitle("추가", for: .normal)
-        $0.setTitleColor(UIColor.blue, for: .normal)
-        $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.setImage(UIImage(named: "GOOUT_GooutAddButtonImage"), for: .normal)
     }
+    
     
     // MARK: - lifeCycle
     override func viewDidLoad() {
@@ -311,6 +308,7 @@ class AddViewController: UIViewController{
         self.view.addSubview(selectedGooutEndTimeLabel)
         self.view.addSubview(reasonLabel)
         self.view.addSubview(reasonTextField)
+        self.view.addSubview(addButton)
         
         gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
         earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
@@ -507,6 +505,13 @@ class AddViewController: UIViewController{
             make.height.equalToSuperview().dividedBy(23)
         }
         
+        addButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-self.view.frame.height/10.23)
+            make.width.equalToSuperview().dividedBy(1.35)
+            make.height.equalToSuperview().dividedBy(19.13)
+            make.centerX.equalToSuperview()
+        }
+        
         // MARK: - lineView gradient
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/10.38))
         let gradient = CAGradientLayer()
@@ -519,5 +524,17 @@ class AddViewController: UIViewController{
 
         titleView.layer.insertSublayer(gradient, at: 0)
         
+        // MARK: - lineView gradient
+        let view2 = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 2))
+        let gradient2 = CAGradientLayer()
+
+        gradient2.frame = view.bounds
+        gradient2.colors = [UIColor(red: 255/255, green: 173/255, blue: 172/255, alpha: 1).cgColor, UIColor(red: 104/255, green: 134/255, blue: 197/255, alpha: 1).cgColor]
+        gradient2.locations = [0.0 , 1.0]
+        gradient2.startPoint = CGPoint(x: 0.0, y: 1.0)
+        gradient2.endPoint = CGPoint(x: 1.0, y: 1.0)
+
+        studentNameTextFieldUnderLineView.layer.insertSublayer(gradient2, at: 0)
+        studentNameTextFieldUnderLineView.clipsToBounds = true
     }
 }
