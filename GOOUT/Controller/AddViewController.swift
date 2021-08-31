@@ -302,7 +302,10 @@ class AddViewController: UIViewController{
         gooutEndTimeButton.addTarget(self, action: #selector(gooutEndTimeButtonClicked(sender:)), for: .touchUpInside)
         gooutEndTimeUnderButton.addTarget(self, action: #selector(gooutEndTimeButtonClicked(sender:)), for: .touchUpInside)
         
-        
+        gooutEndTimeDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            selectedGooutEndTimeLabel.text = "\(item)"
+            self.gooutEndTimeDropDown.clearSelection()
+        }
         
         classDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             selectedClassLabel.text = "\(item)"
