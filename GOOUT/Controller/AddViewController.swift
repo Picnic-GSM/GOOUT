@@ -169,11 +169,17 @@ class AddViewController: UIViewController{
         self.view.addSubview(selectedClassLabel)
         self.view.addSubview(classUnderButton)
         self.view.addSubview(classDropDown)
+        self.view.addSubview(numberButton)
         
         gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
         earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
         classButton.addTarget(self, action: #selector(classButtonClicked(sender:)), for: .touchUpInside)
         classUnderButton.addTarget(self, action: #selector(classButtonClicked(sender:)), for: .touchUpInside)
+        
+        classDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            selectedClassLabel.text = "\(item)"
+            self.classDropDown.clearSelection()
+        }
         
         titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -260,9 +266,9 @@ class AddViewController: UIViewController{
             make.width.equalTo(classUnderButton.snp.height)
         }
         
-        classDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            selectedClassLabel.text = "\(item)"
-            self.classDropDown.clearSelection()
+        numberButton.snp.makeConstraints { make in
+            make.right.equalTo(studentNameTextFieldUnderLineView)
+            make.height.width.top.equalTo(classButton)
         }
         
         // MARK: - lineView gradient
