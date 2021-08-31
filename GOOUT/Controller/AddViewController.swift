@@ -328,6 +328,11 @@ class AddViewController: UIViewController{
             make.bottom.equalTo(numberButton.snp.top).offset(-self.view.frame.height/103.85)
         }
         
+        gooutTimeLabel.snp.makeConstraints { make in
+            make.top.equalTo(classButton.snp.bottom).offset(self.view.frame.height/16.15)
+            make.left.equalTo(classButton)
+        }
+        
         // MARK: - lineView gradient
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/10.38))
         let gradient = CAGradientLayer()
