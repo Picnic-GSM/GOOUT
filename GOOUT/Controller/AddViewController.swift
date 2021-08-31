@@ -120,6 +120,16 @@ class AddViewController: UIViewController{
         $0.layer.cornerRadius = 7
     }
     
+    lazy var selectedNumberLabel = UILabel().then{
+        $0.text = "1번"
+        $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Light")
+        $0.textColor = UIColor(red: 112/255, green: 112/255, blue: 112/255, alpha: 1)
+    }
+    
+    lazy var numberUnderButton = UIButton().then{
+        $0.setImage(UIImage(named: "GOOUT_UnderButtonImage"), for: .normal)
+    }
+    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
