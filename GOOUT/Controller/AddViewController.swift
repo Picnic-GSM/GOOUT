@@ -57,6 +57,24 @@ class AddViewController: UIViewController{
         layoutSetting()
     }
     
+    @objc func gooutButtonClicked(sender:UIButton){
+        if gooutButton.isSelected == true{
+            gooutButton.setImage(UIImage(named: "GOOUT_SelectedCheckButtonImage"), for: .normal)
+            earlyLeaveButton.setImage(UIImage(named: "GOOUT_CheckButtonImage"), for: .normal)
+            earlyLeaveButton.isSelected.toggle()
+            gooutButton.isSelected.toggle()
+        }
+    }
+    
+    @objc func earlyLeaveButtonClicked(sender:UIButton){
+        if earlyLeaveButton.isSelected == false{
+            earlyLeaveButton.setImage(UIImage(named: "GOOUT_SelectedCheckButtonImage"), for: .normal)
+            gooutButton.setImage(UIImage(named: "GOOUT_CheckButtonImage"), for: .normal)
+            gooutButton.isSelected.toggle()
+            earlyLeaveButton.isSelected.toggle()
+        }
+    }
+    
     // MARK: - layoutSetting
     func layoutSetting(){
         self.view.backgroundColor = .white
@@ -67,6 +85,9 @@ class AddViewController: UIViewController{
         whiteView.addSubview(earlyLeaveButton)
         whiteView.addSubview(gooutLabel)
         whiteView.addSubview(earlyLeaveLabel)
+        
+        gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
+        earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
         
         titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
