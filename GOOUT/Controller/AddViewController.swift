@@ -220,6 +220,7 @@ class AddViewController: UIViewController{
         $0.text = "사유"
         $0.textColor = UIColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1)
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.backgroundColor = .white
     }
     
     lazy var reasonTextView = UITextView().then{
@@ -282,6 +283,46 @@ class AddViewController: UIViewController{
           self.view.endEditing(true)
     }
     
+    @objc func keyboardWillShow(_ sender: Notification) {
+        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
+            self.reasonTextView.snp.remakeConstraints { make in
+                make.left.equalTo(self.reasonLabel).offset(-self.view.frame.width/80)
+                make.centerX.equalToSuperview()
+                make.top.equalTo(self.classButton)
+                make.height.equalToSuperview().dividedBy(13)
+            }
+            
+            self.reasonLabel.snp.remakeConstraints { make in
+                make.left.equalTo(self.gooutTimeLabel)
+                make.top.equalTo(self.numberLabel)
+            }
+            
+            self.numberLabel.alpha = 0
+            
+            self.reasonTextView.superview?.layoutIfNeeded()
+        })
+    }
+    
+    @objc func keyboardWillHide(_ sender: Notification) {
+        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
+            self.reasonTextView.snp.remakeConstraints { make in
+                make.left.equalTo(self.reasonLabel).offset(-self.view.frame.width/80)
+                make.centerX.equalToSuperview()
+                make.top.equalTo(self.reasonLabel.snp.bottom)
+                make.height.equalToSuperview().dividedBy(13)
+            }
+            
+            self.reasonLabel.snp.remakeConstraints { make in
+                make.left.equalTo(self.gooutTimeLabel)
+                make.top.equalTo(self.gooutStartTimeButton.snp.bottom).offset(self.view.frame.height/18.04)
+            }
+            
+            self.numberLabel.alpha = 1
+            
+            self.reasonTextView.superview?.layoutIfNeeded()
+        })
+    }
+    
     // MARK: - reasonTextViewSetting
     func reasonTextViewSetting(){
         if reasonTextView.text == "사유를 입력해주세요."{
@@ -331,6 +372,9 @@ class AddViewController: UIViewController{
         self.view.addSubview(addButton)
         
         reasonTextView.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
         earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
