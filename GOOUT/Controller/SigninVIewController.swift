@@ -83,7 +83,7 @@ class SigninViewController: UIViewController{
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
         emailTextField.becomeFirstResponder()
-        addSubView()
+        addView()
         configureUI()
         configureShadow()
         addTextFieldObservers()
@@ -94,7 +94,8 @@ class SigninViewController: UIViewController{
    }
     
     // MARK: - Helpers
-    func addSubView(){
+    // MARK: addView
+    func addView(){
         view.addSubview(signinImage)
         view.addSubview(formView)
         view.addSubview(stack)
@@ -128,7 +129,7 @@ class SigninViewController: UIViewController{
         }
         
         passwordVisibilityBtn.snp.makeConstraints {
-            $0.right.equalTo(passwordTextField.snp.right)
+            $0.left.equalTo(passwordTextField.snp.right)
             $0.centerY.equalTo(passwordTextField)
         }
         
