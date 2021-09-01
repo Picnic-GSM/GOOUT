@@ -24,6 +24,7 @@ class SigninViewController: UIViewController{
     
     let emailTextField = UITextField().then{
         $0.placeholder = "이메일을 입력하세요."
+        $0.keyboardType = .emailAddress
     }
     lazy var emailView = loginTextFieldView(textField: emailTextField, text: "Email", fontsize: 14)
     
@@ -87,6 +88,10 @@ class SigninViewController: UIViewController{
         configureShadow()
         addTextFieldObservers()
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+         self.view.endEditing(true)
+   }
     
     // MARK: - Helpers
     func addSubView(){
