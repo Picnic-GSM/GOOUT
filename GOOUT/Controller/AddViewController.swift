@@ -222,8 +222,7 @@ class AddViewController: UIViewController{
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
     
-    lazy var reasonTextField = UITextField().then{
-        $0.placeholder = "사유를 입력해주세요."
+    lazy var reasonTextView = UITextView().then{
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-Light")
     }
     
@@ -311,7 +310,7 @@ class AddViewController: UIViewController{
         self.view.addSubview(gooutEndTimeUnderButton)
         self.view.addSubview(selectedGooutEndTimeLabel)
         self.view.addSubview(reasonLabel)
-        self.view.addSubview(reasonTextField)
+        self.view.addSubview(reasonTextView)
         self.view.addSubview(addButton)
         
         gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
@@ -504,11 +503,11 @@ class AddViewController: UIViewController{
             make.top.equalTo(gooutStartTimeButton.snp.bottom).offset(self.view.frame.height/18.04)
         }
         
-        reasonTextField.snp.makeConstraints { make in
+        reasonTextView.snp.makeConstraints { make in
             make.left.equalTo(reasonLabel)
             make.centerX.equalToSuperview()
             make.top.equalTo(reasonLabel.snp.bottom)
-            make.height.equalToSuperview().dividedBy(23)
+            make.height.equalToSuperview().dividedBy(13)
         }
         
         addButton.snp.makeConstraints { make in
