@@ -278,6 +278,10 @@ class AddViewController: UIViewController{
         dismiss(animated: true, completion: nil)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          self.view.endEditing(true)
+    }
+    
     // MARK: - reasonTextViewSetting
     func reasonTextViewSetting(){
         if reasonTextView.text == "사유를 입력해주세요."{
