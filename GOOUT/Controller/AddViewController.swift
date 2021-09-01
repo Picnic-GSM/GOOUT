@@ -223,6 +223,8 @@ class AddViewController: UIViewController{
     }
     
     lazy var reasonTextView = UITextView().then{
+        $0.text = "사유를 입력해주세요."
+        $0.textColor = UIColor.lightGray
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-Light")
     }
     
@@ -276,6 +278,17 @@ class AddViewController: UIViewController{
         dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - reasonTextViewSetting
+    func reasonTextViewSetting(){
+        if reasonTextView.text == "사유를 입력해주세요."{
+            reasonTextView.text = ""
+            reasonTextView.textColor = .black
+        }else if reasonTextView.text == ""{
+            reasonTextView.text = "사유를 입력해주세요."
+            reasonTextView.textColor = .lightGray
+        }
+    }
+    
     // MARK: - layoutSetting
     func layoutSetting(){
         self.view.backgroundColor = .white
@@ -312,6 +325,8 @@ class AddViewController: UIViewController{
         self.view.addSubview(reasonLabel)
         self.view.addSubview(reasonTextView)
         self.view.addSubview(addButton)
+        
+        reasonTextView.delegate = self
         
         gooutButton.addTarget(self, action: #selector(gooutButtonClicked(sender:)), for: .touchUpInside)
         earlyLeaveButton.addTarget(self, action: #selector(earlyLeaveButtonClicked(sender:)), for: .touchUpInside)
@@ -541,5 +556,26 @@ class AddViewController: UIViewController{
 
         studentNameTextFieldUnderLineView.layer.insertSublayer(gradient2, at: 0)
         studentNameTextFieldUnderLineView.clipsToBounds = true
+    }
+}
+
+// MARK: - UITextViewDelegate extension
+extension AddViewController: UITextViewDelegate{
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        reasonTextViewSetting()
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == ""{
+            reasonTextViewSetting()
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
+    {
+        if text == "\n"{
+            textView.resignFirstResponder()
+        }
+        return true
     }
 }
