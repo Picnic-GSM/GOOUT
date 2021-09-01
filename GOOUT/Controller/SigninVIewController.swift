@@ -79,8 +79,12 @@ class SigninViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+        emailTextField.becomeFirstResponder()
         addSubView()
         configureUI()
+        configureShadow()
         addTextFieldObservers()
     }
     
@@ -285,5 +289,19 @@ class SigninViewController: UIViewController{
         let dispatchTime = DispatchTime.now()+2
         DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {self.loginFailedMessage.isHidden = true})
         
+    }
+}
+
+// MARK: - Extension
+
+// MARK: UITextFieldDelegate
+extension SigninViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField{
+            self.passwordTextField.becomeFirstResponder()
+        }else{
+            handleLogin()
+        }
+        return true
     }
 }
