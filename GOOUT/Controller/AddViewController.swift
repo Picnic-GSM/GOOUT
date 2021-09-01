@@ -487,7 +487,8 @@ class AddViewController: UIViewController{
             make.left.equalTo(numberButton)
         }
         
-        selectedGooutEndTimeLabel.snp.makeConstraints { make in            make.left.equalTo(gooutEndTimeButton).offset(self.view.frame.width/26.53)
+        selectedGooutEndTimeLabel.snp.makeConstraints { make in
+            make.left.equalTo(gooutEndTimeButton).offset(self.view.frame.width/26.53)
             make.centerY.equalTo(gooutEndTimeButton)
         }
         
