@@ -523,7 +523,7 @@ class AddViewController: UIViewController{
         }
         
         reasonTextView.snp.makeConstraints { make in
-            make.left.equalTo(reasonLabel)
+            make.left.equalTo(reasonLabel).offset(-self.view.frame.width/80)
             make.centerX.equalToSuperview()
             make.top.equalTo(reasonLabel.snp.bottom)
             make.height.equalToSuperview().dividedBy(13)
