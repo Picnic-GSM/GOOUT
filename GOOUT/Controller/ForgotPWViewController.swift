@@ -10,13 +10,8 @@ import SnapKit
 import Then
 
 class ForgotPWViewController: UIViewController{
-    
-    var mainView = UIView()
-    
     override func viewDidLoad() {
-        navigationController?.isNavigationBarHidden = true
-        view.addSubview(mainView)
-        
+        // a
     }
     
 }
