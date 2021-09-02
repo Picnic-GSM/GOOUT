@@ -15,7 +15,17 @@ class requestConfirmationCell : UICollectionViewCell {
         view.status.backgroundColor = .blue
         return view
     }()
-
+    let requestStudentName = UILabel().then{
+        $0.text = "변웅섭"
+        $0.dynamicFont(fontSize: 13, currentFontName: "AppleSDGothicNeo-Thin")
+        $0.textColor = .black
+    }
+    let requestStudentClass = UILabel().then{
+        $0.text = "3학년 1반 7번"
+        $0.dynamicFont(fontSize: 9, currentFontName: "AppleSDGothicNeo-Thin")
+        $0.textColor = .black
+    }
+    
     let btnApproval = UIButton().then{
         $0.setTitle("승인", for: .normal)
         $0.setTitleColor(.white, for: .normal)
@@ -26,7 +36,11 @@ class requestConfirmationCell : UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(requestStatus)
+        addSubview(requestStudentName)
+        addSubview(requestStudentClass)
         addSubview(btnApproval)
+        
+        
     }
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -34,6 +48,14 @@ class requestConfirmationCell : UICollectionViewCell {
             make.top.equalToSuperview().offset(frame.height/9.875)
             make.width.equalTo(frame.height/3.09804)
             make.height.equalTo(frame.height/13.166667)
+            make.centerX.equalToSuperview()
+        }
+        requestStudentName.snp.makeConstraints { (make) in
+            make.top.equalTo(requestStatus.snp.bottom).offset(frame.height/22.5714)
+            make.centerX.equalToSuperview()
+        }
+        requestStudentClass.snp.makeConstraints { (make) in
+            make.top.equalTo(requestStudentName.snp.bottom).offset(frame.height/22.5714)
             make.centerX.equalToSuperview()
         }
         btnApproval.snp.makeConstraints { (make) in

@@ -32,7 +32,11 @@ class InquiryForEachClassViewController : UIViewController{
         cv.showsHorizontalScrollIndicator = false
         return cv
     }()
-    
+    private let comeBackCheck = UILabel().then{
+        $0.textColor = .black
+        $0.text = "귀가를 확인해주세요!"
+        $0.dynamicFont(fontSize: 20, currentFontName: "AppleSDGothicNeo-Thin")
+    }
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -56,6 +60,7 @@ class InquiryForEachClassViewController : UIViewController{
         view.addSubview(eachClassTitle)
         view.addSubview(requestConfirmationLabel)
         view.addSubview(requestConfirmationCollectionView)
+        view.addSubview(comeBackCheck)
     }
     func location(){
 
@@ -72,6 +77,10 @@ class InquiryForEachClassViewController : UIViewController{
             make.top.equalTo(requestConfirmationLabel.snp.bottom).offset(view.frame.height/62.4615)
             make.width.equalToSuperview()
             make.height.equalTo(view.frame.height/5.13924)
+        }
+        comeBackCheck.snp.makeConstraints { (make) in
+            make.top.equalTo(requestConfirmationCollectionView.snp.bottom).offset(view.frame.height/21.945945)
+            make.left.equalToSuperview().offset(view.frame.height/31.23076)
         }
 
     }
