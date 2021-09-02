@@ -18,6 +18,7 @@
 		6AB0369926DC9C5200D1F80E /* MyClassInquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB0369826DC9C5200D1F80E /* MyClassInquiryViewController.swift */; };
 		6AB0369B26DCBB2700D1F80E /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB0369A26DCBB2700D1F80E /* AddViewController.swift */; };
 		6AB0369D26DCCF1600D1F80E /* FugazOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB0369C26DCCF1200D1F80E /* FugazOne-Regular.ttf */; };
+		B85521CB26E0E5B600F32432 /* ForgotPWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85521CA26E0E5B600F32432 /* ForgotPWViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		6AB0369826DC9C5200D1F80E /* MyClassInquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClassInquiryViewController.swift; sourceTree = "<group>"; };
 		6AB0369A26DCBB2700D1F80E /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		6AB0369C26DCCF1200D1F80E /* FugazOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FugazOne-Regular.ttf"; sourceTree = "<group>"; };
+		B85521CA26E0E5B600F32432 /* ForgotPWViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPWViewController.swift; sourceTree = "<group>"; };
 		F2FFB1C4F6341B178C5D1896 /* Pods-GOOUT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GOOUT.release.xcconfig"; path = "Target Support Files/Pods-GOOUT/Pods-GOOUT.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +110,7 @@
 				6AA3A56326D8B4FA00CA03F3 /* InquiryByGradeViewController.swift */,
 				6AB0369826DC9C5200D1F80E /* MyClassInquiryViewController.swift */,
 				6AB0369A26DCBB2700D1F80E /* AddViewController.swift */,
+				B85521CA26E0E5B600F32432 /* ForgotPWViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				6AA3A56026D8B4FA00CA03F3 /* AppDelegate.swift in Sources */,
 				6AB0369926DC9C5200D1F80E /* MyClassInquiryViewController.swift in Sources */,
 				6AA3A56226D8B4FA00CA03F3 /* SceneDelegate.swift in Sources */,
+				B85521CB26E0E5B600F32432 /* ForgotPWViewController.swift in Sources */,
 				6AA3A57926DA509700CA03F3 /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
