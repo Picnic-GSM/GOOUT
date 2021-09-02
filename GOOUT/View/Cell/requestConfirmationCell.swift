@@ -20,12 +20,21 @@ class requestConfirmationCell : UICollectionViewCell {
         $0.dynamicFont(fontSize: 13, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .black
     }
+    let earlyLeaveTimeToGoOutLabel : EarlyLeaveTimeToGoOutView = {
+        let view = EarlyLeaveTimeToGoOutView(startTimeString: "11:00", finishTimeString: "12:00")
+        view.backgroundColor = .red
+        return view
+    }()
     let requestStudentClass = UILabel().then{
         $0.text = "3학년 1반 7번"
         $0.dynamicFont(fontSize: 9, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .black
     }
-    
+    let reason = UILabel().then{
+        $0.dynamicFont(fontSize: 9, currentFontName: "AppleSDGothicNeo-Thin")
+        $0.text = "준비물,준비물,준비물,준비물"
+        $0.textColor = .black
+    }
     let btnApproval = UIButton().then{
         $0.setTitle("승인", for: .normal)
         $0.setTitleColor(.white, for: .normal)
@@ -38,12 +47,13 @@ class requestConfirmationCell : UICollectionViewCell {
         addSubview(requestStatus)
         addSubview(requestStudentName)
         addSubview(requestStudentClass)
+        addSubview(earlyLeaveTimeToGoOutLabel)
+        addSubview(reason)
         addSubview(btnApproval)
-        
-        
     }
     override func layoutSubviews() {
         super.layoutSubviews()
+        earlyLeaveTimeToGoOutLabel.layer.cornerRadius = frame.height/15.8
         requestStatus.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(frame.height/9.875)
             make.width.equalTo(frame.height/3.09804)
@@ -57,6 +67,17 @@ class requestConfirmationCell : UICollectionViewCell {
         requestStudentClass.snp.makeConstraints { (make) in
             make.top.equalTo(requestStudentName.snp.bottom).offset(frame.height/22.5714)
             make.centerX.equalToSuperview()
+        }
+        earlyLeaveTimeToGoOutLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(requestStudentClass.snp.bottom).offset(frame.height/22.5714)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(frame.height/6.945055)
+            make.width.equalTo(frame.width/1.32967)
+        }
+        reason.snp.makeConstraints { (make) in
+            make.top.equalTo(earlyLeaveTimeToGoOutLabel.snp.bottom).offset(frame.height/21.79310)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(frame.width/1.5714)
         }
         btnApproval.snp.makeConstraints { (make) in
             make.width.equalToSuperview()

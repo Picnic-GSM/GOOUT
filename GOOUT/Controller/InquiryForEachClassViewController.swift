@@ -37,6 +37,12 @@ class InquiryForEachClassViewController : UIViewController{
         $0.text = "귀가를 확인해주세요!"
         $0.dynamicFont(fontSize: 20, currentFontName: "AppleSDGothicNeo-Thin")
     }
+    private let homeComingTableView : UITableView = {
+        let tableView = UITableView()
+//        tableView.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellReuseIdentifier: <#T##String#>)
+        return tableView
+    }()
+
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -44,6 +50,8 @@ class InquiryForEachClassViewController : UIViewController{
         configureUI()
         requestConfirmationCollectionView.delegate = self
         requestConfirmationCollectionView.dataSource = self
+        homeComingTableView.delegate = self
+        homeComingTableView.dataSource = self
         requestConfirmationCollectionView.contentInset = UIEdgeInsets(top: 0, left: view.frame.height/35.30434782, bottom: 0, right: view.frame.height/35.30434782)
     }
     
@@ -109,3 +117,15 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
     }
 
 }
+//extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDataSource{
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 1
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: ) 
+//        return cell
+//    }
+//    
+//    
+//}
