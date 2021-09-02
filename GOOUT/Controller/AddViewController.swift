@@ -248,14 +248,7 @@ class AddViewController: UIViewController{
             earlyLeaveButton.setImage(UIImage(named: "GOOUT_CheckButtonImage"), for: .normal)
             earlyLeaveButton.isSelected.toggle()
             gooutButton.isSelected.toggle()
-            
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-                self.classLabel.alpha = 1
-                self.numberLabel.alpha = 1
-                
-                
-                self.classLabel.superview?.layoutIfNeeded()
-            })
+
         }
     }
     
@@ -265,14 +258,7 @@ class AddViewController: UIViewController{
             gooutButton.setImage(UIImage(named: "GOOUT_CheckButtonImage"), for: .normal)
             gooutButton.isSelected.toggle()
             earlyLeaveButton.isSelected.toggle()
-            
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-                self.classLabel.alpha = 0
-                self.numberLabel.alpha = 0
-                
-                
-                self.classLabel.superview?.layoutIfNeeded()
-            })
+
         }
     }
     
