@@ -16,7 +16,11 @@ class SigninViewController: UIViewController{
     lazy var formBound = formView.bounds
     private let mainBound = UIScreen.main.bounds
     
-    lazy var signinImage = UIImageView(image: UIImage(named: "GOOUT_SigninLogo"))
+    lazy var SigninText = UILabel().then {
+        $0.text = "Sign in"
+        $0.dynamicFont(fontSize: 30, currentFontName: "FugazOne-Regular")
+        $0.textColor = UIColor(red: 0.408, green: 0.525, blue: 0.773, alpha: 1)
+    }
     
     lazy var formView = UIView(frame: CGRect(x: 0, y: 0, width: mainBound.width, height: mainBound.height*0.75))
     
@@ -96,7 +100,7 @@ class SigninViewController: UIViewController{
     // MARK: - Helpers
     // MARK: addView
     func addView(){
-        view.addSubview(signinImage)
+        view.addSubview(SigninText)
         view.addSubview(formView)
         view.addSubview(stack)
         view.addSubview(passwordVisibilityBtn)
@@ -108,12 +112,9 @@ class SigninViewController: UIViewController{
     
     // MARK: configureUI
     func configureUI(){
-        
-        signinImage.snp.makeConstraints {
-            $0.top.equalTo(view.snp.top).offset(mainBound.height/8)
-            $0.left.equalTo(view.snp.left).offset(mainBound.width/9)
-            $0.height.equalTo(mainBound.height*0.055)
-            $0.width.equalTo(mainBound.width*0.264)
+        SigninText.snp.makeConstraints {
+            $0.top.equalTo(view.snp.top).offset(mainBound.height*0.125)
+            $0.left.equalTo(view.snp.left).offset(mainBound.width*0.117)
         }
         
         formView.snp.makeConstraints {
