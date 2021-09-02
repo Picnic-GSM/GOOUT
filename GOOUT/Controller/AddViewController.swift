@@ -160,7 +160,7 @@ class AddViewController: UIViewController{
             earlyLeaveButton.isSelected.toggle()
             gooutButton.isSelected.toggle()
             
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: 0.5) {
                 self.gooutTimeLabel.alpha = 1
                 self.gooutStartTimeButton.alpha = 1
                 self.selectedGooutStartTimeLabel.alpha = 1
@@ -169,8 +169,14 @@ class AddViewController: UIViewController{
                 self.gooutEndTimeButton.alpha = 1
                 self.selectedGooutEndTimeLabel.alpha = 1
                 self.gooutEndTimeUnderButton.alpha = 1
+                
+                self.reasonLabel.snp.remakeConstraints { make in
+                    make.left.equalTo(self.gooutTimeLabel)
+                    make.top.equalTo(self.gooutStartTimeButton.snp.bottom).offset(self.view.frame.height/18.04)
+                }
+                
+                self.view.superview?.layoutIfNeeded()
             }
-
         }
     }
     
@@ -181,7 +187,7 @@ class AddViewController: UIViewController{
             gooutButton.isSelected.toggle()
             earlyLeaveButton.isSelected.toggle()
 
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: 0.5) {
                 self.gooutTimeLabel.alpha = 0
                 self.gooutStartTimeButton.alpha = 0
                 self.selectedGooutStartTimeLabel.alpha = 0
@@ -190,6 +196,13 @@ class AddViewController: UIViewController{
                 self.gooutEndTimeButton.alpha = 0
                 self.selectedGooutEndTimeLabel.alpha = 0
                 self.gooutEndTimeUnderButton.alpha = 0
+                
+                self.reasonLabel.snp.remakeConstraints { make in
+                    make.left.equalTo(self.gooutTimeLabel)
+                    make.top.equalTo(self.gooutTimeLabel)
+                }
+                
+                self.view.superview?.layoutIfNeeded()
             }
         }
     }
