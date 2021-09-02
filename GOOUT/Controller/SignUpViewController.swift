@@ -43,7 +43,7 @@ class SignUpViewController: UIViewController {
     lazy var passwordLine = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
     }
-    lazy var passwordExsampleLabel = UILabel().then {
+    lazy var passwordExampleLabel = UILabel().then {
         $0.text = "비밀번호는 8~16자 사이여야되며, 특수문자를 포함해야합니다."
         $0.textColor = .rgb(red: 151, green: 151, blue: 151)
         $0.dynamicFont(fontSize: 8, currentFontName: "AppleSDGothicNeo-SemiBold")
@@ -60,6 +60,11 @@ class SignUpViewController: UIViewController {
     lazy var checkPasswordLine = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
     }
+    lazy var teacherButton = UIButton().then {
+        $0.setTitle("선생님이신가요?", for: .normal)
+        $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.setTitleColor(.rgb(red: 118, green: 118, blue: 118), for: .normal)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,21 +72,21 @@ class SignUpViewController: UIViewController {
         
     }
   
-    //MARK: configureUI
+//  MARK: configureUI
     func configureUI() {
         addSubView()
         cornerRadius()
         location()
     }
     
-    //MARK: cornerRadius
+//  MARK: cornerRadius
     func cornerRadius() {
         backgroundView.layer.cornerRadius = 50
         backgroundView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         backgroundView.layer.masksToBounds = true
     }
     
-    //MARK: addSubView
+//  MARK: addSubView
     func addSubView() {
         self.view.addSubview(signUpLabel)
         self.view.addSubview(backgroundView)
@@ -94,11 +99,12 @@ class SignUpViewController: UIViewController {
         self.view.addSubview(checkPasswordLabel)
         self.view.addSubview(checkPasswordTextField)
         self.view.addSubview(checkPasswordLine)
-        self.view.addSubview(passwordExsampleLabel)
+        self.view.addSubview(passwordExampleLabel)
+        self.view.addSubview(teacherButton)
     }
     
 
-    //MARK: location
+//  MARK: location
     func location() {
         signUpLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(self.view.frame.height/7.96)
@@ -138,7 +144,7 @@ class SignUpViewController: UIViewController {
             make.top.equalTo(passwordLabel.snp.bottom).offset(self.view.frame.height/24.61)
             make.centerX.equalToSuperview()
         }
-        passwordExsampleLabel.snp.makeConstraints { make in
+        passwordExampleLabel.snp.makeConstraints { make in
             make.top.equalTo(passwordLabel.snp.bottom).offset(self.view.frame.height/20.82)
             make.left.equalTo(passwordLabel)
         }
@@ -157,11 +163,17 @@ class SignUpViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
         
+        teacherButton.snp.makeConstraints { make in
+            make.top.equalTo(checkPasswordLabel.snp.bottom).offset(self.view.frame.height/19.33)
+            make.left.equalTo(checkPasswordLabel)
+        }
+        
         
     }
     
 }
 
+//MARK: extension
 public extension UITextField {
     
     func setPlaceholderColor(_ placeholderColor: UIColor) {
