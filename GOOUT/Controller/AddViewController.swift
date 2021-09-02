@@ -231,6 +231,7 @@ class AddViewController: UIViewController{
     
     lazy var addButton = UIButton().then{
         $0.setImage(UIImage(named: "GOOUT_GooutAddButtonImage"), for: .normal)
+        $0.sizeToFit()
     }
     
     
