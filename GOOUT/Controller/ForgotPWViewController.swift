@@ -11,7 +11,5 @@ import Then
 
 class ForgotPWViewController: UIViewController{
     override func viewDidLoad() {
-        // a
     }
-    
 }
