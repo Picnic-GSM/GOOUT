@@ -240,7 +240,7 @@ class SigninViewController: UIViewController{
     
     // MARK: updateLoginBtn
     func updateLoginbtn(){
-        if !email.isEmpty && !password.isEmpty{
+        if !email.isEmpty && !password.isEmpty && email.contains("@") && email.contains("."){
             loginBtn.backgroundColor = UIColor(red: 0.408, green: 0.525, blue: 0.773, alpha: 1)
             loginBtn.isEnabled = true
         }else{
