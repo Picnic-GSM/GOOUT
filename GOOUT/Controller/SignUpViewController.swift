@@ -43,6 +43,10 @@ class SignUpViewController: UIViewController {
     lazy var passwordLine = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
     }
+    lazy var passwordVisibilityButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "eye"), for: .normal)
+        $0.tintColor = .rgb(red: 108, green: 108, blue: 108)
+    }
     lazy var passwordExampleLabel = UILabel().then {
         $0.text = "비밀번호는 8~16자 사이여야되며, 특수문자를 포함해야합니다."
         $0.textColor = .rgb(red: 151, green: 151, blue: 151)
@@ -91,6 +95,8 @@ class SignUpViewController: UIViewController {
         backgroundView.layer.masksToBounds = true
         
         signUpButton.layer.cornerRadius = 8
+        
+        
     }
     
 //  MARK: addSubView
@@ -103,6 +109,7 @@ class SignUpViewController: UIViewController {
         self.view.addSubview(passwordLabel)
         self.view.addSubview(passwordTextField)
         self.view.addSubview(passwordLine)
+        self.view.addSubview(passwordVisibilityButton)
         self.view.addSubview(checkPasswordLabel)
         self.view.addSubview(checkPasswordTextField)
         self.view.addSubview(checkPasswordLine)
@@ -151,6 +158,12 @@ class SignUpViewController: UIViewController {
             make.width.height.equalTo(emailLine)
             make.top.equalTo(passwordLabel.snp.bottom).offset(self.view.frame.height/24.61)
             make.centerX.equalToSuperview()
+        }
+        passwordVisibilityButton.snp.makeConstraints { make in
+            make.width.equalToSuperview().dividedBy(25)
+            make.height.equalToSuperview().dividedBy(90.22)
+            make.top.equalTo(passwordLabel.snp.bottom).offset(self.view.frame.height/52.39)
+            make.left.equalToSuperview().offset(self.view.frame.width/1.26)
         }
         passwordExampleLabel.snp.makeConstraints { make in
             make.top.equalTo(passwordLabel.snp.bottom).offset(self.view.frame.height/20.82)
