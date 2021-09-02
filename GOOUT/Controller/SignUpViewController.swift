@@ -74,6 +74,11 @@ class SignUpViewController: UIViewController {
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
     }
+    lazy var loginButton = UIButton().then {
+        $0.setTitle("이미 계정이 있으신가요?", for: .normal)
+        $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.setTitleColor(.rgb(red: 118, green: 118, blue: 118), for: .normal)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,6 +121,7 @@ class SignUpViewController: UIViewController {
         self.view.addSubview(passwordExampleLabel)
         self.view.addSubview(teacherButton)
         self.view.addSubview(signUpButton)
+        self.view.addSubview(loginButton)
     }
     
 
@@ -192,6 +198,10 @@ class SignUpViewController: UIViewController {
             make.width.equalToSuperview().dividedBy(1.5)
             make.height.equalToSuperview().dividedBy(21.37)
             make.top.equalTo(teacherButton.snp.bottom).offset(self.view.frame.height/25.38)
+            make.centerX.equalToSuperview()
+        }
+        loginButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(self.view.frame.height/13.31)
             make.centerX.equalToSuperview()
         }
         
