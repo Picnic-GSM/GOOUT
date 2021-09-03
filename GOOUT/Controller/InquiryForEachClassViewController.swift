@@ -11,7 +11,7 @@ import Then
 
 class InquiryForEachClassViewController : UIViewController{
     //MARK: - Properties
-
+    let bounds: CGRect = UIScreen.main.bounds
     private let eachClassTitle = UILabel().then{
         $0.textColor = UIColor.rgb(red: 104, green: 134, blue: 197)
         $0.text = "2-1"
@@ -39,7 +39,11 @@ class InquiryForEachClassViewController : UIViewController{
     }
     private let homeComingTableView : UITableView = {
         let tableView = UITableView()
-//        tableView.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellReuseIdentifier: <#T##String#>)
+        tableView.register(PleaseCheckYourReturnHomeTableCell.self, forCellReuseIdentifier: PleaseCheckYourReturnHomeTableCell.identifier)
+        tableView.showsVerticalScrollIndicator = false
+        tableView.separatorColor = UIColor.clear
+        tableView.backgroundColor = .clear
+        
         return tableView
     }()
 
@@ -48,11 +52,9 @@ class InquiryForEachClassViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        requestConfirmationCollectionView.delegate = self
-        requestConfirmationCollectionView.dataSource = self
-        homeComingTableView.delegate = self
-        homeComingTableView.dataSource = self
-        requestConfirmationCollectionView.contentInset = UIEdgeInsets(top: 0, left: view.frame.height/35.30434782, bottom: 0, right: view.frame.height/35.30434782)
+        homeComingTableView.tableFooterView = UIView()
+        requestConfirmationCollectionView.contentInset = UIEdgeInsets(top: 0, left: bounds.height/35.30434782, bottom: 0, right: bounds.height/35.30434782)
+        homeComingTableView.automaticallyAdjustsScrollIndicatorInsets = false
     }
     
     //MARK: - Selectors
@@ -63,36 +65,52 @@ class InquiryForEachClassViewController : UIViewController{
         view.backgroundColor = .white
         addView()
         location()
+        CollectionViewAndTableViewSetting()
+    }
+    func CollectionViewAndTableViewSetting(){
+        requestConfirmationCollectionView.delegate = self
+        requestConfirmationCollectionView.dataSource = self
+        homeComingTableView.delegate = self
+        homeComingTableView.dataSource = self
+        homeComingTableView.allowsSelection = false
     }
     func addView(){
         view.addSubview(eachClassTitle)
         view.addSubview(requestConfirmationLabel)
         view.addSubview(requestConfirmationCollectionView)
         view.addSubview(comeBackCheck)
+        view.addSubview(homeComingTableView)
     }
     func location(){
 
         eachClassTitle.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(view.frame.height/11.4366)
-            make.left.equalToSuperview().offset(view.frame.height/24.6)
+            make.top.equalToSuperview().offset(bounds.height/11.4366)
+            make.left.equalToSuperview().offset(bounds.height/24.6)
         }
         requestConfirmationLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(eachClassTitle.snp.bottom).offset(view.frame.height/23.882)
-            make.left.equalToSuperview().offset(view.frame.height/28)
+            make.top.equalTo(eachClassTitle.snp.bottom).offset(bounds.height/23.882)
+            make.left.equalToSuperview().offset(bounds.height/28)
       
         }
         requestConfirmationCollectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(requestConfirmationLabel.snp.bottom).offset(view.frame.height/62.4615)
+            make.top.equalTo(requestConfirmationLabel.snp.bottom).offset(bounds.height/62.4615)
             make.width.equalToSuperview()
-            make.height.equalTo(view.frame.height/5.13924)
+            make.height.equalTo(bounds.height/5.13924)
         }
         comeBackCheck.snp.makeConstraints { (make) in
-            make.top.equalTo(requestConfirmationCollectionView.snp.bottom).offset(view.frame.height/21.945945)
-            make.left.equalToSuperview().offset(view.frame.height/31.23076)
+            make.top.equalTo(requestConfirmationCollectionView.snp.bottom).offset(bounds.height/21.945945)
+            make.left.equalToSuperview().offset(bounds.height/31.23076)
         }
-
+        homeComingTableView.snp.makeConstraints { (make) in
+            make.top.equalTo(comeBackCheck.snp.bottom).offset(bounds.height/90.2222)
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
     }
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 }
 extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -105,27 +123,34 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 1
         cell.clipsToBounds = true
-        cell.layer.cornerRadius = view.frame.height/81.2
+        cell.layer.cornerRadius = bounds.height/81.2
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width/3.09917, height: view.frame.height/5.139240)
+        return CGSize(width: bounds.width/3.09917, height: bounds.height/5.139240)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return view.frame.height/54.133
+        return bounds.height/54.133
     }
 
 }
-//extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDataSource{
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: ) 
-//        return cell
-//    }
-//    
-//    
-//}
+extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 10
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PleaseCheckYourReturnHomeTableCell.identifier) as! PleaseCheckYourReturnHomeTableCell
+        cell.clipsToBounds = true
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return bounds.height/11.76811
+    }
+    
+}

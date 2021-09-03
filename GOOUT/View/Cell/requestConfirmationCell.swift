@@ -7,6 +7,7 @@
 
 import UIKit
 class requestConfirmationCell : UICollectionViewCell {
+    //MARK: - identifier
     static let identifier = "requestConfirmationCell"
     
     let requestStatus  : RequestStatus = {
@@ -54,6 +55,9 @@ class requestConfirmationCell : UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         earlyLeaveTimeToGoOutLabel.layer.cornerRadius = frame.height/15.8
+        location()
+    }
+    func location(){
         requestStatus.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(frame.height/9.875)
             make.width.equalTo(frame.height/3.09804)
