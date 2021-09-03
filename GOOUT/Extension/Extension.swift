@@ -90,6 +90,15 @@ extension UITextField {
       break
     }
   }
+  func setPlaceholderColor(_ placeholderColor: UIColor) {
+    attributedPlaceholder = NSAttributedString(
+        string: placeholder ?? "",
+        attributes: [
+            .foregroundColor: placeholderColor,
+            .font: font
+        ].compactMapValues { $0 }
+    )
+  }
 }
 
 // MARK: - UIButton Extension

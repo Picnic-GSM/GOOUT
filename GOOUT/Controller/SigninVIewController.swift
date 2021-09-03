@@ -27,16 +27,18 @@ class SigninViewController: UIViewController{
     
     
     let emailTextField = UITextField().then{
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.placeholder = "이메일을 입력하세요."
         $0.keyboardType = .emailAddress
     }
-    lazy var emailView = loginTextFieldView(textField: emailTextField, text: "Email", fontsize: 14)
+    lazy var emailView = loginTextFieldView(textField: emailTextField, text: "Email", labelfontsize: 14)
     
     let passwordTextField = UITextField().then {
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.placeholder = "비밀번호를 입력하세요."
         $0.isSecureTextEntry = true
     }
-    lazy var passwordView = loginTextFieldView(textField: passwordTextField, text: "Password", fontsize: 14)
+    lazy var passwordView = loginTextFieldView(textField: passwordTextField, text: "Password", labelfontsize: 14)
     
     lazy var stack = UIStackView(arrangedSubviews: [emailView, passwordView]).then{
         $0.axis = .vertical
@@ -198,12 +200,12 @@ class SigninViewController: UIViewController{
     }
     
     // MARK: loginTextFieldViewMaker
-    func loginTextFieldView(textField: UITextField, text: String, fontsize: Int) -> UIView{
+    func loginTextFieldView(textField: UITextField, text: String, labelfontsize: CGFloat) -> UIView{
         let view = UIView()
         let label = UILabel()
         label.text = text
         label.textColor = UIColor(red: 0.408, green: 0.525, blue: 0.733, alpha: 1)
-        label.dynamicFont(fontSize: CGFloat(fontsize), currentFontName: "AppleSDGothicNeo-SemiBold")
+        label.dynamicFont(fontSize: labelfontsize, currentFontName: "AppleSDGothicNeo-SemiBold")
         view.addSubview(label)
         label.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -211,6 +213,7 @@ class SigninViewController: UIViewController{
         }
         
         view.addSubview(textField)
+        textField.setPlaceholderColor(UIColor(red: 0.425, green: 0.425, blue: 0.425, alpha: 1))
         textField.snp.makeConstraints {
             $0.top.equalTo(label.safeAreaLayoutGuide.snp.bottom).offset(9)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(10)
