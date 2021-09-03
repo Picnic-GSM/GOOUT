@@ -27,6 +27,7 @@ class SignUpViewController: UIViewController {
     lazy var emailTextField = UITextField().then {
         $0.placeholder = "이메일을 입력하세요."
         $0.setPlaceholderColor(.rgb(red: 108, green: 108, blue: 108))
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
     lazy var emailLine = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
@@ -39,6 +40,7 @@ class SignUpViewController: UIViewController {
     lazy var passwordTextField = UITextField().then {
         $0.placeholder = "비밀번호를 입력하세요."
         $0.setPlaceholderColor(.rgb(red: 108, green: 108, blue: 108))
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
     lazy var passwordLine = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
@@ -60,6 +62,7 @@ class SignUpViewController: UIViewController {
     lazy var checkPasswordTextField = UITextField().then {
         $0.placeholder = "비밀번호를 한번 더 입력하세요."
         $0.setPlaceholderColor(.rgb(red: 108, green: 108, blue: 108))
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
     lazy var checkPasswordLine = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
