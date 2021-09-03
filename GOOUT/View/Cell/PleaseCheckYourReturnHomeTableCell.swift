@@ -34,7 +34,7 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
     }()
     let attendanceButton = UIButton().then{
         $0.backgroundColor = .red
-        $0.setTitle("출석완료", for: .normal)
+        $0.setTitle("귀가완료", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.dynamicFont(fontSize: 11, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
@@ -67,12 +67,13 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
             make.height.equalTo(frame.height/1.23214)
         }
         earlyLeaveTimeToGoOutLabel.layer.cornerRadius = 10
-        view.snp.makeConstraints { (make) in
-            make.height.equalTo(frame.height/1.86667)
-            make.width.equalTo(frame.width/6.79592)
-            make.centerY.equalToSuperview()
-            make.left.equalTo(snp.left).offset(frame.width/16.65)
         
+        view.snp.makeConstraints { (make) in
+            make.top.equalTo(requestStudentName.snp.top)
+            make.bottom.equalTo(requestStudentClass.snp.bottom)
+            make.width.equalTo(frame.width/6.79592)
+            make.centerY.equalTo(cellView.snp.centerY)
+            make.left.equalTo(cellView.snp.left).offset(frame.width/16.65)
         }
         requestStatus.snp.makeConstraints { (make) in
             make.height.equalTo(frame.height/8)
@@ -85,19 +86,19 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
             make.left.equalTo(requestStatus.snp.right).offset(frame.width/41.625)
         }
         requestStudentClass.snp.makeConstraints { (make) in
-            make.bottom.equalTo(view)
+            make.top.equalTo(requestStudentName.snp.bottom).offset(frame.height/34.5)
             make.centerX.equalTo(view)
         }
         earlyLeaveTimeToGoOutLabel.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.right.equalTo(attendanceButton.snp.left).offset(frame.width/13.32 * -1)
-            make.height.equalTo(frame.height/2.2064)
-            make.width.equalTo(frame.width/3.23)
+            make.right.equalTo(attendanceButton.snp.left).offset(frame.width/15 * -1)
+            make.height.equalTo(frame.height/2.7187)
+            make.width.equalTo(frame.width/3.64077)
         }
         attendanceButton.snp.makeConstraints { (make) in
             make.right.equalToSuperview()
-            make.height.equalTo(frame.height)
-            make.width.equalTo(frame.width/4.060975)
+            make.top.bottom.equalTo(cellView)
+            make.width.equalTo(frame.width/4.573170)
         }
     }
    
