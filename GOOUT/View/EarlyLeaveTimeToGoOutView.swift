@@ -8,7 +8,11 @@
 import UIKit
 
 class EarlyLeaveTimeToGoOutView : UIView{
-    private let time = UILabel().then{
+    let view = UIView().then{
+        $0.backgroundColor = .red
+    }
+    
+    let time = UILabel().then{
         $0.dynamicFont(fontSize: 11, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
     init(startTimeString : String, finishTimeString : String?){
@@ -18,13 +22,21 @@ class EarlyLeaveTimeToGoOutView : UIView{
         }else{
             time.text = "\(startTimeString) ~"
         }
-        addSubview(time)
+        addSubview(view)
+        view.addSubview(time)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        time.snp.makeConstraints { (make) in
+        time.sizeToFit()
+        view.layer.cornerRadius = frame.height/2.275
+        view.snp.makeConstraints { (make) in
+            make.width.equalTo(time.frame.width + frame.width/3.21)
+            make.height.equalToSuperview()
             make.center.equalToSuperview()
+        }
+        time.snp.makeConstraints { (make) in
+            make.center.equalTo(view.snp.center)
         }
 
     }

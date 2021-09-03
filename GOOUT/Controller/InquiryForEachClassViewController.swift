@@ -52,7 +52,6 @@ class InquiryForEachClassViewController : UIViewController{
     
     private let noHistory : noHistoryView = {
         let view = noHistoryView()
-        
         return view
     }()
 

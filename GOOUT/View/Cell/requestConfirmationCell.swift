@@ -22,12 +22,11 @@ class requestConfirmationCell : UICollectionViewCell {
         $0.textColor = .black
     }
     let closeBtn = UIButton().then{
-        $0.setImage(UIImage(named: "GOOUT_Cancel2"), for: .normal)
+        $0.setImage(UIImage(named: "GOOUT_Cancel2")?.withRenderingMode(.alwaysTemplate), for: .normal)
         $0.tintColor = .blue
     }
     let earlyLeaveTimeToGoOutLabel : EarlyLeaveTimeToGoOutView = {
         let view = EarlyLeaveTimeToGoOutView(startTimeString: "11:00", finishTimeString: "12:00")
-        view.backgroundColor = .red
         return view
     }()
     let requestStudentClass = UILabel().then{
@@ -60,7 +59,6 @@ class requestConfirmationCell : UICollectionViewCell {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        earlyLeaveTimeToGoOutLabel.layer.cornerRadius = frame.height/15.8
         location()
     }
     func location(){
@@ -88,7 +86,7 @@ class requestConfirmationCell : UICollectionViewCell {
             make.top.equalTo(requestStudentClass.snp.bottom).offset(frame.height/22.5714)
             make.centerX.equalToSuperview()
             make.height.equalTo(frame.height/6.945055)
-            make.width.equalTo(frame.width/1.32967)
+            make.width.equalToSuperview()
         }
         reason.snp.makeConstraints { (make) in
             make.top.equalTo(earlyLeaveTimeToGoOutLabel.snp.bottom).offset(frame.height/21.79310)
