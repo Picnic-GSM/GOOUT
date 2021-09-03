@@ -21,6 +21,10 @@ class requestConfirmationCell : UICollectionViewCell {
         $0.dynamicFont(fontSize: 13, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .black
     }
+    let closeBtn = UIButton().then{
+        $0.setImage(UIImage(named: "GOOUT_Cancel2"), for: .normal)
+        $0.tintColor = .blue
+    }
     let earlyLeaveTimeToGoOutLabel : EarlyLeaveTimeToGoOutView = {
         let view = EarlyLeaveTimeToGoOutView(startTimeString: "11:00", finishTimeString: "12:00")
         view.backgroundColor = .red
@@ -36,6 +40,7 @@ class requestConfirmationCell : UICollectionViewCell {
         $0.text = "준비물,준비물,준비물,준비물"
         $0.textColor = .black
     }
+    
     let btnApproval = UIButton().then{
         $0.setTitle("승인", for: .normal)
         $0.setTitleColor(.white, for: .normal)
@@ -45,6 +50,7 @@ class requestConfirmationCell : UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addSubview(closeBtn)
         addSubview(requestStatus)
         addSubview(requestStudentName)
         addSubview(requestStudentClass)
@@ -58,12 +64,18 @@ class requestConfirmationCell : UICollectionViewCell {
         location()
     }
     func location(){
+        closeBtn.snp.makeConstraints { (make) in
+            make.height.width.equalTo(frame.height/22.8986)
+            make.top.equalToSuperview().offset(frame.height/19.08212)
+            make.right.equalToSuperview().inset(frame.width/13.718)
+        }
         requestStatus.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(frame.height/9.875)
             make.width.equalTo(frame.height/3.09804)
             make.height.equalTo(frame.height/13.166667)
             make.centerX.equalToSuperview()
         }
+   
         requestStudentName.snp.makeConstraints { (make) in
             make.top.equalTo(requestStatus.snp.bottom).offset(frame.height/22.5714)
             make.centerX.equalToSuperview()

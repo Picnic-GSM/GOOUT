@@ -11,6 +11,9 @@ import Then
 
 class InquiryForEachClassViewController : UIViewController{
     //MARK: - Properties
+    lazy var mainTabBarView = MainTabBarView()
+
+    
     let bounds: CGRect = UIScreen.main.bounds
     private let eachClassTitle = UILabel().then{
         $0.textColor = UIColor.rgb(red: 104, green: 134, blue: 197)
@@ -43,8 +46,14 @@ class InquiryForEachClassViewController : UIViewController{
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorColor = UIColor.clear
         tableView.backgroundColor = .clear
-        
+        tableView.alpha = 0
         return tableView
+    }()
+    
+    private let noHistory : noHistoryView = {
+        let view = noHistoryView()
+        
+        return view
     }()
 
     
@@ -80,6 +89,7 @@ class InquiryForEachClassViewController : UIViewController{
         view.addSubview(requestConfirmationCollectionView)
         view.addSubview(comeBackCheck)
         view.addSubview(homeComingTableView)
+        view.addSubview(noHistory)
     }
     func location(){
 
@@ -107,7 +117,16 @@ class InquiryForEachClassViewController : UIViewController{
             make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
         }
+        noHistory.snp.makeConstraints { (make) in
+            make.width.equalTo(view.frame.width/1.27986)
+            make.height.equalTo(view.frame.height/3.184314)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(comeBackCheck).offset(view.frame.height/11.768)
+            
+        }
     }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
