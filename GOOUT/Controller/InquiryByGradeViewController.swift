@@ -8,24 +8,48 @@
 import UIKit
 import Then
 import SnapKit
+import DropDown
 
 class InquiryByGradeViewController : UIViewController {
     
-    // MARK: - property
+    //MARK: - Properties
     lazy var mainTabBarView = MainTabBarView()
     
     lazy var viewControllerView = UIView().then{
         $0.backgroundColor = .white
     }
     
-    // MARK: - lifeCycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
+    }
+    
+    //MARK: - Helpers
+        func configureUI(){
+        view.backgroundColor = .white
         
         layoutSetting()
 
         mainTabBarViewSetting()
+        
+        addView()
+        cornerRadius()
+        location()
     }
+    
+    func addView(){
+        
+    }
+    
+    func cornerRadius(){
+        
+    }
+    
+    func location(){
+        
+    }
+    //MARK: - Selectors
     
     // MARK: - myClassInquiryButtonClicked
     @objc func myClassInquiryButtonClicked(sender:UIButton){
