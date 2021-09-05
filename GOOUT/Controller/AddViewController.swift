@@ -145,6 +145,8 @@ class AddViewController: UIViewController{
         $0.sizeToFit()
     }
     
+    var selectedLabel = "goout"
+    
     
     // MARK: - lifeCycle
     override func viewDidLoad() {
@@ -177,6 +179,8 @@ class AddViewController: UIViewController{
                 
                 self.view.superview?.layoutIfNeeded()
             }
+            
+            selectedLabel = "goout"
         }
     }
     
@@ -204,6 +208,8 @@ class AddViewController: UIViewController{
                 
                 self.view.superview?.layoutIfNeeded()
             }
+            
+            selectedLabel = "earlyLeave"
         }
     }
     
@@ -216,6 +222,7 @@ class AddViewController: UIViewController{
     }
     
     @objc func addButtonClicked(sender:UIButton){
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -251,7 +258,7 @@ class AddViewController: UIViewController{
                 make.centerX.equalToSuperview()
             }
             
-            if self.gooutButton.isSelected == false{
+            if self.selectedLabel == "goout"{
                 self.reasonLabel.snp.remakeConstraints { make in
                     make.left.equalTo(self.gooutTimeLabel)
                     make.top.equalTo(self.gooutStartTimeButton.snp.bottom).offset(self.view.frame.height/18.04)
