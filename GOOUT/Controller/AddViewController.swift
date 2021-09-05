@@ -224,11 +224,45 @@ class AddViewController: UIViewController{
     }
     
     @objc func keyboardWillShow(_ sender: Notification) {
-        
+        UIView.animate(withDuration: 0.5) {
+            self.addButton.snp.remakeConstraints { make in
+                make.width.equalToSuperview().dividedBy(1.35)
+                make.height.equalToSuperview().dividedBy(19.13)
+                make.centerX.centerY.equalToSuperview()
+            }
+            
+            self.reasonLabel.snp.remakeConstraints { make in
+                make.left.equalTo(self.gooutTimeLabel)
+                make.top.equalTo(self.gooutTimeLabel)
+            }
+            
+            self.gooutTimeLabel.alpha = 0
+            
+            self.addButton.superview?.layoutIfNeeded()
+        }
     }
     
     @objc func keyboardWillHide(_ sender: Notification) {
-
+        UIView.animate(withDuration: 0.5) {
+            self.addButton.snp.remakeConstraints { make in
+                make.bottom.equalToSuperview().offset(-self.view.frame.height/10.23)
+                make.width.equalToSuperview().dividedBy(1.35)
+                make.height.equalToSuperview().dividedBy(19.13)
+                make.centerX.equalToSuperview()
+            }
+            
+            if self.gooutButton.isSelected == false{
+                self.reasonLabel.snp.remakeConstraints { make in
+                    make.left.equalTo(self.gooutTimeLabel)
+                    make.top.equalTo(self.gooutStartTimeButton.snp.bottom).offset(self.view.frame.height/18.04)
+                }
+                
+                self.gooutTimeLabel.alpha = 1
+            }
+            
+            
+            self.addButton.superview?.layoutIfNeeded()
+        }
     }
     
     // MARK: - reasonTextViewSetting
