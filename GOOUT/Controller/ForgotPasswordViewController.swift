@@ -16,6 +16,8 @@ class ForgotPasswordViewController: UIViewController{
     var passwordlabel = UILabel()
     var sublable = UILabel()
     var sublable2 = UILabel()
+    var emailtext = UITextField()
+    let border = CALayer()
     let bound = UIScreen.main.bounds
     
     override func viewDidLoad() {
@@ -41,6 +43,7 @@ class ForgotPasswordViewController: UIViewController{
         view.addSubview(passwordlabel)
         view.addSubview(sublable)
         view.addSubview(sublable2)
+        view.addSubview(emailtext)
     }
     
     func location(){
@@ -59,37 +62,53 @@ class ForgotPasswordViewController: UIViewController{
             mak.left.equalTo(bound.width*0.11)
             mak.height.equalTo(bound.height*0.03)
             mak.width.equalTo(bound.width*0.488)
-            
+        }
             
         passwordlabel.textColor = .white
         passwordlabel.dynamicFont(fontSize: 22, currentFontName: "AppleSDGothicNeo-Bold")
         passwordlabel.text = "비밀번호를 잊으셨나요?"
         passwordlabel.snp.makeConstraints{ make in
-                make.top.equalTo(mainview.snp.top).offset(bound.height*0.11)
-                make.centerX.equalTo(view)
-                
-            
-            sublable.textAlignment = .center
-            sublable.textColor = .white
-            sublable.dynamicFont(fontSize: 16, currentFontName: "AppleSDGothicNeo-SemiBold")
-            sublable.text = "회원가입 시 사용하신 이메일을 입력해주세요."
-            sublable.snp.makeConstraints{make in
-                make.top.equalTo(mainview.snp.top).offset(bound.height*0.21)
-                make.centerX.equalTo(view)
-                
-                
-            }
-            sublable2.textAlignment = .center
-            sublable2.textColor = .white
-            sublable2.dynamicFont(fontSize: 16, currentFontName: "AppleSDGothicNeo-SemiBold")
-            sublable2.text = "이메일로 인증번호를 보내드리겠습니다."
-            sublable2.snp.makeConstraints{make in
-                make.top.equalTo(sublable.snp.bottom).offset(1)
-                make.centerX.equalTo(view)
-            }
-            }
+            make.top.equalTo(mainview.snp.top).offset(bound.height*0.11)
+            make.centerX.equalTo(view)
         }
-    }
+        
+        sublable.textAlignment = .center
+        sublable.textColor = .white
+        sublable.dynamicFont(fontSize: 16, currentFontName: "AppleSDGothicNeo-SemiBold")
+        sublable.text = "회원가입 시 사용하신 이메일을 입력해주세요."
+        sublable.snp.makeConstraints{make in
+            make.top.equalTo(mainview.snp.top).offset(bound.height*0.21)
+            make.centerX.equalTo(view)
+            
+            
+        }
+        sublable2.textAlignment = .center
+        sublable2.textColor = .white
+        sublable2.dynamicFont(fontSize: 16, currentFontName: "AppleSDGothicNeo-SemiBold")
+        sublable2.text = "이메일로 인증번호를 보내드리겠습니다."
+        sublable2.snp.makeConstraints{make in
+            make.top.equalTo(sublable.snp.bottom).offset(1)
+            make.centerX.equalTo(view)
+        }
+        
+        emailtext.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-Light")
+        self.emailtext.autocapitalizationType = .none
+        emailtext.borderStyle = .none
+        emailtext.layer.addSublayer(border)
+        emailtext.attributedPlaceholder =  NSAttributedString(string: "이메일을 입력해주세요.", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        emailtext.textColor = .white
+        
+        emailtext.snp.makeConstraints{make in
+            make.top.equalTo(passwordlabel.snp.bottom).offset(bound.height*0.2)
+            make.left.equalTo(bound.width*0.18)
+            
+            make.width.equalTo(bound.width*0.65)
+            make.height.equalTo(bound.height*0.03)
+            
+        }
+        
+        }
+    
     func gradient(){
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
@@ -108,6 +127,7 @@ class ForgotPasswordViewController: UIViewController{
     
         
     }
+
     func gradientColor(gradientLayer :CAGradientLayer) -> UIColor? {
         UIGraphicsBeginImageContextWithOptions(gradientLayer.bounds.size, false, 0.0)
         gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
@@ -115,7 +135,10 @@ class ForgotPasswordViewController: UIViewController{
         UIGraphicsEndImageContext()
         return UIColor(patternImage: image!)
     }
-
- 
+    override func viewDidLayoutSubviews() {
+        border.frame = CGRect(x: 0, y: bound.height*0.03, width: emailtext.frame.width, height: 1)
+        border.backgroundColor = UIColor.white.cgColor
     }
+}
+    
 
