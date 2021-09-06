@@ -74,7 +74,7 @@ class AddViewController: UIViewController{
     }
     
     lazy var gooutStartTimeDropDown = DropDown().then{
-        $0.dataSource = ["1교시(08:40)","2교시(09:40)","3교시(10:40)","4교시(11:40)","점심시간(12:30)","5교시(13:30)","6교시(14:30)","7교시(15:30)","8교시(16:40)","9교시(17:40)","저녁시간(18:30)","10교시(19:40)","11교시(20:40)"]
+        $0.dataSource = gooutTimeArray
         $0.anchorView = gooutStartTimeButton
         $0.direction = .bottom
         $0.offsetFromWindowBottom = 120
@@ -106,7 +106,7 @@ class AddViewController: UIViewController{
     }
     
     lazy var gooutEndTimeDropDown = DropDown().then{
-        $0.dataSource = ["1교시(08:40)","2교시(09:40)","3교시(10:40)","4교시(11:40)","점심시간(12:30)","5교시(13:30)","6교시(14:30)","7교시(15:30)","8교시(16:40)","9교시(17:40)","저녁시간(18:30)","10교시(19:40)","11교시(20:40)"]
+        $0.dataSource = gooutTimeArray
         $0.anchorView = gooutEndTimeButton
         $0.direction = .bottom
         $0.offsetFromWindowBottom = 120
@@ -146,6 +146,11 @@ class AddViewController: UIViewController{
     }
     
     var selectedLabel = "goout"
+    
+    var newDataSource = [String]()
+    
+    var gooutTimeArray = ["1교시(08:40)","2교시(09:40)","3교시(10:40)","4교시(11:40)","점심시간(12:30)","5교시(13:30)","6교시(14:30)","7교시(15:30)","8교시(16:40)","9교시(17:40)","저녁시간(18:30)","10교시(19:40)","11교시(20:40)"]
+    
     
     
     // MARK: - lifeCycle
@@ -222,6 +227,11 @@ class AddViewController: UIViewController{
     }
     
     @objc func addButtonClicked(sender:UIButton){
+        
+        print(selectedLabel)
+        print(reasonTextView.text as Any)
+        print(selectedGooutStartTimeLabel.text as Any)
+        print(selectedGooutEndTimeLabel.text as Any)
         
         dismiss(animated: true, completion: nil)
     }
@@ -327,6 +337,16 @@ class AddViewController: UIViewController{
         
         gooutStartTimeDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             selectedGooutStartTimeLabel.text = "\(item)"
+            newDataSource = []
+            
+            print(gooutEndTimeDropDown.dataSource)
+            selectedGooutEndTimeLabel.text = gooutTimeArray[index+1]
+
+            for i in index+1...gooutTimeArray.count-1{
+                newDataSource.append(gooutTimeArray[i])
+            }
+
+            gooutEndTimeDropDown.dataSource = newDataSource
             self.gooutStartTimeDropDown.clearSelection()
         }
         
