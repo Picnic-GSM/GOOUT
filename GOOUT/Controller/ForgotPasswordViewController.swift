@@ -12,6 +12,7 @@ import Then
 class ForgotPasswordViewController: UIViewController{
     
     var mainview = UIView()
+    var mainlabel = UILabel()
     let bound = UIScreen.main.bounds
     
     override func viewDidLoad() {
@@ -33,6 +34,7 @@ class ForgotPasswordViewController: UIViewController{
     
     func addview(){
         view.addSubview(mainview)
+        view.addSubview(mainlabel)
     }
     
     func location(){
@@ -43,6 +45,16 @@ class ForgotPasswordViewController: UIViewController{
             make.height.equalTo(bound.height*0.74)
             make.top.equalTo(bound.height*0.25)
     }
+        
+        mainlabel.text = "Find Password"
+        
+        mainlabel.dynamicFont(fontSize: 25, currentFontName: "FugazOne-Regular")
+        mainlabel.snp.makeConstraints{ mak in
+            mak.top.equalTo(bound.height*0.12)
+            mak.left.equalTo(bound.width*0.11)
+            mak.height.equalTo(bound.height*0.03)
+            mak.width.equalTo(bound.width*0.488)
+        }
     }
     func gradient(){
         let gradientLayer = CAGradientLayer()
@@ -58,7 +70,18 @@ class ForgotPasswordViewController: UIViewController{
         gradientLayer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
         
         mainview.layer.addSublayer(gradientLayer)
-    }
+   
     
+        
     }
-//
+    func gradientColor(gradientLayer :CAGradientLayer) -> UIColor? {
+        UIGraphicsBeginImageContextWithOptions(gradientLayer.bounds.size, false, 0.0)
+        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return UIColor(patternImage: image!)
+    }
+
+ 
+    }
+
