@@ -29,7 +29,6 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
     }
     let earlyLeaveTimeToGoOutLabel : EarlyLeaveTimeToGoOutView = {
         let view = EarlyLeaveTimeToGoOutView(startTimeString: "11:00", finishTimeString: "12:00")
-        view.backgroundColor = .red
         return view
     }()
     let attendanceButton = UIButton().then{
@@ -89,17 +88,18 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
             make.top.equalTo(requestStudentName.snp.bottom).offset(frame.height/34.5)
             make.centerX.equalTo(view)
         }
+        attendanceButton.snp.makeConstraints { (make) in
+            make.right.equalToSuperview()
+            make.top.bottom.equalTo(cellView)
+            make.width.equalTo(frame.width/4.573170)
+        }
         earlyLeaveTimeToGoOutLabel.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.right.equalTo(attendanceButton.snp.left).offset(frame.width/15 * -1)
             make.height.equalTo(frame.height/2.7187)
             make.width.equalTo(frame.width/3.64077)
         }
-        attendanceButton.snp.makeConstraints { (make) in
-            make.right.equalToSuperview()
-            make.top.bottom.equalTo(cellView)
-            make.width.equalTo(frame.width/4.573170)
-        }
+ 
     }
    
     required init?(coder: NSCoder) {
