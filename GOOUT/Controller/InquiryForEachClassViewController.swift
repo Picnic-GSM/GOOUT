@@ -169,7 +169,6 @@ class InquiryForEachClassViewController : UIViewController{
             make.width.equalToSuperview()
             make.bottom.equalToSuperview().offset(-self.view.frame.height/10.15)
         }
-
         // myClassInquiryViewController 화면전환 준비
         let myClassInquiryViewController = MyClassInquiryViewController()
         self.addChild(myClassInquiryViewController)
