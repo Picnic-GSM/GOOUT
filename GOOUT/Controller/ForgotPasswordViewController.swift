@@ -17,6 +17,7 @@ class ForgotPasswordViewController: UIViewController{
     var sublable = UILabel()
     var sublable2 = UILabel()
     var emailtext = UITextField()
+    var checkbutton = UIButton()
     let border = CALayer()
     let bound = UIScreen.main.bounds
     
@@ -44,6 +45,7 @@ class ForgotPasswordViewController: UIViewController{
         view.addSubview(sublable)
         view.addSubview(sublable2)
         view.addSubview(emailtext)
+        view.addSubview(checkbutton)
     }
     
     func location(){
@@ -107,6 +109,21 @@ class ForgotPasswordViewController: UIViewController{
             
         }
         
+        checkbutton.backgroundColor = .white
+        checkbutton.layer.cornerRadius = 10
+        checkbutton.setTitle("확인", for: .normal)
+        checkbutton.setTitleColor(.gray, for: .normal)
+        checkbutton.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
+        checkbutton.snp.makeConstraints{make in
+            make.top.equalTo(emailtext.snp.bottom).offset(bound.height*0.05)
+            make.centerX.equalTo(view)
+        
+            make.left.equalTo(bound.width*0.4)
+            
+            
+            make.height.equalTo(bound.height*0.04)
+            
+        }
         }
     
     func gradient(){
