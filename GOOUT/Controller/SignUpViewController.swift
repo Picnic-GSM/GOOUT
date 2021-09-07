@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     lazy var signUpLabel = UILabel().then {
         $0.text = "Sign up"
@@ -28,6 +28,7 @@ class SignUpViewController: UIViewController {
         $0.placeholder = "이메일을 입력하세요."
         $0.setPlaceholderColor(.rgb(red: 108, green: 108, blue: 108))
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.delegate = self
     }
     lazy var emailLine = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
@@ -41,18 +42,20 @@ class SignUpViewController: UIViewController {
         $0.placeholder = "비밀번호를 입력하세요."
         $0.setPlaceholderColor(.rgb(red: 108, green: 108, blue: 108))
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.isSecureTextEntry = true
+        $0.delegate = self
     }
     lazy var passwordLine = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
     }
     lazy var passwordVisibilityButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "eye"), for: .normal)
+        $0.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         $0.tintColor = .rgb(red: 108, green: 108, blue: 108)
         $0.addTarget(self, action: #selector(changePasswordVisibilityToggle), for: .touchUpInside)
         
     }
     lazy var passwordExampleLabel = UILabel().then {
-        $0.text = "비밀번호는 8~16자 사이여야되며, 특수문자를 포함해야합니다."
+        $0.text = "비밀번호는 8~16자 사이로, 특수문자를 포함해야합니다."
         $0.textColor = .rgb(red: 151, green: 151, blue: 151)
         $0.dynamicFont(fontSize: 8, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
@@ -65,6 +68,8 @@ class SignUpViewController: UIViewController {
         $0.placeholder = "비밀번호를 한번 더 입력하세요."
         $0.setPlaceholderColor(.rgb(red: 108, green: 108, blue: 108))
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.isSecureTextEntry = true
+        $0.delegate = self
     }
     lazy var checkPasswordLine = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
@@ -78,6 +83,7 @@ class SignUpViewController: UIViewController {
         $0.setTitle("Sign up", for: .normal)
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
+        $0.addTarget(self, action: #selector(clickSignUpButton), for: .touchUpInside)
     }
     lazy var loginButton = UIButton().then {
         $0.setTitle("이미 계정이 있으신가요?", for: .normal)
@@ -216,6 +222,11 @@ class SignUpViewController: UIViewController {
   
     
 //MARK: - Actions
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+          guard let text = passwordTextField.text else { return true }
+        let newLength = text.count + string.count - range.length
+          return newLength <= 16
+    }
     @objc
     func changePasswordVisibilityToggle(_ sender : UIButton) {
         if passwordTextField.isSecureTextEntry{
@@ -224,6 +235,22 @@ class SignUpViewController: UIViewController {
             sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         }
         passwordTextField.isSecureTextEntry.toggle()
+    }
+    @objc
+    func clickSignUpButton(_ sender: UIButton) {
+        if emailTextField.text?.isEmpty == false &&
+            passwordTextField.text?.isEmpty == false &&
+            checkPasswordTextField.text?.isEmpty == false &&
+            emailTextField.text?.contains("@") == true {
+            print("성공")
+        }else{
+            print("다시 입력")
+        }
+        
+        emailTextField.text = ""
+        passwordTextField.text = ""
+        checkPasswordTextField.text = ""
+        
     }
 }
 
