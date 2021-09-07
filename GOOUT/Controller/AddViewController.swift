@@ -238,8 +238,7 @@ class AddViewController: UIViewController{
     }
     
     @objc func addButtonClicked(sender:UIButton){
-        print(reasonTextView.text)
-        if reasonTextView.text == "사유를 입력해주세요."{
+        if reasonTextView.text == "사유를 입력해주세요." || reasonTextView.text == ""{
             shakeView(reasonTextView)
         }else{
             dismiss(animated: true, completion: nil)
