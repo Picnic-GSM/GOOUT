@@ -48,6 +48,8 @@ class SignUpViewController: UIViewController {
     lazy var passwordVisibilityButton = UIButton().then {
         $0.setImage(UIImage(systemName: "eye"), for: .normal)
         $0.tintColor = .rgb(red: 108, green: 108, blue: 108)
+        $0.addTarget(self, action: #selector(changePasswordVisibilityToggle), for: .touchUpInside)
+        
     }
     lazy var passwordExampleLabel = UILabel().then {
         $0.text = "비밀번호는 8~16자 사이여야되며, 특수문자를 포함해야합니다."
@@ -91,6 +93,7 @@ class SignUpViewController: UIViewController {
   
 //  MARK: configureUI
     func configureUI() {
+        self.view.backgroundColor = .white
         addSubView()
         cornerRadius()
         location()
@@ -210,8 +213,22 @@ class SignUpViewController: UIViewController {
         
         
     }
+  
     
+//MARK: - Actions
+    @objc
+    func changePasswordVisibilityToggle(_ sender : UIButton) {
+        if passwordTextField.isSecureTextEntry{
+            sender.setImage(UIImage(systemName: "eye"), for: .normal)
+        }else{
+            sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        }
+        passwordTextField.isSecureTextEntry.toggle()
+    }
 }
+
+
+
 
 //MARK: extension
 public extension UITextField {
@@ -226,7 +243,6 @@ public extension UITextField {
         )
     }
 }
-
 
 
 //MARK: - Preview
