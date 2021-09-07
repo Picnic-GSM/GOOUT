@@ -9,6 +9,7 @@ import UIKit
 import Then
 import SnapKit
 import DropDown
+import QuartzCore
  
 class AddViewController: UIViewController{
     // MARK: - property
@@ -160,6 +161,16 @@ class AddViewController: UIViewController{
         layoutSetting()
     }
     
+    func shakeView(_ textView: UITextView?) {
+        let shake = CABasicAnimation(keyPath: "position")
+        shake.duration = 0.1
+        shake.repeatCount = 1.7
+        shake.autoreverses = true
+        shake.fromValue = NSValue(cgPoint: CGPoint(x: (textView?.center.x)! - 5, y: textView?.center.y ?? 0.0))
+        shake.toValue = NSValue(cgPoint: CGPoint(x: (textView?.center.x)! + 5, y: textView?.center.y ?? 0.0))
+        textView?.layer.add(shake, forKey: "position")
+    }
+    
     @objc func gooutButtonClicked(sender:UIButton){
         if gooutButton.isSelected == true{
             gooutButton.setImage(UIImage(named: "GOOUT_SelectedCheckButtonImage"), for: .normal)
@@ -227,13 +238,18 @@ class AddViewController: UIViewController{
     }
     
     @objc func addButtonClicked(sender:UIButton){
+        print(reasonTextView.text)
+        if reasonTextView.text == "사유를 입력해주세요."{
+            shakeView(reasonTextView)
+        }else{
+            dismiss(animated: true, completion: nil)
+        }
         
         print(selectedLabel)
         print(reasonTextView.text as Any)
         print(selectedGooutStartTimeLabel.text as Any)
         print(selectedGooutEndTimeLabel.text as Any)
         
-        dismiss(animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
