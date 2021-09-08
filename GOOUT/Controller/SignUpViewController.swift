@@ -265,7 +265,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }else{
             print("모두 입력하세요")
         }
-        
         emailTextField.text = ""
         passwordTextField.text = ""
         checkPasswordTextField.text = ""
