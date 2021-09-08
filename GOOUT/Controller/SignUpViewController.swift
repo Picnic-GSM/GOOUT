@@ -235,6 +235,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         }
         passwordTextField.isSecureTextEntry.toggle()
+        checkPasswordTextField.isSecureTextEntry.toggle()
     }
     @objc
     func clickSignUpButton(_ sender: UIButton) {
