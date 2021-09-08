@@ -21,6 +21,11 @@ class InformationViewController: UIViewController {
         $0.backgroundColor = .rgb(red: 255, green: 243, blue: 243)
     }
     
+    lazy var gradeLable = UILabel().then {
+        $0.text = "Grade"
+        $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.textColor = .rgb(red: 255, green: 172, blue: 183)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +43,7 @@ class InformationViewController: UIViewController {
     func addSubView() {
         self.view.addSubview(informationLabel)
         self.view.addSubview(backgroundView)
+        self.view.addSubview(gradeLable)
     }
     
     func cornerRadius() {
@@ -65,22 +71,11 @@ class InformationViewController: UIViewController {
             make.height.equalToSuperview().dividedBy(1.33)
             make.top.equalToSuperview().offset(self.view.frame.height/4)
         }
-    }
-}
-
-
-
-//MARK: extension
-public extension UITextField {
-    
-    func setPlaceholderColor(_ placeholderColor: UIColor) {
-        attributedPlaceholder = NSAttributedString(
-            string: placeholder ?? "",
-            attributes: [
-                .foregroundColor: placeholderColor,
-                .font: font
-            ].compactMapValues { $0 }
-        )
+        
+        gradeLable.snp.makeConstraints { make in
+            make.top.equalTo(backgroundView).offset(self.view.frame.height/10.83)
+            make.left.equalToSuperview().offset(self.view.frame.width/6.05)
+        }
     }
 }
 
