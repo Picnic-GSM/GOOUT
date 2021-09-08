@@ -30,7 +30,11 @@ class InquiryByGradeViewController : UIViewController {
     }
     
     lazy var downBtn = UIButton().then {
-        $0.setBackgroundImage(UIImage(named: "GOOUT_UnderButtonImage"), for: .normal)
+        $0.setBackgroundImage(UIImage(named: "GOOUT_GradeUnderButtonImage"), for: .normal)
+    }
+    
+    lazy var gradeDropDown = DropDown().then {
+        $0.dataSource = ["1st Grade", "2nd Grade", "3rd Grade"]
     }
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -65,15 +69,15 @@ class InquiryByGradeViewController : UIViewController {
         dropLabelBtn.snp.makeConstraints { make in
             make.left.equalTo(self.view.frame.width/12.5)
             make.top.equalTo(self.view.frame.height/11.44)
-            make.width.equalToSuperview().dividedBy(2.64)
+            make.width.equalToSuperview().dividedBy(2.5)
             make.height.equalToSuperview().dividedBy(21.95)
         }
         
         downBtn.snp.makeConstraints { make in
             make.centerY.equalTo(dropLabelBtn)
             make.right.equalTo(dropLabelBtn)
-            make.width.equalTo(self.view.frame.width/41.67)
-            make.height.equalTo(self.view.frame.height/180.44)
+            make.width.equalTo(self.view.frame.width/31.25)
+            make.height.equalTo(self.view.frame.height/101.5)
         }
         
         gradeLabel.snp.makeConstraints { make in
