@@ -8,6 +8,7 @@ target 'GOOUT' do
   pod 'Then'
   pod 'Alamofire', '~> 5.4'
   pod 'DropDown'
+  pod 'AEOTPTextField'
   # Pods for GOOUT
 
 end
