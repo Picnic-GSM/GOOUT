@@ -32,6 +32,7 @@ class InformationViewController: UIViewController {
         addSubView()
         cornerRadius()
         location()
+        shadow()
     }
     
     func addSubView() {
@@ -43,6 +44,14 @@ class InformationViewController: UIViewController {
         backgroundView.layer.cornerRadius = 50
         backgroundView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         backgroundView.layer.masksToBounds = true
+    }
+    
+    func shadow() {
+        backgroundView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        backgroundView.layer.shadowOpacity = 1
+        backgroundView.layer.shadowRadius = 10
+        backgroundView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        backgroundView.clipsToBounds = false
     }
     
     func location() {
@@ -59,6 +68,21 @@ class InformationViewController: UIViewController {
     }
 }
 
+
+
+//MARK: extension
+public extension UITextField {
+    
+    func setPlaceholderColor(_ placeholderColor: UIColor) {
+        attributedPlaceholder = NSAttributedString(
+            string: placeholder ?? "",
+            attributes: [
+                .foregroundColor: placeholderColor,
+                .font: font
+            ].compactMapValues { $0 }
+        )
+    }
+}
 
 //MARK: - Preview
 
