@@ -116,6 +116,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         addSubView()
         cornerRadius()
         location()
+        shadow()
+    }
+    
+//  MARK: shadow
+    func shadow() {
+        backgroundView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        backgroundView.layer.shadowOpacity = 1
+        backgroundView.layer.shadowRadius = 10
+        backgroundView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        backgroundView.clipsToBounds = false
     }
     
 //  MARK: cornerRadius
