@@ -17,6 +17,10 @@ class InformationViewController: UIViewController {
         $0.textColor = .rgb(red: 255, green: 172, blue: 183)
     }
     
+    lazy var backgroundView = UIView().then {
+        $0.backgroundColor = .rgb(red: 255, green: 243, blue: 243)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,16 +36,25 @@ class InformationViewController: UIViewController {
     
     func addSubView() {
         self.view.addSubview(informationLabel)
+        self.view.addSubview(backgroundView)
     }
     
     func cornerRadius() {
-        
+        backgroundView.layer.cornerRadius = 50
+        backgroundView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        backgroundView.layer.masksToBounds = true
     }
     
     func location() {
         informationLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(self.view.frame.height/7.96)
             make.left.equalToSuperview().offset(self.view.frame.width/8.52)
+        }
+        
+        backgroundView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().dividedBy(1.33)
+            make.top.equalToSuperview().offset(self.view.frame.height/4)
         }
     }
 }
