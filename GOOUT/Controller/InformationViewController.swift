@@ -11,11 +11,17 @@ import Then
 
 class InformationViewController: UIViewController {
     
+    lazy var informationLabel = UILabel().then {
+        $0.text = "Information"
+        $0.dynamicFont(fontSize: 30, currentFontName: "FugazOne-Regular")
+        $0.textColor = .rgb(red: 255, green: 172, blue: 183)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
-    
     
     func configureUI() {
         self.view.backgroundColor = .white
@@ -25,7 +31,7 @@ class InformationViewController: UIViewController {
     }
     
     func addSubView() {
-        
+        self.view.addSubview(informationLabel)
     }
     
     func cornerRadius() {
@@ -33,7 +39,10 @@ class InformationViewController: UIViewController {
     }
     
     func location() {
-        
+        informationLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(self.view.frame.height/7.96)
+            make.left.equalToSuperview().offset(self.view.frame.width/8.52)
+        }
     }
 }
 
