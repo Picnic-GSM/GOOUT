@@ -22,6 +22,12 @@ class InquiryByGradeViewController : UIViewController {
     lazy var dropLabelBtn = UIButton().then {
         $0.backgroundColor = .yellow
     }
+
+    lazy var gradeLabel = UILabel().then {
+        $0.text = "3rd Grade"
+        $0.dynamicFont(fontSize: 25, currentFontName: "FugazOne-Regular")
+        $0.textColor = .rgb(red: 104, green: 134, blue: 197)
+    }
     
     lazy var downBtn = UIButton().then {
         $0.setBackgroundImage(UIImage(named: "GOOUT_UnderButtonImage"), for: .normal)
@@ -47,6 +53,7 @@ class InquiryByGradeViewController : UIViewController {
     
     func addView(){
         view.addSubview(dropLabelBtn)
+        view.addSubview(gradeLabel)
         view.addSubview(downBtn)
     }
     
@@ -64,9 +71,14 @@ class InquiryByGradeViewController : UIViewController {
         
         downBtn.snp.makeConstraints { make in
             make.centerY.equalTo(dropLabelBtn)
-            make.right.equalTo(dropLabelBtn).inset(self.view.frame.width/83.3)
+            make.right.equalTo(dropLabelBtn)
             make.width.equalTo(self.view.frame.width/41.67)
             make.height.equalTo(self.view.frame.height/180.44)
+        }
+        
+        gradeLabel.snp.makeConstraints { make in
+            make.left.equalTo(dropLabelBtn)
+            make.centerY.equalTo(dropLabelBtn)
         }
     }
     //MARK: - Selectors
