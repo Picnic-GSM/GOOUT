@@ -222,11 +222,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
   
     
 //MARK: - Actions
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
           guard let text = passwordTextField.text else { return true }
         let newLength = text.count + string.count - range.length
           return newLength <= 16
     }
+    
     @objc
     func changePasswordVisibilityToggle(_ sender : UIButton) {
         if passwordTextField.isSecureTextEntry{
@@ -237,6 +239,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.isSecureTextEntry.toggle()
         checkPasswordTextField.isSecureTextEntry.toggle()
     }
+    
     @objc
     func clickSignUpButton(_ sender: UIButton) {
         if emailTextField.text?.isEmpty == false &&
@@ -250,9 +253,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     passwordTextField.text?.contains("@") == true ||
                     passwordTextField.text?.contains("#") == true ||
                     passwordTextField.text?.contains("$") == true ||
-                    passwordTextField.text?.contains("*") == true {
+                    passwordTextField.text?.contains("*") == true
+                    {
                     if checkPasswordTextField.text == passwordTextField.text{
                         print("성공")
+                        
+                        emailTextField.text = ""
+                        passwordTextField.text = ""
+                        checkPasswordTextField.text = ""
+                        
                     }else{
                         print("비밀번호가 일치하지 않습니다.")
                     }
@@ -265,10 +274,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }else{
             print("모두 입력하세요")
         }
-        emailTextField.text = ""
-        passwordTextField.text = ""
-        checkPasswordTextField.text = ""
-        
     }
 }
 
