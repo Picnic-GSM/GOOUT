@@ -19,6 +19,10 @@ class InquiryByGradeViewController : UIViewController {
         $0.backgroundColor = .white
     }
     
+    lazy var dropLabelBtn = UILabel().then {
+        $0.backgroundColor = .yellow
+    }
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +43,7 @@ class InquiryByGradeViewController : UIViewController {
     }
     
     func addView(){
-        
+        view.addSubview(dropLabelBtn)
     }
     
     func cornerRadius(){
@@ -47,7 +51,12 @@ class InquiryByGradeViewController : UIViewController {
     }
     
     func location(){
-        
+        dropLabelBtn.snp.makeConstraints { make in
+            make.left.equalTo(self.view.frame.width/12.5)
+            make.top.equalTo(self.view.frame.height/11.44)
+            make.width.equalToSuperview().dividedBy(2.64)
+            make.height.equalToSuperview().dividedBy(21.95)
+        }
     }
     //MARK: - Selectors
     
