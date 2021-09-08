@@ -20,7 +20,7 @@ class InquiryByGradeViewController : UIViewController {
     }
     
     lazy var dropLabelBtn = UIButton().then {
-        $0.backgroundColor = .yellow
+        $0.backgroundColor = .white
     }
 
     lazy var gradeLabel = UILabel().then {
