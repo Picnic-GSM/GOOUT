@@ -240,11 +240,29 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func clickSignUpButton(_ sender: UIButton) {
         if emailTextField.text?.isEmpty == false &&
             passwordTextField.text?.isEmpty == false &&
-            checkPasswordTextField.text?.isEmpty == false &&
-            emailTextField.text?.contains("@") == true {
-            print("성공")
+            checkPasswordTextField.text?.isEmpty == false {
+            if emailTextField.text?.contains("@") == true &&
+                emailTextField.text?.contains(".") == true
+                  {
+                if passwordTextField.text!.count >= 8 &&
+                    passwordTextField.text?.contains("!") == true ||
+                    passwordTextField.text?.contains("@") == true ||
+                    passwordTextField.text?.contains("#") == true ||
+                    passwordTextField.text?.contains("$") == true ||
+                    passwordTextField.text?.contains("*") == true {
+                    if checkPasswordTextField.text == passwordTextField.text{
+                        print("성공")
+                    }else{
+                        print("비밀번호가 일치하지 않습니다.")
+                    }
+                }else{
+                    print("비밀번호를 바르게 입력하세요")
+                }
+            }else{
+                print("이메일을 바르게 입력하세요")
+            }
         }else{
-            print("다시 입력")
+            print("모두 입력하세요")
         }
         
         emailTextField.text = ""
