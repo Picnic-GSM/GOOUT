@@ -13,8 +13,28 @@ class InformationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
     }
     
+    
+    func configureUI() {
+        self.view.backgroundColor = .white
+        addSubView()
+        cornerRadius()
+        location()
+    }
+    
+    func addSubView() {
+        
+    }
+    
+    func cornerRadius() {
+        
+    }
+    
+    func location() {
+        
+    }
 }
 
 
