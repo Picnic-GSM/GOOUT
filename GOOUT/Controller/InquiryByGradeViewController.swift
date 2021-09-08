@@ -23,6 +23,9 @@ class InquiryByGradeViewController : UIViewController {
         $0.backgroundColor = .yellow
     }
     
+    lazy var downBtn = UIButton().then {
+        $0.setBackgroundImage(UIImage(named: "GOOUT_UnderButtonImage"), for: .normal)
+    }
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +47,7 @@ class InquiryByGradeViewController : UIViewController {
     
     func addView(){
         view.addSubview(dropLabelBtn)
+        view.addSubview(downBtn)
     }
     
     func cornerRadius(){
@@ -56,6 +60,13 @@ class InquiryByGradeViewController : UIViewController {
             make.top.equalTo(self.view.frame.height/11.44)
             make.width.equalToSuperview().dividedBy(2.64)
             make.height.equalToSuperview().dividedBy(21.95)
+        }
+        
+        downBtn.snp.makeConstraints { make in
+            make.centerY.equalTo(dropLabelBtn)
+            make.right.equalTo(dropLabelBtn).inset(self.view.frame.width/83.3)
+            make.width.equalTo(self.view.frame.width/41.67)
+            make.height.equalTo(self.view.frame.height/180.44)
         }
     }
     //MARK: - Selectors
