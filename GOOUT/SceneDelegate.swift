@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let mainViewController = InquiryByGradeViewController()
 
-        let navigationController = UINavigationController(rootViewController: mainViewController)
+        let navigationController = UINavigationController(rootViewController: ForgotPasswordViewController())
 
         navigationController.navigationBar.isHidden = true
         window?.rootViewController = navigationController
