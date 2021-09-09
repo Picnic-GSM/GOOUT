@@ -31,6 +31,13 @@ class InformationViewController: UIViewController {
         $0.backgroundColor = .rgb(red: 255, green: 255, blue: 255)
     }
     
+    lazy var grade1Button = UIButton().then {
+        $0.setTitle("1학년", for: .normal)
+        $0.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.addTarget(self, action: #selector(tabGrade1Button), for: .touchUpInside)
+    }
+    
     lazy var classLabel = UILabel().then {
         $0.text = "Class"
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
@@ -77,6 +84,7 @@ class InformationViewController: UIViewController {
         self.view.addSubview(signUpButton)
         self.view.addSubview(loginButton)
         self.view.addSubview(gradeView)
+        self.view.addSubview(grade1Button)
     }
     
     func cornerRadius() {
@@ -121,6 +129,11 @@ class InformationViewController: UIViewController {
             make.left.equalTo(gradeLabel)
         }
         
+        grade1Button.snp.makeConstraints { make in
+            make.centerY.equalTo(gradeView)
+            make.left.equalTo(gradeView).offset(self.view.frame.width/11.03)
+        }
+        
         classLabel.snp.makeConstraints { make in
             make.top.equalTo(backgroundView).offset(self.view.frame.height/5.08)
             make.left.equalTo(gradeLabel)
@@ -142,6 +155,12 @@ class InformationViewController: UIViewController {
             make.bottom.equalToSuperview().inset(self.view.frame.height/13.31)
             make.centerX.equalToSuperview()
         }
+    }
+    
+//MARK: - Action
+    @objc
+    func tabGrade1Button() {
+        
     }
 }
 
