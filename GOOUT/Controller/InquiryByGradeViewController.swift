@@ -35,6 +35,20 @@ class InquiryByGradeViewController : UIViewController {
     
     lazy var gradeDropDown = DropDown().then {
         $0.dataSource = ["1st Grade", "2nd Grade", "3rd Grade"]
+        $0.textFont = UIFont(name: "FugazOne-Regular", size: 20)!
+        $0.direction = .bottom
+        $0.anchorView = dropLabelBtn
+        $0.bottomOffset = CGPoint(x: 0, y:self.view.frame.height/21.95)
+        $0.backgroundColor = UIColor.white
+        $0.cornerRadius = 7
+        $0.cellHeight = self.view.frame.height/26
+        $0.shadowColor = UIColor.lightGray
+        $0.shadowOffset = CGSize(width: 0, height: 3)
+        $0.shadowRadius = 10
+        $0.shadowOpacity = 0.3
+        $0.textColor = .rgb(red: 104, green: 134, blue: 197)
+        $0.selectedTextColor = .rgb(red: 104, green: 134, blue: 197)
+        $0.width = self.view.frame.width/2.5
     }
     // MARK: - Lifecycle
     override func viewDidLoad() {
