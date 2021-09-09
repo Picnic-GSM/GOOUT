@@ -45,6 +45,13 @@ class InformationViewController: UIViewController {
         $0.addTarget(self, action: #selector(tabGrade2Button), for: .touchUpInside)
     }
     
+    lazy var grade3Button = UIButton().then {
+        $0.setTitle("3학년", for: .normal)
+        $0.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.addTarget(self, action: #selector(tabGrade3Button), for: .touchUpInside)
+    }
+    
     lazy var classLabel = UILabel().then {
         $0.text = "Class"
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
@@ -93,6 +100,7 @@ class InformationViewController: UIViewController {
         self.view.addSubview(gradeView)
         self.view.addSubview(grade1Button)
         self.view.addSubview(grade2Button)
+        self.view.addSubview(grade3Button)
     }
     
     func cornerRadius() {
@@ -147,6 +155,11 @@ class InformationViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
         
+        grade3Button.snp.makeConstraints { make in
+            make.centerY.equalTo(gradeView)
+            make.right.equalTo(gradeView).inset(self.view.frame.width/11.03)
+        }
+        
         classLabel.snp.makeConstraints { make in
             make.top.equalTo(backgroundView).offset(self.view.frame.height/5.08)
             make.left.equalTo(gradeLabel)
@@ -178,6 +191,11 @@ class InformationViewController: UIViewController {
     
     @objc
     func tabGrade2Button() {
+        
+    }
+    
+    @objc
+    func tabGrade3Button() {
         
     }
 }
