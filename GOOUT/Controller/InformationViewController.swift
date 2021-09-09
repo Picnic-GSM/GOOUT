@@ -186,17 +186,38 @@ class InformationViewController: UIViewController {
 //MARK: - Action
     @objc
     func tabGrade1Button() {
-        
+        if grade1Button.titleLabel?.textColor == .rgb(red: 108, green: 108, blue: 108) {
+            
+            grade1Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
+            grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }else {
+            grade1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }
     }
     
     @objc
     func tabGrade2Button() {
-        
+        if grade2Button.titleLabel?.textColor == .rgb(red: 108, green: 108, blue: 108) {
+            
+            grade2Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
+            grade1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }else {
+            grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }
     }
     
     @objc
     func tabGrade3Button() {
-        
+        if grade3Button.titleLabel?.textColor == .rgb(red: 108, green: 108, blue: 108) {
+            
+            grade3Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
+            grade1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }else {
+            grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }
     }
 }
 
