@@ -27,6 +27,12 @@ class InformationViewController: UIViewController {
         $0.textColor = .rgb(red: 255, green: 172, blue: 183)
     }
     
+    lazy var classLabel = UILabel().then {
+        $0.text = "Class"
+        $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.textColor = .rgb(red: 255, green: 172, blue: 183)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -44,6 +50,7 @@ class InformationViewController: UIViewController {
         self.view.addSubview(informationLabel)
         self.view.addSubview(backgroundView)
         self.view.addSubview(gradeLable)
+        self.view.addSubview(classLabel)
     }
     
     func cornerRadius() {
@@ -75,6 +82,11 @@ class InformationViewController: UIViewController {
         gradeLable.snp.makeConstraints { make in
             make.top.equalTo(backgroundView).offset(self.view.frame.height/10.83)
             make.left.equalToSuperview().offset(self.view.frame.width/6.05)
+        }
+        
+        classLabel.snp.makeConstraints { make in
+            make.top.equalTo(backgroundView).offset(self.view.frame.height/5.08)
+            make.left.equalTo(gradeLable)
         }
     }
 }
