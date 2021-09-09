@@ -45,6 +45,12 @@ class InformationViewController: UIViewController {
         $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
     }
     
+    lazy var loginButton = UIButton().then {
+        $0.setTitleColor(.rgb(red: 118, green: 118, blue: 118), for: .normal)
+        $0.setTitle("이미 계정이 있으신가요?", for: .normal)
+        $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-SemiBold")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -65,6 +71,7 @@ class InformationViewController: UIViewController {
         self.view.addSubview(classLabel)
         self.view.addSubview(numberLabel)
         self.view.addSubview(signUpButton)
+        self.view.addSubview(loginButton)
     }
     
     func cornerRadius() {
@@ -114,6 +121,11 @@ class InformationViewController: UIViewController {
             make.width.equalToSuperview().dividedBy(1.5)
             make.height.equalToSuperview().dividedBy(21.37)
             make.top.equalTo(numberLabel.snp.bottom).offset(self.view.frame.height/10.41)
+            make.centerX.equalToSuperview()
+        }
+        
+        loginButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(self.view.frame.height/13.31)
             make.centerX.equalToSuperview()
         }
     }
