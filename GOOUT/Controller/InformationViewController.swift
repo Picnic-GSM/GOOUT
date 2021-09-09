@@ -21,10 +21,14 @@ class InformationViewController: UIViewController {
         $0.backgroundColor = .rgb(red: 255, green: 243, blue: 243)
     }
     
-    lazy var gradeLable = UILabel().then {
+    lazy var gradeLabel = UILabel().then {
         $0.text = "Grade"
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.textColor = .rgb(red: 255, green: 172, blue: 183)
+    }
+    
+    lazy var gradeView = UIView().then {
+        $0.backgroundColor = .rgb(red: 255, green: 255, blue: 255)
     }
     
     lazy var classLabel = UILabel().then {
@@ -67,11 +71,12 @@ class InformationViewController: UIViewController {
     func addSubView() {
         self.view.addSubview(informationLabel)
         self.view.addSubview(backgroundView)
-        self.view.addSubview(gradeLable)
+        self.view.addSubview(gradeLabel)
         self.view.addSubview(classLabel)
         self.view.addSubview(numberLabel)
         self.view.addSubview(signUpButton)
         self.view.addSubview(loginButton)
+        self.view.addSubview(gradeView)
     }
     
     func cornerRadius() {
@@ -80,6 +85,8 @@ class InformationViewController: UIViewController {
         backgroundView.layer.masksToBounds = true
         
         signUpButton.layer.cornerRadius = 8
+        
+        gradeView.layer.cornerRadius = 8
     }
     
     func shadow() {
@@ -102,19 +109,26 @@ class InformationViewController: UIViewController {
             make.top.equalToSuperview().offset(self.view.frame.height/4)
         }
         
-        gradeLable.snp.makeConstraints { make in
+        gradeLabel.snp.makeConstraints { make in
             make.top.equalTo(backgroundView).offset(self.view.frame.height/10.83)
             make.left.equalToSuperview().offset(self.view.frame.width/6.05)
         }
         
+        gradeView.snp.makeConstraints { make in
+            make.width.equalToSuperview().dividedBy(1.5)
+            make.height.equalToSuperview().dividedBy(21.37)
+            make.top.equalTo(gradeLabel.snp.bottom).offset(self.view.frame.height/135.33)
+            make.left.equalTo(gradeLabel)
+        }
+        
         classLabel.snp.makeConstraints { make in
             make.top.equalTo(backgroundView).offset(self.view.frame.height/5.08)
-            make.left.equalTo(gradeLable)
+            make.left.equalTo(gradeLabel)
         }
         
         numberLabel.snp.makeConstraints { make in
             make.top.equalTo(backgroundView).offset(self.view.frame.height/3.31)
-            make.left.equalTo(gradeLable)
+            make.left.equalTo(gradeLabel)
         }
         
         signUpButton.snp.makeConstraints { make in
