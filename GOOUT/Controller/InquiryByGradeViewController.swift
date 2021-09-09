@@ -49,6 +49,9 @@ class InquiryByGradeViewController : UIViewController {
         $0.textColor = .rgb(red: 104, green: 134, blue: 197)
         $0.selectedTextColor = .rgb(red: 104, green: 134, blue: 197)
         $0.width = self.view.frame.width/2.5
+        $0.customCellConfiguration = { (index, item, cell) in
+            cell.optionLabel.textAlignment = .center
+        }
     }
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -57,11 +60,11 @@ class InquiryByGradeViewController : UIViewController {
     }
     
     //MARK: - Helpers
-        func configureUI(){
+    func configureUI(){
         view.backgroundColor = .white
         
         layoutSetting()
-
+        
         mainTabBarViewSetting()
         
         addView()
