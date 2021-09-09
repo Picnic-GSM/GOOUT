@@ -39,6 +39,12 @@ class InformationViewController: UIViewController {
         $0.textColor = .rgb(red: 255, green: 172, blue: 183)
     }
     
+    lazy var signUpButton = UIButton().then {
+        $0.setTitle("Sign up", for: .normal)
+        $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -58,12 +64,15 @@ class InformationViewController: UIViewController {
         self.view.addSubview(gradeLable)
         self.view.addSubview(classLabel)
         self.view.addSubview(numberLabel)
+        self.view.addSubview(signUpButton)
     }
     
     func cornerRadius() {
         backgroundView.layer.cornerRadius = 50
         backgroundView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         backgroundView.layer.masksToBounds = true
+        
+        signUpButton.layer.cornerRadius = 8
     }
     
     func shadow() {
@@ -99,6 +108,13 @@ class InformationViewController: UIViewController {
         numberLabel.snp.makeConstraints { make in
             make.top.equalTo(backgroundView).offset(self.view.frame.height/3.31)
             make.left.equalTo(gradeLable)
+        }
+        
+        signUpButton.snp.makeConstraints { make in
+            make.width.equalToSuperview().dividedBy(1.5)
+            make.height.equalToSuperview().dividedBy(21.37)
+            make.top.equalTo(numberLabel.snp.bottom).offset(self.view.frame.height/10.41)
+            make.centerX.equalToSuperview()
         }
     }
 }
