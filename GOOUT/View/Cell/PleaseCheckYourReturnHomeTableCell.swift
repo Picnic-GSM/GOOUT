@@ -35,7 +35,6 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
         $0.setTitleColor(.white, for: .normal)
         $0.dynamicFont(fontSize: 11, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
-
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

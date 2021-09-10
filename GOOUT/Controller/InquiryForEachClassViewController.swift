@@ -12,7 +12,6 @@ import Then
 class InquiryForEachClassViewController : UIViewController{
     //MARK: - Properties
     lazy var mainTabBarView = MainTabBarView()
-    
     lazy var viewControllerView = UIView().then{
         $0.backgroundColor = .systemPink
     }
@@ -161,15 +160,19 @@ class InquiryForEachClassViewController : UIViewController{
         }
         
     }
-    //MARK: - Data Add
+    //MARK: - CollectionView Data Add
     func AddrequestConfirmationData(){
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
+        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "이시완", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
+        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "임준화", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
+        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "김유진", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
     }
+    //MARK: - TableView Data add
     func AddPleaseCheckYourReturnHomeTableData(){
         pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
-        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
-        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
-        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "이시완", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "임준화", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "형욱", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
         pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
     }
     
@@ -254,6 +257,8 @@ class InquiryForEachClassViewController : UIViewController{
         super.didReceiveMemoryWarning()
     }
 }
+
+
 //MARK: - CollectionView
 extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -280,6 +285,7 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return bounds.height/54.133
     }
+    
 
 }
 extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDataSource{
@@ -296,7 +302,11 @@ extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDat
         cell.requestStudentName.text = pleaseCheckYourReturnHomeTableData[indexPath.row].name
         cell.requestStudentClass.text = "3학년 1반 \(pleaseCheckYourReturnHomeTableData[indexPath.row].number!)반"
         cell.earlyLeaveTimeToGoOutLabel.time.text = "10:10 - 10:10"
+        cell.attendanceButton.addTarget(self, action: #selector(attendanceButtontableViewClick), for: .touchUpInside)
         return cell
+    }
+    @objc func attendanceButtontableViewClick(){
+        requestConfirmationCollectionView.backgroundColor = .black
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

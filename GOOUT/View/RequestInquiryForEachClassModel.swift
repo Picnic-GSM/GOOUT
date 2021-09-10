@@ -44,5 +44,9 @@ struct FinishedGoingHome {
     let name : String?
     let number : Int?
     let time : receivedTime?
+    let btnTitle : FinishedGoingHomeStatus?
 }
-
+enum FinishedGoingHomeStatus : String{
+    case completeGoingHome = "귀가 완료"
+    case cancelGoingHome = "귀가 취소"
+}
