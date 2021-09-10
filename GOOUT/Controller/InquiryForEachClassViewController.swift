@@ -17,8 +17,8 @@ class InquiryForEachClassViewController : UIViewController{
         $0.backgroundColor = .systemPink
     }
     
-    var requestConfirmationData : [GoingOutEarlyLeaveCellModel] = []
-    
+    private var requestConfirmationData : [GoingOutEarlyLeaveCellModel] = []
+    private var pleaseCheckYourReturnHomeTableData : [FinishedGoingHome] = []
     
     
     let bounds: CGRect = UIScreen.main.bounds
@@ -69,7 +69,8 @@ class InquiryForEachClassViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        addData()
+        AddrequestConfirmationData()
+        AddPleaseCheckYourReturnHomeTableData()
         homeComingTableView.tableFooterView = UIView()
         requestConfirmationCollectionView.contentInset = UIEdgeInsets(top: 0, left: bounds.height/35.30434782, bottom: 0, right: bounds.height/35.30434782)
         homeComingTableView.automaticallyAdjustsScrollIndicatorInsets = false
@@ -161,8 +162,15 @@ class InquiryForEachClassViewController : UIViewController{
         
     }
     //MARK: - Data Add
-    func addData(){
+    func AddrequestConfirmationData(){
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
+    }
+    func AddPleaseCheckYourReturnHomeTableData(){
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
     }
     
     
@@ -258,7 +266,7 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
         cell.layer.borderColor = UIColor.black.cgColor
         cell.requestStudentName.text = requestConfirmationData[indexPath.row].name
         cell.requestStudentClass.text = "3학년 1반 \(requestConfirmationData[indexPath.row].number)번"
-        cell.earlyLeaveTimeToGoOutLabel.time.text = ""
+        cell.earlyLeaveTimeToGoOutLabel.time.text = "11:00 - 12:00"
         cell.reason.text = requestConfirmationData[indexPath.row].reason
         cell.layer.borderWidth = 1
         cell.clipsToBounds = true
@@ -276,7 +284,7 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
 }
 extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        return pleaseCheckYourReturnHomeTableData.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -285,6 +293,9 @@ extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PleaseCheckYourReturnHomeTableCell.identifier) as! PleaseCheckYourReturnHomeTableCell
         cell.clipsToBounds = true
+        cell.requestStudentName.text = pleaseCheckYourReturnHomeTableData[indexPath.row].name
+        cell.requestStudentClass.text = "3학년 1반 \(pleaseCheckYourReturnHomeTableData[indexPath.row].number!)반"
+        cell.earlyLeaveTimeToGoOutLabel.time.text = "10:10 - 10:10"
         return cell
     }
 

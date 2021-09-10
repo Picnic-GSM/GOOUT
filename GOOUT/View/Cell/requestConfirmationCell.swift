@@ -17,7 +17,6 @@ class requestConfirmationCell : UICollectionViewCell {
         return view
     }()
     let requestStudentName = UILabel().then{
-        $0.text = "변웅섭"
         $0.dynamicFont(fontSize: 13, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .black
     }
@@ -30,13 +29,11 @@ class requestConfirmationCell : UICollectionViewCell {
         return view
     }()
     let requestStudentClass = UILabel().then{
-        $0.text = "3학년 1반 7번"
         $0.dynamicFont(fontSize: 9, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .black
     }
     let reason = UILabel().then{
         $0.dynamicFont(fontSize: 9, currentFontName: "AppleSDGothicNeo-Thin")
-        $0.text = "준비물,준비물,준비물,준비물"
         $0.textAlignment = NSTextAlignment.center
         $0.textColor = .black
     }

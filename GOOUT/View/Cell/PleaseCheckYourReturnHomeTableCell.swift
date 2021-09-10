@@ -20,10 +20,8 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
     let requestStudentName = UILabel().then{
         $0.dynamicFont(fontSize: 13, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .black
-        $0.text = "변웅섭"
     }
     let requestStudentClass = UILabel().then{
-        $0.text = "3학년 1반 7번"
         $0.dynamicFont(fontSize: 9, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .black
     }
