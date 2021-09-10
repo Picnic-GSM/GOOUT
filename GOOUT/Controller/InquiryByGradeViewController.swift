@@ -53,6 +53,12 @@ class InquiryByGradeViewController : UIViewController {
             cell.optionLabel.textAlignment = .center
         }
     }
+    
+    lazy var outLabel = UILabel().then {
+        $0.text = "외출"
+        $0.dynamicFont(fontSize: 20, currentFontName: "AppleSDGothicNeo-Thin")
+    }
+        
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +82,7 @@ class InquiryByGradeViewController : UIViewController {
         view.addSubview(dropLabelBtn)
         view.addSubview(gradeLabel)
         view.addSubview(downBtn)
+        view.addSubview(outLabel)
     }
     
     func cornerRadius(){
@@ -100,6 +107,11 @@ class InquiryByGradeViewController : UIViewController {
         gradeLabel.snp.makeConstraints { make in
             make.left.equalTo(dropLabelBtn)
             make.centerY.equalTo(dropLabelBtn)
+        }
+        
+        outLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(self.view.frame.height/5.72)
+            make.left.equalTo(dropLabelBtn)
         }
     }
     //MARK: - Selectors
