@@ -89,6 +89,8 @@ class InquiryByGradeViewController : UIViewController {
         stateViewSetting()
         doNotGoViewSetting()
         
+        doNotGoView.isHidden = true
+        
         addView()
         cornerRadius()
         location()
