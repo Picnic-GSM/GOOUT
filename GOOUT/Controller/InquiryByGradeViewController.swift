@@ -60,9 +60,15 @@ class InquiryByGradeViewController : UIViewController {
     }
     
     lazy var ingContainer = StateExplainView()
+    
     lazy var timeOutContainer = StateExplainView().then {
         $0.stateColorView.backgroundColor = .rgb(red: 255, green: 107, blue: 107)
-        $0.stateLabel.text = "시간 초과"
+        $0.stateLabel.text = "시간초과"
+    }
+    
+    lazy var endContainer = StateExplainView().then {
+        $0.stateColorView.backgroundColor = .rgb(red: 156, green: 198, blue: 160)
+        $0.stateLabel.text = "귀가완료"
     }
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -91,10 +97,13 @@ class InquiryByGradeViewController : UIViewController {
         view.addSubview(outLabel)
         view.addSubview(ingContainer)
         view.addSubview(timeOutContainer)
+        view.addSubview(endContainer)
     }
     
     func cornerRadius(){
         ingContainer.stateColorView.layer.cornerRadius = self.view.frame.width/107.14
+        timeOutContainer.stateColorView.layer.cornerRadius = self.view.frame.width/107.14
+        endContainer.stateColorView.layer.cornerRadius = self.view.frame.width/107.14
     }
     
     func location(){
@@ -123,15 +132,22 @@ class InquiryByGradeViewController : UIViewController {
         }
         
         ingContainer.snp.makeConstraints { make in
-            make.centerY.equalTo(outLabel.snp.bottom)
+            make.top.equalToSuperview().offset(self.view.frame.height/5.11)
             make.left.equalToSuperview().offset(self.view.frame.width/1.88)
             make.width.equalToSuperview().dividedBy(8.72)
             make.height.equalToSuperview().dividedBy(67.67)
         }
         
         timeOutContainer.snp.makeConstraints { make in
-            make.centerY.equalTo(ingContainer)
+            make.top.equalTo(ingContainer)
             make.left.equalTo(ingContainer.snp.right).offset(self.view.frame.width/46.88)
+            make.width.equalToSuperview().dividedBy(7.81)
+            make.height.equalTo(ingContainer)
+        }
+        
+        endContainer.snp.makeConstraints { make in
+            make.top.equalTo(ingContainer)
+            make.left.equalTo(timeOutContainer.snp.right).offset(self.view.frame.width/46.88)
             make.width.equalToSuperview().dividedBy(7.81)
             make.height.equalTo(ingContainer)
         }
@@ -192,6 +208,11 @@ class InquiryByGradeViewController : UIViewController {
         timeOutContainer.addSubview(timeOutContainer.stateLabel)
         
         timeOutContainer.stateViewSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
+        
+        endContainer.addSubview(endContainer.stateColorView)
+        endContainer.addSubview(endContainer.stateLabel)
+        
+        endContainer.stateViewSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
     }
     
     // MARK: - mainTabBarViewSetting
