@@ -20,7 +20,7 @@ class AnyStudentDoNotGoView: UIView{
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-Thin")
     }
     
-    func doNotGoViewSetting(){
+    func doNotGoViewSetting(screenHeight: CGFloat){
         notGoImage.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.equalToSuperview().dividedBy(1.28)
@@ -29,7 +29,7 @@ class AnyStudentDoNotGoView: UIView{
         
         noStudentLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(notGoImage.snp.bottom).offset(36.91)
+            make.top.equalTo(notGoImage.snp.bottom).offset(screenHeight/36.91)
         }
     }
 }

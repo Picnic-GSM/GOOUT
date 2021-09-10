@@ -229,7 +229,7 @@ class InquiryByGradeViewController : UIViewController {
         doNotGoView.addSubview(doNotGoView.notGoImage)
         doNotGoView.addSubview(doNotGoView.noStudentLabel)
         
-        doNotGoView.doNotGoViewSetting()
+        doNotGoView.doNotGoViewSetting(screenHeight: self.view.frame.height)
     }
     
     // MARK: - mainTabBarViewSetting
