@@ -70,6 +70,9 @@ class InquiryByGradeViewController : UIViewController {
         $0.stateColorView.backgroundColor = .rgb(red: 156, green: 198, blue: 160)
         $0.stateLabel.text = "귀가완료"
     }
+    
+    lazy var doNotGoView = AnyStudentDoNotGoView()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +87,7 @@ class InquiryByGradeViewController : UIViewController {
         
         mainTabBarViewSetting()
         stateViewSetting()
+        doNotGoViewSetting()
         
         addView()
         cornerRadius()
@@ -98,6 +102,7 @@ class InquiryByGradeViewController : UIViewController {
         view.addSubview(ingContainer)
         view.addSubview(timeOutContainer)
         view.addSubview(endContainer)
+        view.addSubview(doNotGoView)
     }
     
     func cornerRadius(){
@@ -150,6 +155,10 @@ class InquiryByGradeViewController : UIViewController {
             make.left.equalTo(timeOutContainer.snp.right).offset(self.view.frame.width/46.88)
             make.width.equalToSuperview().dividedBy(7.81)
             make.height.equalTo(ingContainer)
+        }
+        
+        doNotGoView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
     }
     //MARK: - Selectors
@@ -213,6 +222,14 @@ class InquiryByGradeViewController : UIViewController {
         endContainer.addSubview(endContainer.stateLabel)
         
         endContainer.stateViewSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
+    }
+    
+    // MARK: - AnyStudentDoNotGoViewSetting
+    func doNotGoViewSetting(){
+        doNotGoView.addSubview(doNotGoView.notGoImage)
+        doNotGoView.addSubview(doNotGoView.noStudentLabel)
+        
+        doNotGoView.doNotGoViewSetting()
     }
     
     // MARK: - mainTabBarViewSetting
