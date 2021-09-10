@@ -22,7 +22,7 @@ class requestConfirmationCell : UICollectionViewCell {
         $0.textColor = .black
     }
     let closeBtn = UIButton().then{
-        $0.setImage(UIImage(named: "GOOUT_Cancel2")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        $0.setImage(UIImage(named: "GOOUT_CancelBtn")?.withRenderingMode(.alwaysTemplate), for: .normal)
         $0.tintColor = .blue
     }
     let earlyLeaveTimeToGoOutLabel : EarlyLeaveTimeToGoOutView = {
@@ -37,6 +37,7 @@ class requestConfirmationCell : UICollectionViewCell {
     let reason = UILabel().then{
         $0.dynamicFont(fontSize: 9, currentFontName: "AppleSDGothicNeo-Thin")
         $0.text = "준비물,준비물,준비물,준비물"
+        $0.textAlignment = NSTextAlignment.center
         $0.textColor = .black
     }
     

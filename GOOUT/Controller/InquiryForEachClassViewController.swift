@@ -12,10 +12,14 @@ import Then
 class InquiryForEachClassViewController : UIViewController{
     //MARK: - Properties
     lazy var mainTabBarView = MainTabBarView()
-
+    
     lazy var viewControllerView = UIView().then{
         $0.backgroundColor = .systemPink
     }
+    
+    var requestConfirmationData : [GoingOutEarlyLeaveCellModel] = []
+    
+    
     
     let bounds: CGRect = UIScreen.main.bounds
     private let eachClassTitle = UILabel().then{
@@ -65,7 +69,7 @@ class InquiryForEachClassViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        
+        addData()
         homeComingTableView.tableFooterView = UIView()
         requestConfirmationCollectionView.contentInset = UIEdgeInsets(top: 0, left: bounds.height/35.30434782, bottom: 0, right: bounds.height/35.30434782)
         homeComingTableView.automaticallyAdjustsScrollIndicatorInsets = false
@@ -156,6 +160,12 @@ class InquiryForEachClassViewController : UIViewController{
         }
         
     }
+    //MARK: - Data Add
+    func addData(){
+        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
+    }
+    
+    
     
     // MARK: - layoutSetting
     func layoutSetting(){
@@ -236,15 +246,20 @@ class InquiryForEachClassViewController : UIViewController{
         super.didReceiveMemoryWarning()
     }
 }
+//MARK: - CollectionView
 extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return requestConfirmationData.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requestConfirmationCell.identifier, for: indexPath) as! requestConfirmationCell
         cell.backgroundColor = .white
         cell.layer.borderColor = UIColor.black.cgColor
+        cell.requestStudentName.text = requestConfirmationData[indexPath.row].name
+        cell.requestStudentClass.text = "3학년 1반 \(requestConfirmationData[indexPath.row].number)번"
+        cell.earlyLeaveTimeToGoOutLabel.time.text = ""
+        cell.reason.text = requestConfirmationData[indexPath.row].reason
         cell.layer.borderWidth = 1
         cell.clipsToBounds = true
         cell.layer.cornerRadius = bounds.height/81.2

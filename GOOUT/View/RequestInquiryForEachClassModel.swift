@@ -19,5 +19,29 @@ protocol  TableViewDataViewModel{
     var NoData : Bool{get}
     var statusColor : UIColor{get}
     var GoingOutLeavingEarly : UIColor{get}
-    
 }
+
+//MARK: - 외출 조퇴 요청 확인 CollectionView 정보
+struct GoingOutEarlyLeaveCellModel{
+    let earlyTextType : GoingOutLeavingEarlyText
+    let name : String
+    let number : Int
+    let time : receivedTime
+    let reason : String?
+}
+struct receivedTime{
+    let startClock : time?
+    let finishClock : time?
+}
+struct time{
+    let oclock : Int?
+    let minute : Int?
+}
+
+//MARK: - 귀가완료 tableView 정보
+struct FinishedGoingHome {
+    let name : String?
+    let number : Int?
+    let time : receivedTime?
+}
+
