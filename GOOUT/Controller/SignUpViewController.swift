@@ -21,39 +21,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         $0.backgroundColor = .rgb(red: 255, green: 243, blue: 243)
     }
     
-    lazy var emailLabel = UILabel().then {
-        $0.text = "Email"
-        $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
-        $0.textColor = .rgb(red: 255, green: 172, blue: 183)
-    }
+    lazy var emailContainer = emailTextFieldView()
     
-    lazy var emailTextField = UITextField().then {
-        $0.placeholder = "이메일을 입력하세요."
-        $0.setPlaceholderColor(.rgb(red: 108, green: 108, blue: 108))
-        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
-        $0.delegate = self
-    }
     
-    lazy var emailLine = UIView().then {
-        $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
-    }
-    
-    lazy var passwordLabel = UILabel().then {
-        $0.text = "Password"
-        $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
-        $0.textColor = .rgb(red: 255, green: 172, blue: 183)
-    }
-    
-    lazy var passwordTextField = UITextField().then {
-        $0.placeholder = "비밀번호를 입력하세요."
-        $0.setPlaceholderColor(.rgb(red: 108, green: 108, blue: 108))
-        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
-        $0.isSecureTextEntry = true
-        $0.delegate = self
-    }
-    
-    lazy var passwordLine = UIView().then {
-        $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
+    lazy var passwordContainer = emailTextFieldView().then {
+        $0.label.text = "Password"
+        $0.textField.placeholder = "비밀번호를 입력하세요"
     }
     
     lazy var passwordVisibilityButton = UIButton().then {
@@ -68,22 +41,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         $0.dynamicFont(fontSize: 8, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
     
-    lazy var checkPasswordLabel = UILabel().then {
-        $0.text = "Check Password"
-        $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
-        $0.textColor = .rgb(red: 255, green: 172, blue: 183)
-    }
-    
-    lazy var checkPasswordTextField = UITextField().then {
-        $0.placeholder = "비밀번호를 한번 더 입력하세요."
-        $0.setPlaceholderColor(.rgb(red: 108, green: 108, blue: 108))
-        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
-        $0.isSecureTextEntry = true
-        $0.delegate = self
-    }
-    
-    lazy var checkPasswordLine = UIView().then {
-        $0.backgroundColor = .rgb(red: 255, green: 172, blue: 183)
+    lazy var checkPasswordContainer = emailTextFieldView().then {
+        $0.label.text = "Check Password"
+        $0.textField.placeholder = "비밀번호를 한번 더 입력하세요."
     }
     
     lazy var teacherButton = UIButton().then {
@@ -113,6 +73,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
 //  MARK: configureUI
     func configureUI() {
         self.view.backgroundColor = .white
+        emailLayoutSetting()
+        passWordLayoutSetting()
+        checkPasswordLayoutSetting()
+        
         addSubView()
         cornerRadius()
         location()
@@ -140,16 +104,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func addSubView() {
         self.view.addSubview(signUpLabel)
         self.view.addSubview(backgroundView)
-        self.view.addSubview(emailLabel)
-        self.view.addSubview(emailTextField)
-        self.view.addSubview(emailLine)
-        self.view.addSubview(passwordLabel)
-        self.view.addSubview(passwordTextField)
-        self.view.addSubview(passwordLine)
+        self.view.addSubview(emailContainer)
+        self.view.addSubview(passwordContainer)
         self.view.addSubview(passwordVisibilityButton)
-        self.view.addSubview(checkPasswordLabel)
-        self.view.addSubview(checkPasswordTextField)
-        self.view.addSubview(checkPasswordLine)
+        self.view.addSubview(checkPasswordContainer)
         self.view.addSubview(passwordExampleLabel)
         self.view.addSubview(teacherButton)
         self.view.addSubview(signUpButton)
@@ -158,6 +116,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
 
 //  MARK: location
     func location() {
+        
         signUpLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(self.view.frame.height/7.96)
             make.left.equalToSuperview().offset(self.view.frame.width/8.52)
@@ -169,70 +128,41 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             make.top.equalToSuperview().offset(self.view.frame.height/4)
         }
         
-        emailLabel.snp.makeConstraints { make in
-            make.top.equalTo(backgroundView).offset(self.view.frame.height/10.15)
-            make.left.equalToSuperview().offset(self.view.frame.width/5.95)
-        }
-        
-        emailTextField.snp.makeConstraints { make in
-            make.top.equalTo(emailLabel.snp.bottom).offset(self.view.frame.height/90.22)
-            make.left.equalTo(emailLabel)
-        }
-        
-        emailLine.snp.makeConstraints { make in
+        emailContainer.snp.makeConstraints { make in
             make.width.equalToSuperview().dividedBy(1.5)
-            make.height.equalToSuperview().dividedBy(812)
-            make.top.equalTo(emailLabel.snp.bottom).offset(self.view.frame.height/24.61)
+            make.height.equalToSuperview().dividedBy(16.24)
+            make.top.equalToSuperview().offset(self.view.frame.height/2.87)
             make.centerX.equalToSuperview()
         }
         
-        passwordLabel.snp.makeConstraints { make in
-            make.top.equalTo(backgroundView).offset(self.view.frame.height/5.31)
-            make.left.equalTo(emailLabel)
-        }
-        
-        passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(passwordLabel.snp.bottom).offset(self.view.frame.height/90.22)
-            make.left.equalTo(passwordLabel)
-        }
-        
-        passwordLine.snp.makeConstraints { make in
-            make.width.height.equalTo(emailLine)
-            make.top.equalTo(passwordLabel.snp.bottom).offset(self.view.frame.height/24.61)
+        passwordContainer.snp.makeConstraints { make in
+            make.width.equalTo(emailContainer)
+            make.height.equalToSuperview().dividedBy(12.3)
+            make.top.equalTo(emailContainer.snp.bottom).offset(self.view.frame.height/35.3)
             make.centerX.equalToSuperview()
         }
         
         passwordVisibilityButton.snp.makeConstraints { make in
             make.width.equalToSuperview().dividedBy(25)
             make.height.equalToSuperview().dividedBy(90.22)
-            make.top.equalTo(passwordLabel.snp.bottom).offset(self.view.frame.height/52.39)
+            make.top.equalTo(backgroundView).offset(self.view.frame.height/4.38)
             make.left.equalToSuperview().offset(self.view.frame.width/1.26)
         }
         
         passwordExampleLabel.snp.makeConstraints { make in
-            make.top.equalTo(passwordLabel.snp.bottom).offset(self.view.frame.height/20.82)
-            make.left.equalTo(passwordLabel)
+            make.top.equalTo(passwordContainer.snp.bottom).offset(self.view.frame.height/135.33)
+            make.left.equalTo(passwordContainer)
         }
         
-        checkPasswordLabel.snp.makeConstraints { make in
-            make.top.equalTo(backgroundView).offset(self.view.frame.height/3.44)
-            make.left.equalTo(emailLabel)
-        }
-        
-        checkPasswordTextField.snp.makeConstraints { make in
-            make.top.equalTo(checkPasswordLabel.snp.bottom).offset(self.view.frame.height/90.22)
-            make.left.equalTo(passwordLabel)
-        }
-        
-        checkPasswordLine.snp.makeConstraints { make in
-            make.width.height.equalTo(emailLine)
-            make.top.equalTo(checkPasswordLabel.snp.bottom).offset(self.view.frame.height/24.61)
-            make.centerX.equalToSuperview()
+        checkPasswordContainer.snp.makeConstraints { make in
+            make.width.height.equalTo(emailContainer)
+            make.top.equalTo(passwordContainer.snp.bottom).offset(self.view.frame.height/24.61)
+            make.left.equalTo(emailContainer)
         }
         
         teacherButton.snp.makeConstraints { make in
-            make.top.equalTo(checkPasswordLabel.snp.bottom).offset(self.view.frame.height/19.33)
-            make.left.equalTo(checkPasswordLabel)
+            make.top.equalTo(passwordExampleLabel.snp.bottom).offset(self.view.frame.height/47.76)
+            make.left.equalTo(checkPasswordContainer)
         }
         
         signUpButton.snp.makeConstraints { make in
@@ -247,49 +177,70 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             make.centerX.equalToSuperview()
         }
     }
-  
+    
+    
+    func emailLayoutSetting(){
+        emailContainer.addSubview(emailContainer.label)
+        emailContainer.addSubview(emailContainer.textField)
+        emailContainer.addSubview(emailContainer.line)
+        emailContainer.emailTextFieldSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
+    }
+    
+    func passWordLayoutSetting() {
+        passwordContainer.addSubview(passwordContainer.label)
+        passwordContainer.addSubview(passwordContainer.textField)
+        passwordContainer.addSubview(passwordContainer.line)
+        passwordContainer.emailTextFieldSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
+    }
+    
+    func checkPasswordLayoutSetting() {
+        checkPasswordContainer.addSubview(checkPasswordContainer.label)
+        checkPasswordContainer.addSubview(checkPasswordContainer.textField)
+        checkPasswordContainer.addSubview(checkPasswordContainer.line)
+        checkPasswordContainer.emailTextFieldSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
+    }
     
 //MARK: - Actions
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-          guard let text = passwordTextField.text else { return true }
+        guard let text = passwordContainer.textField.text else { return true }
         let newLength = text.count + string.count - range.length
           return newLength <= 16
     }
     
     @objc
     func changePasswordVisibilityToggle(_ sender : UIButton) {
-        if passwordTextField.isSecureTextEntry{
+        if passwordContainer.textField.isSecureTextEntry{
             sender.setImage(UIImage(systemName: "eye"), for: .normal)
         }else{
             sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         }
-        passwordTextField.isSecureTextEntry.toggle()
-        checkPasswordTextField.isSecureTextEntry.toggle()
+        passwordContainer.textField.isSecureTextEntry.toggle()
+        checkPasswordContainer.textField.isSecureTextEntry.toggle()
     }
     
     @objc
     func clickSignUpButton(_ sender: UIButton) {
-        if emailTextField.text?.isEmpty == false &&
-            passwordTextField.text?.isEmpty == false &&
-            checkPasswordTextField.text?.isEmpty == false
+        if emailContainer.textField.text?.isEmpty == false &&
+            passwordContainer.textField.text?.isEmpty == false &&
+            checkPasswordContainer.textField.text?.isEmpty == false
         {
-            if emailTextField.text?.contains("@") == true &&
-                emailTextField.text?.contains(".") == true
+            if emailContainer.textField.text?.contains("@") == true &&
+                emailContainer.textField.text?.contains(".") == true
             {
-                if passwordTextField.text!.count >= 8 &&
-                    passwordTextField.text?.contains("!") == true ||
-                    passwordTextField.text?.contains("@") == true ||
-                    passwordTextField.text?.contains("#") == true ||
-                    passwordTextField.text?.contains("$") == true ||
-                    passwordTextField.text?.contains("*") == true
+                if passwordContainer.textField.text!.count >= 8 &&
+                    passwordContainer.textField.text?.contains("!") == true ||
+                    passwordContainer.textField.text?.contains("@") == true ||
+                    passwordContainer.textField.text?.contains("#") == true ||
+                    passwordContainer.textField.text?.contains("$") == true ||
+                    passwordContainer.textField.text?.contains("*") == true
                 {
-                    if checkPasswordTextField.text == passwordTextField.text{
+                    if checkPasswordContainer.textField.text == passwordContainer.textField.text{
                         print("성공")
                         
-                        emailTextField.text = ""
-                        passwordTextField.text = ""
-                        checkPasswordTextField.text = ""
+                        emailContainer.textField.text = ""
+                        passwordContainer.textField.text = ""
+                        checkPasswordContainer.textField.text = ""
                         
                     }else{
                         print("비밀번호가 일치하지 않습니다.")
