@@ -58,7 +58,12 @@ class InquiryByGradeViewController : UIViewController {
         $0.text = "외출"
         $0.dynamicFont(fontSize: 20, currentFontName: "AppleSDGothicNeo-Thin")
     }
-        
+    
+    lazy var ingContainer = StateExplainView()
+    lazy var timeOutContainer = StateExplainView().then {
+        $0.stateColorView.backgroundColor = .rgb(red: 255, green: 107, blue: 107)
+        $0.stateLabel.text = "시간 초과"
+    }
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +77,7 @@ class InquiryByGradeViewController : UIViewController {
         layoutSetting()
         
         mainTabBarViewSetting()
+        stateViewSetting()
         
         addView()
         cornerRadius()
@@ -83,10 +89,12 @@ class InquiryByGradeViewController : UIViewController {
         view.addSubview(gradeLabel)
         view.addSubview(downBtn)
         view.addSubview(outLabel)
+        view.addSubview(ingContainer)
+        view.addSubview(timeOutContainer)
     }
     
     func cornerRadius(){
-        
+        ingContainer.stateColorView.layer.cornerRadius = self.view.frame.width/107.14
     }
     
     func location(){
@@ -112,6 +120,20 @@ class InquiryByGradeViewController : UIViewController {
         outLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(self.view.frame.height/5.72)
             make.left.equalTo(dropLabelBtn)
+        }
+        
+        ingContainer.snp.makeConstraints { make in
+            make.centerY.equalTo(outLabel.snp.bottom)
+            make.left.equalToSuperview().offset(self.view.frame.width/1.88)
+            make.width.equalToSuperview().dividedBy(8.72)
+            make.height.equalToSuperview().dividedBy(67.67)
+        }
+        
+        timeOutContainer.snp.makeConstraints { make in
+            make.centerY.equalTo(ingContainer)
+            make.left.equalTo(ingContainer.snp.right).offset(self.view.frame.width/46.88)
+            make.width.equalToSuperview().dividedBy(7.81)
+            make.height.equalTo(ingContainer)
         }
     }
     //MARK: - Selectors
@@ -157,6 +179,19 @@ class InquiryByGradeViewController : UIViewController {
         viewControllerView.addSubview(myClassInquiryViewController.view)
         
         viewControllerView.isHidden = true
+    }
+    
+    // MARK: - StateExplainViewSetting
+    func stateViewSetting(){
+        ingContainer.addSubview(ingContainer.stateColorView)
+        ingContainer.addSubview(ingContainer.stateLabel)
+        
+        ingContainer.stateViewSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
+        
+        timeOutContainer.addSubview(timeOutContainer.stateColorView)
+        timeOutContainer.addSubview(timeOutContainer.stateLabel)
+        
+        timeOutContainer.stateViewSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
     }
     
     // MARK: - mainTabBarViewSetting
