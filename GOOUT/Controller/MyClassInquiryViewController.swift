@@ -22,6 +22,7 @@ class MyClassInquiryViewController: UIViewController{
     
     // MARK: - layoutSetting
     func layoutSetting(){
-        self.view.backgroundColor = .red
+        self.view.backgroundColor = .white
+
     }
 }

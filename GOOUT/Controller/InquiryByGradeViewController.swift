@@ -15,7 +15,7 @@ class InquiryByGradeViewController : UIViewController {
     lazy var mainTabBarView = MainTabBarView()
     
     lazy var viewControllerView = UIView().then{
-        $0.backgroundColor = .systemPink
+        $0.backgroundColor = .white
     }
     
     // MARK: - lifeCycle
@@ -41,9 +41,15 @@ class InquiryByGradeViewController : UIViewController {
         mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedAllClassInquiryButtonImage"), for: .normal)
     }
     
+    //MARK: - addButtonClicked
+    @objc func addButtonClicked(sender:UIButton){
+        let nextVC = AddViewController()
+        present(nextVC, animated: true)
+    }
+    
     // MARK: - layoutSetting
     func layoutSetting(){
-        self.view.backgroundColor = .yellow
+        self.view.backgroundColor = .white
         
         self.view.addSubview(mainTabBarView)
         self.view.addSubview(viewControllerView)
@@ -70,6 +76,7 @@ class InquiryByGradeViewController : UIViewController {
         
         mainTabBarView.myClassInquiryButton.addTarget(self, action: #selector(myClassInquiryButtonClicked(sender:)), for: .touchUpInside)
         mainTabBarView.allClassInquiryButton.addTarget(self, action: #selector(allClassInquiryButtonClicked(sender:)), for: .touchUpInside)
+        mainTabBarView.addButton.addTarget(self, action: #selector(addButtonClicked(sender:)), for: .touchUpInside)
         
         mainTabBarView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
