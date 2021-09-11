@@ -154,8 +154,6 @@ class AddViewController: UIViewController{
     
     var gooutEndTimeArray = ["1교시(08:40)","2교시(09:40)","3교시(10:40)","4교시(11:40)","점심시간(12:30)","5교시(13:30)","6교시(14:30)","7교시(15:30)","8교시(16:40)","9교시(17:40)","저녁시간(18:30)","10교시(19:40)","11교시(20:40)", "종례시간(21:20)"]
     
-    
-    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
