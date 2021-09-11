@@ -12,15 +12,17 @@ import Then
 class InquiryForEachClassViewController : UIViewController{
     //MARK: - Properties
     lazy var mainTabBarView = MainTabBarView()
+    
     lazy var viewControllerView = UIView().then{
         $0.backgroundColor = .systemPink
     }
     
     private var requestConfirmationData : [GoingOutEarlyLeaveCellModel] = []
+
     private var pleaseCheckYourReturnHomeTableData : [FinishedGoingHome] = []
     
-    
     let bounds: CGRect = UIScreen.main.bounds
+    
     private let eachClassTitle = UILabel().then{
         $0.textColor = UIColor.rgb(red: 104, green: 134, blue: 197)
         $0.text = "2-1"
@@ -47,7 +49,7 @@ class InquiryForEachClassViewController : UIViewController{
         $0.dynamicFont(fontSize: 20, currentFontName: "AppleSDGothicNeo-Thin")
     }
     private let statusView = OutConditionView()
-    private let homeComingTableView : UITableView = {
+    fileprivate let homeComingTableView : UITableView = {
         let tableView = UITableView()
         tableView.register(PleaseCheckYourReturnHomeTableCell.self, forCellReuseIdentifier: PleaseCheckYourReturnHomeTableCell.identifier)
         tableView.showsVerticalScrollIndicator = false
@@ -68,19 +70,23 @@ class InquiryForEachClassViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        AddrequestConfirmationData()
-        AddPleaseCheckYourReturnHomeTableData()
+
         homeComingTableView.tableFooterView = UIView()
         requestConfirmationCollectionView.contentInset = UIEdgeInsets(top: 0, left: bounds.height/35.30434782, bottom: 0, right: bounds.height/35.30434782)
         homeComingTableView.automaticallyAdjustsScrollIndicatorInsets = false
         homeComingTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bounds.height/10.15, right: 0)
         //TabBar
-        layoutSetting()
 
-        mainTabBarViewSetting()
     }
     
     //MARK: - Selectors
+    
+
+    //MARK:- DeleteCollectionView
+    @objc func CloseCollectionViewItem(sender:UIButton){
+        requestConfirmationCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
+        requestConfirmationData.remove(at: sender.tag)
+    }
     
     // MARK: - myClassInquiryButtonClicked
     @objc func myClassInquiryButtonClicked(sender:UIButton){
@@ -100,9 +106,12 @@ class InquiryForEachClassViewController : UIViewController{
     func configureUI(){
         view.backgroundColor = .white
         addView()
+        AddrequestConfirmationData()
+        AddPleaseCheckYourReturnHomeTableData()
         location()
         CollectionViewAndTableViewSetting()
     }
+    //MARK:-DataSource & Delegate
     func CollectionViewAndTableViewSetting(){
         requestConfirmationCollectionView.delegate = self
         requestConfirmationCollectionView.dataSource = self
@@ -110,6 +119,7 @@ class InquiryForEachClassViewController : UIViewController{
         homeComingTableView.dataSource = self
         homeComingTableView.allowsSelection = false
     }
+    //MARK:-addView
     func addView(){
         view.addSubview(eachClassTitle)
         view.addSubview(requestConfirmationLabel)
@@ -119,8 +129,8 @@ class InquiryForEachClassViewController : UIViewController{
         view.addSubview(homeComingTableView)
         view.addSubview(noHistory)
     }
+    //MARK:-Location
     func location(){
-
         eachClassTitle.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(bounds.height/11.4366)
             make.left.equalToSuperview().offset(bounds.height/24.6)
@@ -156,106 +166,30 @@ class InquiryForEachClassViewController : UIViewController{
             make.height.equalTo(view.frame.height/3.184314)
             make.centerX.equalToSuperview()
             make.top.equalTo(comeBackCheck).offset(view.frame.height/11.768)
-            
+
         }
         
     }
     //MARK: - CollectionView Data Add
     func AddrequestConfirmationData(){
-        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
+        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "이시완", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
-        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "임준화", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
+        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "임준화", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "김유진", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
     }
+    
     //MARK: - TableView Data add
     func AddPleaseCheckYourReturnHomeTableData(){
-        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
-        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "이시완", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
-        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "임준화", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
-        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "형욱", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
-        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .blue, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10))))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_Green, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_Green, name: "이시완", number: 3, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_Green, name: "임준화", number: 2, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_yellow, name: "최형우", number: 10, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10)), btnTitle: FinishedGoingHomeStatus.cancelGoingHome))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_red, name: "진시윤", number: 18, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
     }
     
     
     
-    // MARK: - layoutSetting
-    func layoutSetting(){
-        self.view.backgroundColor = .white
-        
-        self.view.addSubview(mainTabBarView)
-        self.view.addSubview(viewControllerView)
-        
-        viewControllerView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.width.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-self.view.frame.height/10.15)
-        }
-        // myClassInquiryViewController 화면전환 준비
-        let myClassInquiryViewController = MyClassInquiryViewController()
-        self.addChild(myClassInquiryViewController)
-        myClassInquiryViewController.view.frame = viewControllerView.frame
-        
-        viewControllerView.addSubview(myClassInquiryViewController.view)
-        
-        viewControllerView.isHidden = true
-    }
-    // MARK: - mainTabBarViewSetting
-    func mainTabBarViewSetting(){
-        mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedAllClassInquiryButtonImage"), for: .normal)
-        
-        mainTabBarView.myClassInquiryButton.addTarget(self, action: #selector(myClassInquiryButtonClicked(sender:)), for: .touchUpInside)
-        mainTabBarView.allClassInquiryButton.addTarget(self, action: #selector(allClassInquiryButtonClicked(sender:)), for: .touchUpInside)
-        
-        mainTabBarView.snp.makeConstraints { make in
-            make.bottom.equalToSuperview()
-            make.width.equalToSuperview()
-            make.height.equalToSuperview().dividedBy(10.15)
-        }
-        
-        mainTabBarView.lineView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.width.equalToSuperview()
-            make.height.equalTo(2)
-            make.centerX.equalToSuperview()
-        }
-        
-        mainTabBarView.addButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(14.37)
-            make.height.equalTo(mainTabBarView.addButton.snp.width)
-            make.top.equalTo(mainTabBarView.lineView.snp.bottom).offset(self.view.frame.height/58)
-        }
-        
-        mainTabBarView.allClassInquiryButton.snp.makeConstraints { make in
-            make.centerY.equalTo(mainTabBarView.addButton)
-            make.height.width.equalTo(mainTabBarView.addButton)
-            make.left.equalToSuperview().offset(self.view.frame.width/8.1)
-        }
-        
-        mainTabBarView.myClassInquiryButton.snp.makeConstraints { make in
-            make.centerY.equalTo(mainTabBarView.addButton)
-            make.height.width.equalTo(mainTabBarView.addButton)
-            make.right.equalToSuperview().offset(-self.view.frame.width/8.1)
-        }
-        
-        // MARK: - lineView gradient
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 2))
-        let gradient = CAGradientLayer()
 
-        gradient.frame = view.bounds
-        gradient.colors = [UIColor(red: 104/255, green: 134/255, blue: 197/255, alpha: 1).cgColor, UIColor(red: 255/255, green: 173/255, blue: 172/255, alpha: 1).cgColor]
-        gradient.locations = [0.0 , 1.0]
-        gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
-
-        mainTabBarView.lineView.layer.insertSublayer(gradient, at: 0)
-        
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
 
 
@@ -269,6 +203,7 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requestConfirmationCell.identifier, for: indexPath) as! requestConfirmationCell
         cell.backgroundColor = .white
         cell.layer.borderColor = UIColor.black.cgColor
+        cell.requestStatus.label.text = requestConfirmationData[indexPath.row].earlyTextType.rawValue
         cell.requestStudentName.text = requestConfirmationData[indexPath.row].name
         cell.requestStudentClass.text = "3학년 1반 \(requestConfirmationData[indexPath.row].number)번"
         cell.earlyLeaveTimeToGoOutLabel.time.text = "11:00 - 12:00"
@@ -276,8 +211,13 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
         cell.layer.borderWidth = 1
         cell.clipsToBounds = true
         cell.layer.cornerRadius = bounds.height/81.2
+        cell.closeBtn.tag = indexPath.row
+        cell.closeBtn.addTarget(self, action: #selector(CloseCollectionViewItem(sender:)), for: .touchUpInside)
+        cell.btnApproval.addTarget(self, action: #selector(CloseCollectionViewItem(sender:)), for: .touchUpInside)
         return cell
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: bounds.width/3.09917, height: bounds.height/5.139240)
     }
@@ -288,29 +228,30 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
     
 
 }
+//MARK:-TableView
 extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDataSource{
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return pleaseCheckYourReturnHomeTableData.count
+        return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return pleaseCheckYourReturnHomeTableData.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PleaseCheckYourReturnHomeTableCell.identifier) as! PleaseCheckYourReturnHomeTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: PleaseCheckYourReturnHomeTableCell.identifier,for: indexPath) as! PleaseCheckYourReturnHomeTableCell
         cell.clipsToBounds = true
+        cell.cellView.layer.borderColor = UIColor.rgb(red: 104, green: 134, blue: 197).cgColor
+        cell.attendanceButton.backgroundColor = UIColor.rgb(red: 104, green: 134, blue: 197)
+        cell.requestStatus.backgroundColor = pleaseCheckYourReturnHomeTableData[indexPath.row].viewColor
         cell.requestStudentName.text = pleaseCheckYourReturnHomeTableData[indexPath.row].name
-        cell.requestStudentClass.text = "3학년 1반 \(pleaseCheckYourReturnHomeTableData[indexPath.row].number!)반"
+            cell.requestStudentClass.text = "3학년 1반 \(pleaseCheckYourReturnHomeTableData[indexPath.row].number!)반"
         cell.earlyLeaveTimeToGoOutLabel.time.text = "10:10 - 10:10"
-        cell.attendanceButton.addTarget(self, action: #selector(attendanceButtontableViewClick), for: .touchUpInside)
+        cell.attendanceButton.setTitle(pleaseCheckYourReturnHomeTableData[indexPath.row].btnTitle.rawValue, for: .normal)
         return cell
     }
-    @objc func attendanceButtontableViewClick(){
-        requestConfirmationCollectionView.backgroundColor = .black
-    }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return bounds.height/11.76811
     }
-    
 }

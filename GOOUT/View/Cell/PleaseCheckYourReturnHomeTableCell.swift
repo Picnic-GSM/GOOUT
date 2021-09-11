@@ -9,11 +9,10 @@ import UIKit
 class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
     //MARK: - identifier
     static let identifier = "PleaseCheckYourReturnHomeTableCell"
-    
+
     let cellView = UIView().then{
         $0.layer.borderWidth = 1
         $0.clipsToBounds = true
-        $0.layer.borderColor = UIColor.red.cgColor
     }
     let view = UIView()
     let requestStatus = UIView()
@@ -30,12 +29,9 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
         return view
     }()
     let attendanceButton = UIButton().then{
-        $0.backgroundColor = .red
-        $0.setTitle("귀가완료", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.dynamicFont(fontSize: 11, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

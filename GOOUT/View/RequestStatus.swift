@@ -9,7 +9,7 @@ import UIKit
 class RequestStatus : UIView{
     
     let view = UIView()
-    let status = UIView()
+    lazy var status = UIView()
     let label = UILabel().then{
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-Regular")
         $0.sizeToFit()

@@ -12,7 +12,6 @@ class requestConfirmationCell : UICollectionViewCell {
     
     let requestStatus  : RequestStatus = {
        let view = RequestStatus()
-        view.label.text = "외출 요청"
         view.status.backgroundColor = .blue
         return view
     }()

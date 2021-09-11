@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let mainViewController = InquiryByGradeViewController()
 
-        let navigationController = UINavigationController(rootViewController: InquiryForEachClassViewController())
+        let navigationController = UINavigationController(rootViewController: InquiryByGradeViewController())
 
         navigationController.navigationBar.isHidden = true
         window?.rootViewController = navigationController

@@ -9,7 +9,7 @@ import UIKit
 class OutConditionView: UIView {
     let view = UIView()
     let yellowView = UIView().then{
-        $0.backgroundColor = .rgb(red: 255, green: 205, blue: 107)
+        $0.backgroundColor = .FinishGoingHomeColor.GOOUT_red
     }
     let goingOut = UILabel().then{
         $0.text = "외출 중"
@@ -17,7 +17,7 @@ class OutConditionView: UIView {
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Thin")
     }
     let redView = UIView().then{
-        $0.backgroundColor = .rgb(red: 255, green: 107, blue: 107)
+        $0.backgroundColor = .FinishGoingHomeColor.GOOUT_yellow
     }
     let timeOver = UILabel().then{
         $0.text = "시간초과"
@@ -25,7 +25,7 @@ class OutConditionView: UIView {
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Thin")
     }
     let greenView = UIView().then{
-        $0.backgroundColor = .rgb(red: 156, green: 198, blue: 160)
+        $0.backgroundColor = .FinishGoingHomeColor.GOOUT_Green
     }
     let returnHomeComplete = UILabel().then{
         $0.text = "귀가완료"
