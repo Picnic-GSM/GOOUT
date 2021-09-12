@@ -73,6 +73,15 @@ class InquiryByGradeViewController : UIViewController {
     
     lazy var doNotGoView = AnyStudentDoNotGoView()
     
+    lazy var outTableView = UITableView().then {
+        $0.showsVerticalScrollIndicator = false
+        $0.separatorStyle = .none
+    }
+    
+    lazy var earlyLeaveLabel = UILabel().then {
+        $0.text = "조퇴"
+        $0.dynamicFont(fontSize: 20, currentFontName: "AppleSDGothicNeo-Thin")
+    }
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +114,7 @@ class InquiryByGradeViewController : UIViewController {
         view.addSubview(timeOutContainer)
         view.addSubview(endContainer)
         view.addSubview(doNotGoView)
+        view.addSubview(earlyLeaveLabel)
     }
     
     func cornerRadius(){
@@ -161,6 +171,11 @@ class InquiryByGradeViewController : UIViewController {
         
         doNotGoView.snp.makeConstraints { make in
             make.center.equalToSuperview()
+        }
+        
+        earlyLeaveLabel.snp.makeConstraints { make in
+            make.left.equalTo(outLabel)
+            make.top.equalTo(self.view.frame.height/1.87)
         }
     }
     //MARK: - Selectors
