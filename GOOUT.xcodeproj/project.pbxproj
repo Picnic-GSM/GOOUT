@@ -18,6 +18,8 @@
 		6AB0369926DC9C5200D1F80E /* MyClassInquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB0369826DC9C5200D1F80E /* MyClassInquiryViewController.swift */; };
 		6AB0369B26DCBB2700D1F80E /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB0369A26DCBB2700D1F80E /* AddViewController.swift */; };
 		6AB0369D26DCCF1600D1F80E /* FugazOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB0369C26DCCF1200D1F80E /* FugazOne-Regular.ttf */; };
+		AA478B5426EF742D009C628B /* OutListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA478B5326EF742D009C628B /* OutListHeaderView.swift */; };
+		AA478B5626EF943D009C628B /* EarlyLeaveListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA478B5526EF943D009C628B /* EarlyLeaveListHeaderView.swift */; };
 		AAD95AB926EB1DA2004E4580 /* StateExplainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95AB826EB1DA2004E4580 /* StateExplainView.swift */; };
 		AAD95ABB26EB2A54004E4580 /* AnyStudentDoNotGoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95ABA26EB2A54004E4580 /* AnyStudentDoNotGoView.swift */; };
 		AAD95ADD26EC2BF7004E4580 /* OutListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95ADC26EC2BF7004E4580 /* OutListTableCell.swift */; };
@@ -39,6 +41,8 @@
 		6AB0369826DC9C5200D1F80E /* MyClassInquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClassInquiryViewController.swift; sourceTree = "<group>"; };
 		6AB0369A26DCBB2700D1F80E /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		6AB0369C26DCCF1200D1F80E /* FugazOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FugazOne-Regular.ttf"; sourceTree = "<group>"; };
+		AA478B5326EF742D009C628B /* OutListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutListHeaderView.swift; sourceTree = "<group>"; };
+		AA478B5526EF943D009C628B /* EarlyLeaveListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaveListHeaderView.swift; sourceTree = "<group>"; };
 		AAD95AB826EB1DA2004E4580 /* StateExplainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateExplainView.swift; sourceTree = "<group>"; };
 		AAD95ABA26EB2A54004E4580 /* AnyStudentDoNotGoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyStudentDoNotGoView.swift; sourceTree = "<group>"; };
 		AAD95ADC26EC2BF7004E4580 /* OutListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutListTableCell.swift; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 				AAD95ABA26EB2A54004E4580 /* AnyStudentDoNotGoView.swift */,
 				AAD95ADC26EC2BF7004E4580 /* OutListTableCell.swift */,
 				AAD95ADE26EC453F004E4580 /* EarlyLeaveListTableCell.swift */,
+				AA478B5326EF742D009C628B /* OutListHeaderView.swift */,
+				AA478B5526EF943D009C628B /* EarlyLeaveListHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -275,11 +281,13 @@
 				6AA3A56026D8B4FA00CA03F3 /* AppDelegate.swift in Sources */,
 				6AB0369926DC9C5200D1F80E /* MyClassInquiryViewController.swift in Sources */,
 				AAD95ADD26EC2BF7004E4580 /* OutListTableCell.swift in Sources */,
+				AA478B5426EF742D009C628B /* OutListHeaderView.swift in Sources */,
 				AAD95ADF26EC453F004E4580 /* EarlyLeaveListTableCell.swift in Sources */,
 				AAD95ABB26EB2A54004E4580 /* AnyStudentDoNotGoView.swift in Sources */,
 				6AA3A56226D8B4FA00CA03F3 /* SceneDelegate.swift in Sources */,
 				AAD95AB926EB1DA2004E4580 /* StateExplainView.swift in Sources */,
 				6AA3A57926DA509700CA03F3 /* Extension.swift in Sources */,
+				AA478B5626EF943D009C628B /* EarlyLeaveListHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
