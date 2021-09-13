@@ -9,39 +9,35 @@ import UIKit
 import SnapKit
 import Then
 class OutListTableCell: UITableViewCell{
-    static let identifier = "OutListTableCell"
+    static let OutListTableIdentifier = "\(OutListTableCell.self)"
     
-    lazy var cellView = UIView().then {
+    var cellView = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 255, blue: 255)
     }
     
-    lazy var labelView = UIView().then {
-        $0.backgroundColor = cellView.backgroundColor
-    }
-    
-    lazy var stateColorView = UIView().then {
+    var stateColorView = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 205, blue: 107)
     }
     
-    lazy var nameLabel = UILabel().then {
+    var nameLabel = UILabel().then {
         $0.text = "변웅섭"
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .rgb(red: 0, green: 0, blue: 0)
     }
     
-    lazy var gradeClassNumLabel = UILabel().then {
+    var gradeClassNumLabel = UILabel().then {
         $0.text = "3학년 1반 7번"
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .rgb(red: 0, green: 0, blue: 0)
     }
     
-    lazy var timeLabel = UILabel().then {
+    var timeLabel = UILabel().then {
         $0.text = "16:30 - 18:00"
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .rgb(red: 0, green: 0, blue: 0)
     }
     
-    lazy var reasonLabel = UILabel().then {
+    var reasonLabel = UILabel().then {
         $0.text = "준비물"
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .rgb(red: 0, green: 0, blue: 0)
@@ -49,25 +45,60 @@ class OutListTableCell: UITableViewCell{
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(cellView)
-        cellView.addSubview(stateColorView)
-        cellView.addSubview(labelView)
-        labelView.addSubview(nameLabel)
-        labelView.addSubview(gradeClassNumLabel)
-        labelView.addSubview(timeLabel)
-        labelView.addSubview(reasonLabel)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         configureUI()
     }
     
-    func configureUI(){
-        
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configureUI()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
+    
+    func configureUI(){
+        contentView.addSubview(cellView)
+        cellView.addSubview(stateColorView)
+        cellView.addSubview(nameLabel)
+        cellView.addSubview(gradeClassNumLabel)
+        cellView.addSubview(timeLabel)
+        cellView.addSubview(reasonLabel)
+        
+        cellView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(1.14)
+        }
+        
+        stateColorView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(17)
+            make.width.equalTo(cellView).dividedBy(47.14)
+            make.height.equalTo(stateColorView.snp.width)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(stateColorView.snp.right).offset(24)
+        }
+        
+        gradeClassNumLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(nameLabel.snp.right).offset(37)
+        }
+        
+        timeLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(gradeClassNumLabel.snp.right).offset(27)
+        }
+        
+        reasonLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(timeLabel.snp.right).offset(27)
+        }
+    }
+    
+    
 }
