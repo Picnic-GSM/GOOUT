@@ -82,18 +82,32 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     
     lazy var outStateColorList: [UIColor] = [UIColor.rgb(red: 255, green: 205, blue: 107), UIColor.rgb(red: 255, green: 107, blue: 107), UIColor.rgb(red: 156, green: 198, blue: 160), UIColor.rgb(red: 156, green: 198, blue: 160),  UIColor.rgb(red: 156, green: 198, blue: 160), UIColor.rgb(red: 156, green: 198, blue: 160)]
     
-    lazy var outNameList: [String] = ["변웅섭", "변웅섭", "변웅섭", "변웅섭", "변웅섭", "변웅섭"]
+    lazy var outNameList: [String] = ["오주연", "김소담", "변웅섭", "변웅섭", "변웅섭", "변웅섭"]
     
-    lazy var outGradeClassNumList: [String] = ["3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번"]
+    lazy var outGradeClassNumList: [String] = ["2학년 1반 11번", "2학년 1반 1번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번"]
     
     lazy var outTimeList: [String] = ["16:30 - 18:00", "16:30 - 18:00", "16:30 - 18:00", "16:30 - 18:00", "16:30 - 18:00", "16:30 - 18:00"]
     
-    lazy var outReasonList: [String] = ["준비물", "준비물", "준비물", "준비물", "준비물", "준비물"]
+    lazy var outReasonList: [String] = ["생필품", "밥먹음", "준비물", "준비물", "준비물", "준비물"]
     
     lazy var earlyLeaveLabel = UILabel().then {
         $0.text = "조퇴"
         $0.dynamicFont(fontSize: 20, currentFontName: "AppleSDGothicNeo-Thin")
     }
+    
+    lazy var earlyLeaveTableView = UITableView().then {
+        $0.showsVerticalScrollIndicator = false
+        $0.separatorStyle = .none
+    }
+    
+    lazy var earlyLeaveCellViewColorList: [UIColor] = [UIColor.rgb(red: 255, green: 255, blue: 255), UIColor.rgb(red: 255, green: 243, blue: 243), UIColor.rgb(red: 255, green: 255, blue: 255), UIColor.rgb(red: 255, green: 243, blue: 243), UIColor.rgb(red: 255, green: 255, blue: 255), UIColor.rgb(red: 255, green: 243, blue: 243)]
+    
+    lazy var earlyLeaveNameList: [String] = ["변웅섭", "변웅섭", "변웅섭", "변웅섭", "변웅섭", "변웅섭"]
+    
+    lazy var earlyLeaveGradeClassNumList: [String] = ["3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번"]
+    
+    lazy var earlyLeaveReasonList: [String] = ["코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상"]
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,21 +121,39 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         outTableView.delegate = self
                 
         outTableView.register(OutListTableCell.self, forCellReuseIdentifier: OutListTableCell.OutListTableIdentifier)
+        
+        earlyLeaveTableView.dataSource = self
+        earlyLeaveTableView.delegate = self
+                
+        earlyLeaveTableView.register(EarlyLeaveListTableCell.self, forCellReuseIdentifier: EarlyLeaveListTableCell.EarlyLeaveListTableIdentifier)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return outNameList.count
+        if tableView == outTableView {
+            return outNameList.count
+        } else {
+            return earlyLeaveNameList.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OutListTableCell") as! OutListTableCell
-        cell.cellView.backgroundColor = outCellViewColorList[indexPath.row]
-        cell.stateColorView.backgroundColor = outStateColorList[indexPath.row]
-        cell.nameLabel.text = outNameList[indexPath.row]
-        cell.gradeClassNumLabel.text = outGradeClassNumList[indexPath.row]
-        cell.timeLabel.text = outTimeList[indexPath.row]
-        cell.reasonLabel.text = outReasonList[indexPath.row]
-        return cell
+        if tableView == outTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OutListTableCell") as! OutListTableCell
+            cell.cellView.backgroundColor = outCellViewColorList[indexPath.row]
+            cell.stateColorView.backgroundColor = outStateColorList[indexPath.row]
+            cell.nameLabel.text = outNameList[indexPath.row]
+            cell.gradeClassNumLabel.text = outGradeClassNumList[indexPath.row]
+            cell.timeLabel.text = outTimeList[indexPath.row]
+            cell.reasonLabel.text = outReasonList[indexPath.row]
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EarlyLeaveListTableCell") as! EarlyLeaveListTableCell
+            cell.cellView.backgroundColor = earlyLeaveCellViewColorList[indexPath.row]
+            cell.nameLabel.text = earlyLeaveNameList[indexPath.row]
+            cell.gradeClassNumLabel.text = earlyLeaveGradeClassNumList[indexPath.row]
+            cell.reasonLabel.text = earlyLeaveReasonList[indexPath.row]
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -161,6 +193,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         view.addSubview(doNotGoView)
         view.addSubview(earlyLeaveLabel)
         view.addSubview(outTableView)
+        view.addSubview(earlyLeaveTableView)
     }
     
     func cornerRadius(){
@@ -219,16 +252,23 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
             make.center.equalToSuperview()
         }
         
-        earlyLeaveLabel.snp.makeConstraints { make in
-            make.left.equalTo(outLabel)
-            make.top.equalTo(self.view.frame.height/1.87)
-        }
-        
         outTableView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(self.view.frame.width/16.30)
             make.top.equalTo(outLabel.snp.bottom)
             make.width.equalToSuperview()
             make.height.equalTo((self.view.frame.height/25.375) * CGFloat(outNameList.count))
+        }
+        
+        earlyLeaveLabel.snp.makeConstraints { make in
+            make.left.equalTo(outLabel)
+            make.top.equalTo(outTableView.snp.bottom).offset(self.view.frame.height/25.37)
+        }
+        
+        earlyLeaveTableView.snp.makeConstraints { make in
+            make.left.equalTo(outTableView)
+            make.top.equalTo(earlyLeaveLabel.snp.bottom)
+            make.width.equalToSuperview()
+            make.height.equalTo((self.view.frame.height/25.375) * CGFloat(earlyLeaveNameList.count))
         }
     }
     //MARK: - Selectors
