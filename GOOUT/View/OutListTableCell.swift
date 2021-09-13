@@ -17,6 +17,7 @@ class OutListTableCell: UITableViewCell{
     
     var stateColorView = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 205, blue: 107)
+        $0.layer.cornerRadius = 3.5
     }
     
     var nameLabel = UILabel().then {
