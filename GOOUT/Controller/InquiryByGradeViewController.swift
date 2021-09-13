@@ -108,6 +108,9 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     
     lazy var earlyLeaveReasonList: [String] = ["코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상"]
     
+    lazy var outListHeader = OutListHeaderView().then {
+        $0.backgroundColor = .rgb(red: 243, green: 247, blue: 255)
+    }
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -174,6 +177,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         stateViewSetting()
         doNotGoViewSetting()
         tableViewSetting()
+        headerViewSetting()
         
         doNotGoView.isHidden = true
         
@@ -194,12 +198,17 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         view.addSubview(earlyLeaveLabel)
         view.addSubview(outTableView)
         view.addSubview(earlyLeaveTableView)
+        view.addSubview(outListHeader)
     }
     
     func cornerRadius(){
         ingContainer.stateColorView.layer.cornerRadius = self.view.frame.width/107.14
         timeOutContainer.stateColorView.layer.cornerRadius = self.view.frame.width/107.14
         endContainer.stateColorView.layer.cornerRadius = self.view.frame.width/107.14
+        
+        outListHeader.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        outListHeader.layer.cornerRadius = self.view.frame.width/37.5
+        outListHeader.clipsToBounds = true
     }
     
     func location(){
@@ -254,7 +263,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         
         outTableView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(self.view.frame.width/16.30)
-            make.top.equalTo(outLabel.snp.bottom)
+            make.top.equalTo(outListHeader.snp.bottom)
             make.width.equalToSuperview()
             make.height.equalTo((self.view.frame.height/25.375) * CGFloat(outNameList.count))
         }
@@ -270,9 +279,14 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
             make.width.equalToSuperview()
             make.height.equalTo((self.view.frame.height/25.375) * CGFloat(earlyLeaveNameList.count))
         }
+        
+        outListHeader.snp.makeConstraints { make in
+            make.left.equalTo(outTableView)
+            make.top.equalTo(outLabel.snp.bottom).offset(self.view.frame.height/73.82)
+            make.width.equalToSuperview().dividedBy(1.14)
+            make.height.equalToSuperview().dividedBy(25.375)
+        }
     }
-    //MARK: - Selectors
-    
     // MARK: - myClassInquiryButtonClicked
     @objc func myClassInquiryButtonClicked(sender:UIButton){
         viewControllerView.isHidden = false
@@ -314,6 +328,17 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         viewControllerView.addSubview(myClassInquiryViewController.view)
         
         viewControllerView.isHidden = true
+    }
+    
+    func headerViewSetting(){
+        outListHeader.addSubview(outListHeader.nameLabel)
+        outListHeader.addSubview(outListHeader.gradeClassNumLabel)
+        outListHeader.addSubview(outListHeader.timeLabel)
+        outListHeader.addSubview(outListHeader.reasonLabel)
+        
+        outListHeader.HeaderViewSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
+        
+        
     }
     
     // MARK: - StateExplainViewSetting
