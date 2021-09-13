@@ -80,6 +80,12 @@ class InformationViewController: UIViewController {
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
     
+    lazy var class4Button = UIButton().then {
+        $0.setTitle("4반", for: .normal)
+        $0.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+    }
+    
     lazy var numberLabel = UILabel().then {
         $0.text = "Number"
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
@@ -120,6 +126,7 @@ class InformationViewController: UIViewController {
         self.view.addSubview(class1Button)
         self.view.addSubview(class2Button)
         self.view.addSubview(class3Button)
+        self.view.addSubview(class4Button)
         self.view.addSubview(numberLabel)
         self.view.addSubview(signUpButton)
         self.view.addSubview(loginButton)
@@ -212,6 +219,11 @@ class InformationViewController: UIViewController {
         
         class3Button.snp.makeConstraints { make in
             make.right.equalTo(classView).inset(self.view.frame.width/4.12)
+            make.centerY.equalTo(classView)
+        }
+        
+        class4Button.snp.makeConstraints { make in
+            make.right.equalTo(classView).inset(self.view.frame.width/10.71)
             make.centerY.equalTo(classView)
         }
         
