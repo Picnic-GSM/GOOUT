@@ -10,29 +10,25 @@ import SnapKit
 import Then
 
 class EarlyLeaveListTableCell: UITableViewCell {
-    static let identifier = "EarlyLeaveListTableCell"
+    static let OutListTableIdentifier = "\(EarlyLeaveListTableCell.self)"
     
-    lazy var cellView = UIView().then {
+    var cellView = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 255, blue: 255)
     }
     
-    lazy var labelView = UIView().then {
-        $0.backgroundColor = cellView.backgroundColor
-    }
-    
-    lazy var nameLabel = UILabel().then {
+    var nameLabel = UILabel().then {
         $0.text = "변웅섭"
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .rgb(red: 0, green: 0, blue: 0)
     }
     
-    lazy var gradeClassNumLabel = UILabel().then {
+    var gradeClassNumLabel = UILabel().then {
         $0.text = "3학년 1반 7번"
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .rgb(red: 0, green: 0, blue: 0)
     }
     
-    lazy var reasonLabel = UILabel().then {
+    var reasonLabel = UILabel().then {
         $0.text = "코로나 의심 증상"
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Thin")
         $0.textColor = .rgb(red: 0, green: 0, blue: 0)
@@ -40,23 +36,46 @@ class EarlyLeaveListTableCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(cellView)
-        cellView.addSubview(labelView)
-        labelView.addSubview(nameLabel)
-        labelView.addSubview(gradeClassNumLabel)
-        labelView.addSubview(reasonLabel)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         configureUI()
     }
     
-    func configureUI(){
-        
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configureUI()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
+    
+    func configureUI(){
+        contentView.addSubview(cellView)
+        cellView.addSubview(nameLabel)
+        cellView.addSubview(gradeClassNumLabel)
+        cellView.addSubview(reasonLabel)
+        
+        cellView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(1.14)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(cellView).offset(36)
+        }
+        
+        gradeClassNumLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(nameLabel.snp.right).offset(42)
+        }
+        
+        reasonLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(gradeClassNumLabel.snp.right).offset(62)
+        }
+    }
+    
+    
 }
