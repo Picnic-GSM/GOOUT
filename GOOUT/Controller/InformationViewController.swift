@@ -66,24 +66,28 @@ class InformationViewController: UIViewController {
         $0.setTitle("1반", for: .normal)
         $0.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.addTarget(self, action: #selector(tabClass1Button), for: .touchUpInside)
     }
     
     lazy var class2Button = UIButton().then {
         $0.setTitle("2반", for: .normal)
         $0.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.addTarget(self, action: #selector(tabClass2Button), for: .touchUpInside)
     }
     
     lazy var class3Button = UIButton().then {
         $0.setTitle("3반", for: .normal)
         $0.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.addTarget(self, action: #selector(tabClass3Button), for: .touchUpInside)
     }
     
     lazy var class4Button = UIButton().then {
         $0.setTitle("4반", for: .normal)
         $0.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.addTarget(self, action: #selector(tabClass4Button), for: .touchUpInside)
     }
     
     lazy var numberLabel = UILabel().then {
@@ -91,6 +95,14 @@ class InformationViewController: UIViewController {
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.textColor = .rgb(red: 255, green: 172, blue: 183)
     }
+    
+    lazy var numberCollectionView: UICollectionView = {
+        let cv = UICollectionView(frame: .init(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewFlowLayout())
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = .rgb(red: 255, green: 255, blue: 255)
+
+        return cv
+    }()
     
     lazy var signUpButton = UIButton().then {
         $0.setTitle("Sign up", for: .normal)
@@ -121,6 +133,10 @@ class InformationViewController: UIViewController {
         self.view.addSubview(informationLabel)
         self.view.addSubview(backgroundView)
         self.view.addSubview(gradeLabel)
+        self.view.addSubview(gradeView)
+        self.view.addSubview(grade1Button)
+        self.view.addSubview(grade2Button)
+        self.view.addSubview(grade3Button)
         self.view.addSubview(classLabel)
         self.view.addSubview(classView)
         self.view.addSubview(class1Button)
@@ -130,10 +146,7 @@ class InformationViewController: UIViewController {
         self.view.addSubview(numberLabel)
         self.view.addSubview(signUpButton)
         self.view.addSubview(loginButton)
-        self.view.addSubview(gradeView)
-        self.view.addSubview(grade1Button)
-        self.view.addSubview(grade2Button)
-        self.view.addSubview(grade3Button)
+        self.view.addSubview(numberCollectionView)
 
     }
     
@@ -147,6 +160,8 @@ class InformationViewController: UIViewController {
         gradeView.layer.cornerRadius = 8
         
         classView.layer.cornerRadius = 8
+        
+        numberCollectionView.layer.cornerRadius = 8
     }
     
     func shadow() {
@@ -232,6 +247,12 @@ class InformationViewController: UIViewController {
             make.left.equalTo(gradeLabel)
         }
         
+        numberCollectionView.snp.makeConstraints { make in
+            make.height.width.equalTo(gradeView)
+            make.top.equalTo(numberLabel.snp.bottom).offset(self.view.frame.height/135.33)
+            make.centerX.equalToSuperview()
+        }
+        
         signUpButton.snp.makeConstraints { make in
             make.width.equalToSuperview().dividedBy(1.5)
             make.height.equalToSuperview().dividedBy(21.37)
@@ -279,6 +300,58 @@ class InformationViewController: UIViewController {
             grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
         }else {
             grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }
+    }
+    
+    @objc
+    func tabClass1Button() {
+        if class1Button.titleLabel?.textColor == .rgb(red: 108, green: 108, blue: 108) {
+            
+            class1Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
+            class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }else {
+            class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }
+    }
+    
+    @objc
+    func tabClass2Button() {
+        if class2Button.titleLabel?.textColor == .rgb(red: 108, green: 108, blue: 108) {
+            
+            class2Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
+            class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }else {
+            class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }
+    }
+    
+    @objc
+    func tabClass3Button() {
+        if class3Button.titleLabel?.textColor == .rgb(red: 108, green: 108, blue: 108) {
+            
+            class3Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
+            class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }else {
+            class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }
+    }
+    
+    @objc
+    func tabClass4Button() {
+        if class4Button.titleLabel?.textColor == .rgb(red: 108, green: 108, blue: 108) {
+            
+            class4Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
+            class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }else {
+            class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
         }
     }
 }
