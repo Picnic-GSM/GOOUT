@@ -18,7 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let mainViewController = SigninViewController()
 
-        let navigationController = UINavigationController(rootViewController: ForgotPasswordViewController())
+
+        let navigationController = UINavigationController(rootViewController: ShowPasswordViewController())
 
         navigationController.navigationBar.isHidden = true
         window?.rootViewController = SignUpViewController()
