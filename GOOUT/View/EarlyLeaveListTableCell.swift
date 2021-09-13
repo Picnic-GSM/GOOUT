@@ -10,7 +10,7 @@ import SnapKit
 import Then
 
 class EarlyLeaveListTableCell: UITableViewCell {
-    static let OutListTableIdentifier = "\(EarlyLeaveListTableCell.self)"
+    static let EarlyLeaveListTableIdentifier = "\(EarlyLeaveListTableCell.self)"
     
     var cellView = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 255, blue: 255)
