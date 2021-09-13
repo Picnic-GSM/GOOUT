@@ -10,7 +10,6 @@ import SnapKit
 import Then
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
-    
     lazy var signUpLabel = UILabel().then {
         $0.text = "Sign up"
         $0.dynamicFont(fontSize: 30, currentFontName: "FugazOne-Regular")
@@ -131,14 +130,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         emailContainer.snp.makeConstraints { make in
             make.width.equalToSuperview().dividedBy(1.5)
             make.height.equalToSuperview().dividedBy(16.24)
-            make.top.equalToSuperview().offset(self.view.frame.height/2.87)
+            make.top.equalTo(backgroundView).offset(self.view.frame.height/10.15)
             make.centerX.equalToSuperview()
         }
         
         passwordContainer.snp.makeConstraints { make in
-            make.width.equalTo(emailContainer)
-            make.height.equalToSuperview().dividedBy(12.3)
-            make.top.equalTo(emailContainer.snp.bottom).offset(self.view.frame.height/35.3)
+            make.width.height.equalTo(emailContainer)
+            make.top.equalTo(backgroundView).offset(self.view.frame.height/5.31)
             make.centerX.equalToSuperview()
         }
         
@@ -150,7 +148,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
         
         passwordExampleLabel.snp.makeConstraints { make in
-            make.top.equalTo(passwordContainer.snp.bottom).offset(self.view.frame.height/135.33)
+            make.top.equalTo(backgroundView).offset(self.view.frame.height/3.89)
             make.left.equalTo(passwordContainer)
         }
         
@@ -161,7 +159,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
         
         teacherButton.snp.makeConstraints { make in
-            make.top.equalTo(passwordExampleLabel.snp.bottom).offset(self.view.frame.height/47.76)
+            make.top.equalTo(backgroundView).offset(self.view.frame.height/2.75)
             make.left.equalTo(checkPasswordContainer)
         }
         

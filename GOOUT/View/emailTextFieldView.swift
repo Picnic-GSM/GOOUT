@@ -40,8 +40,8 @@ class emailTextFieldView: UIView, UITextFieldDelegate {
         }
         
         line.snp.makeConstraints { make in
-            make.width.equalToSuperview().dividedBy(1.5)
-            make.height.equalToSuperview().dividedBy(812)
+            make.width.equalTo(screenWidth/1.5)
+            make.height.equalTo(screenHeight/812)
             make.top.equalTo(label.snp.bottom).offset(screenHeight/24.61)
             make.centerX.equalToSuperview()
         }
