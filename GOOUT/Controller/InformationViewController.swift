@@ -62,6 +62,12 @@ class InformationViewController: UIViewController {
         $0.backgroundColor = .rgb(red: 255, green: 255, blue: 255)
     }
     
+    lazy var class1Button = UIButton().then {
+        $0.setTitle("1반", for: .normal)
+        $0.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
+    }
+    
     lazy var numberLabel = UILabel().then {
         $0.text = "Number"
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
@@ -98,6 +104,8 @@ class InformationViewController: UIViewController {
         self.view.addSubview(backgroundView)
         self.view.addSubview(gradeLabel)
         self.view.addSubview(classLabel)
+        self.view.addSubview(classView)
+        self.view.addSubview(class1Button)
         self.view.addSubview(numberLabel)
         self.view.addSubview(signUpButton)
         self.view.addSubview(loginButton)
@@ -105,7 +113,7 @@ class InformationViewController: UIViewController {
         self.view.addSubview(grade1Button)
         self.view.addSubview(grade2Button)
         self.view.addSubview(grade3Button)
-        self.view.addSubview(classView)
+
     }
     
     func cornerRadius() {
@@ -176,6 +184,16 @@ class InformationViewController: UIViewController {
             make.width.height.equalTo(gradeView)
             make.top.equalTo(classLabel.snp.bottom).offset(self.view.frame.height/135.33)
             make.centerX.equalToSuperview()
+        }
+        
+        class1Button.snp.makeConstraints { make in
+            make.left.equalTo(classView).offset(self.view.frame.width/11.03)
+            make.centerY.equalTo(classView)
+        }
+        
+        class1Button.snp.makeConstraints { make in
+            make.left.equalTo(classView).offset(self.view.frame.width/11.03)
+            make.centerY.equalTo(classView)
         }
         
         numberLabel.snp.makeConstraints { make in
