@@ -10,7 +10,7 @@ import Then
 import SnapKit
 import DropDown
 
-class InquiryByGradeViewController : UIViewController {
+class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Properties
     lazy var mainTabBarView = MainTabBarView()
@@ -78,6 +78,18 @@ class InquiryByGradeViewController : UIViewController {
         $0.separatorStyle = .none
     }
     
+    lazy var outCellViewColorList: [UIColor] = [UIColor.rgb(red: 255, green: 255, blue: 255), UIColor.rgb(red: 243, green: 247, blue: 255), UIColor.rgb(red: 255, green: 255, blue: 255), UIColor.rgb(red: 243, green: 247, blue: 255), UIColor.rgb(red: 255, green: 255, blue: 255), UIColor.rgb(red: 243, green: 247, blue: 255)]
+    
+    lazy var outStateColorList: [UIColor] = [UIColor.rgb(red: 255, green: 205, blue: 107), UIColor.rgb(red: 255, green: 107, blue: 107), UIColor.rgb(red: 156, green: 198, blue: 160), UIColor.rgb(red: 156, green: 198, blue: 160),  UIColor.rgb(red: 156, green: 198, blue: 160), UIColor.rgb(red: 156, green: 198, blue: 160)]
+    
+    lazy var outNameList: [String] = ["변웅섭", "변웅섭", "변웅섭", "변웅섭", "변웅섭", "변웅섭"]
+    
+    lazy var outGradeClassNumList: [String] = ["3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번"]
+    
+    lazy var outTimeList: [String] = ["16:30 - 18:00", "16:30 - 18:00", "16:30 - 18:00", "16:30 - 18:00", "16:30 - 18:00", "16:30 - 18:00"]
+    
+    lazy var outReasonList: [String] = ["준비물", "준비물", "준비물", "준비물", "준비물", "준비물"]
+    
     lazy var earlyLeaveLabel = UILabel().then {
         $0.text = "조퇴"
         $0.dynamicFont(fontSize: 20, currentFontName: "AppleSDGothicNeo-Thin")
@@ -86,6 +98,38 @@ class InquiryByGradeViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+    }
+    
+    // MARK: - tableView
+    
+    func tableViewSetting(){
+        outTableView.dataSource = self
+        outTableView.delegate = self
+                
+        outTableView.register(OutListTableCell.self, forCellReuseIdentifier: OutListTableCell.OutListTableIdentifier)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return outNameList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OutListTableCell") as! OutListTableCell
+        cell.cellView.backgroundColor = outCellViewColorList[indexPath.row]
+        cell.stateColorView.backgroundColor = outStateColorList[indexPath.row]
+        cell.nameLabel.text = outNameList[indexPath.row]
+        cell.gradeClassNumLabel.text = outGradeClassNumList[indexPath.row]
+        cell.timeLabel.text = outTimeList[indexPath.row]
+        cell.reasonLabel.text = outReasonList[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.view.frame.height/25.375
+    }
+        
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
     }
     
     //MARK: - Helpers
@@ -97,6 +141,7 @@ class InquiryByGradeViewController : UIViewController {
         mainTabBarViewSetting()
         stateViewSetting()
         doNotGoViewSetting()
+        tableViewSetting()
         
         doNotGoView.isHidden = true
         
@@ -115,6 +160,7 @@ class InquiryByGradeViewController : UIViewController {
         view.addSubview(endContainer)
         view.addSubview(doNotGoView)
         view.addSubview(earlyLeaveLabel)
+        view.addSubview(outTableView)
     }
     
     func cornerRadius(){
@@ -176,6 +222,13 @@ class InquiryByGradeViewController : UIViewController {
         earlyLeaveLabel.snp.makeConstraints { make in
             make.left.equalTo(outLabel)
             make.top.equalTo(self.view.frame.height/1.87)
+        }
+        
+        outTableView.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(self.view.frame.width/16.30)
+            make.top.equalTo(outLabel.snp.bottom)
+            make.width.equalToSuperview()
+            make.height.equalTo((self.view.frame.height/25.375) * CGFloat(outNameList.count))
         }
     }
     //MARK: - Selectors
