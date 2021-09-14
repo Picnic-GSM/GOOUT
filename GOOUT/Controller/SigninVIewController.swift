@@ -93,6 +93,12 @@ class SigninViewController: UIViewController{
         addTextFieldObservers()
         
         makeAccountBtn.addTarget(self, action: #selector(makeAccountBtnClicked(sender:)), for: .touchUpInside)
+        findPasswordButton.addTarget(self, action: #selector(findPasswordButtonClicked(sender:)), for: .touchUpInside)
+    }
+    
+    @objc func findPasswordButtonClicked(sender:UIButton){
+        let nextVC = ForgotPasswordViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     @objc func makeAccountBtnClicked(sender:UIButton){

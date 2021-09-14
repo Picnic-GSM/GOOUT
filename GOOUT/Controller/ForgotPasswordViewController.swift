@@ -50,12 +50,11 @@ class ForgotPasswordViewController: UIViewController{
     
     func location(){
         mainview.snp.makeConstraints{ make in
-            
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.height.equalTo(bound.height*0.74)
             make.top.equalTo(bound.height*0.25)
-    }
+        }
         
         mainlabel.text = "Find Password"
         mainlabel.dynamicFont(fontSize: 25, currentFontName: "FugazOne-Regular")
