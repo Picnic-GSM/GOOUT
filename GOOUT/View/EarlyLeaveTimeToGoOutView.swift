@@ -9,7 +9,7 @@ import UIKit
 
 class EarlyLeaveTimeToGoOutView : UIView{
     let view = UIView().then{
-        $0.backgroundColor = .red
+        $0.backgroundColor = .rgb(red: 243, green: 247, blue: 255)
     }
     
     let time = UILabel().then{

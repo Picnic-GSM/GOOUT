@@ -82,7 +82,10 @@ class InquiryForEachClassViewController : UIViewController{
         requestConfirmationCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
         requestConfirmationData.remove(at: sender.tag)
     }
-    
+    @objc func SaveAndCloseCollectionViewItem(sender:UIButton){
+        requestConfirmationCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
+        requestConfirmationData.remove(at: sender.tag)
+    }
     //MARK: - Helper
     func configureUI(){
         view.backgroundColor = .white
@@ -153,9 +156,9 @@ class InquiryForEachClassViewController : UIViewController{
     //MARK: - CollectionView Data Add
     func AddrequestConfirmationData(){
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "안지훈", number: 2, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 18)), reason: "마카롱"))
-        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "이시완", number: 8, time: receivedTime.init(startClock: time.init(oclock: 13, minute: 20), finishClock: time.init(oclock: 15, minute: 29)), reason: "마카롱"))
+        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "이시완", number: 8, time: receivedTime.init(startClock: time.init(oclock: 13, minute: 20), finishClock: time.init(oclock: nil, minute: nil)), reason: "마카롱"))
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "임준화", number: 8, time: receivedTime.init(startClock: time.init(oclock: 11, minute: 20), finishClock: time.init(oclock: 15, minute: 24)), reason: "마카롱"))
-        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "김유진", number: 8, time: receivedTime.init(startClock: time.init(oclock: 12, minute: 20), finishClock: time.init(oclock: 20, minute: 20)), reason: "마카롱"))
+        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "김유진", number: 8, time: receivedTime.init(startClock: time.init(oclock: 12, minute: 20), finishClock: time.init(oclock: nil, minute: nil)), reason: "마카롱"))
     }
     
     //MARK: - TableView Data add
@@ -177,20 +180,37 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requestConfirmationCell.identifier, for: indexPath) as! requestConfirmationCell
+        //MARK: - Cell Setting
+        if requestConfirmationData[indexPath.row].earlyTextType == GoingOutLeavingEarlyText.goingOut {
+            cell.layer.borderColor = UIColor.rgb(red: 211, green: 222, blue: 244).cgColor
+            cell.requestStatus.status.backgroundColor = UIColor.GoingOutEarlyLeave.GOOUT_blue
+            cell.closeBtn.tintColor = .rgb(red: 134, green: 161, blue: 217)
+            cell.earlyLeaveTimeToGoOutLabel.time.text = "\(requestConfirmationData[indexPath.row].time.startClock!.oclock!):\(requestConfirmationData[indexPath.row].time.startClock!.minute!) - \(requestConfirmationData[indexPath.row].time.finishClock!.oclock!):\(requestConfirmationData[indexPath.row].time.finishClock!.minute!)"
+            cell.earlyLeaveTimeToGoOutLabel.time.textColor = .rgb(red: 104, green: 134, blue: 197)
+            cell.earlyLeaveTimeToGoOutLabel.view.backgroundColor = .rgb(red: 243, green: 247, blue: 255)
+            cell.btnApproval.backgroundColor = .rgb(red: 134, green: 161, blue: 217)
+        }else if requestConfirmationData[indexPath.row].earlyTextType == GoingOutLeavingEarlyText.leavingEarly{
+            cell.layer.borderColor = UIColor.rgb(red: 255, green: 221, blue: 221).cgColor
+            cell.requestStatus.status.backgroundColor = UIColor.GoingOutEarlyLeave.GOOUT_red
+            cell.earlyLeaveTimeToGoOutLabel.time.text = "\(requestConfirmationData[indexPath.row].time.startClock!.oclock!):\(requestConfirmationData[indexPath.row].time.startClock!.minute!) ~"
+            cell.earlyLeaveTimeToGoOutLabel.time.textColor = .rgb(red: 243, green: 131, blue: 146)
+            cell.earlyLeaveTimeToGoOutLabel.view.backgroundColor = .rgb(red: 255, green: 243, blue: 243)
+            cell.closeBtn.tintColor = .rgb(red: 255, green: 172, blue: 183)
+            cell.btnApproval.backgroundColor = .rgb(red: 255, green: 168, blue: 179)
+        }
         cell.backgroundColor = .white
-        cell.layer.borderColor = UIColor.black.cgColor
         cell.requestStatus.label.text = requestConfirmationData[indexPath.row].earlyTextType.rawValue
         cell.requestStudentName.text = requestConfirmationData[indexPath.row].name
         cell.requestStudentClass.text = "3학년 1반 \(requestConfirmationData[indexPath.row].number)번"
         //MARK:- Time
-        cell.earlyLeaveTimeToGoOutLabel.time.text = "\(requestConfirmationData[indexPath.row].time.startClock!.oclock!):\(requestConfirmationData[indexPath.row].time.startClock!.minute!) - \(requestConfirmationData[indexPath.row].time.finishClock!.oclock!):\(requestConfirmationData[indexPath.row].time.finishClock!.minute!)"
+
         cell.reason.text = requestConfirmationData[indexPath.row].reason
         cell.layer.borderWidth = 1
         cell.clipsToBounds = true
         cell.layer.cornerRadius = bounds.height/81.2
         cell.closeBtn.tag = indexPath.row
         cell.closeBtn.addTarget(self, action: #selector(CloseCollectionViewItem(sender:)), for: .touchUpInside)
-        cell.btnApproval.addTarget(self, action: #selector(CloseCollectionViewItem(sender:)), for: .touchUpInside)
+        cell.btnApproval.addTarget(self, action: #selector(SaveAndCloseCollectionViewItem(sender:)), for: .touchUpInside)
         return cell
     }
     
@@ -218,18 +238,15 @@ extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: PleaseCheckYourReturnHomeTableCell.identifier,for: indexPath) as! PleaseCheckYourReturnHomeTableCell
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
-        cell.cellView.layer.borderColor = UIColor.rgb(red: 104, green: 134, blue: 197).cgColor
         cell.attendanceButton.backgroundColor = UIColor.rgb(red: 104, green: 134, blue: 197)
-
-
         cell.selectionStyle = .none
-
         cell.requestStatus.backgroundColor = pleaseCheckYourReturnHomeTableData[indexPath.row].viewColor
         cell.requestStudentName.text = pleaseCheckYourReturnHomeTableData[indexPath.row].name
             cell.requestStudentClass.text = "3학년 1반 \(pleaseCheckYourReturnHomeTableData[indexPath.row].number!)반"
         //MARK:- Time
         cell.earlyLeaveTimeToGoOutLabel.time.text = "\(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.startClock!.oclock!):\(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.startClock!.minute!) - \(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.finishClock!.oclock!):\(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.finishClock!.oclock!)"
-        
+        cell.earlyLeaveTimeToGoOutLabel.time.textColor = .rgb(red: 104, green: 104, blue: 197)
+
         cell.attendanceButton.setTitle(pleaseCheckYourReturnHomeTableData[indexPath.row].btnTitle.rawValue, for: .normal)
         return cell
     }
