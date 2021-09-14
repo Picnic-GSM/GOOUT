@@ -109,6 +109,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         configureUI()
     }
+    
+    @objc func loginButtonClicked(sender:UIButton){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func teacherButtonClicked(sender:UIButton){
+//        self.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+    }
   
 //  MARK: configureUI
     func configureUI() {
@@ -117,6 +125,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         cornerRadius()
         location()
         shadow()
+        addTarget()
+    }
+    
+//  MARK: addTarget
+    func addTarget(){
+        loginButton.addTarget(self, action: #selector(loginButtonClicked(sender:)), for: .touchUpInside)
+        teacherButton.addTarget(self, action: #selector(teacherButtonClicked(sender:)), for: .touchUpInside)
     }
     
 //  MARK: shadow

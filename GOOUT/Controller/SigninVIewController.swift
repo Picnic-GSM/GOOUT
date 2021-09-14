@@ -24,8 +24,6 @@ class SigninViewController: UIViewController{
     
     lazy var formView = UIView(frame: CGRect(x: 0, y: 0, width: mainBound.width, height: mainBound.height*0.75))
     
-    
-    
     let emailTextField = UITextField().then{
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.placeholder = "이메일을 입력하세요."
@@ -64,7 +62,6 @@ class SigninViewController: UIViewController{
         $0.layer.cornerRadius = 8
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(red: 0.408, green: 0.525, blue: 0.773, alpha: 0.7)
-        $0.isEnabled = false
         $0.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
     }
     
@@ -93,6 +90,25 @@ class SigninViewController: UIViewController{
         configureUI()
         configureShadow()
         addTextFieldObservers()
+        
+        loginBtn.addTarget(self, action: #selector(loginBtnClicked(sender:)), for: .touchUpInside)
+        makeAccountBtn.addTarget(self, action: #selector(makeAccountBtnClicked(sender:)), for: .touchUpInside)
+        findPasswordButton.addTarget(self, action: #selector(findPasswordButtonClicked(sender:)), for: .touchUpInside)
+    }
+    
+    @objc func loginBtnClicked(sender:UIButton){
+        let nextVC = MainViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    @objc func findPasswordButtonClicked(sender:UIButton){
+        let nextVC = ForgotPasswordViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    @objc func makeAccountBtnClicked(sender:UIButton){
+        let nextVC = SignUpViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -269,6 +285,7 @@ class SigninViewController: UIViewController{
         email = emailTextField.text ?? ""
         password = passwordTextField.text ?? ""
         // authService login...
+
         
         // if let err = err
         self.loginFailedMessage.isHidden = false
