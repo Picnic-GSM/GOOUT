@@ -51,6 +51,9 @@ extension UILabel {
     case 896.0: //iphone XR => 6.1 inch  // iphone XS MAX => 6.5 inch
         self.font = UIFont(name: currentFontName, size: size * 1.15)
       break
+    case 926: //iphone 12 Pro Max
+        self.font = UIFont(name:currentFontName, size: size * 1.18)
+      break
     default:
       print("not an iPhone")
       break
@@ -89,6 +92,16 @@ extension UITextField {
       print("not an iPhone")
       break
     }
+  }
+    
+  func setPlaceholderColor(_ placeholderColor: UIColor) {
+    attributedPlaceholder = NSAttributedString(
+        string: placeholder ?? "",
+        attributes: [
+            .foregroundColor: placeholderColor,
+            .font: font
+        ].compactMapValues { $0 }
+    )
   }
 }
 
