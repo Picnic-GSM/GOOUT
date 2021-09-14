@@ -203,13 +203,15 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
         cell.requestStudentName.text = requestConfirmationData[indexPath.row].name
         cell.requestStudentClass.text = "3학년 1반 \(requestConfirmationData[indexPath.row].number)번"
         //MARK:- Time
-
+        
+        
         cell.reason.text = requestConfirmationData[indexPath.row].reason
         cell.layer.borderWidth = 1
         cell.clipsToBounds = true
         cell.layer.cornerRadius = bounds.height/81.2
         cell.closeBtn.tag = indexPath.row
         cell.closeBtn.addTarget(self, action: #selector(CloseCollectionViewItem(sender:)), for: .touchUpInside)
+        cell.btnApproval.tag = indexPath.row
         cell.btnApproval.addTarget(self, action: #selector(SaveAndCloseCollectionViewItem(sender:)), for: .touchUpInside)
         return cell
     }
