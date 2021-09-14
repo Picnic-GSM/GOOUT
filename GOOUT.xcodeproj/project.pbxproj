@@ -28,6 +28,12 @@
 		EEFD616126DF89AA0032EDBF /* OutConditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFD616026DF89AA0032EDBF /* OutConditionView.swift */; };
 		6AB0369B26DCBB2700D1F80E /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB0369A26DCBB2700D1F80E /* AddViewController.swift */; };
 		6AB0369D26DCCF1600D1F80E /* FugazOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB0369C26DCCF1200D1F80E /* FugazOne-Regular.ttf */; };
+		AA478B5426EF742D009C628B /* OutListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA478B5326EF742D009C628B /* OutListHeaderView.swift */; };
+		AA478B5626EF943D009C628B /* EarlyLeaveListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA478B5526EF943D009C628B /* EarlyLeaveListHeaderView.swift */; };
+		AAD95AB926EB1DA2004E4580 /* StateExplainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95AB826EB1DA2004E4580 /* StateExplainView.swift */; };
+		AAD95ABB26EB2A54004E4580 /* AnyStudentDoNotGoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95ABA26EB2A54004E4580 /* AnyStudentDoNotGoView.swift */; };
+		AAD95ADD26EC2BF7004E4580 /* OutListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95ADC26EC2BF7004E4580 /* OutListTableCell.swift */; };
+		AAD95ADF26EC453F004E4580 /* EarlyLeaveListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95ADE26EC453F004E4580 /* EarlyLeaveListTableCell.swift */; };
 		A89BFE8C26EA1AB6003627BD /* getAuthCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89BFE8B26EA1AB6003627BD /* getAuthCodeView.swift */; };
 		A89BFE9026EA1BB2003627BD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89BFE8F26EA1BB2003627BD /* TestViewController.swift */; };
 		C8E905E126E0ECBD002427B3 /* ShowPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E905E026E0ECBD002427B3 /* ShowPasswordViewController.swift */; };
@@ -63,6 +69,12 @@
 		6AB0369826DC9C5200D1F80E /* MyClassInquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClassInquiryViewController.swift; sourceTree = "<group>"; };
 		6AB0369A26DCBB2700D1F80E /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		6AB0369C26DCCF1200D1F80E /* FugazOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FugazOne-Regular.ttf"; sourceTree = "<group>"; };
+		AA478B5326EF742D009C628B /* OutListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutListHeaderView.swift; sourceTree = "<group>"; };
+		AA478B5526EF943D009C628B /* EarlyLeaveListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaveListHeaderView.swift; sourceTree = "<group>"; };
+		AAD95AB826EB1DA2004E4580 /* StateExplainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateExplainView.swift; sourceTree = "<group>"; };
+		AAD95ABA26EB2A54004E4580 /* AnyStudentDoNotGoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyStudentDoNotGoView.swift; sourceTree = "<group>"; };
+		AAD95ADC26EC2BF7004E4580 /* OutListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutListTableCell.swift; sourceTree = "<group>"; };
+		AAD95ADE26EC453F004E4580 /* EarlyLeaveListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaveListTableCell.swift; sourceTree = "<group>"; };
 		A89BFE8B26EA1AB6003627BD /* getAuthCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getAuthCodeView.swift; sourceTree = "<group>"; };
 		A89BFE8F26EA1BB2003627BD /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		C8E905E026E0ECBD002427B3 /* ShowPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPasswordViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +176,12 @@
 			children = (
 				EEFD615726DE06D90032EDBF /* Cell */,
 				6AB0369626DC58A100D1F80E /* MainTabBarView.swift */,
+				AAD95AB826EB1DA2004E4580 /* StateExplainView.swift */,
+				AAD95ABA26EB2A54004E4580 /* AnyStudentDoNotGoView.swift */,
+				AAD95ADC26EC2BF7004E4580 /* OutListTableCell.swift */,
+				AAD95ADE26EC453F004E4580 /* EarlyLeaveListTableCell.swift */,
+				AA478B5326EF742D009C628B /* OutListHeaderView.swift */,
+				AA478B5526EF943D009C628B /* EarlyLeaveListHeaderView.swift */,
 				EEFD615A26DE1A5A0032EDBF /* RequestStatus.swift */,
 				EEFD616026DF89AA0032EDBF /* OutConditionView.swift */,
 				EE63E21C26E09B1700F75CDA /* EarlyLeaveTimeToGoOutView.swift */,
@@ -337,10 +355,17 @@
 				6AA3A56026D8B4FA00CA03F3 /* AppDelegate.swift in Sources */,
 				46F570AA26DCCD60005F81AE /* SigninVIewController.swift in Sources */,
 				6AB0369926DC9C5200D1F80E /* MyClassInquiryViewController.swift in Sources */,
+				AAD95ADD26EC2BF7004E4580 /* OutListTableCell.swift in Sources */,
+				AA478B5426EF742D009C628B /* OutListHeaderView.swift in Sources */,
+				AAD95ADF26EC453F004E4580 /* EarlyLeaveListTableCell.swift in Sources */,
+				AAD95ABB26EB2A54004E4580 /* AnyStudentDoNotGoView.swift in Sources */,
+				6AA3A56226D8B4FA00CA03F3 /* SceneDelegate.swift in Sources */,
+				AAD95AB926EB1DA2004E4580 /* StateExplainView.swift in Sources */,
 				EEFD615D26DE1EAF0032EDBF /* RequestInquiryForEachClassModel.swift in Sources */,
 				6AA3A56226D8B4FA00CA03F3 /* SceneDelegate.swift in Sources */,
 				A89BFE9026EA1BB2003627BD /* TestViewController.swift in Sources */,
 				6AA3A57926DA509700CA03F3 /* Extension.swift in Sources */,
+				AA478B5626EF943D009C628B /* EarlyLeaveListHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
