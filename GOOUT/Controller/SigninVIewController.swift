@@ -62,7 +62,6 @@ class SigninViewController: UIViewController{
         $0.layer.cornerRadius = 8
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(red: 0.408, green: 0.525, blue: 0.773, alpha: 0.7)
-        $0.isEnabled = false
         $0.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
     }
     
@@ -92,8 +91,14 @@ class SigninViewController: UIViewController{
         configureShadow()
         addTextFieldObservers()
         
+        loginBtn.addTarget(self, action: #selector(loginBtnClicked(sender:)), for: .touchUpInside)
         makeAccountBtn.addTarget(self, action: #selector(makeAccountBtnClicked(sender:)), for: .touchUpInside)
         findPasswordButton.addTarget(self, action: #selector(findPasswordButtonClicked(sender:)), for: .touchUpInside)
+    }
+    
+    @objc func loginBtnClicked(sender:UIButton){
+        let nextVC = MainViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     @objc func findPasswordButtonClicked(sender:UIButton){
@@ -280,6 +285,7 @@ class SigninViewController: UIViewController{
         email = emailTextField.text ?? ""
         password = passwordTextField.text ?? ""
         // authService login...
+
         
         // if let err = err
         self.loginFailedMessage.isHidden = false
