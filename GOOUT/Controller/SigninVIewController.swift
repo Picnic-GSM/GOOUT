@@ -24,8 +24,6 @@ class SigninViewController: UIViewController{
     
     lazy var formView = UIView(frame: CGRect(x: 0, y: 0, width: mainBound.width, height: mainBound.height*0.75))
     
-    
-    
     let emailTextField = UITextField().then{
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.placeholder = "이메일을 입력하세요."
@@ -93,6 +91,13 @@ class SigninViewController: UIViewController{
         configureUI()
         configureShadow()
         addTextFieldObservers()
+        
+        makeAccountBtn.addTarget(self, action: #selector(makeAccountBtnClicked(sender:)), for: .touchUpInside)
+    }
+    
+    @objc func makeAccountBtnClicked(sender:UIButton){
+        let nextVC = SignUpViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
