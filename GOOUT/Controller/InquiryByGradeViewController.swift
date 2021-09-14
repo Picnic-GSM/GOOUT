@@ -61,7 +61,7 @@ class InquiryByGradeViewController : UIViewController {
         }
 
         // myClassInquiryViewController 화면전환 준비
-        let myClassInquiryViewController = MyClassInquiryViewController()
+        let myClassInquiryViewController = InquiryForEachClassViewController()
         self.addChild(myClassInquiryViewController)
         myClassInquiryViewController.view.frame = viewControllerView.frame
         
