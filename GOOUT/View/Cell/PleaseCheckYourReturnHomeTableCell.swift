@@ -9,10 +9,12 @@ import UIKit
 class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
     //MARK: - identifier
     static let identifier = "PleaseCheckYourReturnHomeTableCell"
-
+    private var pleaseCheckYourReturnHome : Bool = false
+    
     let cellView = UIView().then{
         $0.layer.borderWidth = 1
         $0.clipsToBounds = true
+        $0.layer.borderColor = UIColor.rgb(red: 104, green: 134, blue: 197).cgColor
     }
     let view = UIView()
     let requestStatus = UIView()
@@ -25,17 +27,18 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
         $0.textColor = .black
     }
     let earlyLeaveTimeToGoOutLabel : EarlyLeaveTimeToGoOutView = {
-        let view = EarlyLeaveTimeToGoOutView(startTimeString: "11:00", finishTimeString: "12:00")
+        let view = EarlyLeaveTimeToGoOutView()
         return view
     }()
-    let attendanceButton = UIButton().then{
+    lazy var attendanceButton = UIButton().then{
         $0.setTitleColor(.white, for: .normal)
         $0.dynamicFont(fontSize: 11, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.addTarget(self, action: #selector(attendanceBtn), for: .touchUpInside)
     }
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(cellView)
+        contentView.addSubview(cellView)
         cellView.addSubview(view)
         view.addSubview(requestStatus)
         view.addSubview(requestStudentName)
@@ -44,6 +47,27 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
         cellView.addSubview(attendanceButton)
         backgroundColor = .clear
         requestStatus.backgroundColor = .red
+    }
+    @objc func attendanceBtn(){
+        if pleaseCheckYourReturnHome == true{
+            UIView.animate(withDuration: 0.2) {
+                self.attendanceButton.backgroundColor = .rgb(
+                    red: 104, green: 134, blue: 197)
+                self.attendanceButton.setTitle("귀가 완료", for: .normal)
+                self.earlyLeaveTimeToGoOutLabel.time.textColor = .rgb(red: 104, green: 104, blue: 197)
+                self.earlyLeaveTimeToGoOutLabel.view.backgroundColor = .rgb(red: 243, green: 247, blue: 255)
+                self.cellView.layer.borderColor = UIColor.rgb(red: 104, green: 134, blue: 197).cgColor
+            }
+        }else{
+            UIView.animate(withDuration: 0.2) {
+                self.attendanceButton.backgroundColor = .rgb(red: 255, green: 168, blue: 179)
+                self.attendanceButton.setTitle("귀가 취소", for: .normal)
+                self.earlyLeaveTimeToGoOutLabel.time.textColor = .rgb(red: 243, green: 131, blue: 146)
+                self.earlyLeaveTimeToGoOutLabel.view.backgroundColor = .rgb(red: 255, green: 243, blue: 243)
+                self.cellView.layer.borderColor = UIColor.rgb(red: 255, green: 221, blue: 221).cgColor
+            }
+        }
+        pleaseCheckYourReturnHome = !pleaseCheckYourReturnHome
     }
     
     override func layoutSubviews() {
