@@ -130,6 +130,7 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         cornerRadius()
         location()
         shadow()
+        collectionViewSetting()
     }
     
     func addSubView() {
@@ -166,6 +167,36 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         
         numberCollectionView.layer.cornerRadius = 8
     }
+    
+    func collectionViewSetting(){
+        numberCollectionView.register(numberCellView.self, forCellWithReuseIdentifier: numberCellView.identifier)
+        
+        numberCollectionView.delegate = self
+        numberCollectionView.dataSource = self
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        numList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: numberCellView.identifier, for: indexPath) as? numberCellView else {
+            return UICollectionViewCell()
+        }
+
+        cell.numButton.setTitle(numList[indexPath.row], for: .normal)
+        cell.backgroundColor = .clear
+        return cell
+    }
+    
+    func collectionView(_collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingforSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingforSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 34, bottom: 0, right: 0)
+    }
+        
     
     func shadow() {
         backgroundView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
