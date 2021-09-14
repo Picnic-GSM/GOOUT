@@ -154,8 +154,6 @@ class AddViewController: UIViewController{
     
     var gooutEndTimeArray = ["1교시(08:40)","2교시(09:40)","3교시(10:40)","4교시(11:40)","점심시간(12:30)","5교시(13:30)","6교시(14:30)","7교시(15:30)","8교시(16:40)","9교시(17:40)","저녁시간(18:30)","10교시(19:40)","11교시(20:40)", "종례시간(21:20)"]
     
-    
-    
     // MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -173,6 +171,17 @@ class AddViewController: UIViewController{
         textView?.layer.add(shake, forKey: "position")
     }
     
+    func gooutAnimation(flag: CGFloat){
+        self.gooutTimeLabel.alpha = flag
+        self.gooutStartTimeButton.alpha = flag
+        self.selectedGooutStartTimeLabel.alpha = flag
+        self.gooutStartTimeUnderButton.alpha = flag
+        self.waveLabel.alpha = flag
+        self.gooutEndTimeButton.alpha = flag
+        self.selectedGooutEndTimeLabel.alpha = flag
+        self.gooutEndTimeUnderButton.alpha = flag
+    }
+    
     @objc func gooutButtonClicked(sender:UIButton){
         if gooutButton.isSelected == true{
             gooutButton.setImage(UIImage(named: "GOOUT_SelectedCheckButtonImage"), for: .normal)
@@ -181,14 +190,7 @@ class AddViewController: UIViewController{
             gooutButton.isSelected.toggle()
             
             UIView.animate(withDuration: 0.5) {
-                self.gooutTimeLabel.alpha = 1
-                self.gooutStartTimeButton.alpha = 1
-                self.selectedGooutStartTimeLabel.alpha = 1
-                self.gooutStartTimeUnderButton.alpha = 1
-                self.waveLabel.alpha = 1
-                self.gooutEndTimeButton.alpha = 1
-                self.selectedGooutEndTimeLabel.alpha = 1
-                self.gooutEndTimeUnderButton.alpha = 1
+                self.gooutAnimation(flag: 1)
                 
                 self.reasonLabel.snp.remakeConstraints { make in
                     make.left.equalTo(self.gooutTimeLabel)
@@ -210,14 +212,7 @@ class AddViewController: UIViewController{
             earlyLeaveButton.isSelected.toggle()
 
             UIView.animate(withDuration: 0.5) {
-                self.gooutTimeLabel.alpha = 0
-                self.gooutStartTimeButton.alpha = 0
-                self.selectedGooutStartTimeLabel.alpha = 0
-                self.gooutStartTimeUnderButton.alpha = 0
-                self.waveLabel.alpha = 0
-                self.gooutEndTimeButton.alpha = 0
-                self.selectedGooutEndTimeLabel.alpha = 0
-                self.gooutEndTimeUnderButton.alpha = 0
+                self.gooutAnimation(flag: 0)
                 
                 self.reasonLabel.snp.remakeConstraints { make in
                     make.left.equalTo(self.gooutTimeLabel)
@@ -250,7 +245,6 @@ class AddViewController: UIViewController{
         print(reasonTextView.text as Any)
         print(selectedGooutStartTimeLabel.text as Any)
         print(selectedGooutEndTimeLabel.text as Any)
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -478,7 +472,6 @@ class AddViewController: UIViewController{
             make.centerX.equalToSuperview()
         }
         
-        // MARK: - lineView gradient
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/10.38))
         let gradient = CAGradientLayer()
 

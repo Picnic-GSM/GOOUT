@@ -93,6 +93,7 @@ extension UITextField {
       break
     }
   }
+    
   func setPlaceholderColor(_ placeholderColor: UIColor) {
     attributedPlaceholder = NSAttributedString(
         string: placeholder ?? "",

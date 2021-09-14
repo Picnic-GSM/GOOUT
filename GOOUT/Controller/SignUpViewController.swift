@@ -306,24 +306,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-
-
-
-//MARK: extension
-public extension UITextField {
-    
-    func setPlaceholderColor(_ placeholderColor: UIColor) {
-        attributedPlaceholder = NSAttributedString(
-            string: placeholder ?? "",
-            attributes: [
-                .foregroundColor: placeholderColor,
-                .font: font
-            ].compactMapValues { $0 }
-        )
-    }
-}
-
-
 //MARK: - Preview
 
 #if DEBUG

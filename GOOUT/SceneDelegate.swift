@@ -16,13 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 
-        let mainViewController = SigninViewController()
+        let mainViewController = InquiryByGradeViewController()
 
-
-        let navigationController = UINavigationController(rootViewController: ShowPasswordViewController())
+        let navigationController = UINavigationController(rootViewController: mainViewController)
 
         navigationController.navigationBar.isHidden = true
-        window?.rootViewController = SignUpViewController()
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
 
