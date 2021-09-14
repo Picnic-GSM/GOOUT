@@ -285,6 +285,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
             cell.gradeClassNumLabel.text = outGradeClassNumList[indexPath.row]
             cell.timeLabel.text = outTimeList[indexPath.row]
             cell.reasonLabel.text = outReasonList[indexPath.row]
+            cell.selectionStyle = .none
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EarlyLeaveListTableCell") as! EarlyLeaveListTableCell
@@ -292,6 +293,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
             cell.nameLabel.text = earlyLeaveNameList[indexPath.row]
             cell.gradeClassNumLabel.text = earlyLeaveGradeClassNumList[indexPath.row]
             cell.reasonLabel.text = earlyLeaveReasonList[indexPath.row]
+            cell.selectionStyle = .none
             return cell
         }
     }
