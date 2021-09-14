@@ -48,6 +48,11 @@ class ForgotPasswordViewController: UIViewController{
         view.addSubview(checkbutton)
     }
     
+    @objc func checkbuttonClicked(sender:UIButton){
+        let nextVC = TestViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
     func location(){
         mainview.snp.makeConstraints{ make in
             make.left.equalToSuperview()
@@ -113,6 +118,7 @@ class ForgotPasswordViewController: UIViewController{
         checkbutton.setTitle("확인", for: .normal)
         checkbutton.setTitleColor(.gray, for: .normal)
         checkbutton.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
+        checkbutton.addTarget(self, action: #selector(checkbuttonClicked(sender:)), for: .touchUpInside)
         checkbutton.snp.makeConstraints{make in
             make.top.equalTo(emailtext.snp.bottom).offset(bound.height*0.05)
             make.centerX.equalTo(view)

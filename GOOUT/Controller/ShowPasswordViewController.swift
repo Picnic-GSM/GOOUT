@@ -67,6 +67,7 @@ class ShowPasswordViewController: UIViewController{
     let mainView = UIView()
     let bound = UIScreen.main.bounds
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //navigationController?.isNavigationBarHidden = true
@@ -121,6 +122,7 @@ class ShowPasswordViewController: UIViewController{
         toLogInBtn.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 12)
         toLogInBtn.layer.cornerRadius = 10
         toLogInBtn.layer.masksToBounds = true
+        toLogInBtn.addTarget(self, action: #selector(toLogInBtnClicked(sender:)), for: .touchUpInside)
         
         toLogInBtn.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -141,6 +143,11 @@ class ShowPasswordViewController: UIViewController{
             make.width.equalTo(bound.width*0.8)
             make.height.equalTo(bound.height*0.08)
         }
+    }
+    
+    @objc func toLogInBtnClicked(sender:UIButton){
+        let nextVC = SigninViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 

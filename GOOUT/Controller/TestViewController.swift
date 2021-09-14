@@ -11,8 +11,15 @@ class TestViewController: UIViewController{
     var myGetAuthCodeView = getAuthCodeView()
     let bound = UIScreen.main.bounds
     
+    @objc func checkbuttonClicked(sender:UIButton){
+        let nextVC = ShowPasswordViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myGetAuthCodeView.checkbutton.addTarget(self, action: #selector(checkbuttonClicked(sender:)), for: .touchUpInside)
         
         self.view.addSubview(myGetAuthCodeView)
         myGetAuthCodeView.resendButton.layer.cornerRadius = self.view.frame.width/55
