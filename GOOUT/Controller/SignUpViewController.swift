@@ -115,7 +115,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func teacherButtonClicked(sender:UIButton){
-//        self.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+        let nextVC = EnterDistributioncode()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
   
 //  MARK: configureUI
