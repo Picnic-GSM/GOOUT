@@ -45,7 +45,7 @@ class EnterDistributioncode: UIViewController {
     lazy var btn = UIButton().then{
         $0.layer.cornerRadius = 10
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
-        $0.addTarget(self, action: #selector(<#T##@objc method#>), for: <#T##UIControl.Event#>)
+        $0.addTarget(self, action: #selector(btnClicked(sender:)), for: .touchUpInside)
     }
     
     lazy var whiteview = UIView().then {
@@ -77,8 +77,6 @@ class EnterDistributioncode: UIViewController {
         
         logoview.layer.insertSublayer(gradient, at: 0)
         viewForButton.gradientButton("확인", btn, startColor: .rgb(red: 255, green: 172, blue: 183), endColor: .rgb(red: 104, green: 134, blue: 197))
-        
-        
     }
 
     @objc func btnClicked(sender:UIButton){
