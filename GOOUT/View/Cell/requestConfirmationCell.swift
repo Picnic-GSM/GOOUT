@@ -24,7 +24,7 @@ class requestConfirmationCell : UICollectionViewCell {
         $0.tintColor = .blue
     }
     let earlyLeaveTimeToGoOutLabel : EarlyLeaveTimeToGoOutView = {
-        let view = EarlyLeaveTimeToGoOutView(startTimeString: "11:00", finishTimeString: "12:00")
+        let view = EarlyLeaveTimeToGoOutView()
         return view
     }()
     let requestStudentClass = UILabel().then{
@@ -54,6 +54,7 @@ class requestConfirmationCell : UICollectionViewCell {
         addSubview(reason)
         addSubview(btnApproval)
     }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         location()
