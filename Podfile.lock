@@ -1,10 +1,12 @@
 PODS:
+  - AEOTPTextField (1.0.9)
   - Alamofire (5.4.3)
   - DropDown (2.3.13)
   - SnapKit (5.0.1)
   - Then (2.7.0)
 
 DEPENDENCIES:
+  - AEOTPTextField
   - Alamofire (~> 5.4)
   - DropDown
   - SnapKit (~> 5.0.0)
@@ -12,17 +14,19 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AEOTPTextField
     - Alamofire
     - DropDown
     - SnapKit
     - Then
 
 SPEC CHECKSUMS:
+  AEOTPTextField: e3c2f7d0f43bc52e6cf48dd6bf0ee1ba542438dd
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: d34fb8169d43378f2d476886d3daa172c629eafc
+PODFILE CHECKSUM: d5aca83d8b185e68e4f64fa9f59d5c9ef185a704
 
 COCOAPODS: 1.10.1
