@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 import Then
 
-class InformationViewController: UIViewController {
+class InformationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    lazy var numList:  [String] = ["1번", "2번", "3번", "4번", "5번", "6번", "7번", "8번", "9번", "10번", "11번", "12번", "13번", "14번", "15번", "16번", "17번", "18번", "19번", "20번"]
     
     lazy var informationLabel = UILabel().then {
         $0.text = "Information"
@@ -96,13 +98,14 @@ class InformationViewController: UIViewController {
         $0.textColor = .rgb(red: 255, green: 172, blue: 183)
     }
     
-    lazy var numberCollectionView: UICollectionView = {
-        let cv = UICollectionView(frame: .init(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewFlowLayout())
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = .rgb(red: 255, green: 255, blue: 255)
-
-        return cv
-    }()
+    lazy var numberCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .white
+        $0.collectionViewLayout = layout
+        $0.contentInset = UIEdgeInsets.init(top: 0, left: 17, bottom: 0, right: 0)
+    }
     
     lazy var signUpButton = UIButton().then {
         $0.setTitle("Sign up", for: .normal)
