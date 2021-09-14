@@ -11,12 +11,6 @@ import Then
 
 class InquiryForEachClassViewController : UIViewController{
     //MARK: - Properties
-    lazy var mainTabBarView = MainTabBarView()
-    
-    lazy var viewControllerView = UIView().then{
-        $0.backgroundColor = .systemPink
-    }
-    
     private var requestConfirmationData : [GoingOutEarlyLeaveCellModel] = []
 
     private var pleaseCheckYourReturnHomeTableData : [FinishedGoingHome] = []
@@ -70,6 +64,8 @@ class InquiryForEachClassViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        
+        print("지훈")
 
         homeComingTableView.tableFooterView = UIView()
         requestConfirmationCollectionView.contentInset = UIEdgeInsets(top: 0, left: bounds.height/35.30434782, bottom: 0, right: bounds.height/35.30434782)
@@ -86,20 +82,6 @@ class InquiryForEachClassViewController : UIViewController{
     @objc func CloseCollectionViewItem(sender:UIButton){
         requestConfirmationCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
         requestConfirmationData.remove(at: sender.tag)
-    }
-    
-    // MARK: - myClassInquiryButtonClicked
-    @objc func myClassInquiryButtonClicked(sender:UIButton){
-        viewControllerView.isHidden = false
-        mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedMyClassInquiryButtonImage"), for: .normal)
-        mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_AllClassInquiryButtonImage"), for: .normal)
-    }
-    
-    // MARK: - allClassInquiryButtonClicked
-    @objc func allClassInquiryButtonClicked(sender:UIButton){
-        viewControllerView.isHidden = true
-        mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_MyClassInquiryButtonImage"), for: .normal)
-        mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedAllClassInquiryButtonImage"), for: .normal)
     }
     
     //MARK: - Helper
@@ -186,10 +168,6 @@ class InquiryForEachClassViewController : UIViewController{
         pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_yellow, name: "최형우", number: 10, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10)), btnTitle: FinishedGoingHomeStatus.cancelGoingHome))
         pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_red, name: "진시윤", number: 18, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
     }
-    
-    
-    
-
 }
 
 
