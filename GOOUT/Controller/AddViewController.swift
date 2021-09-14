@@ -288,7 +288,6 @@ class AddViewController: UIViewController{
                 self.gooutTimeLabel.alpha = 1
             }
             
-            
             self.addButton.superview?.layoutIfNeeded()
         }
     }
@@ -354,12 +353,9 @@ class AddViewController: UIViewController{
             selectedGooutEndTimeLabel.text = gooutEndTimeArray[index+1]
             
             for i in index+1...gooutEndTimeArray.count-1{
-                print("\(i)")
                 newDataSource.append(gooutEndTimeArray[i])
             }
             
-            print(newDataSource)
-
             gooutEndTimeDropDown.dataSource = newDataSource
             self.gooutStartTimeDropDown.clearSelection()
         }
