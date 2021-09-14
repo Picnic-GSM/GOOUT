@@ -122,7 +122,7 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-    }
+      }
     
     func configureUI() {
         self.view.backgroundColor = .white
@@ -196,7 +196,6 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
     func collectionView(_collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingforSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 34, bottom: 0, right: 0)
     }
-        
     
     func shadow() {
         backgroundView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor

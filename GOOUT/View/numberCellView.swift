@@ -26,6 +26,16 @@ class numberCellView: UICollectionViewCell {
         configureUI()
     }
     
+    override var isSelected: Bool {
+      didSet {
+        if isSelected {
+            numButton.setTitleColor(.rgb(red: 255, green: 174, blue: 185), for: .normal)
+        } else {
+            numButton.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+        }
+      }
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureUI()
@@ -47,3 +57,4 @@ class numberCellView: UICollectionViewCell {
         }
     }
 }
+
