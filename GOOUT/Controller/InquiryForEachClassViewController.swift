@@ -45,6 +45,8 @@ class InquiryForEachClassViewController : UIViewController{
     private let statusView = OutConditionView()
     fileprivate let homeComingTableView : UITableView = {
         let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+
         tableView.register(PleaseCheckYourReturnHomeTableCell.self, forCellReuseIdentifier: PleaseCheckYourReturnHomeTableCell.identifier)
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorColor = UIColor.clear
@@ -70,13 +72,10 @@ class InquiryForEachClassViewController : UIViewController{
         homeComingTableView.tableFooterView = UIView()
         requestConfirmationCollectionView.contentInset = UIEdgeInsets(top: 0, left: bounds.height/35.30434782, bottom: 0, right: bounds.height/35.30434782)
         homeComingTableView.automaticallyAdjustsScrollIndicatorInsets = false
-        homeComingTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bounds.height/10.15, right: 0)
-        //TabBar
-
     }
     
     //MARK: - Selectors
-    
+
 
     //MARK:- DeleteCollectionView
     @objc func CloseCollectionViewItem(sender:UIButton){
@@ -99,7 +98,6 @@ class InquiryForEachClassViewController : UIViewController{
         requestConfirmationCollectionView.dataSource = self
         homeComingTableView.delegate = self
         homeComingTableView.dataSource = self
-        homeComingTableView.allowsSelection = false
     }
     //MARK:-addView
     func addView(){
@@ -154,18 +152,18 @@ class InquiryForEachClassViewController : UIViewController{
     }
     //MARK: - CollectionView Data Add
     func AddrequestConfirmationData(){
-        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
-        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "이시완", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
-        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "임준화", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
-        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "김유진", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 20)), reason: "마카롱"))
+        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "안지훈", number: 2, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 18)), reason: "마카롱"))
+        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "이시완", number: 8, time: receivedTime.init(startClock: time.init(oclock: 13, minute: 20), finishClock: time.init(oclock: 15, minute: 29)), reason: "마카롱"))
+        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "임준화", number: 8, time: receivedTime.init(startClock: time.init(oclock: 11, minute: 20), finishClock: time.init(oclock: 15, minute: 24)), reason: "마카롱"))
+        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "김유진", number: 8, time: receivedTime.init(startClock: time.init(oclock: 12, minute: 20), finishClock: time.init(oclock: 20, minute: 20)), reason: "마카롱"))
     }
     
     //MARK: - TableView Data add
     func AddPleaseCheckYourReturnHomeTableData(){
-        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_Green, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
-        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_Green, name: "이시완", number: 3, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
-        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_Green, name: "임준화", number: 2, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
-        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_yellow, name: "최형우", number: 10, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10)), btnTitle: FinishedGoingHomeStatus.cancelGoingHome))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_Green, name: "안지훈", number: 8, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 12, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_Green, name: "이시완", number: 3, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 50), finishClock: time.init(oclock: 17, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_Green, name: "임준화", number: 2, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 13), finishClock: time.init(oclock: 19, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
+        pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_yellow, name: "최형우", number: 10, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 20, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
         pleaseCheckYourReturnHomeTableData.append(FinishedGoingHome.init(viewColor: .FinishGoingHomeColor.GOOUT_red, name: "진시윤", number: 18, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 10), finishClock: time.init(oclock: 18, minute: 10)), btnTitle: FinishedGoingHomeStatus.completeGoingHome))
     }
 }
@@ -184,7 +182,8 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
         cell.requestStatus.label.text = requestConfirmationData[indexPath.row].earlyTextType.rawValue
         cell.requestStudentName.text = requestConfirmationData[indexPath.row].name
         cell.requestStudentClass.text = "3학년 1반 \(requestConfirmationData[indexPath.row].number)번"
-        cell.earlyLeaveTimeToGoOutLabel.time.text = "11:00 - 12:00"
+        //MARK:- Time
+        cell.earlyLeaveTimeToGoOutLabel.time.text = "\(requestConfirmationData[indexPath.row].time.startClock!.oclock!):\(requestConfirmationData[indexPath.row].time.startClock!.minute!) - \(requestConfirmationData[indexPath.row].time.finishClock!.oclock!):\(requestConfirmationData[indexPath.row].time.finishClock!.minute!)"
         cell.reason.text = requestConfirmationData[indexPath.row].reason
         cell.layer.borderWidth = 1
         cell.clipsToBounds = true
@@ -195,7 +194,6 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
         return cell
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: bounds.width/3.09917, height: bounds.height/5.139240)
     }
@@ -203,7 +201,7 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return bounds.height/54.133
     }
-    
+
 
 }
 //MARK:-TableView
@@ -218,17 +216,24 @@ extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDat
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PleaseCheckYourReturnHomeTableCell.identifier,for: indexPath) as! PleaseCheckYourReturnHomeTableCell
+        cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
         cell.cellView.layer.borderColor = UIColor.rgb(red: 104, green: 134, blue: 197).cgColor
         cell.attendanceButton.backgroundColor = UIColor.rgb(red: 104, green: 134, blue: 197)
+
+
+        cell.selectionStyle = .none
+
         cell.requestStatus.backgroundColor = pleaseCheckYourReturnHomeTableData[indexPath.row].viewColor
         cell.requestStudentName.text = pleaseCheckYourReturnHomeTableData[indexPath.row].name
             cell.requestStudentClass.text = "3학년 1반 \(pleaseCheckYourReturnHomeTableData[indexPath.row].number!)반"
-        cell.earlyLeaveTimeToGoOutLabel.time.text = "10:10 - 10:10"
+        //MARK:- Time
+        cell.earlyLeaveTimeToGoOutLabel.time.text = "\(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.startClock!.oclock!):\(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.startClock!.minute!) - \(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.finishClock!.oclock!):\(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.finishClock!.oclock!)"
+        
         cell.attendanceButton.setTitle(pleaseCheckYourReturnHomeTableData[indexPath.row].btnTitle.rawValue, for: .normal)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return bounds.height/11.76811
     }

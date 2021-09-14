@@ -9,7 +9,8 @@ import UIKit
 class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
     //MARK: - identifier
     static let identifier = "PleaseCheckYourReturnHomeTableCell"
-
+    private var pleaseCheckYourReturnHome : Bool = false
+    
     let cellView = UIView().then{
         $0.layer.borderWidth = 1
         $0.clipsToBounds = true
@@ -25,17 +26,18 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
         $0.textColor = .black
     }
     let earlyLeaveTimeToGoOutLabel : EarlyLeaveTimeToGoOutView = {
-        let view = EarlyLeaveTimeToGoOutView(startTimeString: "11:00", finishTimeString: "12:00")
+        let view = EarlyLeaveTimeToGoOutView()
         return view
     }()
-    let attendanceButton = UIButton().then{
+    lazy var attendanceButton = UIButton().then{
         $0.setTitleColor(.white, for: .normal)
         $0.dynamicFont(fontSize: 11, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.addTarget(self, action: #selector(a), for: .touchUpInside)
     }
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(cellView)
+        contentView.addSubview(cellView)
         cellView.addSubview(view)
         view.addSubview(requestStatus)
         view.addSubview(requestStudentName)
@@ -44,6 +46,17 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
         cellView.addSubview(attendanceButton)
         backgroundColor = .clear
         requestStatus.backgroundColor = .red
+    }
+    @objc func a(){
+        if pleaseCheckYourReturnHome == true{
+            attendanceButton.backgroundColor = .rgb(
+                red: 104, green: 134, blue: 197)
+            attendanceButton.setTitle("귀가 완료", for: .normal)
+        }else{
+            attendanceButton.backgroundColor = .rgb(red: 255, green: 168, blue: 179)
+            attendanceButton.setTitle("귀가 취소", for: .normal)
+        }
+        pleaseCheckYourReturnHome = !pleaseCheckYourReturnHome
     }
     
     override func layoutSubviews() {

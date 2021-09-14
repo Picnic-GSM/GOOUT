@@ -44,7 +44,6 @@
 /* Begin PBXFileReference section */
 		184173D073AE8D44E55B428A /* Pods_GOOUT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GOOUT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F570A926DCCD60005F81AE /* SigninVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninVIewController.swift; sourceTree = "<group>"; };
-		46F570AE26DCD0B1005F81AE /* FugazOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FugazOne-Regular.ttf"; sourceTree = "<group>"; };
 		497700A6940CC66917DA3AE0 /* Pods-GOOUT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GOOUT.debug.xcconfig"; path = "Target Support Files/Pods-GOOUT/Pods-GOOUT.debug.xcconfig"; sourceTree = "<group>"; };
 		6A03994326F094AC00D12952 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6AA3A55C26D8B4FA00CA03F3 /* GOOUT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GOOUT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,13 +92,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		46F571B826E1A797005F81AE /* Recovered References */ = {
+		46F571B826E1A797005F81AE /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				46F570AE26DCD0B1005F81AE /* FugazOne-Regular.ttf */,
 				EEFD615C26DE1EAF0032EDBF /* RequestInquiryForEachClassModel.swift */,
 			);
-			name = "Recovered References";
+			name = Modal;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		57FD4BA3334E400F607B9664 /* Pods */ = {
@@ -126,7 +125,6 @@
 				6AA3A55D26D8B4FA00CA03F3 /* Products */,
 				57FD4BA3334E400F607B9664 /* Pods */,
 				66E7FB8B9E2373013B1AB734 /* Frameworks */,
-				46F571B826E1A797005F81AE /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +141,7 @@
 			children = (
 				6AA3A57A26DA52D400CA03F3 /* Font */,
 				6AA3A57626DA506A00CA03F3 /* Extension */,
+				46F571B826E1A797005F81AE /* Modal */,
 				6AA3A57426DA4ECE00CA03F3 /* View */,
 				6AA3A57326DA4EC200CA03F3 /* Controller */,
 				6AA3A55F26D8B4FA00CA03F3 /* AppDelegate.swift */,
