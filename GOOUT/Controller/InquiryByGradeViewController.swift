@@ -124,6 +124,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         doNotGoViewSetting()
         tableViewSetting()
         headerViewSetting()
+        tableViewScrollSetting()
         
         doNotGoView.isHidden = true
         
@@ -136,16 +137,16 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         view.addSubview(dropLabelBtn)
         view.addSubview(gradeLabel)
         view.addSubview(downBtn)
+        view.addSubview(doNotGoView)
         view.addSubview(outLabel)
         view.addSubview(ingContainer)
         view.addSubview(timeOutContainer)
         view.addSubview(endContainer)
-        view.addSubview(doNotGoView)
-        view.addSubview(earlyLeaveLabel)
-        view.addSubview(outTableView)
-        view.addSubview(earlyLeaveTableView)
         view.addSubview(outListHeader)
+        view.addSubview(outTableView)
+        view.addSubview(earlyLeaveLabel)
         view.addSubview(earlyLeaveListHeader)
+        view.addSubview(earlyLeaveTableView)
     }
     
     func cornerRadius(){
@@ -216,7 +217,8 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
             make.left.equalToSuperview().offset(self.view.frame.width/16.30)
             make.top.equalTo(outListHeader.snp.bottom)
             make.width.equalToSuperview()
-            make.height.equalTo((self.view.frame.height/25.375) * CGFloat(outNameList.count))
+//            make.height.equalTo((self.view.frame.height/23.2) * CGFloat(outNameList.count))
+            make.height.equalTo((self.view.frame.height/23.2) * 6)
         }
         
         earlyLeaveLabel.snp.makeConstraints { make in
@@ -228,21 +230,22 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
             make.left.equalTo(outTableView)
             make.top.equalTo(earlyLeaveListHeader.snp.bottom)
             make.width.equalToSuperview()
-            make.height.equalTo((self.view.frame.height/25.375) * CGFloat(earlyLeaveNameList.count))
+//            make.height.equalTo((self.view.frame.height/23.2) * CGFloat(earlyLeaveNameList.count))
+            make.height.equalTo((self.view.frame.height/23.2) * 6)
         }
         
         outListHeader.snp.makeConstraints { make in
             make.left.equalTo(outTableView)
-            make.top.equalTo(outLabel.snp.bottom).offset(self.view.frame.height/73.82)
+            make.top.equalTo(outLabel.snp.bottom).offset(self.view.frame.height/70)
             make.width.equalToSuperview().dividedBy(1.14)
-            make.height.equalToSuperview().dividedBy(25.375)
+            make.height.equalToSuperview().dividedBy(23.2)
         }
         
         earlyLeaveListHeader.snp.makeConstraints { make in
             make.left.equalTo(earlyLeaveTableView)
-            make.top.equalTo(earlyLeaveLabel.snp.bottom).offset(self.view.frame.height/73.82)
+            make.top.equalTo(earlyLeaveLabel.snp.bottom).offset(self.view.frame.height/70)
             make.width.equalToSuperview().dividedBy(1.14)
-            make.height.equalToSuperview().dividedBy(25.375)
+            make.height.equalToSuperview().dividedBy(23.2)
         }
     }
     
@@ -258,6 +261,20 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         earlyLeaveTableView.delegate = self
                 
         earlyLeaveTableView.register(EarlyLeaveListTableCell.self, forCellReuseIdentifier: EarlyLeaveListTableCell.EarlyLeaveListTableIdentifier)
+    }
+    
+    func tableViewScrollSetting(){
+        if outNameList.count <= 6 {
+            outTableView.isScrollEnabled = false
+        } else {
+            outTableView.isScrollEnabled = true
+        }
+        
+        if earlyLeaveNameList.count <= 6 {
+            earlyLeaveTableView.isScrollEnabled = false
+        } else {
+            earlyLeaveTableView.isScrollEnabled = true
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -291,7 +308,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.view.frame.height/25.375
+        return self.view.frame.height/23.2
     }
         
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -337,6 +354,14 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         doNotGoView.addSubview(doNotGoView.noStudentLabel)
         
         doNotGoView.doNotGoViewSetting(screenHeight: self.view.frame.height)
+        
+        showdoNotGoView()
+    }
+    
+    func showdoNotGoView(){
+        if outNameList.count == 0 && earlyLeaveNameList.count == 0{
+            doNotGoView.isHidden = false
+        }
     }
     
 }
