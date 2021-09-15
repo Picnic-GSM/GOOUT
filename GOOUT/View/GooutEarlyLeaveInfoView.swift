@@ -84,9 +84,6 @@ class GooutEarlyLeaveInfoView: UIView {
         self.addSubview(closeButton)
         kindShowView.addSubview(circleView)
         kindShowView.addSubview(kindLabel)
-
-
-        
     }
 
 }
