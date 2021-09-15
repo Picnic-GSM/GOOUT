@@ -21,13 +21,15 @@ class ForgotPasswordViewController: UIViewController{
     let border = CALayer()
     let bound = UIScreen.main.bounds
     
+    var testViewController = TestViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
        configureUI()
       
      
-            
+        mainlabel.updateGradientTextColor_horizontal(gradientColors: [UIColor.rgb(red: 104, green: 134, blue: 197), UIColor.rgb(red: 255, green: 172, blue: 183)])
         }
         
     
@@ -48,14 +50,33 @@ class ForgotPasswordViewController: UIViewController{
         view.addSubview(checkbutton)
     }
     
+    @objc func checkbuttonClicked(sender:UIButton){
+        self.addChild(testViewController)
+        testViewController.view.frame = view.frame
+        self.view.addSubview(testViewController.view)
+        
+        UIView.animate(withDuration: 0.3) {
+            self.passwordlabel.alpha = 0
+            self.sublable.alpha = 0
+            self.sublable2.alpha = 0
+            self.emailtext.alpha = 0
+            self.checkbutton.alpha = 0
+            
+            self.testViewController.textfieldView.alpha = 1
+            self.testViewController.resendButton.alpha = 1
+            self.testViewController.certificationTextField.alpha = 1
+            self.testViewController.checkbutton.alpha = 1
+            self.testViewController.inputLabel.alpha = 1
+        }
+    }
+    
     func location(){
         mainview.snp.makeConstraints{ make in
-            
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.height.equalTo(bound.height*0.74)
             make.top.equalTo(bound.height*0.25)
-    }
+        }
         
         mainlabel.text = "Find Password"
         mainlabel.dynamicFont(fontSize: 25, currentFontName: "FugazOne-Regular")
@@ -67,7 +88,7 @@ class ForgotPasswordViewController: UIViewController{
         }
             
         passwordlabel.textColor = .white
-        passwordlabel.dynamicFont(fontSize: 22, currentFontName: "AppleSDGothicNeo-Bold")
+        passwordlabel.dynamicFont(fontSize: 19, currentFontName: "AppleSDGothicNeo-Bold")
         passwordlabel.text = "비밀번호를 잊으셨나요?"
         passwordlabel.snp.makeConstraints{ make in
             make.top.equalTo(mainview.snp.top).offset(bound.height*0.11)
@@ -76,7 +97,7 @@ class ForgotPasswordViewController: UIViewController{
         
         sublable.textAlignment = .center
         sublable.textColor = .white
-        sublable.dynamicFont(fontSize: 16, currentFontName: "AppleSDGothicNeo-SemiBold")
+        sublable.dynamicFont(fontSize: 13, currentFontName: "AppleSDGothicNeo-SemiBold")
         sublable.text = "회원가입 시 사용하신 이메일을 입력해주세요."
         sublable.snp.makeConstraints{make in
             make.top.equalTo(mainview.snp.top).offset(bound.height*0.21)
@@ -86,7 +107,7 @@ class ForgotPasswordViewController: UIViewController{
         }
         sublable2.textAlignment = .center
         sublable2.textColor = .white
-        sublable2.dynamicFont(fontSize: 16, currentFontName: "AppleSDGothicNeo-SemiBold")
+        sublable2.dynamicFont(fontSize: 13, currentFontName: "AppleSDGothicNeo-SemiBold")
         sublable2.text = "이메일로 인증번호를 보내드리겠습니다."
         sublable2.snp.makeConstraints{make in
             make.top.equalTo(sublable.snp.bottom).offset(1)
@@ -114,6 +135,7 @@ class ForgotPasswordViewController: UIViewController{
         checkbutton.setTitle("확인", for: .normal)
         checkbutton.setTitleColor(.gray, for: .normal)
         checkbutton.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
+        checkbutton.addTarget(self, action: #selector(checkbuttonClicked(sender:)), for: .touchUpInside)
         checkbutton.snp.makeConstraints{make in
             make.top.equalTo(emailtext.snp.bottom).offset(bound.height*0.05)
             make.centerX.equalTo(view)
@@ -140,10 +162,11 @@ class ForgotPasswordViewController: UIViewController{
         gradientLayer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
         
         mainview.layer.addSublayer(gradientLayer)
-   
-    
+        
+
         
     }
+
 
     func gradientColor(gradientLayer :CAGradientLayer) -> UIColor? {
         UIGraphicsBeginImageContextWithOptions(gradientLayer.bounds.size, false, 0.0)
@@ -157,5 +180,3 @@ class ForgotPasswordViewController: UIViewController{
         border.backgroundColor = UIColor.white.cgColor
     }
 }
-    
-

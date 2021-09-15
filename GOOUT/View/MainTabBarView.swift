@@ -15,15 +15,15 @@ class MainTabBarView: UIView{
     var lineViewGradient: CAGradientLayer!
     
     lazy var allClassInquiryButton = UIButton().then{
-        $0.setImage(UIImage(named: "GOOUT_AllClassInquiryButtonImage"), for: .normal)
+        $0.setImage(UIImage(named: "GOOUT_SelectedAllClassInquiryButtonImage"), for: .normal)
     }
     
     lazy var addButton = UIButton().then{
-        $0.setImage(UIImage(named: "GOOUT_AddButtonImage"), for: .normal)
+        $0.setImage(UIImage(named: "GOOUT_MyClassInquiryButtonImage"), for: .normal)
     }
     
     lazy var myClassInquiryButton = UIButton().then{
-        $0.setImage(UIImage(named: "GOOUT_MyClassInquiryButtonImage"), for: .normal)
+        $0.setImage(UIImage(named: "GOOUT_MyPageImage"), for: .normal)
     }
     
     lazy var lineView = UIView().then{
