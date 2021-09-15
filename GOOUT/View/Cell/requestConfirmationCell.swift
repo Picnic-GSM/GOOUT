@@ -12,7 +12,6 @@ class requestConfirmationCell : UICollectionViewCell {
     
     let requestStatus  : RequestStatus = {
        let view = RequestStatus()
-        view.status.backgroundColor = .blue
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

@@ -120,7 +120,6 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
             make.height.equalTo(frame.height/2.7187)
             make.width.equalTo(frame.width/3.64077)
         }
- 
     }
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -131,5 +130,4 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
- 
 }

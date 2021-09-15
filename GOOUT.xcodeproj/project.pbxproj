@@ -37,6 +37,7 @@
 		C895AA5D26EF29BF003392F2 /* WriteCodeTextfieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C895AA5C26EF29BF003392F2 /* WriteCodeTextfieldView.swift */; };
 		C8E8FBB426E783990064D362 /* EnterDistributioncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E8FBB326E783990064D362 /* EnterDistributioncode.swift */; };
 		C8E905E126E0ECBD002427B3 /* ShowPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E905E026E0ECBD002427B3 /* ShowPasswordViewController.swift */; };
+		EE11962426F1ECA700D2E212 /* GooutEarlyLeaveInfoAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11962326F1ECA700D2E212 /* GooutEarlyLeaveInfoAlertView.swift */; };
 		EE63E21D26E09B1700F75CDA /* EarlyLeaveTimeToGoOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63E21C26E09B1700F75CDA /* EarlyLeaveTimeToGoOutView.swift */; };
 		EE63E21F26E0DEB700F75CDA /* PleaseCheckYourReturnHomeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63E21E26E0DEB700F75CDA /* PleaseCheckYourReturnHomeTableCell.swift */; };
 		EEB6FA4626E274CC008087B9 /* noHistoryView .swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB6FA4526E274CC008087B9 /* noHistoryView .swift */; };
@@ -81,6 +82,7 @@
 		C895AA5C26EF29BF003392F2 /* WriteCodeTextfieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCodeTextfieldView.swift; sourceTree = "<group>"; };
 		C8E8FBB326E783990064D362 /* EnterDistributioncode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterDistributioncode.swift; sourceTree = "<group>"; };
 		C8E905E026E0ECBD002427B3 /* ShowPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPasswordViewController.swift; sourceTree = "<group>"; };
+		EE11962326F1ECA700D2E212 /* GooutEarlyLeaveInfoAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooutEarlyLeaveInfoAlertView.swift; sourceTree = "<group>"; };
 		EE63E21C26E09B1700F75CDA /* EarlyLeaveTimeToGoOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaveTimeToGoOutView.swift; sourceTree = "<group>"; };
 		EE63E21E26E0DEB700F75CDA /* PleaseCheckYourReturnHomeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleaseCheckYourReturnHomeTableCell.swift; sourceTree = "<group>"; };
 		EEB6FA4526E274CC008087B9 /* noHistoryView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "noHistoryView .swift"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				EEB6FA4526E274CC008087B9 /* noHistoryView .swift */,
 				A89BFE8B26EA1AB6003627BD /* getAuthCodeView.swift */,
 				6A85BBA726F1BA5600151E39 /* GooutEarlyLeaveInfoView.swift */,
+				EE11962326F1ECA700D2E212 /* GooutEarlyLeaveInfoAlertView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				AAD95ABB26EB2A54004E4580 /* AnyStudentDoNotGoView.swift in Sources */,
 				6AAEE61E26F174D200712441 /* MyPageViewController.swift in Sources */,
 				6AA3A56226D8B4FA00CA03F3 /* SceneDelegate.swift in Sources */,
+				EE11962426F1ECA700D2E212 /* GooutEarlyLeaveInfoAlertView.swift in Sources */,
 				AAD95AB926EB1DA2004E4580 /* StateExplainView.swift in Sources */,
 				EEFD615D26DE1EAF0032EDBF /* RequestInquiryForEachClassModel.swift in Sources */,
 				6AA3A56226D8B4FA00CA03F3 /* SceneDelegate.swift in Sources */,
