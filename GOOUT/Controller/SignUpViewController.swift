@@ -45,12 +45,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         $0.textField.placeholder = "비밀번호를 한번 더 입력하세요."
     }
     
-    lazy var teacherButton = UIButton().then {
-        $0.setTitle("선생님이신가요?", for: .normal)
-        $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-SemiBold")
-        $0.setTitleColor(.rgb(red: 118, green: 118, blue: 118), for: .normal)
-    }
-    
     lazy var signUpButton = UIButton().then {
         $0.setTitle("Sign up", for: .normal)
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
@@ -68,6 +62,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         configureUI()
     }
+    
+    @objc func loginButtonClicked(sender:UIButton){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func teacherButtonClicked(sender:UIButton){
+        let nextVC = EnterDistributioncode()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
   
 //  MARK: configureUI
     func configureUI() {
@@ -80,6 +83,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         cornerRadius()
         location()
         shadow()
+        addTarget()
+    }
+    
+//  MARK: addTarget
+    func addTarget(){
+        loginButton.addTarget(self, action: #selector(loginButtonClicked(sender:)), for: .touchUpInside)
     }
     
 //  MARK: shadow
@@ -108,7 +117,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(passwordVisibilityButton)
         self.view.addSubview(checkPasswordContainer)
         self.view.addSubview(passwordExampleLabel)
-        self.view.addSubview(teacherButton)
         self.view.addSubview(signUpButton)
         self.view.addSubview(loginButton)
     }
@@ -158,15 +166,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             make.left.equalTo(emailContainer)
         }
         
-        teacherButton.snp.makeConstraints { make in
-            make.top.equalTo(backgroundView).offset(self.view.frame.height/2.75)
-            make.left.equalTo(checkPasswordContainer)
-        }
-        
         signUpButton.snp.makeConstraints { make in
             make.width.equalToSuperview().dividedBy(1.5)
             make.height.equalToSuperview().dividedBy(21.37)
-            make.top.equalTo(teacherButton.snp.bottom).offset(self.view.frame.height/25.38)
+            make.top.equalTo(checkPasswordContainer.snp.bottom).offset(self.view.frame.height/15.32)
             make.centerX.equalToSuperview()
         }
         
@@ -239,6 +242,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                         emailContainer.textField.text = ""
                         passwordContainer.textField.text = ""
                         checkPasswordContainer.textField.text = ""
+                        let nextVC = InformationViewController()
+                        self.navigationController?.pushViewController(nextVC, animated: true)
+                        
+                        emailContainer.textField.text = ""
+                        passwordContainer.textField.text = ""
+                        checkPasswordContainer.textField.text = ""
                         
                     }else{
                         print("비밀번호가 일치하지 않습니다.")
@@ -255,30 +264,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-
-
-
-//MARK: extension
-public extension UITextField {
-    
-    func setPlaceholderColor(_ placeholderColor: UIColor) {
-        attributedPlaceholder = NSAttributedString(
-            string: placeholder ?? "",
-            attributes: [
-                .foregroundColor: placeholderColor,
-                .font: font
-            ].compactMapValues { $0 }
-        )
-    }
-}
-
-
 //MARK: - Preview
 
 #if DEBUG
 import SwiftUI
 struct SignUpViewControllerRepresentable: UIViewControllerRepresentable {
-    
+
 func updateUIViewController(_ uiView: UIViewController,context: Context) {
         // leave this empty
 }
@@ -296,6 +287,6 @@ struct ViewControllerRepresentable_PreviewProvider: PreviewProvider {
                 .previewDisplayName(/*@START_MENU_TOKEN@*/"Preview"/*@END_MENU_TOKEN@*/)
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
         }
-        
+
     }
 } #endif
