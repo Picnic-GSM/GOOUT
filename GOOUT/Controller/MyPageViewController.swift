@@ -47,8 +47,9 @@ class MyPageViewController: UIViewController {
     }
     
     @objc func logOutButtonClicked(sender:UIButton){
-        let nextVC = SigninViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        let vc = SigninViewController()
+        vc.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
+        self.present(vc, animated: true, completion: nil)
     }
     
     //MARK: - layoutSetting
@@ -61,9 +62,13 @@ class MyPageViewController: UIViewController {
         logOutButton.addSubview(logOutViewConponentView)
         logOutViewConponentView.addSubview(logOutImageButton)
         logOutViewConponentView.addSubview(logOutLabel)
+        
+        logOutViewConponentView.isUserInteractionEnabled = false
+        logOutImageButton.isUserInteractionEnabled = false
+        logOutLabel.isUserInteractionEnabled = false
                 
         logOutButton.addTarget(self, action: #selector(logOutButtonClicked(sender:)), for: .touchUpInside)
-        logOutImageButton.addTarget(self, action: #selector(logOutButtonClicked(sender:)), for: .touchUpInside)
+//        logOutImageButton.addTarget(self, action: #selector(logOutButtonClicked(sender:)), for: .touchUpInside)
         
         myPageTitleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(self.view.frame.width/11.5)
