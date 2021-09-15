@@ -152,6 +152,8 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         self.view.addSubview(loginButton)
         self.view.addSubview(numberCollectionView)
 
+        loginButton.addTarget(self, action: #selector(signUpButtonClicked(sender:)), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(signUpButtonClicked(sender:)), for: .touchUpInside)
     }
     
     func cornerRadius() {
@@ -415,3 +417,10 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
 //        
 //    }
 //} #endif
+    
+    @objc
+    func signUpButtonClicked(sender:UIButton){
+        let nextVC = SigninViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+}

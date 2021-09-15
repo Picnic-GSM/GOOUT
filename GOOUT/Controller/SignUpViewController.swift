@@ -303,6 +303,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     if checkPasswordTextField.text == passwordTextField.text{
                         print("성공")
                         
+                        let nextVC = InformationViewController()
+                        self.navigationController?.pushViewController(nextVC, animated: true)
+                        
                         emailTextField.text = ""
                         passwordTextField.text = ""
                         checkPasswordTextField.text = ""
