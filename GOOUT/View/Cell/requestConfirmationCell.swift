@@ -13,6 +13,7 @@ class requestConfirmationCell : UICollectionViewCell {
     let requestStatus  : RequestStatus = {
        let view = RequestStatus()
         view.status.backgroundColor = .blue
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     let requestStudentName = UILabel().then{
@@ -46,13 +47,13 @@ class requestConfirmationCell : UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(closeBtn)
-        addSubview(requestStatus)
-        addSubview(requestStudentName)
-        addSubview(requestStudentClass)
-        addSubview(earlyLeaveTimeToGoOutLabel)
-        addSubview(reason)
-        addSubview(btnApproval)
+        contentView.addSubview(closeBtn)
+        contentView.addSubview(requestStatus)
+        contentView.addSubview(requestStudentName)
+        contentView.addSubview(requestStudentClass)
+        contentView.addSubview(earlyLeaveTimeToGoOutLabel)
+        contentView.addSubview(reason)
+        contentView.addSubview(btnApproval)
     }
 
     override func layoutSubviews() {
@@ -68,7 +69,7 @@ class requestConfirmationCell : UICollectionViewCell {
         requestStatus.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(frame.height/9.875)
             make.width.equalTo(frame.height/3.09804)
-            make.height.equalTo(frame.height/13.166667)
+            make.height.equalTo(frame.height/13.2)
             make.centerX.equalToSuperview()
         }
    
