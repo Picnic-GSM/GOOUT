@@ -207,8 +207,7 @@ class InquiryForEachClassViewController : UIViewController{
         homeComingTableView.snp.makeConstraints { (make) in
             make.top.equalTo(comeBackCheck.snp.bottom).offset(bounds.height/90.2222)
             make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().inset(bounds.height/21.36)
         }
         noHistory.snp.makeConstraints { (make) in
             make.width.equalTo(view.frame.width/1.27986)
@@ -321,6 +320,6 @@ extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return bounds.height/11.76811
+        return bounds.height/11.123
     }
 }
