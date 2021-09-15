@@ -47,8 +47,6 @@ class MyPageViewController: UIViewController {
     }
     
     @objc func logOutButtonClicked(sender:UIButton){
-        print("awef")
-        
         let vc = SigninViewController()
         vc.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
         self.present(vc, animated: true, completion: nil)
