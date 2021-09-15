@@ -11,7 +11,7 @@ class GooutEarlyLeaveInfoView: UIView {
     
     //MARK: - Properties
     lazy var kindShowView = UIView().then{
-        $0.backgroundColor = .blue
+        $0.backgroundColor = .white
     }
     
     lazy var circleView = UIView().then{
@@ -25,6 +25,7 @@ class GooutEarlyLeaveInfoView: UIView {
     
     lazy var nameLabel = UILabel().then{
         $0.text = "변웅섭"
+        $0.textColor = UIColor.rgb(red: 97, green: 97, blue: 97)
         $0.dynamicFont(fontSize: 18, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
 
@@ -52,6 +53,8 @@ class GooutEarlyLeaveInfoView: UIView {
         $0.setImage(UIImage(named: "GOOUT_CancelBtn"), for: .normal)
     }
     
+    let bound: CGRect = UIScreen.main.bounds
+    
     //MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -71,6 +74,7 @@ class GooutEarlyLeaveInfoView: UIView {
         self.layer.shadowOffset = CGSize(width: 0, height: 4)
         self.layer.shadowRadius = 20
         self.layer.shadowOpacity = 0.3
+        self.backgroundColor = .white
         
         self.addSubview(kindShowView)
         self.addSubview(nameLabel)
@@ -80,6 +84,8 @@ class GooutEarlyLeaveInfoView: UIView {
         self.addSubview(closeButton)
         kindShowView.addSubview(circleView)
         kindShowView.addSubview(kindLabel)
+
+
         
     }
 
