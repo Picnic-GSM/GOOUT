@@ -212,14 +212,14 @@ class AddViewController: UIViewController{
             earlyLeaveButton.isSelected.toggle()
 
             UIView.animate(withDuration: 0.5) {
-                self.gooutAnimation(flag: 0)
-                
-                self.reasonLabel.snp.remakeConstraints { make in
-                    make.left.equalTo(self.gooutTimeLabel)
-                    make.top.equalTo(self.gooutTimeLabel)
-                }
-                
-                self.view.superview?.layoutIfNeeded()
+//                self.gooutAnimation(flag: 0)
+//                
+//                self.reasonLabel.snp.remakeConstraints { make in
+//                    make.left.equalTo(self.gooutTimeLabel)
+//                    make.top.equalTo(self.gooutTimeLabel)
+//                }
+//                
+//                self.view.superview?.layoutIfNeeded()
             }
             
             selectedLabel = "earlyLeave"
