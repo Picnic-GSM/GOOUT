@@ -389,6 +389,12 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
         }
     }
+    
+    @objc
+    func signUpButtonClicked(sender:UIButton){
+        let nextVC = SigninViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
 }
 
 //MARK: - Preview
@@ -417,10 +423,3 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
 //        
 //    }
 //} #endif
-    
-    @objc
-    func signUpButtonClicked(sender:UIButton){
-        let nextVC = SigninViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
-    }
-}
