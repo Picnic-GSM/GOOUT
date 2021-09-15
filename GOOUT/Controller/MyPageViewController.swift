@@ -28,6 +28,10 @@ class MyPageViewController: UIViewController {
     lazy var logOutViewConponentView = UIView().then{
         $0.backgroundColor = .blue
     }
+    
+    lazy var logOutImageView = UIImageView().then{
+        $0.image = UIImage(named: "GOOUT_LogOutImage")
+    }
 
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -44,6 +48,7 @@ class MyPageViewController: UIViewController {
         self.view.addSubview(myPageTitleLabel)
         self.view.addSubview(logOutView)
         logOutView.addSubview(logOutViewConponentView)
+        logOutViewConponentView.addSubview(logOutImageView)
         
         myPageTitleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(self.view.frame.width/11.5)
@@ -59,6 +64,13 @@ class MyPageViewController: UIViewController {
         
         logOutViewConponentView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(1.4)
+            make.height.equalToSuperview().dividedBy(1.4)
+        }
+        
+        logOutImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.width.equalToSuperview().dividedBy(1.4)
             make.height.equalToSuperview().dividedBy(1.4)
         }
