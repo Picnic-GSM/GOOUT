@@ -76,7 +76,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
   
-//  MARK: configureUI
+//  MARK: - configureUI
     func configureUI() {
         self.view.backgroundColor = .white
         emailLayoutSetting()
@@ -89,21 +89,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         shadow()
         addTarget()
         
+        addKeyboardNotifications()
+        removeKeyboardNotifications()
+        
         emailContainer.textField.delegate = self
         passwordContainer.textField.delegate = self
         checkPasswordContainer.textField.delegate = self
-        
-        emailContainer.textField.addTarget(self, action: #selector(updateSignUp), for: .valueChanged)
-        passwordContainer.textField.addTarget(self, action: #selector(updateSignUp), for: .valueChanged)
-        checkPasswordContainer.textField.addTarget(self, action: #selector(updateSignUp), for: .valueChanged)
     }
     
-//  MARK: addTarget
+//  MARK: - addTarget
     func addTarget(){
         loginButton.addTarget(self, action: #selector(loginButtonClicked(sender:)), for: .touchUpInside)
     }
     
-//  MARK: shadow
+//  MARK: - shadow
     func shadow() {
         backgroundView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         backgroundView.layer.shadowOpacity = 1
@@ -112,7 +111,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         backgroundView.clipsToBounds = false
     }
     
-//  MARK: cornerRadius
+//  MARK: - cornerRadius
     func cornerRadius() {
         backgroundView.layer.cornerRadius = 50
         backgroundView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -120,7 +119,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         signUpButton.layer.cornerRadius = 8
     }
     
-//  MARK: addSubView
+//  MARK: - addSubView
     func addSubView() {
         self.view.addSubview(signUpLabel)
         self.view.addSubview(backgroundView)
@@ -133,7 +132,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(loginButton)
     }
 
-//  MARK: location
+//  MARK: - location
     func location() {
         
         signUpLabel.snp.makeConstraints { make in
@@ -191,7 +190,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
+ //MARK: - Layout Setting
     func emailLayoutSetting(){
         emailContainer.addSubview(emailContainer.label)
         emailContainer.addSubview(emailContainer.textField)
@@ -213,6 +212,35 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         checkPasswordContainer.emailTextFieldSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
     }
     
+//MARK: - Setting Keyboard
+    
+    func addKeyboardNotifications(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    func removeKeyboardNotifications(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+   }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+         self.view.endEditing(true)
+
+   }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= self.view.frame.height/10
+        }
+    }
+      
+    @objc func keyboardWillHide(_ notification: Notification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+
+//MARK: -Update Sign up
+    
     @objc func updateSignUp() {
         let emailPattern = "^[a-zA-Z0-9]+@gsm.hs.kr$"
         let passwordPattern = "^[A-Za-z0-9!_@$%^&+=]{8,16}$"
@@ -233,7 +261,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
 //MARK: - Actions
-    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = passwordContainer.textField.text else { return true }
@@ -261,7 +288,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-////MARK: - Preview
+//MARK: - Preview
 //
 //#if DEBUG
 //import SwiftUI
