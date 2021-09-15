@@ -93,8 +93,8 @@ class SigninViewController: UIViewController{
         findPasswordButton.addTarget(self, action: #selector(findPasswordButtonClicked(sender:)), for: .touchUpInside)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         addKeyObserver()
     }
     
@@ -271,15 +271,21 @@ class SigninViewController: UIViewController{
     
     // MARK: updateLoginBtn
     func updateLoginbtn(){
-        if !email.isEmpty && !password.isEmpty && email.contains("@gsm.hs.kr"){
+        let emailPattern = "^[a-zA-Z0-9]+@gsm.hs.kr$"
+        let passwordPattern = "^(?=.*[!@#$%^&*()_+=-]).{8,16}$"
+        let emailRegex = try? NSRegularExpression(pattern: emailPattern)
+        let passwordRegex = try? NSRegularExpression(pattern: passwordPattern)
+        if let _ = emailRegex?.firstMatch(in: email, options: [], range: _NSRange(location: 0, length: email.count)),
+           let _ = passwordRegex?.firstMatch(in: password, options: [], range: _NSRange(location: 0, length: password.count)){
             loginBtn.backgroundColor = UIColor(red: 0.408, green: 0.525, blue: 0.773, alpha: 1)
             loginBtn.isEnabled = true
         }else{
             loginBtn.backgroundColor = UIColor(red: 0.408, green: 0.525, blue: 0.773, alpha: 0.7)
             loginBtn.isEnabled = false
         }
+        
+        
     }
-    
     
     
     
@@ -297,6 +303,7 @@ class SigninViewController: UIViewController{
     
     // MARK: textDidChange
     @objc func textDidChange(_ sender: UITextField){
+        
         if sender == emailTextField{
             email = sender.text ?? ""
         }else{
