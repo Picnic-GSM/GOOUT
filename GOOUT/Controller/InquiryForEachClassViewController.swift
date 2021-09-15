@@ -155,6 +155,7 @@ class InquiryForEachClassViewController : UIViewController{
     //MARK: - CollectionView Data Add
     func AddrequestConfirmationData(){
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "안지훈", number: 2, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 18)), reason: "마카롱"))
+        
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "이시완", number: 8, time: receivedTime.init(startClock: time.init(oclock: 13, minute: 20), finishClock: time.init(oclock: nil, minute: nil)), reason: "마카롱"))
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "임준화", number: 8, time: receivedTime.init(startClock: time.init(oclock: 11, minute: 20), finishClock: time.init(oclock: 15, minute: 24)), reason: "마카롱"))
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "김유진", number: 8, time: receivedTime.init(startClock: time.init(oclock: 12, minute: 20), finishClock: time.init(oclock: nil, minute: nil)), reason: "마카롱"))
@@ -239,19 +240,15 @@ extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: PleaseCheckYourReturnHomeTableCell.identifier,for: indexPath) as! PleaseCheckYourReturnHomeTableCell
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
-        cell.attendanceButton.backgroundColor = UIColor.rgb(red: 104, green: 134, blue: 197)
         cell.selectionStyle = .none
         cell.requestStatus.backgroundColor = pleaseCheckYourReturnHomeTableData[indexPath.row].viewColor
         cell.requestStudentName.text = pleaseCheckYourReturnHomeTableData[indexPath.row].name
             cell.requestStudentClass.text = "3학년 1반 \(pleaseCheckYourReturnHomeTableData[indexPath.row].number!)반"
         //MARK:- Time
         cell.earlyLeaveTimeToGoOutLabel.time.text = "\(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.startClock!.oclock!):\(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.startClock!.minute!) - \(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.finishClock!.oclock!):\(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.finishClock!.oclock!)"
-        cell.earlyLeaveTimeToGoOutLabel.time.textColor = .rgb(red: 104, green: 104, blue: 197)
-
-        cell.attendanceButton.setTitle(pleaseCheckYourReturnHomeTableData[indexPath.row].btnTitle.rawValue, for: .normal)
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return bounds.height/11.123
     }
