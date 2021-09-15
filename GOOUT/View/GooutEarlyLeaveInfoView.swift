@@ -1,4 +1,3 @@
-
 //
 //  GooutEarlyLeaveInfoView.swift
 //  GOOUT
@@ -88,5 +87,5 @@ class GooutEarlyLeaveInfoView: UIView {
         kindShowView.addSubview(circleView)
         kindShowView.addSubview(kindLabel)
     }
-}
 
+}
