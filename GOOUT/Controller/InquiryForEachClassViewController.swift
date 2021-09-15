@@ -72,7 +72,11 @@ class InquiryForEachClassViewController : UIViewController{
         requestConfirmationCollectionView.contentInset = UIEdgeInsets(top: 0, left: bounds.height/35.30434782, bottom: 0, right: bounds.height/35.30434782)
         homeComingTableView.automaticallyAdjustsScrollIndicatorInsets = false
         
-        
+
+    }
+    
+    func gooutEarlyLeaveInfoViewSetting(){
+        gooutEarlyLeaveInfoViewSetting()
         self.view.addSubview(gooutEarlyLeaveInfoView)
         
         gooutEarlyLeaveInfoView.snp.makeConstraints { make in
@@ -132,6 +136,7 @@ class InquiryForEachClassViewController : UIViewController{
         }
         
         gooutEarlyLeaveInfoView.reasonTextView.showsVerticalScrollIndicator = false
+        
     }
     
     //MARK: - Selectors
