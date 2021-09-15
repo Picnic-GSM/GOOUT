@@ -211,6 +211,8 @@ class AddViewController: UIViewController{
     }
     
     @objc func earlyLeaveButtonClicked(sender:UIButton){
+
+
         if earlyLeaveButton.isSelected == false{
             earlyLeaveButton.setImage(UIImage(named: "GOOUT_SelectedCheckButtonImage"), for: .normal)
             gooutButton.setImage(UIImage(named: "GOOUT_CheckButtonImage"), for: .normal)
