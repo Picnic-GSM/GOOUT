@@ -29,6 +29,7 @@ class InquiryForEachClassViewController : UIViewController{
         $0.textColor = .black
         $0.dynamicFont(fontSize: 20, currentFontName: "AppleSDGothicNeo-Thin")
     }
+
     fileprivate let requestConfirmationCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -108,7 +109,7 @@ class InquiryForEachClassViewController : UIViewController{
             make.height.equalToSuperview().dividedBy(3.9)
         }
         
-        gooutEarlyLeaveInfoView.isHidden = true
+        gooutEarlyLeaveInfoView.isHidden = false
     }
     //MARK:-DataSource & Delegate
     func CollectionViewAndTableViewSetting(){
