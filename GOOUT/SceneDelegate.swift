@@ -18,8 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let mainViewController = SigninViewController()
 
+
         let navigationController = UINavigationController(rootViewController:
-            EnterDistributioncode())
+                                                            mainViewController)
 
         navigationController.navigationBar.isHidden = true
         window?.rootViewController = navigationController

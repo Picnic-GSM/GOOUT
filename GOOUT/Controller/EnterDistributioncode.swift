@@ -38,20 +38,19 @@ class EnterDistributioncode: UIViewController {
         $0.text = "배부받은 코드를 입력해주세요!"
     }
     
-    lazy var viewForButton = UIView().then {
-        $0.frame = CGRect(x: 0, y: 0, width: bound.width*0.266, height: bound.height*0.043)
-    }
+
     
-    lazy var btn = UIButton().then{
+    let btn = UIButton().then{
         $0.layer.cornerRadius = 10
+        $0.backgroundColor = .white
+        $0.setTitle("확인", for: .normal)
+        $0.setTitleColor(.lightGray, for: .normal)
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.lightGray.cgColor
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.addTarget(self, action: #selector(btnClicked(sender:)), for: .touchUpInside)
     }
     
-    lazy var whiteview = UIView().then {
-        $0.backgroundColor = .white
-        $0.frame = viewForButton.frame
-        $0.layer.cornerRadius = 6
-    }
     
    
     
@@ -75,10 +74,12 @@ class EnterDistributioncode: UIViewController {
         gradient.colors = [UIColor(red: 255/255, green: 243/255, blue: 243/255, alpha: 1).cgColor, UIColor(red: 243/255, green: 247/255, blue: 255/255, alpha: 1).cgColor]
         
         logoview.layer.insertSublayer(gradient, at: 0)
-        viewForButton.gradientButton("확인", btn, startColor: .rgb(red: 255, green: 172, blue: 183), endColor: .rgb(red: 104, green: 134, blue: 197))
     }
 
-    
+    @objc func btnClicked(sender:UIButton){
+        let nextVC = MainViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
     
     func addview() {
         view.addSubview(boxview)
@@ -87,8 +88,7 @@ class EnterDistributioncode: UIViewController {
         logoview.addSubview(iv)
         boxview.addSubview(writeCodeTitleLabel)
         boxview.addSubview(writeCodeTextfield)
-        view.addSubview(whiteview)
-        whiteview.addSubview(viewForButton)
+        view.addSubview(btn)
     }
     
     
@@ -121,16 +121,13 @@ class EnterDistributioncode: UIViewController {
             make.height.equalTo(bound.height/36.9)
             make.top.equalTo(logoview.snp.bottom).offset(bound.height/8)
         }
-        whiteview.snp.makeConstraints { (make) in
+        btn.snp.makeConstraints { (make) in
             make.top.equalTo(boxview.snp.bottom).offset(bound.height/11.6)
             make.centerX.equalToSuperview()
             make.height.equalTo(bound.height/23.2)
             make.left.right.equalToSuperview().inset(bound.width/2.72)
         }
-        viewForButton.snp.makeConstraints {
-            $0.top.centerX.height.left.right.equalTo(whiteview)
-        }
-        
+     
     }
     
     func drupshadow() {
