@@ -254,6 +254,6 @@ extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return bounds.height/11.76811
+        return bounds.height/11.123
     }
 }
