@@ -229,6 +229,16 @@
 				6A879A5526F2BBF100B4D7BA /* MyPage */,
 				6A879A5426F2BBE700B4D7BA /* GooutEarlyLeave */,
 				6A879A5326F2BBDC00B4D7BA /* Main */,
+				6AA3A56326D8B4FA00CA03F3 /* InquiryByGradeViewController.swift */,
+				6AB0369826DC9C5200D1F80E /* MyClassInquiryViewController.swift */,
+				EEFD615526DDA1690032EDBF /* InquiryForEachClassViewController.swift */,
+				46F570A926DCCD60005F81AE /* SigninVIewController.swift */,
+				6AB0369A26DCBB2700D1F80E /* AddViewController.swift */,
+				A89BFE8F26EA1BB2003627BD /* TestViewController.swift */,
+				C8E905E026E0ECBD002427B3 /* ShowPasswordViewController.swift */,
+				B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */,
+				B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */,
+				6A03994326F094AC00D12952 /* MainViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -427,9 +437,6 @@
 				AAD95AB926EB1DA2004E4580 /* StateExplainView.swift in Sources */,
 				EEFD615D26DE1EAF0032EDBF /* RequestInquiryForEachClassModel.swift in Sources */,
 				6AA3A56226D8B4FA00CA03F3 /* SceneDelegate.swift in Sources */,
-				B871B6DA26F0DC7E003E9775 /* numberCellView.swift in Sources */,
-				6AA3A57926DA509700CA03F3 /* Extension.swift in Sources */,
-				B84CEB1926E8FC200074A1F6 /* InformationViewController.swift in Sources */,
 				A89BFE9026EA1BB2003627BD /* TestViewController.swift in Sources */,
 				6AA3A57926DA509700CA03F3 /* Extension.swift in Sources */,
 				C8E8FBB426E783990064D362 /* EnterDistributioncode.swift in Sources */,
