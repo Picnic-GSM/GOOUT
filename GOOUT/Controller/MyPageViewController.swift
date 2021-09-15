@@ -16,7 +16,7 @@ class MyPageViewController: UIViewController {
         $0.textColor = .rgb(red: 255, green: 168, blue: 179)
     }
     
-    lazy var logOutView = UIView().then{
+    lazy var logOutButton = UIButton().then{
         $0.layer.cornerRadius = 20
         $0.backgroundColor = .white
         $0.layer.shadowColor = UIColor.lightGray.cgColor
@@ -26,11 +26,17 @@ class MyPageViewController: UIViewController {
     }
     
     lazy var logOutViewConponentView = UIView().then{
-        $0.backgroundColor = .blue
+        $0.backgroundColor = .white
     }
     
-    lazy var logOutImageView = UIImageView().then{
-        $0.image = UIImage(named: "GOOUT_LogOutImage")
+    lazy var logOutImageButton = UIButton().then{
+        $0.setImage(UIImage(named: "GOOUT_LogOutImage"), for: .normal)
+    }
+    
+    lazy var logOutLabel = UILabel().then{
+        $0.text = "로그아웃하기"
+        $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-Thin")
+        $0.textColor = UIColor.rgb(red: 80, green: 80, blue: 80)
     }
 
     //MARK: - Lifecycle
@@ -40,22 +46,30 @@ class MyPageViewController: UIViewController {
         layoutSetting()
     }
     
+    @objc func logOutButtonClicked(sender:UIButton){
+        print("awklejf;")
+    }
+    
     //MARK: - layoutSetting
     func layoutSetting(){
         
         self.view.backgroundColor = .white
         
         self.view.addSubview(myPageTitleLabel)
-        self.view.addSubview(logOutView)
-        logOutView.addSubview(logOutViewConponentView)
-        logOutViewConponentView.addSubview(logOutImageView)
+        self.view.addSubview(logOutButton)
+        logOutButton.addSubview(logOutViewConponentView)
+        logOutViewConponentView.addSubview(logOutImageButton)
+        logOutViewConponentView.addSubview(logOutLabel)
+                
+        logOutButton.addTarget(self, action: #selector(logOutButtonClicked(sender:)), for: .touchUpInside)
+        logOutImageButton.addTarget(self, action: #selector(logOutButtonClicked(sender:)), for: .touchUpInside)
         
         myPageTitleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(self.view.frame.width/11.5)
             make.top.equalToSuperview().offset(self.view.frame.height/11.44)
         }
         
-        logOutView.snp.makeConstraints { make in
+        logOutButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.left.equalTo(myPageTitleLabel)
             make.height.equalToSuperview().dividedBy(4.31)
@@ -65,14 +79,19 @@ class MyPageViewController: UIViewController {
         logOutViewConponentView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
             make.width.equalToSuperview().dividedBy(1.4)
-            make.height.equalToSuperview().dividedBy(1.4)
+            make.height.equalToSuperview().dividedBy(1.5)
         }
         
-        logOutImageView.snp.makeConstraints { make in
+        logOutImageButton.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().dividedBy(1.4)
             make.height.equalToSuperview().dividedBy(1.4)
+        }
+        
+        logOutLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
         }
         
     }
