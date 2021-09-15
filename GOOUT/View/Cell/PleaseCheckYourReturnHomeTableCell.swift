@@ -28,12 +28,16 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
     }
     let earlyLeaveTimeToGoOutLabel : EarlyLeaveTimeToGoOutView = {
         let view = EarlyLeaveTimeToGoOutView()
+        view.time.textColor = .rgb(red: 104, green: 104, blue: 197)
+
         return view
     }()
     lazy var attendanceButton = UIButton().then{
         $0.setTitleColor(.white, for: .normal)
         $0.dynamicFont(fontSize: 11, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.addTarget(self, action: #selector(attendanceBtn), for: .touchUpInside)
+        $0.backgroundColor = UIColor.rgb(red: 104, green: 134, blue: 197)
+        $0.setTitle("귀가 완료", for: .normal)
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -69,7 +73,7 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
         }
         pleaseCheckYourReturnHome = !pleaseCheckYourReturnHome
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         cellView.layer.cornerRadius = frame.height/6.9
@@ -116,9 +120,13 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
             make.height.equalTo(frame.height/2.7187)
             make.width.equalTo(frame.width/3.64077)
         }
- 
     }
-   
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        earlyLeaveTimeToGoOutLabel.time.textColor = .rgb(red: 104, green: 104, blue: 197)
+        attendanceButton.backgroundColor = UIColor.rgb(red: 104, green: 134, blue: 197)
+        attendanceButton.setTitle("귀가완료", for: .normal)
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
