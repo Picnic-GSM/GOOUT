@@ -95,6 +95,7 @@ class MainViewController: UIViewController {
 
     //MARK: - addButtonClicked
     @objc func addButtonClicked(sender:UIButton){
+        // 모달 표시 = 학생일 때
         let nextVC = AddViewController()
         present(nextVC, animated: true)
         
@@ -102,6 +103,10 @@ class MainViewController: UIViewController {
 //        self.addChild(inquiryForEachClassViewController)
 //        inquiryForEachClassViewController.view.frame = viewControllerBoxView.frame
 //        viewControllerBoxView.addSubview(inquiryForEachClassViewController.view)
+        
+        mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_AllClassInquiryButtonImage"), for: .normal)
+        mainTabBarView.addButton.setImage(UIImage(named: "GOOUT_SelectedMyClassInquiryButtonImage"), for: .normal)
+        mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_MyPageImage"), for: .normal)
     }
     
     @objc func allClassInquiryButtonClicked(sender:UIButton){
@@ -117,9 +122,10 @@ class MainViewController: UIViewController {
         inquiryForEachClassViewController.view.removeFromSuperview() // parentVC.view.addsubView()와 반대 기능
         
         // tabBarView Button 이미지 변경
-        mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_MyClassInquiryButtonImage"), for: .normal)
         mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedAllClassInquiryButtonImage"), for: .normal)
         mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_MyPageImage"), for: .normal)
+        mainTabBarView.addButton.setImage(UIImage(named: "GOOUT_MyClassInquiryButtonImage"), for: .normal)
+
 
     }
     
@@ -134,5 +140,7 @@ class MainViewController: UIViewController {
         
         mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedMyPageImage"), for: .normal)
         mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_AllClassInquiryButtonImage"), for: .normal)
+        mainTabBarView.addButton.setImage(UIImage(named: "GOOUT_MyClassInquiryButtonImage"), for: .normal)
+
     }
 }
