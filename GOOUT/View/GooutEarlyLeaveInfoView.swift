@@ -44,6 +44,8 @@ class GooutEarlyLeaveInfoView: UIView {
     }
     
     lazy var reasonTextView = UITextView().then{
+        $0.text = ""
+        $0.textAlignment = NSTextAlignment.center
         $0.isEditable = false
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-Thin")
         $0.text = "밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥"
@@ -84,9 +86,6 @@ class GooutEarlyLeaveInfoView: UIView {
         self.addSubview(closeButton)
         kindShowView.addSubview(circleView)
         kindShowView.addSubview(kindLabel)
-
-
-        
     }
 
 }
