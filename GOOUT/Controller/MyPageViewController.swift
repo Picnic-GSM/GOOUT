@@ -47,7 +47,8 @@ class MyPageViewController: UIViewController {
     }
     
     @objc func logOutButtonClicked(sender:UIButton){
-        print("awklejf;")
+        let nextVC = SigninViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     //MARK: - layoutSetting
