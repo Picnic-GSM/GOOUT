@@ -51,9 +51,8 @@ class SigninViewController: UIViewController{
     
     lazy var findPasswordButton = UIButton().then {
         $0.setTitle("비밀번호 찾기", for: .normal)
-        $0.dynamicFont(fontSize: 8, currentFontName: "AppleSDGothicNeo-SemiBold")
-        $0.setTitleColor(UIColor(red: 0.463, green: 0.463, blue: 0.463, alpha: 1), for: .normal)
-        $0.addTarget(self, action: #selector(showFindPasswordController), for: .touchUpInside)
+        $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-SemiBold")
+        $0.setTitleColor(UIColor.rgb(red: 118, green: 118, blue: 118), for: .normal)
     }
     
     lazy var loginBtn = UIButton(frame: CGRect(x: 0, y: 0, width: self.formBound.width*0.66, height: self.formBound.height*0.06)).then {
@@ -62,7 +61,6 @@ class SigninViewController: UIViewController{
         $0.layer.cornerRadius = 8
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(red: 0.408, green: 0.525, blue: 0.773, alpha: 0.7)
-        $0.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
     }
     
     lazy var loginFailedMessage = UILabel().then {
@@ -76,7 +74,6 @@ class SigninViewController: UIViewController{
         $0.setTitle("아직 계정이 없으신가요?", for: .normal)
         $0.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.setTitleColor(UIColor(red: 0.463, green: 0.463, blue: 0.463, alpha: 1), for: .normal)
-        $0.addTarget(self, action: #selector(showRegsiterController), for: .touchUpInside)
     }
     
     // MARK: - Lifecycle
@@ -85,20 +82,54 @@ class SigninViewController: UIViewController{
         view.backgroundColor = .white
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
-        emailTextField.becomeFirstResponder()
         addView()
         configureUI()
         configureShadow()
         addTextFieldObservers()
+        
         
         loginBtn.addTarget(self, action: #selector(loginBtnClicked(sender:)), for: .touchUpInside)
         makeAccountBtn.addTarget(self, action: #selector(makeAccountBtnClicked(sender:)), for: .touchUpInside)
         findPasswordButton.addTarget(self, action: #selector(findPasswordButtonClicked(sender:)), for: .touchUpInside)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addKeyObserver()
+    }
+    
+    
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+      if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+        let keybaordRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keybaordRectangle.height
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight/4)
+            
+        })
+
+        
+      }
+    }
+      
+    @objc func keyboardWillHide(_ notification: Notification) {
+      if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+        let keybaordRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keybaordRectangle.height
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.transform = .identity
+            
+        })
+      }
+    }
+    
     @objc func loginBtnClicked(sender:UIButton){
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         let nextVC = MainViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
     }
     
     @objc func findPasswordButtonClicked(sender:UIButton){
@@ -116,6 +147,7 @@ class SigninViewController: UIViewController{
    }
     
     // MARK: - Helpers
+    
     // MARK: addView
     func addView(){
         view.addSubview(SigninText)
@@ -148,7 +180,7 @@ class SigninViewController: UIViewController{
         }
         
         passwordVisibilityBtn.snp.makeConstraints {
-            $0.left.equalTo(passwordTextField.snp.right)
+            $0.right.equalTo(passwordTextField.snp.right)
             $0.centerY.equalTo(passwordTextField)
         }
         
@@ -231,11 +263,15 @@ class SigninViewController: UIViewController{
         emailTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
     }
+    func addKeyObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
     
     
     // MARK: updateLoginBtn
     func updateLoginbtn(){
-        if !email.isEmpty && !password.isEmpty && email.contains("@") && email.contains("."){
+        if !email.isEmpty && !password.isEmpty && email.contains("@gsm.hs.kr"){
             loginBtn.backgroundColor = UIColor(red: 0.408, green: 0.525, blue: 0.773, alpha: 1)
             loginBtn.isEnabled = true
         }else{
@@ -268,31 +304,6 @@ class SigninViewController: UIViewController{
         }
         updateLoginbtn()
     }
-    
-    // MARK: showFindPassword
-    @objc func showFindPasswordController(){
-        print("FINDPASS")
-    }
-    
-    // MARK: showRegisterController
-    @objc func showRegsiterController(){
-        print("REGISTER")
-    }
-    
-    // MARK: handleLoin
-    @objc func handleLogin(){
-        print("HANDLELOGIN")
-        email = emailTextField.text ?? ""
-        password = passwordTextField.text ?? ""
-        // authService login...
-
-        
-        // if let err = err
-        self.loginFailedMessage.isHidden = false
-        let dispatchTime = DispatchTime.now()+2
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {self.loginFailedMessage.isHidden = true})
-        
-    }
 }
 
 // MARK: - Extension
@@ -303,7 +314,7 @@ extension SigninViewController: UITextFieldDelegate {
         if textField == emailTextField{
             self.passwordTextField.becomeFirstResponder()
         }else{
-            handleLogin()
+            loginBtnClicked(sender: loginBtn)
         }
         return true
     }
