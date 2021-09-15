@@ -95,6 +95,7 @@ class MainViewController: UIViewController {
 
     //MARK: - addButtonClicked
     @objc func addButtonClicked(sender:UIButton){
+
         // 모달 표시 = 학생일 때
 //        let nextVC = AddViewController()
 //        present(nextVC, animated: true)
