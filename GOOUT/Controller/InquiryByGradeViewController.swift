@@ -354,6 +354,14 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         doNotGoView.addSubview(doNotGoView.noStudentLabel)
         
         doNotGoView.doNotGoViewSetting(screenHeight: self.view.frame.height)
+        
+        showdoNotGoView()
+    }
+    
+    func showdoNotGoView(){
+        if outNameList.count == 0 && earlyLeaveNameList.count == 0{
+            doNotGoView.isHidden = false
+        }
     }
     
 }
