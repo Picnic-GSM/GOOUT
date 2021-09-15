@@ -137,16 +137,16 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         view.addSubview(dropLabelBtn)
         view.addSubview(gradeLabel)
         view.addSubview(downBtn)
+        view.addSubview(doNotGoView)
         view.addSubview(outLabel)
         view.addSubview(ingContainer)
         view.addSubview(timeOutContainer)
         view.addSubview(endContainer)
-        view.addSubview(doNotGoView)
-        view.addSubview(earlyLeaveLabel)
-        view.addSubview(outTableView)
-        view.addSubview(earlyLeaveTableView)
         view.addSubview(outListHeader)
+        view.addSubview(outTableView)
+        view.addSubview(earlyLeaveLabel)
         view.addSubview(earlyLeaveListHeader)
+        view.addSubview(earlyLeaveTableView)
     }
     
     func cornerRadius(){
@@ -217,7 +217,8 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
             make.left.equalToSuperview().offset(self.view.frame.width/16.30)
             make.top.equalTo(outListHeader.snp.bottom)
             make.width.equalToSuperview()
-            make.height.equalTo((self.view.frame.height/23.2) * CGFloat(outNameList.count))
+//            make.height.equalTo((self.view.frame.height/23.2) * CGFloat(outNameList.count))
+            make.height.equalTo((self.view.frame.height/23.2) * 6)
         }
         
         earlyLeaveLabel.snp.makeConstraints { make in
@@ -229,7 +230,8 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
             make.left.equalTo(outTableView)
             make.top.equalTo(earlyLeaveListHeader.snp.bottom)
             make.width.equalToSuperview()
-            make.height.equalTo((self.view.frame.height/23.2) * CGFloat(earlyLeaveNameList.count))
+//            make.height.equalTo((self.view.frame.height/23.2) * CGFloat(earlyLeaveNameList.count))
+            make.height.equalTo((self.view.frame.height/23.2) * 6)
         }
         
         outListHeader.snp.makeConstraints { make in
