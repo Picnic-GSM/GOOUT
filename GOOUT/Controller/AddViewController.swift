@@ -192,6 +192,12 @@ class AddViewController: UIViewController{
             UIView.animate(withDuration: 0.5) {
                 self.gooutAnimation(flag: 1)
                 
+                self.gooutTimeLabel.text = "외출시간"
+                self.gooutEndTimeButton.alpha = 1
+                self.waveLabel.alpha = 1
+                self.selectedGooutEndTimeLabel.alpha = 1
+                self.gooutEndTimeUnderButton.alpha = 1
+                
                 self.reasonLabel.snp.remakeConstraints { make in
                     make.left.equalTo(self.gooutTimeLabel)
                     make.top.equalTo(self.gooutStartTimeButton.snp.bottom).offset(self.view.frame.height/18.04)
@@ -212,14 +218,14 @@ class AddViewController: UIViewController{
             earlyLeaveButton.isSelected.toggle()
 
             UIView.animate(withDuration: 0.5) {
-//                self.gooutAnimation(flag: 0)
-//                
-//                self.reasonLabel.snp.remakeConstraints { make in
-//                    make.left.equalTo(self.gooutTimeLabel)
-//                    make.top.equalTo(self.gooutTimeLabel)
-//                }
-//                
-//                self.view.superview?.layoutIfNeeded()
+
+                self.gooutTimeLabel.text = "조퇴시간"
+                self.gooutEndTimeButton.alpha = 0
+                self.waveLabel.alpha = 0
+                self.selectedGooutEndTimeLabel.alpha = 0
+                self.gooutEndTimeUnderButton.alpha = 0
+                
+                self.view.superview?.layoutIfNeeded()
             }
             
             selectedLabel = "earlyLeave"
@@ -279,14 +285,12 @@ class AddViewController: UIViewController{
                 make.centerX.equalToSuperview()
             }
             
-            if self.selectedLabel == "goout"{
-                self.reasonLabel.snp.remakeConstraints { make in
-                    make.left.equalTo(self.gooutTimeLabel)
-                    make.top.equalTo(self.gooutStartTimeButton.snp.bottom).offset(self.view.frame.height/18.04)
-                }
-                
-                self.gooutTimeLabel.alpha = 1
+            self.reasonLabel.snp.remakeConstraints { make in
+                make.left.equalTo(self.gooutTimeLabel)
+                make.top.equalTo(self.gooutStartTimeButton.snp.bottom).offset(self.view.frame.height/18.04)
             }
+            
+            self.gooutTimeLabel.alpha = 1
             
             self.addButton.superview?.layoutIfNeeded()
         }
