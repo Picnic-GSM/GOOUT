@@ -131,6 +131,7 @@ class ShowPasswordViewController: UIViewController{
             make.height.equalTo(bound.height*0.037)
             make.width.equalTo(bound.width*0.31)
         }
+        
         let findPassword = UILabel()
         findPassword.dynamicFont(fontSize: 25, currentFontName: "FugazOne-Regular")
         findPassword.text = "Find Password"

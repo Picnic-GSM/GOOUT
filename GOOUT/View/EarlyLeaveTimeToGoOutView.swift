@@ -9,23 +9,18 @@ import UIKit
 
 class EarlyLeaveTimeToGoOutView : UIView{
     let view = UIView().then{
-        $0.backgroundColor = .red
+        $0.backgroundColor = .rgb(red: 243, green: 247, blue: 255)
     }
     
     let time = UILabel().then{
         $0.dynamicFont(fontSize: 11, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
-    init(startTimeString : String, finishTimeString : String?){
-        super.init(frame: .zero)
-        if ((finishTimeString?.isEmpty) != nil) {
-            time.text = "\(startTimeString) - \(finishTimeString!)"
-        }else{
-            time.text = "\(startTimeString) ~"
-        }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         addSubview(view)
         view.addSubview(time)
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         time.sizeToFit()

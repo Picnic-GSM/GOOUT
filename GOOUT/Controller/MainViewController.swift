@@ -15,6 +15,8 @@ class MainViewController: UIViewController {
     
     let inquiryForEachClassViewController = InquiryForEachClassViewController()
     
+    let myPageViewController = MyPageViewController()
+    
     let viewControllerBoxView = UIView().then{
         $0.backgroundColor = .systemPink
     }
@@ -68,7 +70,7 @@ class MainViewController: UIViewController {
         
         mainTabBarView.myClassInquiryButton.snp.makeConstraints { make in
             make.centerY.equalTo(mainTabBarView.addButton)
-            make.height.width.equalTo(mainTabBarView.addButton)
+            make.height.width.equalTo(mainTabBarView.addButton).dividedBy(1.4)
             make.right.equalToSuperview().offset(-self.view.frame.width/8.1)
         }
         
@@ -93,8 +95,17 @@ class MainViewController: UIViewController {
 
     //MARK: - addButtonClicked
     @objc func addButtonClicked(sender:UIButton){
-        let nextVC = AddViewController()
-        present(nextVC, animated: true)
+//        let nextVC = AddViewController()
+//        present(nextVC, animated: true)
+        
+        // inquiryForEachClassViewController 표시 = 선생님일 때
+        self.addChild(inquiryForEachClassViewController)
+        inquiryForEachClassViewController.view.frame = viewControllerBoxView.frame
+        viewControllerBoxView.addSubview(inquiryForEachClassViewController.view)
+        
+        mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_AllClassInquiryButtonImage"), for: .normal)
+        mainTabBarView.addButton.setImage(UIImage(named: "GOOUT_SelectedMyClassInquiryButtonImage"), for: .normal)
+        mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_MyPageImage"), for: .normal)
     }
     
     @objc func allClassInquiryButtonClicked(sender:UIButton){
@@ -110,23 +121,25 @@ class MainViewController: UIViewController {
         inquiryForEachClassViewController.view.removeFromSuperview() // parentVC.view.addsubView()와 반대 기능
         
         // tabBarView Button 이미지 변경
-        mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_MyClassInquiryButtonImage"), for: .normal)
         mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedAllClassInquiryButtonImage"), for: .normal)
+        mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_MyPageImage"), for: .normal)
+        mainTabBarView.addButton.setImage(UIImage(named: "GOOUT_MyClassInquiryButtonImage"), for: .normal)
+
 
     }
     
     @objc func myClassInquiryButtonClicked(sender:UIButton){
-        // inquiryForEachClassViewController 표시
-        self.addChild(inquiryForEachClassViewController)
-        inquiryForEachClassViewController.view.frame = viewControllerBoxView.frame
-        viewControllerBoxView.addSubview(inquiryForEachClassViewController.view)
+        self.addChild(myPageViewController)
+        myPageViewController.view.frame = viewControllerBoxView.frame
+        viewControllerBoxView.addSubview(myPageViewController.view)
         
         // inquiryByGradeViewController 삭제
         inquiryByGradeViewController.removeFromParent() // parentVC로 부터 관계 삭제
         inquiryByGradeViewController.view.removeFromSuperview() // parentVC.view.addsubView()와 반대 기능
         
-        // tabBarView Button 이미지 변경
-        mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedMyClassInquiryButtonImage"), for: .normal)
+        mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_SelectedMyPageImage"), for: .normal)
         mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_AllClassInquiryButtonImage"), for: .normal)
+        mainTabBarView.addButton.setImage(UIImage(named: "GOOUT_MyClassInquiryButtonImage"), for: .normal)
+
     }
 }
