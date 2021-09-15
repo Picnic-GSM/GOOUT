@@ -8,7 +8,7 @@
 import UIKit
 class RequestStatus : UIView{
     
-    let view = UIView()
+    lazy var view = UIView()
     lazy var status = UIView()
     let label = UILabel().then{
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-Regular")
@@ -28,12 +28,11 @@ class RequestStatus : UIView{
         view.snp.makeConstraints { (make) in
             make.top.left.bottom.equalToSuperview()
             make.right.equalTo(label.snp.right)
-            make.height.equalTo(label.frame.height)
         }
         status.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
+            make.centerY.equalTo(view)
             make.height.width.equalTo(7)
-            make.left.equalToSuperview()
+            make.left.equalTo(view)
         }
         label.snp.makeConstraints { (make) in
             make.left.equalTo(status.snp.right).offset(6)

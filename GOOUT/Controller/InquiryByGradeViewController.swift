@@ -15,6 +15,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     //MARK: - Properties
     lazy var dropLabelBtn = UIButton().then {
         $0.backgroundColor = .white
+        $0.addTarget(self, action: #selector(showGradeDropDown), for: .touchUpInside)
     }
 
     lazy var gradeLabel = UILabel().then {
@@ -25,6 +26,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     
     lazy var downBtn = UIButton().then {
         $0.setBackgroundImage(UIImage(named: "GOOUT_GradeUnderButtonImage"), for: .normal)
+        $0.addTarget(self, action: #selector(showGradeDropDown), for: .touchUpInside)
     }
     
     lazy var gradeDropDown = DropDown().then {
@@ -45,6 +47,9 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         $0.width = self.view.frame.width/2.5
         $0.customCellConfiguration = { (index, item, cell) in
             cell.optionLabel.textAlignment = .center
+        }
+        $0.selectionAction = { [unowned self] (index: Int, item: String) in
+            gradeLabel.text = item
         }
     }
     
@@ -364,6 +369,11 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         }
     }
     
+    // MARK: - Selector
+    @objc
+    func showGradeDropDown(_ sender : UIButton) {
+        gradeDropDown.show()
+    }
 }
 
 //MARK: - Preview
