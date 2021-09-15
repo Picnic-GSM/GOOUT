@@ -223,7 +223,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         
         earlyLeaveLabel.snp.makeConstraints { make in
             make.left.equalTo(outLabel)
-            make.top.equalTo(outTableView.snp.bottom).offset(self.view.frame.height/25.37)
+            make.top.equalTo(outTableView.snp.bottom).offset(self.view.frame.height/30)
         }
         
         earlyLeaveTableView.snp.makeConstraints { make in
