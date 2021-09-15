@@ -10,6 +10,7 @@ import SnapKit
 import Then
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
+    
     lazy var signUpLabel = UILabel().then {
         $0.text = "Sign up"
         $0.dynamicFont(fontSize: 30, currentFontName: "FugazOne-Regular")
@@ -25,6 +26,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     lazy var passwordContainer = emailTextFieldView().then {
         $0.label.text = "Password"
+        $0.textField.isSecureTextEntry = true
         $0.textField.placeholder = "비밀번호를 입력하세요"
     }
     
@@ -42,6 +44,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     lazy var checkPasswordContainer = emailTextFieldView().then {
         $0.label.text = "Check Password"
+        $0.textField.isSecureTextEntry = true
         $0.textField.placeholder = "비밀번호를 한번 더 입력하세요."
     }
     
@@ -62,6 +65,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         configureUI()
     }
+
     
     @objc func loginButtonClicked(sender:UIButton){
         self.navigationController?.popViewController(animated: true)
@@ -84,6 +88,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         location()
         shadow()
         addTarget()
+        
+        emailContainer.textField.delegate = self
+        passwordContainer.textField.delegate = self
+        checkPasswordContainer.textField.delegate = self
+        
+        emailContainer.textField.addTarget(self, action: #selector(updateSignUp), for: .valueChanged)
+        passwordContainer.textField.addTarget(self, action: #selector(updateSignUp), for: .valueChanged)
+        checkPasswordContainer.textField.addTarget(self, action: #selector(updateSignUp), for: .valueChanged)
     }
     
 //  MARK: addTarget
@@ -201,13 +213,35 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         checkPasswordContainer.emailTextFieldSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
     }
     
+    @objc func updateSignUp() {
+        let emailPattern = "^[a-zA-Z0-9]+@gsm.hs.kr$"
+        let passwordPattern = "^[A-Za-z0-9!_@$%^&+=]{8,16}$"
+        let emailRegex = try? NSRegularExpression(pattern: emailPattern)
+        let passwordRegex = try? NSRegularExpression(pattern: passwordPattern)
+        
+        if let _ = emailRegex?.firstMatch(in: emailContainer.textField.text!, options: [], range: NSRange(location: 0, length: emailContainer.textField.text!.count)),
+           let _ = passwordRegex?.firstMatch(in: passwordContainer.textField.text!, options: [], range: NSRange(location: 0, length: passwordContainer.textField.text!.count)),
+           checkPasswordContainer.textField.text == passwordContainer.textField.text{
+            print("성공")
+            signUpButton.backgroundColor = .rgba(red: 255, green: 172, blue: 183, alpha: 1)
+//            signUpButton.isEnabled = true
+        }else{
+            print("실패")
+//            signUpButton.backgroundColor = .rgba(red: 255, green: 172, blue: 183, alpha: 0.7)
+//            signUpButton.isEnabled = false
+        }
+    }
+    
 //MARK: - Actions
+    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = passwordContainer.textField.text else { return true }
         let newLength = text.count + string.count - range.length
           return newLength <= 16
+
     }
+    
     
     @objc
     func changePasswordVisibilityToggle(_ sender : UIButton) {
@@ -222,71 +256,34 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @objc
     func clickSignUpButton(_ sender: UIButton) {
-        if emailContainer.textField.text?.isEmpty == false &&
-            passwordContainer.textField.text?.isEmpty == false &&
-            checkPasswordContainer.textField.text?.isEmpty == false
-        {
-            if emailContainer.textField.text?.contains("@") == true &&
-                emailContainer.textField.text?.contains(".") == true
-            {
-                if passwordContainer.textField.text!.count >= 8 &&
-                    passwordContainer.textField.text?.contains("!") == true ||
-                    passwordContainer.textField.text?.contains("@") == true ||
-                    passwordContainer.textField.text?.contains("#") == true ||
-                    passwordContainer.textField.text?.contains("$") == true ||
-                    passwordContainer.textField.text?.contains("*") == true
-                {
-                    if checkPasswordContainer.textField.text == passwordContainer.textField.text{
-                        print("성공")
-                        
-                        emailContainer.textField.text = ""
-                        passwordContainer.textField.text = ""
-                        checkPasswordContainer.textField.text = ""
-                        let nextVC = InformationViewController()
-                        self.navigationController?.pushViewController(nextVC, animated: true)
-                        
-                        emailContainer.textField.text = ""
-                        passwordContainer.textField.text = ""
-                        checkPasswordContainer.textField.text = ""
-                        
-                    }else{
-                        print("비밀번호가 일치하지 않습니다.")
-                    }
-                }else{
-                    print("비밀번호를 바르게 입력하세요")
-                }
-            }else{
-                print("이메일을 바르게 입력하세요")
-            }
-        }else{
-            print("모두 입력하세요")
-        }
+        updateSignUp()
+        print("Click Sign up Button")
     }
 }
 
-//MARK: - Preview
-
-#if DEBUG
-import SwiftUI
-struct SignUpViewControllerRepresentable: UIViewControllerRepresentable {
-
-func updateUIViewController(_ uiView: UIViewController,context: Context) {
-        // leave this empty
-}
-    @available(iOS 13.0.0, *)
-    func makeUIViewController(context: Context) -> UIViewController{
-        SignUpViewController()
-    }
-}
-@available(iOS 13.0, *)
-struct ViewControllerRepresentable_PreviewProvider: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SignUpViewControllerRepresentable()
-                .ignoresSafeArea()
-                .previewDisplayName(/*@START_MENU_TOKEN@*/"Preview"/*@END_MENU_TOKEN@*/)
-                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
-        }
-
-    }
-} #endif
+////MARK: - Preview
+//
+//#if DEBUG
+//import SwiftUI
+//struct SignUpViewControllerRepresentable: UIViewControllerRepresentable {
+//
+//func updateUIViewController(_ uiView: UIViewController,context: Context) {
+//        // leave this empty
+//}
+//    @available(iOS 13.0.0, *)
+//    func makeUIViewController(context: Context) -> UIViewController{
+//        SignUpViewController()
+//    }
+//}
+//@available(iOS 13.0, *)
+//struct ViewControllerRepresentable_PreviewProvider: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            SignUpViewControllerRepresentable()
+//                .ignoresSafeArea()
+//                .previewDisplayName(/*@START_MENU_TOKEN@*/"Preview"/*@END_MENU_TOKEN@*/)
+//                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+//        }
+//
+//    }
+//} #endif
