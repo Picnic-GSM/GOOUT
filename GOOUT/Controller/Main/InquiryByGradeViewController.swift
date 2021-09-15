@@ -15,6 +15,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     //MARK: - Properties
     lazy var dropLabelBtn = UIButton().then {
         $0.backgroundColor = .white
+        $0.addTarget(self, action: #selector(showGradeDropDown), for: .touchUpInside)
     }
 
     lazy var gradeLabel = UILabel().then {
@@ -25,6 +26,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     
     lazy var downBtn = UIButton().then {
         $0.setBackgroundImage(UIImage(named: "GOOUT_GradeUnderButtonImage"), for: .normal)
+        $0.addTarget(self, action: #selector(showGradeDropDown), for: .touchUpInside)
     }
     
     lazy var gradeDropDown = DropDown().then {
@@ -45,6 +47,9 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         $0.width = self.view.frame.width/2.5
         $0.customCellConfiguration = { (index, item, cell) in
             cell.optionLabel.textAlignment = .center
+        }
+        $0.selectionAction = { [unowned self] (index: Int, item: String) in
+            gradeLabel.text = item
         }
     }
     
@@ -109,6 +114,10 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     lazy var earlyLeaveListHeader = EarlyLeaveListHeaderView().then {
         $0.backgroundColor = .rgb(red: 255, green: 243, blue: 243)
     }
+    
+    var goOutInfoView = GooutEarlyLeaveInfoView()
+    
+    var earlyLeaveInfoView = GooutEarlyLeaveInfoView()
         
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -124,8 +133,11 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         doNotGoViewSetting()
         tableViewSetting()
         headerViewSetting()
+        tableViewScrollSetting()
         
         doNotGoView.isHidden = true
+        goOutInfoView.isHidden = true
+        earlyLeaveInfoView.isHidden = true
         
         addView()
         cornerRadius()
@@ -136,16 +148,18 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         view.addSubview(dropLabelBtn)
         view.addSubview(gradeLabel)
         view.addSubview(downBtn)
+        view.addSubview(doNotGoView)
         view.addSubview(outLabel)
         view.addSubview(ingContainer)
         view.addSubview(timeOutContainer)
         view.addSubview(endContainer)
-        view.addSubview(doNotGoView)
-        view.addSubview(earlyLeaveLabel)
-        view.addSubview(outTableView)
-        view.addSubview(earlyLeaveTableView)
         view.addSubview(outListHeader)
+        view.addSubview(outTableView)
+        view.addSubview(earlyLeaveLabel)
         view.addSubview(earlyLeaveListHeader)
+        view.addSubview(earlyLeaveTableView)
+        view.addSubview(goOutInfoView)
+        view.addSubview(earlyLeaveInfoView)
     }
     
     func cornerRadius(){
@@ -216,36 +230,175 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
             make.left.equalToSuperview().offset(self.view.frame.width/16.30)
             make.top.equalTo(outListHeader.snp.bottom)
             make.width.equalToSuperview()
-            make.height.equalTo((self.view.frame.height/25.375) * CGFloat(outNameList.count))
+//            make.height.equalTo((self.view.frame.height/23.2) * CGFloat(outNameList.count))
+            make.height.equalTo((self.view.frame.height/23.2) * 6)
         }
         
         earlyLeaveLabel.snp.makeConstraints { make in
             make.left.equalTo(outLabel)
-            make.top.equalTo(outTableView.snp.bottom).offset(self.view.frame.height/25.37)
+            make.top.equalTo(outTableView.snp.bottom).offset(self.view.frame.height/30)
         }
         
         earlyLeaveTableView.snp.makeConstraints { make in
             make.left.equalTo(outTableView)
             make.top.equalTo(earlyLeaveListHeader.snp.bottom)
             make.width.equalToSuperview()
-            make.height.equalTo((self.view.frame.height/25.375) * CGFloat(earlyLeaveNameList.count))
+//            make.height.equalTo((self.view.frame.height/23.2) * CGFloat(earlyLeaveNameList.count))
+            make.height.equalTo((self.view.frame.height/23.2) * 6)
         }
         
         outListHeader.snp.makeConstraints { make in
             make.left.equalTo(outTableView)
-            make.top.equalTo(outLabel.snp.bottom).offset(self.view.frame.height/73.82)
+            make.top.equalTo(outLabel.snp.bottom).offset(self.view.frame.height/70)
             make.width.equalToSuperview().dividedBy(1.14)
-            make.height.equalToSuperview().dividedBy(25.375)
+            make.height.equalToSuperview().dividedBy(23.2)
         }
         
         earlyLeaveListHeader.snp.makeConstraints { make in
             make.left.equalTo(earlyLeaveTableView)
-            make.top.equalTo(earlyLeaveLabel.snp.bottom).offset(self.view.frame.height/73.82)
+            make.top.equalTo(earlyLeaveLabel.snp.bottom).offset(self.view.frame.height/70)
             make.width.equalToSuperview().dividedBy(1.14)
-            make.height.equalToSuperview().dividedBy(25.375)
+            make.height.equalToSuperview().dividedBy(23.2)
         }
     }
     
+    // MARK: - InfoViewSetting
+    
+    func goOutInfoViewSetting(){
+        goOutInfoView.kindLabel.text = "외출 상세"
+        goOutInfoView.closeButton.addTarget(self, action: #selector(goOutInfoViewHide), for: .touchUpInside)
+        goOutInfoView.isHidden = false
+        earlyLeaveInfoView.isHidden = true
+        
+        goOutInfoView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(1.12)
+            make.height.equalToSuperview().dividedBy(3.5)
+        }
+        
+        goOutInfoView.kindShowView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(7)
+            make.height.equalToSuperview().dividedBy(10)
+            make.top.equalToSuperview().offset(self.view.frame.height/54.13)
+        }
+        
+        goOutInfoView.circleView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview()
+            make.height.width.equalTo(8)
+            
+            goOutInfoView.circleView.layer.cornerRadius = 4
+        }
+        
+        goOutInfoView.kindLabel.snp.makeConstraints { make in
+            make.right.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
+        goOutInfoView.nameLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(goOutInfoView.kindShowView.snp.bottom).offset(self.view.frame.height/54.13)
+        }
+        
+        goOutInfoView.numberLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(goOutInfoView.nameLabel.snp.bottom).offset(self.view.frame.height/116)
+        }
+        
+        goOutInfoView.timeLabelButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(goOutInfoView.numberLabel.snp.bottom).offset(self.view.frame.height/81.2)
+            make.height.equalToSuperview().dividedBy(6.93)
+            make.width.equalToSuperview().dividedBy(2.48)
+        }
+        
+        goOutInfoView.reasonTextView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(goOutInfoView.timeLabelButton.snp.bottom).offset(self.view.frame.height/62.46)
+            make.width.equalToSuperview().dividedBy(1.28)
+            make.height.equalToSuperview().dividedBy(4.95)
+        }
+        
+        goOutInfoView.closeButton.snp.makeConstraints { make in
+            make.centerY.equalTo(goOutInfoView.kindShowView)
+            make.right.equalToSuperview().offset(-self.view.frame.height/54.13)
+            make.height.width.equalTo(25)
+        }
+        
+        goOutInfoView.reasonTextView.showsVerticalScrollIndicator = false
+        
+    }
+    
+    func earlyLeaveInfoViewSetting(){
+        earlyLeaveInfoView.circleView.backgroundColor = .rgb(red: 255, green: 107, blue: 107)
+        earlyLeaveInfoView.kindLabel.text = "조퇴 상세"
+        earlyLeaveInfoView.closeButton.setImage(UIImage(named: "GOOUT_Cancel"), for: .normal)
+        earlyLeaveInfoView.closeButton.addTarget(self, action: #selector(earlyLeaveInfoViewHide), for: .touchUpInside)
+        earlyLeaveInfoView.timeLabelButton.backgroundColor = .rgb(red: 255, green: 243, blue: 243)
+        earlyLeaveInfoView.timeLabelButton.setTitleColor(.rgb(red: 255, green: 107, blue: 107), for: .normal)
+        earlyLeaveInfoView.isHidden = false
+        goOutInfoView.isHidden = true
+        
+        earlyLeaveInfoView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(1.12)
+            make.height.equalToSuperview().dividedBy(3.5)
+        }
+        
+        earlyLeaveInfoView.kindShowView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(7)
+            make.height.equalToSuperview().dividedBy(10)
+            make.top.equalToSuperview().offset(self.view.frame.height/54.13)
+        }
+        
+        earlyLeaveInfoView.circleView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview()
+            make.height.width.equalTo(8)
+            
+            earlyLeaveInfoView.circleView.layer.cornerRadius = 4
+        }
+        
+        earlyLeaveInfoView.kindLabel.snp.makeConstraints { make in
+            make.right.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
+        earlyLeaveInfoView.nameLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(earlyLeaveInfoView.kindShowView.snp.bottom).offset(self.view.frame.height/54.13)
+        }
+        
+        earlyLeaveInfoView.numberLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(earlyLeaveInfoView.nameLabel.snp.bottom).offset(self.view.frame.height/116)
+        }
+        
+        earlyLeaveInfoView.timeLabelButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(earlyLeaveInfoView.numberLabel.snp.bottom).offset(self.view.frame.height/81.2)
+            make.height.equalToSuperview().dividedBy(6.93)
+            make.width.equalToSuperview().dividedBy(2.48)
+        }
+        
+        earlyLeaveInfoView.reasonTextView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(earlyLeaveInfoView.timeLabelButton.snp.bottom).offset(self.view.frame.height/62.46)
+            make.width.equalToSuperview().dividedBy(1.28)
+            make.height.equalToSuperview().dividedBy(4.95)
+        }
+        
+        earlyLeaveInfoView.closeButton.snp.makeConstraints { make in
+            make.centerY.equalTo(earlyLeaveInfoView.kindShowView)
+            make.right.equalToSuperview().offset(-self.view.frame.height/54.13)
+            make.height.width.equalTo(25)
+        }
+        
+        earlyLeaveInfoView.reasonTextView.showsVerticalScrollIndicator = false
+    }
+
     // MARK: - tableView
     
     func tableViewSetting(){
@@ -258,6 +411,20 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         earlyLeaveTableView.delegate = self
                 
         earlyLeaveTableView.register(EarlyLeaveListTableCell.self, forCellReuseIdentifier: EarlyLeaveListTableCell.EarlyLeaveListTableIdentifier)
+    }
+    
+    func tableViewScrollSetting(){
+        if outNameList.count <= 6 {
+            outTableView.isScrollEnabled = false
+        } else {
+            outTableView.isScrollEnabled = true
+        }
+        
+        if earlyLeaveNameList.count <= 6 {
+            earlyLeaveTableView.isScrollEnabled = false
+        } else {
+            earlyLeaveTableView.isScrollEnabled = true
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -291,11 +458,27 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.view.frame.height/25.375
+        return self.view.frame.height/23.2
     }
         
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == outTableView {
+            goOutInfoView.nameLabel.text = outNameList[indexPath.row]
+            goOutInfoView.numberLabel.text = outGradeClassNumList[indexPath.row]
+            goOutInfoView.timeLabelButton.setTitle(outTimeList[indexPath.row], for: .normal)
+            goOutInfoView.reasonTextView.text = outReasonList[indexPath.row]
+            goOutInfoViewSetting()
+        } else {
+            earlyLeaveInfoView.nameLabel.text = earlyLeaveNameList[indexPath.row]
+            earlyLeaveInfoView.numberLabel.text = earlyLeaveGradeClassNumList[indexPath.row]
+            earlyLeaveInfoView.timeLabelButton.setTitle("조퇴", for: .normal)
+            earlyLeaveInfoView.reasonTextView.text = earlyLeaveReasonList[indexPath.row]
+            earlyLeaveInfoViewSetting()
+        }
     }
     
     func headerViewSetting(){
@@ -337,8 +520,31 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         doNotGoView.addSubview(doNotGoView.noStudentLabel)
         
         doNotGoView.doNotGoViewSetting(screenHeight: self.view.frame.height)
+        
+        showdoNotGoView()
     }
     
+    func showdoNotGoView(){
+        if outNameList.count == 0 && earlyLeaveNameList.count == 0{
+            doNotGoView.isHidden = false
+        }
+    }
+    
+    // MARK: - Selector
+    @objc
+    func showGradeDropDown(_ sender : UIButton) {
+        gradeDropDown.show()
+    }
+    
+    @objc
+    func goOutInfoViewHide(_ sender : UIButton) {
+        goOutInfoView.isHidden = true
+    }
+    
+    @objc
+    func earlyLeaveInfoViewHide(_ sender : UIButton) {
+        earlyLeaveInfoView.isHidden = true
+    }
 }
 
 //MARK: - Preview
