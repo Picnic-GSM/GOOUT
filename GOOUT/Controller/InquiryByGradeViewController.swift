@@ -124,6 +124,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         doNotGoViewSetting()
         tableViewSetting()
         headerViewSetting()
+        tableViewScrollSetting()
         
         doNotGoView.isHidden = true
         
@@ -258,6 +259,20 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         earlyLeaveTableView.delegate = self
                 
         earlyLeaveTableView.register(EarlyLeaveListTableCell.self, forCellReuseIdentifier: EarlyLeaveListTableCell.EarlyLeaveListTableIdentifier)
+    }
+    
+    func tableViewScrollSetting(){
+        if outNameList.count <= 6 {
+            outTableView.isScrollEnabled = false
+        } else {
+            outTableView.isScrollEnabled = true
+        }
+        
+        if earlyLeaveNameList.count <= 6 {
+            earlyLeaveTableView.isScrollEnabled = false
+        } else {
+            earlyLeaveTableView.isScrollEnabled = true
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
