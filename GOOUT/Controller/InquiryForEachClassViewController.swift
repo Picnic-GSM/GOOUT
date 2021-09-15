@@ -15,6 +15,8 @@ class InquiryForEachClassViewController : UIViewController{
 
     private var pleaseCheckYourReturnHomeTableData : [FinishedGoingHome] = []
     
+    var gooutEarlyLeaveInfoView = GooutEarlyLeaveInfoView()
+    
     let bounds: CGRect = UIScreen.main.bounds
     
     private let eachClassTitle = UILabel().then{
@@ -94,6 +96,19 @@ class InquiryForEachClassViewController : UIViewController{
         AddPleaseCheckYourReturnHomeTableData()
         location()
         CollectionViewAndTableViewSetting()
+        gooutEarlyLeaveInfoViewSetting()
+    }
+    //MARK:-gooutEarlyLeaveInfoViewSetting
+    func gooutEarlyLeaveInfoViewSetting(){
+        self.view.addSubview(gooutEarlyLeaveInfoView)
+        
+        gooutEarlyLeaveInfoView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(1.07)
+            make.height.equalToSuperview().dividedBy(3.9)
+        }
+        
+        gooutEarlyLeaveInfoView.isHidden = true
     }
     //MARK:-DataSource & Delegate
     func CollectionViewAndTableViewSetting(){

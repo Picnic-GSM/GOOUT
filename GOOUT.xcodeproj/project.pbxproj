@@ -11,6 +11,7 @@
 		46F570AA26DCCD60005F81AE /* SigninVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F570A926DCCD60005F81AE /* SigninVIewController.swift */; };
 		46F571B926E1A86A005F81AE /* FugazOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB0369C26DCCF1200D1F80E /* FugazOne-Regular.ttf */; };
 		6A03994426F094AC00D12952 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A03994326F094AC00D12952 /* MainViewController.swift */; };
+		6A85BBA826F1BA5600151E39 /* GooutEarlyLeaveInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A85BBA726F1BA5600151E39 /* GooutEarlyLeaveInfoView.swift */; };
 		6AA3A56026D8B4FA00CA03F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3A55F26D8B4FA00CA03F3 /* AppDelegate.swift */; };
 		6AA3A56226D8B4FA00CA03F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3A56126D8B4FA00CA03F3 /* SceneDelegate.swift */; };
 		6AA3A56426D8B4FA00CA03F3 /* InquiryByGradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3A56326D8B4FA00CA03F3 /* InquiryByGradeViewController.swift */; };
@@ -29,7 +30,9 @@
 		AAD95ABB26EB2A54004E4580 /* AnyStudentDoNotGoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95ABA26EB2A54004E4580 /* AnyStudentDoNotGoView.swift */; };
 		AAD95ADD26EC2BF7004E4580 /* OutListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95ADC26EC2BF7004E4580 /* OutListTableCell.swift */; };
 		AAD95ADF26EC453F004E4580 /* EarlyLeaveListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95ADE26EC453F004E4580 /* EarlyLeaveListTableCell.swift */; };
+		B84CEB1926E8FC200074A1F6 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */; };
 		B85521CD26E0E6D700F32432 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */; };
+		B871B6DA26F0DC7E003E9775 /* numberCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871B6D926F0DC7E003E9775 /* numberCellView.swift */; };
 		B87DA40C26E0C9B2005A4DAB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */; };
 		C895AA5D26EF29BF003392F2 /* WriteCodeTextfieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C895AA5C26EF29BF003392F2 /* WriteCodeTextfieldView.swift */; };
 		C8E8FBB426E783990064D362 /* EnterDistributioncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E8FBB326E783990064D362 /* EnterDistributioncode.swift */; };
@@ -49,6 +52,7 @@
 		46F570A926DCCD60005F81AE /* SigninVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninVIewController.swift; sourceTree = "<group>"; };
 		497700A6940CC66917DA3AE0 /* Pods-GOOUT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GOOUT.debug.xcconfig"; path = "Target Support Files/Pods-GOOUT/Pods-GOOUT.debug.xcconfig"; sourceTree = "<group>"; };
 		6A03994326F094AC00D12952 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		6A85BBA726F1BA5600151E39 /* GooutEarlyLeaveInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooutEarlyLeaveInfoView.swift; sourceTree = "<group>"; };
 		6AA3A55C26D8B4FA00CA03F3 /* GOOUT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GOOUT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AA3A55F26D8B4FA00CA03F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AA3A56126D8B4FA00CA03F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,7 +74,9 @@
 		AAD95ABA26EB2A54004E4580 /* AnyStudentDoNotGoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyStudentDoNotGoView.swift; sourceTree = "<group>"; };
 		AAD95ADC26EC2BF7004E4580 /* OutListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutListTableCell.swift; sourceTree = "<group>"; };
 		AAD95ADE26EC453F004E4580 /* EarlyLeaveListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaveListTableCell.swift; sourceTree = "<group>"; };
+		B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		B871B6D926F0DC7E003E9775 /* numberCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = numberCellView.swift; sourceTree = "<group>"; };
 		B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C895AA5C26EF29BF003392F2 /* WriteCodeTextfieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCodeTextfieldView.swift; sourceTree = "<group>"; };
 		C8E8FBB326E783990064D362 /* EnterDistributioncode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterDistributioncode.swift; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 				EEFD615526DDA1690032EDBF /* InquiryForEachClassViewController.swift */,
 				46F570A926DCCD60005F81AE /* SigninVIewController.swift */,
 				6AB0369A26DCBB2700D1F80E /* AddViewController.swift */,
+				B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */,
 				C8E8FBB326E783990064D362 /* EnterDistributioncode.swift */,
 				A89BFE8F26EA1BB2003627BD /* TestViewController.swift */,
 				C8E905E026E0ECBD002427B3 /* ShowPasswordViewController.swift */,
@@ -183,6 +190,7 @@
 			children = (
 				EEFD615726DE06D90032EDBF /* Cell */,
 				6AB0369626DC58A100D1F80E /* MainTabBarView.swift */,
+				B871B6D926F0DC7E003E9775 /* numberCellView.swift */,
 				C895AA5C26EF29BF003392F2 /* WriteCodeTextfieldView.swift */,
 				AAD95AB826EB1DA2004E4580 /* StateExplainView.swift */,
 				AAD95ABA26EB2A54004E4580 /* AnyStudentDoNotGoView.swift */,
@@ -195,6 +203,7 @@
 				EE63E21C26E09B1700F75CDA /* EarlyLeaveTimeToGoOutView.swift */,
 				EEB6FA4526E274CC008087B9 /* noHistoryView .swift */,
 				A89BFE8B26EA1AB6003627BD /* getAuthCodeView.swift */,
+				6A85BBA726F1BA5600151E39 /* GooutEarlyLeaveInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -349,6 +358,7 @@
 				EEFD616126DF89AA0032EDBF /* OutConditionView.swift in Sources */,
 				EE63E21F26E0DEB700F75CDA /* PleaseCheckYourReturnHomeTableCell.swift in Sources */,
 				EEB6FA4626E274CC008087B9 /* noHistoryView .swift in Sources */,
+				6A85BBA826F1BA5600151E39 /* GooutEarlyLeaveInfoView.swift in Sources */,
 				EEFD615626DDA1690032EDBF /* InquiryForEachClassViewController.swift in Sources */,
 				B87DA40C26E0C9B2005A4DAB /* SignUpViewController.swift in Sources */,
 				6A03994426F094AC00D12952 /* MainViewController.swift in Sources */,
@@ -366,6 +376,9 @@
 				AAD95AB926EB1DA2004E4580 /* StateExplainView.swift in Sources */,
 				EEFD615D26DE1EAF0032EDBF /* RequestInquiryForEachClassModel.swift in Sources */,
 				6AA3A56226D8B4FA00CA03F3 /* SceneDelegate.swift in Sources */,
+				B871B6DA26F0DC7E003E9775 /* numberCellView.swift in Sources */,
+				6AA3A57926DA509700CA03F3 /* Extension.swift in Sources */,
+				B84CEB1926E8FC200074A1F6 /* InformationViewController.swift in Sources */,
 				A89BFE9026EA1BB2003627BD /* TestViewController.swift in Sources */,
 				6AA3A57926DA509700CA03F3 /* Extension.swift in Sources */,
 				C8E8FBB426E783990064D362 /* EnterDistributioncode.swift in Sources */,
