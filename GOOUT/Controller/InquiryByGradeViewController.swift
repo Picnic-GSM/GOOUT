@@ -268,6 +268,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         goOutInfoView.kindLabel.text = "외출 상세"
         goOutInfoView.closeButton.addTarget(self, action: #selector(goOutInfoViewHide), for: .touchUpInside)
         goOutInfoView.isHidden = false
+        earlyLeaveInfoView.isHidden = true
         
         goOutInfoView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
@@ -337,6 +338,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         earlyLeaveInfoView.timeLabelButton.backgroundColor = .rgb(red: 255, green: 243, blue: 243)
         earlyLeaveInfoView.timeLabelButton.setTitleColor(.rgb(red: 255, green: 107, blue: 107), for: .normal)
         earlyLeaveInfoView.isHidden = false
+        goOutInfoView.isHidden = true
         
         earlyLeaveInfoView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
