@@ -99,6 +99,7 @@ class MainViewController: UIViewController {
 //        let nextVC = AddViewController()
 //        present(nextVC, animated: true)
         
+
         // inquiryForEachClassViewController 표시 = 선생님일 때
         self.addChild(inquiryForEachClassViewController)
         inquiryForEachClassViewController.view.frame = viewControllerBoxView.frame
@@ -107,6 +108,7 @@ class MainViewController: UIViewController {
         mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_AllClassInquiryButtonImage"), for: .normal)
         mainTabBarView.addButton.setImage(UIImage(named: "GOOUT_SelectedMyClassInquiryButtonImage"), for: .normal)
         mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_MyPageImage"), for: .normal)
+
     }
     
     @objc func allClassInquiryButtonClicked(sender:UIButton){
