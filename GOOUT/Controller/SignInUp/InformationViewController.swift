@@ -9,10 +9,14 @@ import UIKit
 import SnapKit
 import Then
 import Alamofire
+import Firebase
 
 class InformationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    var model: studentModel?
+    var model: userModel?
     
+    var grade = 0
+    var `class` = 0
+    var s_num = 0
     
     lazy var numList:  [String] = ["1번", "2번", "3번", "4번", "5번", "6번", "7번", "8번", "9번", "10번", "11번", "12번", "13번", "14번", "15번", "16번", "17번", "18번", "19번", "20번"]
     
@@ -418,39 +422,18 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         if model.grade == 0 || model.class == 0 || model.s_number == 0{
             return
         }
-        let param: Parameters = [
-            "name":model.name,
-            "email":model.email,
-            "password":model.password,
-            "grade":model.grade,
-            "class":model.class,
-            "s_number":model.s_number
-        ]
-        print(param)
-        API.shared.request(url: "/student/register", method: .post, parameter: param) { result in
-            switch result{
-            case .success(let data):
-                print(data)
-                let nextVC = SigninViewController()
-                self.navigationController?.pushViewController(nextVC, animated: true)
-                break
-            case .requsestError(let err):
-                print(err)
-                break
-            case .invalidURL:
-                print("invalidURL")
-                break
-            case .authorityError:
-                print("authotiryErr")
-                break
-            case .networkError:
-                print("networkErr")
-                break
-            case .tokenError:
-                print("tokenEr")
-                break
-            }
-        }
+        print( model )
+        Auth.auth().signIn(withEmail: model.email, password: model.password)
+        let mod: [String:Any] = ["email":model.email,
+                     "password":model.password,
+                     "name":model.name,
+                     "grade":model.grade,
+                     "class":model.class,
+                     "s_number":model.s_number]
+        Firestore.firestore().collection("users").addDocument(data: mod)
         
+        
+
+//
     }
 }

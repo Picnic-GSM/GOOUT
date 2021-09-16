@@ -347,6 +347,8 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
   - DropDown (2.3.13)
+  - Firebase/Analytics (8.7.0):
+    - Firebase/Core
   - Firebase/Auth (8.7.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.7.0)
@@ -483,6 +485,7 @@ DEPENDENCIES:
   - AEOTPTextField
   - Alamofire (~> 5.4)
   - DropDown
+  - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
@@ -540,6 +543,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: c4c6b2e5092791fb5f84563be149abf2f059b6f7
+PODFILE CHECKSUM: a2600146d3ff351676d2009020c7bceade664d65
 
 COCOAPODS: 1.11.2
