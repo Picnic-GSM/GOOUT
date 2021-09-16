@@ -9,6 +9,9 @@ target 'GOOUT' do
   pod 'Alamofire', '~> 5.4'
   pod 'DropDown'
   pod 'AEOTPTextField'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
   # Pods for GOOUT
 
 end
