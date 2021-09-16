@@ -429,16 +429,17 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             print(res)
             print(err?.localizedDescription)
         }
-        
+        Auth.auth().signIn(withEmail: model.email, password: model.password)
         let mod: [String:Any] = ["email":model.email,
                      "password":model.password,
                      "name":model.name,
                      "grade":self.grade,
                      "class":self.class,
-                     "s_number":self.s_num]
+                     "s_number":self.s_num,
+                     "uid":Auth.auth().currentUser!.uid]
         
         Firestore.firestore().collection("users").addDocument(data: mod)
-        
+        self.navigationController?.pushViewController(SigninViewController(), animated: true)
         
 
 //
