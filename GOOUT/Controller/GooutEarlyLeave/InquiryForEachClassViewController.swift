@@ -16,7 +16,7 @@ class InquiryForEachClassViewController : UIViewController{
     private var pleaseCheckYourReturnHomeTableData : [FinishedGoingHome] = []
         
     let bounds: CGRect = UIScreen.main.bounds
-    
+    let className : String = "3학년 1반"
     private let eachClassTitle = UILabel().then{
         $0.textColor = UIColor.rgb(red: 104, green: 134, blue: 197)
         $0.text = "2-1"
@@ -27,6 +27,7 @@ class InquiryForEachClassViewController : UIViewController{
         $0.textColor = .black
         $0.dynamicFont(fontSize: 20, currentFontName: "AppleSDGothicNeo-Thin")
     }
+
     fileprivate let requestConfirmationCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -61,7 +62,9 @@ class InquiryForEachClassViewController : UIViewController{
         return view
     }()
 
-    let gooutEarlyLeaveInfoView = GooutEarlyLeaveInfoView()
+    let gooutEarlyLeaveInfoView = GooutEarlyLeaceInfoAlertView().then{
+        $0.alpha = 0
+    }
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -72,71 +75,8 @@ class InquiryForEachClassViewController : UIViewController{
         requestConfirmationCollectionView.contentInset = UIEdgeInsets(top: 0, left: bounds.height/35.30434782, bottom: 0, right: bounds.height/35.30434782)
         homeComingTableView.automaticallyAdjustsScrollIndicatorInsets = false
         
-        gooutEarlyLeaveInfoViewSetting()
     }
-    
-    func gooutEarlyLeaveInfoViewSetting(){
-        self.view.addSubview(gooutEarlyLeaveInfoView)
-        
-        gooutEarlyLeaveInfoView.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(1.12)
-            make.height.equalToSuperview().dividedBy(3.5)
-        }
-        
-        gooutEarlyLeaveInfoView.kindShowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(7)
-            make.height.equalToSuperview().dividedBy(10)
-            make.top.equalToSuperview().offset(self.view.frame.height/54.13)
-        }
-        
-        gooutEarlyLeaveInfoView.circleView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.left.equalToSuperview()
-            make.height.width.equalTo(8)
-            
-            gooutEarlyLeaveInfoView.circleView.layer.cornerRadius = 4
-        }
-        
-        gooutEarlyLeaveInfoView.kindLabel.snp.makeConstraints { make in
-            make.right.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
-        
-        gooutEarlyLeaveInfoView.nameLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(gooutEarlyLeaveInfoView.kindShowView.snp.bottom).offset(self.view.frame.height/54.13)
-        }
-        
-        gooutEarlyLeaveInfoView.numberLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(gooutEarlyLeaveInfoView.nameLabel.snp.bottom).offset(self.view.frame.height/116)
-        }
-        
-        gooutEarlyLeaveInfoView.timeLabelButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(gooutEarlyLeaveInfoView.numberLabel.snp.bottom).offset(self.view.frame.height/81.2)
-            make.height.equalToSuperview().dividedBy(6.93)
-            make.width.equalToSuperview().dividedBy(2.48)
-        }
-        
-        gooutEarlyLeaveInfoView.reasonTextView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(gooutEarlyLeaveInfoView.timeLabelButton.snp.bottom).offset(self.view.frame.height/62.46)
-            make.width.equalToSuperview().dividedBy(1.28)
-            make.height.equalToSuperview().dividedBy(4.95)
-        }
-        
-        gooutEarlyLeaveInfoView.closeButton.snp.makeConstraints { make in
-            make.centerY.equalTo(gooutEarlyLeaveInfoView.kindShowView)
-            make.right.equalToSuperview().offset(-self.view.frame.height/54.13)
-            make.height.width.equalTo(25)
-        }
-        
-        gooutEarlyLeaveInfoView.reasonTextView.showsVerticalScrollIndicator = false
-        
-    }
+
     
     //MARK: - Selectors
 
@@ -158,8 +98,7 @@ class InquiryForEachClassViewController : UIViewController{
         AddPleaseCheckYourReturnHomeTableData()
         location()
         CollectionViewAndTableViewSetting()
-        
-
+        alertAdd()
     }
     //MARK:-DataSource & Delegate
     func CollectionViewAndTableViewSetting(){
@@ -170,13 +109,13 @@ class InquiryForEachClassViewController : UIViewController{
     }
     //MARK:-addView
     func addView(){
-        view.addSubview(eachClassTitle)
         view.addSubview(requestConfirmationLabel)
         view.addSubview(requestConfirmationCollectionView)
         view.addSubview(comeBackCheck)
         view.addSubview(statusView)
         view.addSubview(homeComingTableView)
         view.addSubview(noHistory)
+        view.addSubview(eachClassTitle)
     }
     //MARK:-Location
     func location(){
@@ -218,9 +157,16 @@ class InquiryForEachClassViewController : UIViewController{
         }
         
     }
+    func alertAdd(){
+        view.addSubview(gooutEarlyLeaveInfoView)
+        gooutEarlyLeaveInfoView.snp.makeConstraints { (make) in
+            make.top.left.bottom.right.equalToSuperview()
+        }
+    }
     //MARK: - CollectionView Data Add
     func AddrequestConfirmationData(){
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "안지훈", number: 2, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 18)), reason: "마카롱"))
+        
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "이시완", number: 8, time: receivedTime.init(startClock: time.init(oclock: 13, minute: 20), finishClock: time.init(oclock: nil, minute: nil)), reason: "마카롱"))
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "임준화", number: 8, time: receivedTime.init(startClock: time.init(oclock: 11, minute: 20), finishClock: time.init(oclock: 15, minute: 24)), reason: "마카롱"))
         requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "김유진", number: 8, time: receivedTime.init(startClock: time.init(oclock: 12, minute: 20), finishClock: time.init(oclock: nil, minute: nil)), reason: "마카롱"))
@@ -267,7 +213,7 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
         cell.backgroundColor = .white
         cell.requestStatus.label.text = requestConfirmationData[indexPath.row].earlyTextType.rawValue
         cell.requestStudentName.text = requestConfirmationData[indexPath.row].name
-        cell.requestStudentClass.text = "3학년 1반 \(requestConfirmationData[indexPath.row].number)번"
+        cell.requestStudentClass.text = "\(className) \(requestConfirmationData[indexPath.row].number)번"
         //MARK:- Time
         
         
@@ -279,13 +225,39 @@ extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout
         cell.closeBtn.addTarget(self, action: #selector(CloseCollectionViewItem(sender:)), for: .touchUpInside)
         cell.btnApproval.tag = indexPath.row
         cell.btnApproval.addTarget(self, action: #selector(SaveAndCloseCollectionViewItem(sender:)), for: .touchUpInside)
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: bounds.width/3.09917, height: bounds.height/5.139240)
     }
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        gooutEarlyLeaveInfoView.requestStatus.label.text = requestConfirmationData[indexPath.row].earlyTextType.rawValue
+        gooutEarlyLeaveInfoView.nameLabel.text = requestConfirmationData[indexPath.row].name
+        gooutEarlyLeaveInfoView.numberLabel.text = "\(className) \(requestConfirmationData[indexPath.row].number)번"
+        gooutEarlyLeaveInfoView.reasonTextView.text = requestConfirmationData[indexPath.row].reason!
+        
+        if requestConfirmationData[indexPath.row].earlyTextType == GoingOutLeavingEarlyText.goingOut {
+            gooutEarlyLeaveInfoView.requestStatus.status.backgroundColor = UIColor.GoingOutEarlyLeave.GOOUT_blue
+            gooutEarlyLeaveInfoView.timeLabelButton.view.backgroundColor = .rgb(red: 243, green: 247, blue: 255)
+            gooutEarlyLeaveInfoView.timeLabelButton.time.textColor = .rgb(red: 104, green: 134, blue: 197)
+            gooutEarlyLeaveInfoView.closeButton.setImage(UIImage(named: "GOOUT_CancelBtn"), for: .normal )
+            gooutEarlyLeaveInfoView.timeLabelButton.time.text = "\(requestConfirmationData[indexPath.row].time.startClock!.oclock!):\(requestConfirmationData[indexPath.row].time.startClock!.minute!) - \(requestConfirmationData[indexPath.row].time.finishClock!.oclock!):\(requestConfirmationData[indexPath.row].time.finishClock!.minute!)"
+        }
+        else{
+            gooutEarlyLeaveInfoView.requestStatus.status.backgroundColor = UIColor.GoingOutEarlyLeave.GOOUT_red
+            gooutEarlyLeaveInfoView.timeLabelButton.view.backgroundColor = .rgb(red: 255, green: 243, blue: 243)
+            gooutEarlyLeaveInfoView.timeLabelButton.time.textColor = .rgb(red: 255, green: 107, blue: 107)
+            gooutEarlyLeaveInfoView.closeButton.tintColor = .rgb(red: 255, green: 107, blue: 107)
+            gooutEarlyLeaveInfoView.closeButton.setImage(UIImage(named: "GOOUT_Cancel"), for: .normal )
+            gooutEarlyLeaveInfoView.timeLabelButton.time.text = "\(requestConfirmationData[indexPath.row].time.startClock!.oclock!):\(requestConfirmationData[indexPath.row].time.startClock!.minute!) ~"
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.gooutEarlyLeaveInfoView.alpha = 1
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return bounds.height/54.133
     }
@@ -306,19 +278,15 @@ extension InquiryForEachClassViewController : UITableViewDelegate,UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: PleaseCheckYourReturnHomeTableCell.identifier,for: indexPath) as! PleaseCheckYourReturnHomeTableCell
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
-        cell.attendanceButton.backgroundColor = UIColor.rgb(red: 104, green: 134, blue: 197)
         cell.selectionStyle = .none
         cell.requestStatus.backgroundColor = pleaseCheckYourReturnHomeTableData[indexPath.row].viewColor
         cell.requestStudentName.text = pleaseCheckYourReturnHomeTableData[indexPath.row].name
             cell.requestStudentClass.text = "3학년 1반 \(pleaseCheckYourReturnHomeTableData[indexPath.row].number!)반"
         //MARK:- Time
         cell.earlyLeaveTimeToGoOutLabel.time.text = "\(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.startClock!.oclock!):\(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.startClock!.minute!) - \(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.finishClock!.oclock!):\(pleaseCheckYourReturnHomeTableData[indexPath.row].time!.finishClock!.oclock!)"
-        cell.earlyLeaveTimeToGoOutLabel.time.textColor = .rgb(red: 104, green: 104, blue: 197)
-
-        cell.attendanceButton.setTitle(pleaseCheckYourReturnHomeTableData[indexPath.row].btnTitle.rawValue, for: .normal)
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return bounds.height/11.123
     }
