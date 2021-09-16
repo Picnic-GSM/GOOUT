@@ -251,10 +251,19 @@ class AddViewController: UIViewController{
         }else{
             print("??")
             Service.getUser(Auth.auth().currentUser!.uid) {[self] um in
-                print(um)
+                
+                var start = selectedGooutStartTimeLabel.text!
+                start = start.substring(from: start.firstIndex(of: "(")!)
+                var end = selectedGooutEndTimeLabel.text!
+                end = end.substring(from: end.firstIndex(of: "(")!)
+                if kind == "조퇴"{
+                    end = ""
+                }
+                
                 Firestore.firestore().collection("goout").addDocument(data: ["kind":self.kind,
-                                                                             "startTime":"\(gooutStartTimeDropDown.selectedItem ?? "")",
-                                                                             "endTime":"\(gooutEndTimeDropDown.selectedItem ?? "")",
+                                                                             "startTime":"\(start)",
+                                                                             "endTime":"\(end)",
+                                                                             "grade":um.grade,
                                                                              "reason":reasonTextView.text ?? "",
                                                                              "name":um.name,
                                                                              "status":0,

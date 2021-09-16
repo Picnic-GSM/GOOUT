@@ -179,7 +179,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             make.top.equalTo(passwordContainer.snp.bottom).offset(self.view.frame.height/24.61)
             make.left.equalTo(emailContainer)
         }
-        
+        nicknameContainer.addSubview(nicknameContainer.label)
+        nicknameContainer.addSubview(nicknameContainer.textField)
+        nicknameContainer.addSubview(nicknameContainer.line)
+        nicknameContainer.nickTextFieldSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
         nicknameContainer.snp.makeConstraints {
             $0.width.height.equalTo(emailContainer)
             $0.top.equalTo(checkPasswordContainer.snp.bottom).offset(self.view.frame.height/24.61)

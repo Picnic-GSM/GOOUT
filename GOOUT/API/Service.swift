@@ -11,13 +11,19 @@ import Firebase
 class Service{
     static func getUser(_ uid: String,completion: @escaping(userModel) -> Void){
         let db = Firestore.firestore()
-        db.collection("users").document(uid).getDocument { snapshot, err in
+        db.collection("users").whereField("uid", isEqualTo: uid).getDocuments{ snapshot, err in
             if let err = err {
                 print(err.localizedDescription)
                 return
             }
-            let model = userModel(dict: snapshot!.data()!)
+            let model = userModel(dict: snapshot!.documents[0].data())
             completion(model)
         }
+        
+        
+    }
+    
+    static func getByGrade(completion: @escaping(gradeModel) -> Void){
+        
     }
 }

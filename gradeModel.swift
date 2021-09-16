@@ -11,6 +11,7 @@ struct gradeModel {
     var name: String
     var status: Int
     var kind: String
+    var grade: Int
     var classNumber: String
     var startTime: String
     var endTime: String
@@ -19,6 +20,7 @@ struct gradeModel {
         self.name = dict["name"] as? String ?? ""
         self.status = dict["status"] as? Int ?? 1
         self.kind = dict["kind"] as? String ?? ""
+        self.grade = dict["grade"] as? Int ?? 3
         self.classNumber = dict["classNumber"] as? String ?? ""
         self.startTime = dict["startTime"] as? String ?? ""
         self.endTime = dict["endTime"] as? String ?? ""

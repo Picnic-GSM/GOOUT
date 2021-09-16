@@ -424,24 +424,32 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         if self.grade == 0 || self.class == 0 || self.s_num == 0{
             return
         }
+        do{
+            try Auth.auth().signOut()
+        }catch{
+            print("dfzd")
+        }
         print( model )
         Auth.auth().createUser(withEmail: model.email, password: model.password) { res, err in
-            print(res)
-            print(err?.localizedDescription)
+            
+            Auth.auth().signIn(withEmail: model.email, password: model.password)
+            
+            let mod: [String:Any] = ["email":model.email,
+                         "password":model.password,
+                         "name":model.name,
+                         "grade":self.grade,
+                         "class":self.class,
+                         "s_number":self.s_num,
+                         "uid":Auth.auth().currentUser!.uid]
+            
+            Firestore.firestore().collection("users").addDocument(data: mod)
+            
+            self.navigationController?.pushViewController(SigninViewController(), animated: true)
         }
-        Auth.auth().signIn(withEmail: model.email, password: model.password)
-        let mod: [String:Any] = ["email":model.email,
-                     "password":model.password,
-                     "name":model.name,
-                     "grade":self.grade,
-                     "class":self.class,
-                     "s_number":self.s_num,
-                     "uid":Auth.auth().currentUser!.uid]
         
-        Firestore.firestore().collection("users").addDocument(data: mod)
-        self.navigationController?.pushViewController(SigninViewController(), animated: true)
+        
         
 
-//
+
     }
 }
