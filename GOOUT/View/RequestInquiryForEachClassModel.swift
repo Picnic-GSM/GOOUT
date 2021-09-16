@@ -29,10 +29,14 @@ struct GoingOutEarlyLeaveCellModel{
     let time : receivedTime
     let reason : String?
 }
+
+
 struct receivedTime{
     let startClock : time?
     let finishClock : time?
 }
+
+
 struct time{
     let oclock : Int?
     let minute : Int?

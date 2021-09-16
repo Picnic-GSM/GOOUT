@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import Firebase
 import Then
 
 class EnterDistributioncode: UIViewController {
@@ -77,8 +78,20 @@ class EnterDistributioncode: UIViewController {
     }
 
     @objc func btnClicked(sender:UIButton){
-        let nextVC = MainViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        if writeCodeTextfield.tf.text == "uiDQ7XepMSdVtI6wBjigoLoo9Cg2"{
+            Auth.auth().signIn(withEmail: "teacher@teacher.com", password: "teacherBBBBAAAAEEEEKKKK") { res, err in
+                if let err = err{
+                    print(err.localizedDescription)
+                    return
+                }
+                let nextVC = MainViewController()
+                self.navigationController?.pushViewController(nextVC, animated: true)
+            }
+        }else{
+            
+        }
+        
+        
     }
     
     func addview() {

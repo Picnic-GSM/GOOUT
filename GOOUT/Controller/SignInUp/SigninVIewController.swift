@@ -137,8 +137,19 @@ class SigninViewController: UIViewController{
     
     
     @objc func loginBtnClicked(sender:UIButton){
-       
-   
+        Auth.auth().signIn(withEmail: email, password: password){ res,err in
+            if let err = err {
+                self.invalidMessage()
+                print(err.localizedDescription)
+                return
+            }
+            print(Auth.auth().currentUser!.uid)
+            let controller = MainViewController()
+            controller.modalPresentationStyle = .fullScreen
+            
+            
+            self.present(controller, animated: true, completion: nil)
+        }
         
         
     }

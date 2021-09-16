@@ -189,8 +189,8 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.model!.s_number = indexPath.row + 1
-        print(self.model!.s_number)
+        self.s_num = indexPath.row + 1
+        print(s_num)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -321,7 +321,8 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             grade1Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
             grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
-            self.model!.grade = 1
+            self.grade = 1
+            print(grade)
         }else {
             grade1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             
@@ -335,7 +336,7 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             grade2Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
             grade1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
-            self.model!.grade = 2
+            self.grade = 2
         }else {
             grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             
@@ -349,7 +350,7 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             grade3Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
             grade1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
-            self.model!.grade = 3
+            self.grade = 3
         }else {
             grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             
@@ -364,7 +365,8 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
-            self.model!.class = 1
+            self.class = 1
+            print(self.class)
         }else {
             class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             
@@ -379,7 +381,7 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
-            self.model!.class = 2
+            self.class = 2
         }else {
             class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             
@@ -394,7 +396,7 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
-            self.model!.class = 3
+            self.class = 3
         }else {
             class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             
@@ -409,7 +411,7 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
-            self.model!.class = 4
+            self.class = 4
         }else {
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             
@@ -419,21 +421,35 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
     @objc
     func signUpButtonClicked(sender:UIButton){
         guard let model = model else { return }
-        if model.grade == 0 || model.class == 0 || model.s_number == 0{
+        if self.grade == 0 || self.class == 0 || self.s_num == 0{
             return
         }
+        do{
+            try Auth.auth().signOut()
+        }catch{
+            print("dfzd")
+        }
         print( model )
-        Auth.auth().signIn(withEmail: model.email, password: model.password)
-        let mod: [String:Any] = ["email":model.email,
-                     "password":model.password,
-                     "name":model.name,
-                     "grade":model.grade,
-                     "class":model.class,
-                     "s_number":model.s_number]
-        Firestore.firestore().collection("users").addDocument(data: mod)
+        Auth.auth().createUser(withEmail: model.email, password: model.password) { res, err in
+            
+            Auth.auth().signIn(withEmail: model.email, password: model.password)
+            
+            let mod: [String:Any] = ["email":model.email,
+                         "password":model.password,
+                         "name":model.name,
+                         "grade":self.grade,
+                         "class":self.class,
+                         "s_number":self.s_num,
+                         "uid":Auth.auth().currentUser!.uid]
+            
+            Firestore.firestore().collection("users").addDocument(data: mod)
+            
+            self.navigationController?.pushViewController(SigninViewController(), animated: true)
+        }
+        
         
         
 
-//
+
     }
 }

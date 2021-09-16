@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Firebase
 
 class MainViewController: UIViewController {
+    
+    let auth = Auth.auth()
 
     lazy var mainTabBarView = MainTabBarView()
     
@@ -23,7 +26,8 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(Auth.auth().currentUser!.uid)
+        
         layoutSetting()
     }
     
@@ -95,23 +99,35 @@ class MainViewController: UIViewController {
 
     //MARK: - addButtonClicked
     @objc func addButtonClicked(sender:UIButton){
+        if auth.currentUser!.uid == "uiDQ7XepMSdVtI6wBjigoLoo9Cg2"{
+            self.addChild(inquiryForEachClassViewController)
+            inquiryForEachClassViewController.view.frame = viewControllerBoxView.frame
+            viewControllerBoxView.addSubview(inquiryForEachClassViewController.view)
+            
+            
+            mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_AllClassInquiryButtonImage"), for: .normal)
+            mainTabBarView.addButton.setImage(UIImage(named: "GOOUT_SelectedMyClassInquiryButtonImage"), for: .normal)
+            mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_MyPageImage"), for: .normal)
+            
+            
+            
+        }else{
+            let nextVC = AddViewController()
+            self.present(nextVC, animated: true)
+        }
         // 모달 표시 = 학생일 때
 //        let nextVC = AddViewController()
 //        present(nextVC, animated: true)
         
 
         // inquiryForEachClassViewController 표시 = 선생님일 때
-        self.addChild(inquiryForEachClassViewController)
-        inquiryForEachClassViewController.view.frame = viewControllerBoxView.frame
-        viewControllerBoxView.addSubview(inquiryForEachClassViewController.view)
         
-        mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_AllClassInquiryButtonImage"), for: .normal)
-        mainTabBarView.addButton.setImage(UIImage(named: "GOOUT_SelectedMyClassInquiryButtonImage"), for: .normal)
-        mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_MyPageImage"), for: .normal)
 
     }
     
     @objc func allClassInquiryButtonClicked(sender:UIButton){
+        
+        
         // inquiryByGradeViewController 표시
         self.addChild(inquiryByGradeViewController)
         

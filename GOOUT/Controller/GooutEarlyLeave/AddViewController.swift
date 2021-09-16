@@ -9,10 +9,12 @@ import UIKit
 import Then
 import SnapKit
 import DropDown
+import Firebase
 import QuartzCore
  
 class AddViewController: UIViewController{
     // MARK: - property
+    var kind = "외출"
     lazy var titleView = UIView().then{
         $0.backgroundColor = UIColor(red: 104/255, green: 134/255, blue: 197/255, alpha: 1)
     }
@@ -81,6 +83,7 @@ class AddViewController: UIViewController{
         $0.offsetFromWindowBottom = 120
         $0.bottomOffset = CGPoint(x: 0, y: self.view.frame.height/20)
         $0.textFont = UIFont(name: "AppleSDGothicNeo-Light", size: 10)!
+        
         $0.backgroundColor = UIColor.white
         $0.cornerRadius = 7
         $0.cellHeight = self.view.frame.height/26
@@ -188,7 +191,7 @@ class AddViewController: UIViewController{
             earlyLeaveButton.setImage(UIImage(named: "GOOUT_CheckButtonImage"), for: .normal)
             earlyLeaveButton.isSelected.toggle()
             gooutButton.isSelected.toggle()
-            
+            self.kind = "외출"
             UIView.animate(withDuration: 0.5) {
                 self.gooutAnimation(flag: 1)
                 
@@ -218,7 +221,7 @@ class AddViewController: UIViewController{
             gooutButton.setImage(UIImage(named: "GOOUT_CheckButtonImage"), for: .normal)
             gooutButton.isSelected.toggle()
             earlyLeaveButton.isSelected.toggle()
-
+            self.kind = "조퇴"
             UIView.animate(withDuration: 0.5) {
 
                 self.gooutTimeLabel.text = "조퇴시간"
@@ -246,13 +249,40 @@ class AddViewController: UIViewController{
         if reasonTextView.text == "사유를 입력해주세요." || reasonTextView.text == ""{
             shakeView(reasonTextView)
         }else{
+            print("??")
+            Service.getUser(Auth.auth().currentUser!.uid) {[self] um in
+                
+                var start = selectedGooutStartTimeLabel.text!
+                start = start.substring(from: start.firstIndex(of: "(")!)
+                start = start.trimmingCharacters(in: ["(",")"])
+                
+                
+                var end = selectedGooutEndTimeLabel.text!
+                end = end.substring(from: end.firstIndex(of: "(")!)
+                end = end.trimmingCharacters(in: ["(",")"])
+                if kind == "조퇴"{
+                    end = ""
+                }
+                
+                Firestore.firestore().collection("goout").addDocument(data: ["kind":self.kind,
+                                                                             "startTime":"\(start)",
+                                                                             "endTime":"\(end)",
+                                                                             "grade":um.grade,
+                                                                             "reason":reasonTextView.text ?? "",
+                                                                             "name":um.name,
+                                                                             "status":0,
+                                                                             "access":false,
+                                                                             "classNumber":"\(um.grade)학년 \(um.class)반 \(um.s_number)번"])
+                
+            }
             dismiss(animated: true, completion: nil)
         }
         
-        print(selectedLabel)
-        print(reasonTextView.text as Any)
-        print(selectedGooutStartTimeLabel.text as Any)
-        print(selectedGooutEndTimeLabel.text as Any)
+        // MARK: - sdasd
+        
+        
+        
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){

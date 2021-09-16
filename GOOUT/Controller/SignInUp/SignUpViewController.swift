@@ -23,6 +23,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     lazy var emailContainer = emailTextFieldView()
     
+    private let nicknameContainer = nickTextFieldView()
+    
     
     lazy var passwordContainer = emailTextFieldView().then {
         $0.label.text = "Password"
@@ -130,6 +132,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(passwordExampleLabel)
         self.view.addSubview(signUpButton)
         self.view.addSubview(loginButton)
+        self.view.addSubview(nicknameContainer)
     }
 
 //  MARK: - location
@@ -176,11 +179,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             make.top.equalTo(passwordContainer.snp.bottom).offset(self.view.frame.height/24.61)
             make.left.equalTo(emailContainer)
         }
+        nicknameContainer.addSubview(nicknameContainer.label)
+        nicknameContainer.addSubview(nicknameContainer.textField)
+        nicknameContainer.addSubview(nicknameContainer.line)
+        nicknameContainer.nickTextFieldSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
+        nicknameContainer.snp.makeConstraints {
+            $0.width.height.equalTo(emailContainer)
+            $0.top.equalTo(checkPasswordContainer.snp.bottom).offset(self.view.frame.height/24.61)
+            $0.left.equalTo(emailContainer)
+        }
         
         signUpButton.snp.makeConstraints { make in
             make.width.equalToSuperview().dividedBy(1.5)
             make.height.equalToSuperview().dividedBy(21.37)
-            make.top.equalTo(checkPasswordContainer.snp.bottom).offset(self.view.frame.height/15.32)
+            make.top.equalTo(nicknameContainer.snp.bottom).offset(self.view.frame.height/15.32)
             make.centerX.equalToSuperview()
         }
         
@@ -284,7 +296,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @objc
     func clickSignUpButton(_ sender: UIButton) {
         updateSignUp()
-        let model: userModel = userModel(name: "", email: emailContainer.textField.text ?? "", password: passwordContainer.textField.text ?? "", grade: 0, class: 0, s_number: 0, uid: "\(UUID.init())")
+        let dict: [String:Any] = [
+            "name":nicknameContainer.textField.text ?? "",
+                    "email":emailContainer.textField.text ?? "",
+                    "password":passwordContainer.textField.text ?? "",
+                    "grade":0, "class":0, "s_number":0, "uid":""]
+        print(dict["name"])
+        let model: userModel = userModel(dict: dict)
         
         let controller = InformationViewController()
         controller.model = model
