@@ -10,6 +10,7 @@ import SnapKit
 import Then
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
+
     lazy var signUpLabel = UILabel().then {
         $0.text = "Sign up"
         $0.dynamicFont(fontSize: 30, currentFontName: "FugazOne-Regular")
@@ -283,12 +284,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @objc
     func clickSignUpButton(_ sender: UIButton) {
         updateSignUp()
-        let model: studentModel = studentModel(
-            name: "", // ?
-            email: emailContainer.textField.text!,
-            password: passwordContainer.textField.text!,
-            grade: 0, class: 0, s_number: 0)
-        print(model)
+        let model: userModel = userModel(name: "", email: emailContainer.textField.text ?? "", password: passwordContainer.textField.text ?? "", grade: 0, class: 0, s_number: 0, uid: "\(UUID.init())")
         
         let controller = InformationViewController()
         controller.model = model
