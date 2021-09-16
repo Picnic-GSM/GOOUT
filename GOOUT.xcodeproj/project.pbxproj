@@ -21,11 +21,6 @@
 		6AAEE61E26F174D200712441 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAEE61D26F174D200712441 /* MyPageViewController.swift */; };
 		6AB0369726DC58A100D1F80E /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB0369626DC58A100D1F80E /* MainTabBarView.swift */; };
 		6AB0369B26DCBB2700D1F80E /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB0369A26DCBB2700D1F80E /* AddViewController.swift */; };
-		6AB0369D26DCCF1600D1F80E /* FugazOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB0369C26DCCF1200D1F80E /* FugazOne-Regular.ttf */; };
-		B83AE46926EA2A3200ED0C9B /* emailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83AE46826EA2A3200ED0C9B /* emailTextFieldView.swift */; };
-		B87DA40C26E0C9B2005A4DAB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */; };
-		B84CEB1926E8FC200074A1F6 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */; };
-		B871B6DA26F0DC7E003E9775 /* numberCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871B6D926F0DC7E003E9775 /* numberCellView.swift */; };
 		A89BFE8C26EA1AB6003627BD /* getAuthCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89BFE8B26EA1AB6003627BD /* getAuthCodeView.swift */; };
 		A89BFE9026EA1BB2003627BD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89BFE8F26EA1BB2003627BD /* TestViewController.swift */; };
 		AA478B5426EF742D009C628B /* OutListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA478B5326EF742D009C628B /* OutListHeaderView.swift */; };
@@ -34,9 +29,8 @@
 		AAD95ABB26EB2A54004E4580 /* AnyStudentDoNotGoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95ABA26EB2A54004E4580 /* AnyStudentDoNotGoView.swift */; };
 		AAD95ADD26EC2BF7004E4580 /* OutListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95ADC26EC2BF7004E4580 /* OutListTableCell.swift */; };
 		AAD95ADF26EC453F004E4580 /* EarlyLeaveListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95ADE26EC453F004E4580 /* EarlyLeaveListTableCell.swift */; };
-		B84CEB1926E8FC200074A1F6 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */; };
+		B83AE46926EA2A3200ED0C9B /* emailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83AE46826EA2A3200ED0C9B /* emailTextFieldView.swift */; };
 		B85521CD26E0E6D700F32432 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */; };
-		B871B6DA26F0DC7E003E9775 /* numberCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871B6D926F0DC7E003E9775 /* numberCellView.swift */; };
 		B87DA40C26E0C9B2005A4DAB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */; };
 		C895AA5D26EF29BF003392F2 /* WriteCodeTextfieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C895AA5C26EF29BF003392F2 /* WriteCodeTextfieldView.swift */; };
 		C8E8FBB426E783990064D362 /* EnterDistributioncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E8FBB326E783990064D362 /* EnterDistributioncode.swift */; };
@@ -70,10 +64,6 @@
 		6AB0369626DC58A100D1F80E /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		6AB0369A26DCBB2700D1F80E /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		6AB0369C26DCCF1200D1F80E /* FugazOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FugazOne-Regular.ttf"; sourceTree = "<group>"; };
-		B83AE46826EA2A3200ED0C9B /* emailTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emailTextFieldView.swift; sourceTree = "<group>"; };
-		B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
-		B871B6D926F0DC7E003E9775 /* numberCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = numberCellView.swift; sourceTree = "<group>"; };
 		A89BFE8B26EA1AB6003627BD /* getAuthCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getAuthCodeView.swift; sourceTree = "<group>"; };
 		A89BFE8F26EA1BB2003627BD /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		AA478B5326EF742D009C628B /* OutListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutListHeaderView.swift; sourceTree = "<group>"; };
@@ -82,9 +72,10 @@
 		AAD95ABA26EB2A54004E4580 /* AnyStudentDoNotGoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyStudentDoNotGoView.swift; sourceTree = "<group>"; };
 		AAD95ADC26EC2BF7004E4580 /* OutListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutListTableCell.swift; sourceTree = "<group>"; };
 		AAD95ADE26EC453F004E4580 /* EarlyLeaveListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaveListTableCell.swift; sourceTree = "<group>"; };
+		B83AE46826EA2A3200ED0C9B /* emailTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emailTextFieldView.swift; sourceTree = "<group>"; };
 		B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
-		B871B6D926F0DC7E003E9775 /* numberCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = numberCellView.swift; sourceTree = "<group>"; };
+		B871B6D926F0DC7E003E9775 /* Font */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Font; path = ../Font; sourceTree = "<group>"; };
 		B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C895AA5C26EF29BF003392F2 /* WriteCodeTextfieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCodeTextfieldView.swift; sourceTree = "<group>"; };
 		C8E8FBB326E783990064D362 /* EnterDistributioncode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterDistributioncode.swift; sourceTree = "<group>"; };
@@ -142,10 +133,8 @@
 		6A879A5326F2BBDC00B4D7BA /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				6A03994326F094AC00D12952 /* MainViewController.swift */,
 				6AA3A56326D8B4FA00CA03F3 /* InquiryByGradeViewController.swift */,
 				6A03994326F094AC00D12952 /* MainViewController.swift */,
-
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -153,8 +142,8 @@
 		6A879A5426F2BBE700B4D7BA /* GooutEarlyLeave */ = {
 			isa = PBXGroup;
 			children = (
-				6AB0369A26DCBB2700D1F80E /* AddViewController.swift */,
 				EEFD615526DDA1690032EDBF /* InquiryForEachClassViewController.swift */,
+				6AB0369A26DCBB2700D1F80E /* AddViewController.swift */,
 			);
 			path = GooutEarlyLeave;
 			sourceTree = "<group>";
@@ -170,11 +159,9 @@
 		6A879A5626F2BC1000B4D7BA /* FindPassward */ = {
 			isa = PBXGroup;
 			children = (
-				A89BFE8F26EA1BB2003627BD /* TestViewController.swift */,
-
-				C8E905E026E0ECBD002427B3 /* ShowPasswordViewController.swift */,
-				A89BFE8F26EA1BB2003627BD /* TestViewController.swift */,
 				B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */,
+				A89BFE8F26EA1BB2003627BD /* TestViewController.swift */,
+				C8E905E026E0ECBD002427B3 /* ShowPasswordViewController.swift */,
 			);
 			path = FindPassward;
 			sourceTree = "<group>";
@@ -182,10 +169,10 @@
 		6A879A5726F2BC2C00B4D7BA /* SignInUp */ = {
 			isa = PBXGroup;
 			children = (
-				B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */,
-				46F570A926DCCD60005F81AE /* SigninVIewController.swift */,
-				C8E8FBB326E783990064D362 /* EnterDistributioncode.swift */,
 				B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */,
+				46F570A926DCCD60005F81AE /* SigninVIewController.swift */,
+				B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */,
+				C8E8FBB326E783990064D362 /* EnterDistributioncode.swift */,
 			);
 			path = SignInUp;
 			sourceTree = "<group>";
@@ -233,16 +220,6 @@
 				6A879A5526F2BBF100B4D7BA /* MyPage */,
 				6A879A5426F2BBE700B4D7BA /* GooutEarlyLeave */,
 				6A879A5326F2BBDC00B4D7BA /* Main */,
-				6AA3A56326D8B4FA00CA03F3 /* InquiryByGradeViewController.swift */,
-				6AB0369826DC9C5200D1F80E /* MyClassInquiryViewController.swift */,
-				EEFD615526DDA1690032EDBF /* InquiryForEachClassViewController.swift */,
-				46F570A926DCCD60005F81AE /* SigninVIewController.swift */,
-				6AB0369A26DCBB2700D1F80E /* AddViewController.swift */,
-				A89BFE8F26EA1BB2003627BD /* TestViewController.swift */,
-				C8E905E026E0ECBD002427B3 /* ShowPasswordViewController.swift */,
-				B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */,
-				B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */,
-				6A03994326F094AC00D12952 /* MainViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -253,7 +230,7 @@
 				EEFD615726DE06D90032EDBF /* Cell */,
 				6AB0369626DC58A100D1F80E /* MainTabBarView.swift */,
 				B83AE46826EA2A3200ED0C9B /* emailTextFieldView.swift */,
-				B871B6D926F0DC7E003E9775 /* numberCellView.swift */,
+				B871B6D926F0DC7E003E9775 /* Font */,
 				C895AA5C26EF29BF003392F2 /* WriteCodeTextfieldView.swift */,
 				AAD95AB826EB1DA2004E4580 /* StateExplainView.swift */,
 				AAD95ABA26EB2A54004E4580 /* AnyStudentDoNotGoView.swift */,
@@ -429,7 +406,6 @@
 				6AB0369B26DCBB2700D1F80E /* AddViewController.swift in Sources */,
 				6AA3A56026D8B4FA00CA03F3 /* AppDelegate.swift in Sources */,
 				46F570AA26DCCD60005F81AE /* SigninVIewController.swift in Sources */,
-				6AB0369926DC9C5200D1F80E /* MyClassInquiryViewController.swift in Sources */,
 				B83AE46926EA2A3200ED0C9B /* emailTextFieldView.swift in Sources */,
 				C895AA5D26EF29BF003392F2 /* WriteCodeTextfieldView.swift in Sources */,
 				AAD95ADD26EC2BF7004E4580 /* OutListTableCell.swift in Sources */,
