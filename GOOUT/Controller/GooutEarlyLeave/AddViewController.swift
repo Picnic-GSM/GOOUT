@@ -254,8 +254,12 @@ class AddViewController: UIViewController{
                 
                 var start = selectedGooutStartTimeLabel.text!
                 start = start.substring(from: start.firstIndex(of: "(")!)
+                start = start.trimmingCharacters(in: ["(",")"])
+                
+                
                 var end = selectedGooutEndTimeLabel.text!
                 end = end.substring(from: end.firstIndex(of: "(")!)
+                end = end.trimmingCharacters(in: ["(",")"])
                 if kind == "조퇴"{
                     end = ""
                 }
@@ -267,6 +271,7 @@ class AddViewController: UIViewController{
                                                                              "reason":reasonTextView.text ?? "",
                                                                              "name":um.name,
                                                                              "status":0,
+                                                                             "access":false,
                                                                              "classNumber":"\(um.grade)학년 \(um.class)반 \(um.s_number)번"])
                 
             }

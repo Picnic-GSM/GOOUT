@@ -179,6 +179,10 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         earlyLeaveListHeader.clipsToBounds = true
     }
     
+    func fetchGrade(){
+        
+    }
+    
     func location(){
         dropLabelBtn.snp.makeConstraints { make in
             make.left.equalTo(self.view.frame.width/12.5)
