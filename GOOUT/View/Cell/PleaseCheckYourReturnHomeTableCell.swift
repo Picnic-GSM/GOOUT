@@ -40,6 +40,7 @@ class PleaseCheckYourReturnHomeTableCell: UITableViewCell {
         $0.setTitle("귀가 완료", for: .normal)
     }
 
+ 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(cellView)

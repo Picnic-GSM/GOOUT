@@ -62,7 +62,9 @@ class InquiryForEachClassViewController : UIViewController{
         return view
     }()
 
-    let gooutEarlyLeaveInfoView = GooutEarlyLeaceInfoAlertView()
+    let gooutEarlyLeaveInfoView = GooutEarlyLeaceInfoAlertView().then{
+        $0.alpha = 0
+    }
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
