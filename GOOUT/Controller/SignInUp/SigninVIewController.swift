@@ -169,7 +169,7 @@ class SigninViewController: UIViewController{
                 NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
                 NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
                 let nextVC = MainViewController()
-                nextVC.token = token
+                // use token
                 nextVC.modalPresentationStyle = .fullScreen
                 self.present(nextVC, animated: true, completion: nil)
                 break

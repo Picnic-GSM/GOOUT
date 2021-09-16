@@ -8,7 +8,6 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    var token: String? = ""
 
     lazy var mainTabBarView = MainTabBarView()
     
