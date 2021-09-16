@@ -8,13 +8,11 @@
 import UIKit
 import SnapKit
 import Then
+import Alamofire
 
 class InformationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     var model: studentModel?
     
-    var grade: Int = 0
-    var `class`: Int = 0
-    var s_num: Int = 0
     
     lazy var numList:  [String] = ["1번", "2번", "3번", "4번", "5번", "6번", "7번", "8번", "9번", "10번", "11번", "12번", "13번", "14번", "15번", "16번", "17번", "18번", "19번", "20번"]
     
@@ -186,6 +184,11 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         numList.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.model!.s_number = indexPath.row + 1
+        print(self.model!.s_number)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: numberCellView.identifier, for: indexPath) as? numberCellView else {
             return UICollectionViewCell()
@@ -314,8 +317,10 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             grade1Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
             grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.model!.grade = 1
         }else {
             grade1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
@@ -326,8 +331,10 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             grade2Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
             grade1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.model!.grade = 2
         }else {
             grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
@@ -338,8 +345,10 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             grade3Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
             grade1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.model!.grade = 3
         }else {
             grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
@@ -351,8 +360,10 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.model!.class = 1
         }else {
             class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
@@ -364,8 +375,10 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.model!.class = 2
         }else {
             class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
@@ -377,8 +390,10 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.model!.class = 3
         }else {
             class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
@@ -390,14 +405,53 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.model!.class = 4
         }else {
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
     @objc
     func signUpButtonClicked(sender:UIButton){
-        let nextVC = SigninViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        guard let model = model else { return }
+        if model.grade == 0 || model.class == 0 || model.s_number == 0{
+            return
+        }
+        let param: Parameters = [
+            "name":model.name,
+            "email":model.email,
+            "password":model.password,
+            "grade":model.grade,
+            "class":model.class,
+            "s_number":model.s_number
+        ]
+        print(param)
+        
+        API.shared.request(url: "/student/register", method: .post, parameter: param) { result in
+            switch result{
+            case .success(let data):
+                print(data)
+                let nextVC = SigninViewController()
+                self.navigationController?.pushViewController(nextVC, animated: true)
+                break
+            case .requsestError(let err):
+                print(err)
+                break
+            case .invalidURL:
+                print("invalidURL")
+                break
+            case .authorityError:
+                print("authotiryErr")
+                break
+            case .networkError:
+                print("networkErr")
+                break
+            case .tokenError:
+                print("tokenEr")
+                break
+            }
+        }
+        
     }
 }

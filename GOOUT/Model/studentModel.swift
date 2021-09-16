@@ -8,10 +8,11 @@
 import Foundation
 
 struct studentModel: Codable{
-    let name: String
-    let email: String
-    let password: String
-    let grade: Int
-    let `class`: Int
-    let s_number: Int
+    var name: String
+    var email: String
+    var password: String
+    var grade: Int
+    var `class`: Int
+    var s_number: Int
+    var token: String = ""
 }
