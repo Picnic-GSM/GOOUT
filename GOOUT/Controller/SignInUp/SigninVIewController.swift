@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import Alamofire
 
 class SigninViewController: UIViewController{
     // MARK: - Properties
@@ -133,11 +134,43 @@ class SigninViewController: UIViewController{
     }
     
     @objc func loginBtnClicked(sender:UIButton){
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        let nextVC = MainViewController()
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: true, completion: nil)
+        let param: Parameters = [
+            "email":email,
+            "password":password
+        ]
+        
+        API.shared.request(url: "/login", method: .post, parameter: param) { result in
+            switch result{
+            
+            case .success(let data):
+                NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+                NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+                let user = try? JSONDecoder().decode(studentModel.self, from: data as! Data)
+                print(user!)
+                
+                let nextVC = MainViewController()                
+                nextVC.modalPresentationStyle = .fullScreen
+                self.present(nextVC, animated: true, completion: nil)
+                break
+            case .invalidURL:
+                print("invalidURL")
+                break
+            case .requsestError(let err):
+                print(err)
+                break
+            case .networkError:
+                print("networkErr")
+                break
+            case .tokenError:
+                print("TokenErr")
+                break
+            case .authorityError:
+                print("authorityErr")
+                break
+            }
+        }
+        
+        
     }
     
     @objc func findPasswordButtonClicked(sender:UIButton){
