@@ -8,9 +8,12 @@
 import UIKit
 import SnapKit
 import Then
+import Firebase
 
 class InquiryForEachClassViewController : UIViewController{
     //MARK: - Properties
+    private var accessAgree: [gradeModel] = []
+    
     private var requestConfirmationData : [GoingOutEarlyLeaveCellModel] = []
 
     private var pleaseCheckYourReturnHomeTableData : [FinishedGoingHome] = []
@@ -19,7 +22,7 @@ class InquiryForEachClassViewController : UIViewController{
     let className : String = "3학년 1반"
     private let eachClassTitle = UILabel().then{
         $0.textColor = UIColor.rgb(red: 104, green: 134, blue: 197)
-        $0.text = "2-1"
+        $0.text = ""
         $0.dynamicFont(fontSize: 25, currentFontName: "FugazOne-Regular")
     }
     private let requestConfirmationLabel = UILabel().then{
@@ -75,6 +78,11 @@ class InquiryForEachClassViewController : UIViewController{
         requestConfirmationCollectionView.contentInset = UIEdgeInsets(top: 0, left: bounds.height/35.30434782, bottom: 0, right: bounds.height/35.30434782)
         homeComingTableView.automaticallyAdjustsScrollIndicatorInsets = false
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchAccessUser()
     }
 
     
@@ -165,14 +173,34 @@ class InquiryForEachClassViewController : UIViewController{
     }
     //MARK: - CollectionView Data Add
     func AddrequestConfirmationData(){
-        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "안지훈", number: 2, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 18)), reason: "마카롱"))
-        
-        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "이시완", number: 8, time: receivedTime.init(startClock: time.init(oclock: 13, minute: 20), finishClock: time.init(oclock: nil, minute: nil)), reason: "마카롱"))
-        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "임준화", number: 8, time: receivedTime.init(startClock: time.init(oclock: 11, minute: 20), finishClock: time.init(oclock: 15, minute: 24)), reason: "마카롱"))
-        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "김유진", number: 8, time: receivedTime.init(startClock: time.init(oclock: 12, minute: 20), finishClock: time.init(oclock: nil, minute: nil)), reason: "마카롱"))
+//        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "안지훈", number: 2, time: receivedTime.init(startClock: time.init(oclock: 10, minute: 20), finishClock: time.init(oclock: 15, minute: 18)), reason: "마카롱"))
+//
+//        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "이시완", number: 8, time: receivedTime.init(startClock: time.init(oclock: 13, minute: 20), finishClock: time.init(oclock: nil, minute: nil)), reason: "마카롱"))
+//        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.goingOut, name: "임준화", number: 8, time: receivedTime.init(startClock: time.init(oclock: 11, minute: 20), finishClock: time.init(oclock: 15, minute: 24)), reason: "마카롱"))
+//        requestConfirmationData.append(GoingOutEarlyLeaveCellModel.init( earlyTextType: GoingOutLeavingEarlyText.leavingEarly, name: "김유진", number: 8, time: receivedTime.init(startClock: time.init(oclock: 12, minute: 20), finishClock: time.init(oclock: nil, minute: nil)), reason: "마카롱"))
         
         
     }
+    func fetchAccessUser(){
+        print("debug")
+        let db = Firestore.firestore()
+        accessAgree = []
+        db.collection("goout").whereField("access", isEqualTo: false).addSnapshotListener { snapshot, err in
+            
+            if let err = err{
+                print(err.localizedDescription)
+                return
+            }
+            snapshot?.documents.forEach({ document in
+                let data = document.data()
+                print(data)
+                let model = gradeModel(dict: data)
+                self.accessAgree.append(model)
+            })
+            self.requestConfirmationCollectionView.reloadData()
+        }
+    }
+    
     
     //MARK: - TableView Data add
     func AddPleaseCheckYourReturnHomeTableData(){
@@ -189,37 +217,38 @@ class InquiryForEachClassViewController : UIViewController{
 extension InquiryForEachClassViewController : UICollectionViewDelegateFlowLayout,UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return requestConfirmationData.count
+        return accessAgree.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requestConfirmationCell.identifier, for: indexPath) as! requestConfirmationCell
         //MARK: - Cell Setting
-        if requestConfirmationData[indexPath.row].earlyTextType == GoingOutLeavingEarlyText.goingOut {
+        if accessAgree[indexPath.row].kind == "외출" {
             cell.layer.borderColor = UIColor.rgb(red: 211, green: 222, blue: 244).cgColor
             cell.requestStatus.status.backgroundColor = UIColor.GoingOutEarlyLeave.GOOUT_blue
             cell.closeBtn.tintColor = .rgb(red: 134, green: 161, blue: 217)
-            cell.earlyLeaveTimeToGoOutLabel.time.text = "\(requestConfirmationData[indexPath.row].time.startClock!.oclock!):\(requestConfirmationData[indexPath.row].time.startClock!.minute!) - \(requestConfirmationData[indexPath.row].time.finishClock!.oclock!):\(requestConfirmationData[indexPath.row].time.finishClock!.minute!)"
+            cell.earlyLeaveTimeToGoOutLabel.time.text = "\(accessAgree[indexPath.row].startTime) - \(accessAgree[indexPath.row].endTime)"
             cell.earlyLeaveTimeToGoOutLabel.time.textColor = .rgb(red: 104, green: 134, blue: 197)
             cell.earlyLeaveTimeToGoOutLabel.view.backgroundColor = .rgb(red: 243, green: 247, blue: 255)
             cell.btnApproval.backgroundColor = .rgb(red: 134, green: 161, blue: 217)
+            
         }else if requestConfirmationData[indexPath.row].earlyTextType == GoingOutLeavingEarlyText.leavingEarly{
             cell.layer.borderColor = UIColor.rgb(red: 255, green: 221, blue: 221).cgColor
             cell.requestStatus.status.backgroundColor = UIColor.GoingOutEarlyLeave.GOOUT_red
-            cell.earlyLeaveTimeToGoOutLabel.time.text = "\(requestConfirmationData[indexPath.row].time.startClock!.oclock!):\(requestConfirmationData[indexPath.row].time.startClock!.minute!) ~"
+            cell.earlyLeaveTimeToGoOutLabel.time.text = "\(accessAgree[indexPath.row].startTime) ~"
             cell.earlyLeaveTimeToGoOutLabel.time.textColor = .rgb(red: 243, green: 131, blue: 146)
             cell.earlyLeaveTimeToGoOutLabel.view.backgroundColor = .rgb(red: 255, green: 243, blue: 243)
             cell.closeBtn.tintColor = .rgb(red: 255, green: 172, blue: 183)
             cell.btnApproval.backgroundColor = .rgb(red: 255, green: 168, blue: 179)
         }
         cell.backgroundColor = .white
-        cell.requestStatus.label.text = requestConfirmationData[indexPath.row].earlyTextType.rawValue
-        cell.requestStudentName.text = requestConfirmationData[indexPath.row].name
-        cell.requestStudentClass.text = "\(className) \(requestConfirmationData[indexPath.row].number)번"
+        cell.requestStatus.label.text = "\(accessAgree[indexPath.row].kind) 요창"
+        cell.requestStudentName.text = accessAgree[indexPath.row].name
+        cell.requestStudentClass.text = "\(accessAgree[indexPath.row].classNumber)"
         //MARK:- Time
         
         
-        cell.reason.text = requestConfirmationData[indexPath.row].reason
+        cell.reason.text = accessAgree[indexPath.row].reason
         cell.layer.borderWidth = 1
         cell.clipsToBounds = true
         cell.layer.cornerRadius = bounds.height/81.2
