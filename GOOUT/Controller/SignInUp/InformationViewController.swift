@@ -10,6 +10,11 @@ import SnapKit
 import Then
 
 class InformationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    var model: studentModel?
+    
+    var grade: Int = 0
+    var `class`: Int = 0
+    var s_num: Int = 0
     
     lazy var numList:  [String] = ["1번", "2번", "3번", "4번", "5번", "6번", "7번", "8번", "9번", "10번", "11번", "12번", "13번", "14번", "15번", "16번", "17번", "18번", "19번", "20번"]
     
