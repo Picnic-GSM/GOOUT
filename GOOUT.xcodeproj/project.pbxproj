@@ -11,6 +11,7 @@
 		46DB739B26F2ED3500640D47 /* studentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DB739A26F2ED3500640D47 /* studentModel.swift */; };
 		46DB739C26F2EDBC00640D47 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */; };
 		46DB73A226F30B5A00640D47 /* numberCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DB73A126F30B5A00640D47 /* numberCellView.swift */; };
+		46DB73A626F35C8200640D47 /* userModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DB73A526F35C8200640D47 /* userModel.swift */; };
 		46F570AA26DCCD60005F81AE /* SigninVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F570A926DCCD60005F81AE /* SigninVIewController.swift */; };
 		46F571B926E1A86A005F81AE /* FugazOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB0369C26DCCF1200D1F80E /* FugazOne-Regular.ttf */; };
 		6A03994426F094AC00D12952 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A03994326F094AC00D12952 /* MainViewController.swift */; };
@@ -55,6 +56,7 @@
 		184173D073AE8D44E55B428A /* Pods_GOOUT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GOOUT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DB739A26F2ED3500640D47 /* studentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentModel.swift; sourceTree = "<group>"; };
 		46DB73A126F30B5A00640D47 /* numberCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = numberCellView.swift; sourceTree = "<group>"; };
+		46DB73A526F35C8200640D47 /* userModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userModel.swift; sourceTree = "<group>"; };
 		46F570A926DCCD60005F81AE /* SigninVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninVIewController.swift; sourceTree = "<group>"; };
 		497700A6940CC66917DA3AE0 /* Pods-GOOUT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GOOUT.debug.xcconfig"; path = "Target Support Files/Pods-GOOUT/Pods-GOOUT.debug.xcconfig"; sourceTree = "<group>"; };
 		6A03994326F094AC00D12952 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = GOOUT/Controller/Main/MainViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				EEFD615C26DE1EAF0032EDBF /* RequestInquiryForEachClassModel.swift */,
+				46DB73A526F35C8200640D47 /* userModel.swift */,
 			);
 			name = Modal;
 			path = ..;
@@ -419,6 +422,7 @@
 			files = (
 				A89BFE8C26EA1AB6003627BD /* getAuthCodeView.swift in Sources */,
 				46DB739C26F2EDBC00640D47 /* InformationViewController.swift in Sources */,
+				46DB73A626F35C8200640D47 /* userModel.swift in Sources */,
 				B85521CD26E0E6D700F32432 /* ForgotPasswordViewController.swift in Sources */,
 				6AB0369726DC58A100D1F80E /* MainTabBarView.swift in Sources */,
 				EEFD615B26DE1A5A0032EDBF /* RequestStatus.swift in Sources */,
