@@ -239,7 +239,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-//MARK: -Update Sign up
+//MARK: - Update Sign up
     
     @objc func updateSignUp() {
         let emailPattern = "^[a-zA-Z0-9]+@gsm.hs.kr$"
@@ -251,7 +251,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
            let _ = passwordRegex?.firstMatch(in: passwordContainer.textField.text!, options: [], range: NSRange(location: 0, length: passwordContainer.textField.text!.count)),
            checkPasswordContainer.textField.text == passwordContainer.textField.text{
             print("성공")
-            signUpButton.backgroundColor = .rgba(red: 255, green: 172, blue: 183, alpha: 1)
+            let nextVC = PutInformationViewController()
+            self.navigationController?.pushViewController(nextVC, animated: true)
+//            signUpButton.backgroundColor = .rgba(red: 255, green: 172, blue: 183, alpha: 1)
 //            signUpButton.isEnabled = true
         }else{
             print("실패")

@@ -569,6 +569,6 @@ struct InquiryByGradeViewControllerRepresentable_PreviewProvider: PreviewProvide
                 .previewDisplayName(/*@START_MENU_TOKEN@*/"Preview"/*@END_MENU_TOKEN@*/)
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
         }
-        
+
     }
 } #endif
