@@ -9,6 +9,7 @@ target 'GOOUT' do
   pod 'Alamofire', '~> 5.4'
   pod 'DropDown'
   pod 'AEOTPTextField'
+  pod 'KeychainSwift', '~> 19.0'
   # Pods for GOOUT
 
 end
