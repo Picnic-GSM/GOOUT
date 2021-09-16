@@ -33,6 +33,7 @@
 		B85521CD26E0E6D700F32432 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */; };
 		B871B6DC26F3035C003E9775 /* numberCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871B6DB26F3035C003E9775 /* numberCellView.swift */; };
 		B87DA40C26E0C9B2005A4DAB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */; };
+		B8AB2C4D26F318CD00AB9C5D /* PutInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB2C4C26F318CD00AB9C5D /* PutInformationViewController.swift */; };
 		BD1049E426F2C71900AB1713 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1049E326F2C71900AB1713 /* Config.swift */; };
 		BD1049E626F2C78500AB1713 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1049E526F2C78500AB1713 /* API.swift */; };
 		C895AA5D26EF29BF003392F2 /* WriteCodeTextfieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C895AA5C26EF29BF003392F2 /* WriteCodeTextfieldView.swift */; };
@@ -76,11 +77,11 @@
 		AAD95ADC26EC2BF7004E4580 /* OutListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutListTableCell.swift; sourceTree = "<group>"; };
 		AAD95ADE26EC453F004E4580 /* EarlyLeaveListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaveListTableCell.swift; sourceTree = "<group>"; };
 		B83AE46826EA2A3200ED0C9B /* emailTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emailTextFieldView.swift; sourceTree = "<group>"; };
-		B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B871B6D926F0DC7E003E9775 /* Font */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Font; path = ../Font; sourceTree = "<group>"; };
 		B871B6DB26F3035C003E9775 /* numberCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = numberCellView.swift; sourceTree = "<group>"; };
 		B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B8AB2C4C26F318CD00AB9C5D /* PutInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutInformationViewController.swift; sourceTree = "<group>"; };
 		BD1049E326F2C71900AB1713 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		BD1049E526F2C78500AB1713 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		C895AA5C26EF29BF003392F2 /* WriteCodeTextfieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCodeTextfieldView.swift; sourceTree = "<group>"; };
@@ -177,8 +178,8 @@
 			children = (
 				B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */,
 				46F570A926DCCD60005F81AE /* SigninVIewController.swift */,
-				B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */,
 				C8E8FBB326E783990064D362 /* EnterDistributioncode.swift */,
+				B8AB2C4C26F318CD00AB9C5D /* PutInformationViewController.swift */,
 			);
 			path = SignInUp;
 			sourceTree = "<group>";
@@ -420,6 +421,7 @@
 				6A85BBA826F1BA5600151E39 /* GooutEarlyLeaveInfoView.swift in Sources */,
 				EEFD615626DDA1690032EDBF /* InquiryForEachClassViewController.swift in Sources */,
 				B87DA40C26E0C9B2005A4DAB /* SignUpViewController.swift in Sources */,
+				B8AB2C4D26F318CD00AB9C5D /* PutInformationViewController.swift in Sources */,
 				6A03994426F094AC00D12952 /* MainViewController.swift in Sources */,
 				6AB0369B26DCBB2700D1F80E /* AddViewController.swift in Sources */,
 				6AA3A56026D8B4FA00CA03F3 /* AppDelegate.swift in Sources */,

@@ -1,15 +1,15 @@
 //
-//  InformationViewController.swift
+//  PutInformationViewController.swift
 //  GOOUT
 //
-//  Created by GSM02 on 2021/09/08.
+//  Created by GSM02 on 2021/09/16.
 //
 
 import UIKit
 import SnapKit
 import Then
 
-class InformationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class PutInformationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     lazy var numList:  [String] = ["1번", "2번", "3번", "4번", "5번", "6번", "7번", "8번", "9번", "10번", "11번", "12번", "13번", "14번", "15번", "16번", "17번", "18번", "19번", "20번"]
     
@@ -21,6 +21,11 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
     
     lazy var backgroundView = UIView().then {
         $0.backgroundColor = .rgb(red: 255, green: 243, blue: 243)
+    }
+    
+    lazy var nameContainer = emailTextFieldView().then {
+        $0.label.text = "name"
+        $0.textField.placeholder = "이름을 입력하세요."
     }
     
     lazy var gradeLabel = UILabel().then {
@@ -123,19 +128,30 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         super.viewDidLoad()
         configureUI()
       }
-    
+  
+//MARK: - configure UI
     func configureUI() {
         self.view.backgroundColor = .white
+        
         addSubView()
         cornerRadius()
         location()
         shadow()
         collectionViewSetting()
+        nameContainerLayoutSetting()
+        
+        addKeyboardNotifications()
+        removeKeyboardNotifications()
+        
+        loginButton.addTarget(self, action: #selector(signUpButtonClicked(sender:)), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(signUpButtonClicked(sender:)), for: .touchUpInside)
     }
-    
+  
+// MARK: - add View
     func addSubView() {
         self.view.addSubview(informationLabel)
         self.view.addSubview(backgroundView)
+        self.view.addSubview(nameContainer)
         self.view.addSubview(gradeLabel)
         self.view.addSubview(gradeView)
         self.view.addSubview(grade1Button)
@@ -151,11 +167,9 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         self.view.addSubview(signUpButton)
         self.view.addSubview(loginButton)
         self.view.addSubview(numberCollectionView)
-
-        loginButton.addTarget(self, action: #selector(signUpButtonClicked(sender:)), for: .touchUpInside)
-        signUpButton.addTarget(self, action: #selector(signUpButtonClicked(sender:)), for: .touchUpInside)
     }
-    
+ 
+// MARK: - cornerRadius
     func cornerRadius() {
         backgroundView.layer.cornerRadius = 50
         backgroundView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -169,7 +183,8 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         
         numberCollectionView.layer.cornerRadius = 8
     }
-    
+
+// MARK: - collectionView Setting
     func collectionViewSetting(){
         numberCollectionView.register(numberCellView.self, forCellWithReuseIdentifier: numberCellView.identifier)
         
@@ -198,7 +213,8 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
     func collectionView(_collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingforSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 34, bottom: 0, right: 0)
     }
-    
+   
+// MARK: - shadow
     func shadow() {
         backgroundView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         backgroundView.layer.shadowOpacity = 1
@@ -207,6 +223,7 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         backgroundView.clipsToBounds = false
     }
     
+//MARK: - location
     func location() {
         informationLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(self.view.frame.height/7.96)
@@ -219,8 +236,15 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             make.top.equalToSuperview().offset(self.view.frame.height/4)
         }
         
+        nameContainer.snp.makeConstraints { make in
+            make.width.equalToSuperview().dividedBy(1.5)
+            make.height.equalToSuperview().dividedBy(16.24)
+            make.top.equalTo(backgroundView).offset(self.view.frame.height/10.68)
+            make.centerX.equalToSuperview()
+        }
+
         gradeLabel.snp.makeConstraints { make in
-            make.top.equalTo(backgroundView).offset(self.view.frame.height/10.83)
+            make.top.equalTo(backgroundView).offset(self.view.frame.height/5.45)
             make.left.equalToSuperview().offset(self.view.frame.width/6.05)
         }
         
@@ -230,7 +254,7 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             make.top.equalTo(gradeLabel.snp.bottom).offset(self.view.frame.height/135.33)
             make.centerX.equalToSuperview()
         }
-        
+
         grade1Button.snp.makeConstraints { make in
             make.centerY.equalTo(gradeView)
             make.left.equalTo(gradeView).offset(self.view.frame.width/11.03)
@@ -247,7 +271,7 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         }
         
         classLabel.snp.makeConstraints { make in
-            make.top.equalTo(backgroundView).offset(self.view.frame.height/5.08)
+            make.top.equalTo(gradeView.snp.bottom).offset(self.view.frame.height/33.83)
             make.left.equalTo(gradeLabel)
         }
         
@@ -278,7 +302,7 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         }
         
         numberLabel.snp.makeConstraints { make in
-            make.top.equalTo(backgroundView).offset(self.view.frame.height/3.31)
+            make.top.equalTo(classView.snp.bottom).offset(self.view.frame.height/33.83)
             make.left.equalTo(gradeLabel)
         }
         
@@ -300,6 +324,41 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             make.centerX.equalToSuperview()
         }
     }
+ 
+// MARK: - Layout Setting
+    func nameContainerLayoutSetting() {
+        nameContainer.addSubview(nameContainer.label)
+        nameContainer.addSubview(nameContainer.textField)
+        nameContainer.addSubview(nameContainer.line)
+        nameContainer.emailTextFieldSetting(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
+    }
+    
+// MARK: - Keyboard Setting
+    func addKeyboardNotifications(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    func removeKeyboardNotifications(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+   }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+         self.view.endEditing(true)
+
+   }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= self.view.frame.height/10
+        }
+    }
+      
+    @objc func keyboardWillHide(_ notification: Notification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
     
 //MARK: - Action
     @objc
@@ -392,7 +451,36 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
     
     @objc
     func signUpButtonClicked(sender:UIButton){
-        let nextVC = SigninViewController()
+        let nextVC = MainViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
+
+
+//MARK: - Preview
+
+#if DEBUG
+import SwiftUI
+struct PutInformationViewControllerRepresentable: UIViewControllerRepresentable {
+
+func updateUIViewController(_ uiView: UIViewController,context: Context) {
+        // leave this empty
+}
+    @available(iOS 13.0.0, *)
+    func makeUIViewController(context: Context) -> UIViewController{
+        PutInformationViewController()
+    }
+}
+@available(iOS 13.0, *)
+struct PutInformationViewControllerRepresentable_PreviewProvider: PreviewProvider {
+    static var previews: some View {
+        Group {
+            PutInformationViewControllerRepresentable()
+                .ignoresSafeArea()
+                .previewDisplayName(/*@START_MENU_TOKEN@*/"Preview"/*@END_MENU_TOKEN@*/)
+                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+        }
+
+    }
+} #endif
+
