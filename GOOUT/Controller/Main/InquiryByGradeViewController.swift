@@ -7,6 +7,7 @@
 
 import UIKit
 import Then
+import Firebase
 import SnapKit
 import DropDown
 
@@ -14,6 +15,9 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     
     //MARK: - Properties
     var curGrand = 0
+    
+    var outGradeOne: [gradeModel] = []
+    var outGradeTwo: [gradeModel] = []
     
     lazy var dropLabelBtn = UIButton().then {
         $0.backgroundColor = .white
@@ -53,6 +57,8 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         $0.selectionAction = { [unowned self] (index: Int, item: String) in
             gradeLabel.text = item
             self.curGrand = index+1
+            fetchGradeOne()
+            
         }
     }
     
@@ -83,15 +89,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     lazy var outCellViewColorList: [UIColor] = [UIColor.rgb(red: 255, green: 255, blue: 255), UIColor.rgb(red: 243, green: 247, blue: 255), UIColor.rgb(red: 255, green: 255, blue: 255), UIColor.rgb(red: 243, green: 247, blue: 255), UIColor.rgb(red: 255, green: 255, blue: 255), UIColor.rgb(red: 243, green: 247, blue: 255)]
     
     lazy var outStateColorList: [UIColor] = [UIColor.rgb(red: 255, green: 205, blue: 107), UIColor.rgb(red: 255, green: 107, blue: 107), UIColor.rgb(red: 156, green: 198, blue: 160), UIColor.rgb(red: 156, green: 198, blue: 160),  UIColor.rgb(red: 156, green: 198, blue: 160), UIColor.rgb(red: 156, green: 198, blue: 160)]
-    
-    lazy var outNameList: [String] = ["변웅섭", "변웅섭", "변웅섭", "변웅섭", "변웅섭", "변웅섭"]
-    
-    lazy var outGradeClassNumList: [String] = ["3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번"]
-    
-    lazy var outTimeList: [String] = ["16:30 - 18:00", "16:30 - 18:00", "16:30 - 18:00", "16:30 - 18:00", "16:30 - 18:00", "16:30 - 18:00"]
-    
-    lazy var outReasonList: [String] = ["준비물", "준비물", "준비물", "준비물", "준비물", "준비물"]
-    
+
     lazy var earlyLeaveLabel = UILabel().then {
         $0.text = "조퇴"
         $0.dynamicFont(fontSize: 20, currentFontName: "AppleSDGothicNeo-Thin")
@@ -104,11 +102,11 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     
     lazy var earlyLeaveCellViewColorList: [UIColor] = [UIColor.rgb(red: 255, green: 255, blue: 255), UIColor.rgb(red: 255, green: 243, blue: 243), UIColor.rgb(red: 255, green: 255, blue: 255), UIColor.rgb(red: 255, green: 243, blue: 243), UIColor.rgb(red: 255, green: 255, blue: 255), UIColor.rgb(red: 255, green: 243, blue: 243)]
     
-    lazy var earlyLeaveNameList: [String] = ["변웅섭", "변웅섭", "변웅섭", "변웅섭", "변웅섭", "변웅섭"]
-    
-    lazy var earlyLeaveGradeClassNumList: [String] = ["3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번"]
-    
-    lazy var earlyLeaveReasonList: [String] = ["코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상"]
+//    lazy var earlyLeaveNameList: [String] = ["변웅섭", "변웅섭", "변웅섭", "변웅섭", "변웅섭", "변웅섭"]
+//
+//    lazy var earlyLeaveGradeClassNumList: [String] = ["3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번", "3학년 1반 7번"]
+//
+//    lazy var earlyLeaveReasonList: [String] = ["코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상", "코로나 의심 증상"]
     
     lazy var outListHeader = OutListHeaderView().then {
         $0.backgroundColor = .rgb(red: 243, green: 247, blue: 255)
@@ -128,6 +126,12 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         configureUI()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchGradeOne()
+        fetchGradeTwo()
+    }
+    
     //MARK: - Helpers
     func configureUI(){
         view.backgroundColor = .white
@@ -145,6 +149,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         addView()
         cornerRadius()
         location()
+        
     }
     
     func addView(){
@@ -179,8 +184,38 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         earlyLeaveListHeader.clipsToBounds = true
     }
     
-    func fetchGrade(){
-        
+    func fetchGradeOne(){
+        let db = Firestore.firestore()
+        self.outGradeOne = []
+        db.collection("goout").whereField("access", isEqualTo: true).whereField("kind", isEqualTo: "조퇴").whereField("grade", isEqualTo: curGrand).addSnapshotListener { snapshot, err in
+            if let err = err {
+                print(err.localizedDescription)
+                return
+            }
+            
+            snapshot?.documents.forEach({ document in
+                let gr1 = gradeModel(dict: document.data())
+                self.outGradeOne.append(gr1)
+            })
+            self.outTableView.reloadData()
+        }
+    }
+    
+    func fetchGradeTwo(){
+        let db = Firestore.firestore()
+        self.outGradeTwo = []
+        db.collection("goout").whereField("access", isEqualTo: true).whereField("kind", isEqualTo: "조퇴").whereField("grade", isEqualTo: curGrand).addSnapshotListener { snapshot, err in
+            if let err = err {
+                print(err.localizedDescription)
+                return
+            }
+            
+            snapshot?.documents.forEach({ document in
+                let gr1 = gradeModel(dict: document.data())
+                self.outGradeTwo.append(gr1)
+            })
+            self.earlyLeaveTableView.reloadData()
+        }
     }
     
     func location(){
@@ -421,13 +456,13 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     }
     
     func tableViewScrollSetting(){
-        if outNameList.count <= 6 {
+        if outGradeOne.count <= 6 {
             outTableView.isScrollEnabled = false
         } else {
             outTableView.isScrollEnabled = true
         }
         
-        if earlyLeaveNameList.count <= 6 {
+        if outGradeTwo.count <= 6 {
             earlyLeaveTableView.isScrollEnabled = false
         } else {
             earlyLeaveTableView.isScrollEnabled = true
@@ -436,9 +471,9 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == outTableView {
-            return outNameList.count
+            return outGradeOne.count
         } else {
-            return earlyLeaveNameList.count
+            return outGradeTwo.count
         }
     }
     
@@ -447,18 +482,18 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
             let cell = tableView.dequeueReusableCell(withIdentifier: "OutListTableCell") as! OutListTableCell
             cell.cellView.backgroundColor = outCellViewColorList[indexPath.row]
             cell.stateColorView.backgroundColor = outStateColorList[indexPath.row]
-            cell.nameLabel.text = outNameList[indexPath.row]
-            cell.gradeClassNumLabel.text = outGradeClassNumList[indexPath.row]
-            cell.timeLabel.text = outTimeList[indexPath.row]
-            cell.reasonLabel.text = outReasonList[indexPath.row]
+            cell.nameLabel.text = outGradeOne[indexPath.row].name
+            cell.gradeClassNumLabel.text = outGradeOne[indexPath.row].classNumber
+            cell.timeLabel.text = "\(outGradeOne[indexPath.row].startTime) - \(outGradeOne[indexPath.row].endTime)"
+            cell.reasonLabel.text = outGradeOne[indexPath.row].reason
             cell.selectionStyle = .none
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EarlyLeaveListTableCell") as! EarlyLeaveListTableCell
             cell.cellView.backgroundColor = earlyLeaveCellViewColorList[indexPath.row]
-            cell.nameLabel.text = earlyLeaveNameList[indexPath.row]
-            cell.gradeClassNumLabel.text = earlyLeaveGradeClassNumList[indexPath.row]
-            cell.reasonLabel.text = earlyLeaveReasonList[indexPath.row]
+            cell.nameLabel.text = outGradeTwo[indexPath.row].name
+            cell.gradeClassNumLabel.text = outGradeTwo[indexPath.row].classNumber
+            cell.reasonLabel.text = outGradeTwo[indexPath.row].reason
             cell.selectionStyle = .none
             return cell
         }
@@ -474,16 +509,16 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == outTableView {
-            goOutInfoView.nameLabel.text = outNameList[indexPath.row]
-            goOutInfoView.numberLabel.text = outGradeClassNumList[indexPath.row]
-            goOutInfoView.timeLabelButton.setTitle(outTimeList[indexPath.row], for: .normal)
-            goOutInfoView.reasonTextView.text = outReasonList[indexPath.row]
+            goOutInfoView.nameLabel.text = outGradeOne[indexPath.row].name
+            goOutInfoView.numberLabel.text = outGradeOne[indexPath.row].classNumber
+            goOutInfoView.timeLabelButton.setTitle("\(outGradeOne[indexPath.row].startTime) - \(outGradeOne[indexPath.row].endTime)", for: .normal)
+            goOutInfoView.reasonTextView.text = outGradeOne[indexPath.row].reason
             goOutInfoViewSetting()
         } else {
-            earlyLeaveInfoView.nameLabel.text = earlyLeaveNameList[indexPath.row]
-            earlyLeaveInfoView.numberLabel.text = earlyLeaveGradeClassNumList[indexPath.row]
+            earlyLeaveInfoView.nameLabel.text = outGradeTwo[indexPath.row].name
+            earlyLeaveInfoView.numberLabel.text = outGradeTwo[indexPath.row].classNumber
             earlyLeaveInfoView.timeLabelButton.setTitle("조퇴", for: .normal)
-            earlyLeaveInfoView.reasonTextView.text = earlyLeaveReasonList[indexPath.row]
+            earlyLeaveInfoView.reasonTextView.text = outGradeTwo[indexPath.row].reason
             earlyLeaveInfoViewSetting()
         }
     }
@@ -532,7 +567,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
     }
     
     func showdoNotGoView(){
-        if outNameList.count == 0 && earlyLeaveNameList.count == 0{
+        if outGradeOne.count == 0 && outGradeTwo.count == 0{
             doNotGoView.isHidden = false
         }
     }
