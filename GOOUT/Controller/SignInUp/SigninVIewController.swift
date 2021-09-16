@@ -66,7 +66,7 @@ class SigninViewController: UIViewController{
     }
     
     let loginFailedMessage = UILabel().then {
-        $0.text = "회원정보가 일치하지 않습니다!"
+        $0.text = "데이터가 일치하지 않습니다!"
         $0.dynamicFont(fontSize: 10, currentFontName: "Apple SD Gothic Neo")
         $0.isHidden = true
         $0.textColor = .red
@@ -133,44 +133,59 @@ class SigninViewController: UIViewController{
       }
     }
     
-    @objc func loginBtnClicked(sender:UIButton){
+    func apiCall(email: String, password: String, completion: @escaping (Bool, String) -> Void) {
+        let URL = "\(Config.baseURL)/login"
         let param: Parameters = [
             "email":email,
             "password":password
         ]
-        
-        API.shared.request(url: "/login", method: .post, parameter: param) { result in
-            switch result{
-            
-            case .success(let data):
+        AF.request(URL, method: .post, parameters: param).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                print(value)
+                switch response.response?.statusCode {
+                case 201:
+                    if let dic = value as? NSDictionary,
+                       let accessToken = dic["accessToken"] as? String {
+                        print(accessToken)
+                        completion(true, accessToken)
+                    }
+                default:
+                    print("입력된 데이터가 일치하지 않다")
+                    completion(false,"")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(false,"")
+            }
+        }
+    }
+    
+    @objc func loginBtnClicked(sender:UIButton){
+        apiCall(email: email, password: password) { response, token  in
+            switch response {
+            case true:
+                print("화면 전환")
                 NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
                 NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-                let user = try? JSONDecoder().decode(studentModel.self, from: data as! Data)
-                print(user!)
-                
-                let nextVC = MainViewController()                
+                let nextVC = MainViewController()
+                nextVC.token = token
                 nextVC.modalPresentationStyle = .fullScreen
                 self.present(nextVC, animated: true, completion: nil)
                 break
-            case .invalidURL:
-                print("invalidURL")
-                break
-            case .requsestError(let err):
-                print(err)
-                break
-            case .networkError:
-                print("networkErr")
-                break
-            case .tokenError:
-                print("TokenErr")
-                break
-            case .authorityError:
-                print("authorityErr")
-                break
+            case false:
+                self.invalidMessage()
+                print("통신 오류")
             }
         }
+   
         
         
+    }
+    func invalidMessage(){
+        self.loginFailedMessage.isHidden = false
+        let dispatchTime = DispatchTime.now()+2
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {self.loginFailedMessage.isHidden = true})
     }
     
     @objc func findPasswordButtonClicked(sender:UIButton){
@@ -248,7 +263,7 @@ class SigninViewController: UIViewController{
         }
         
         teacherButton.snp.makeConstraints {
-            $0.top.equalTo(loginBtn.snp.bottom).offset(self.formBound.height*0.016)
+            $0.top.equalTo(loginFailedMessage.snp.bottom).offset(self.formBound.height*0.016)
             $0.centerX.equalTo(formView)
         }
         

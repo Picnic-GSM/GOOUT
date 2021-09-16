@@ -289,6 +289,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             password: passwordContainer.textField.text!,
             grade: 0, class: 0, s_number: 0)
         print(model)
+        
         let controller = InformationViewController()
         controller.model = model
         self.navigationController?.pushViewController(controller, animated: true)

@@ -427,7 +427,6 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             "s_number":model.s_number
         ]
         print(param)
-        
         API.shared.request(url: "/student/register", method: .post, parameter: param) { result in
             switch result{
             case .success(let data):
