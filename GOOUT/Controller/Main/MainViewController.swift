@@ -103,6 +103,8 @@ class MainViewController: UIViewController {
             self.addChild(inquiryForEachClassViewController)
             inquiryForEachClassViewController.view.frame = viewControllerBoxView.frame
             viewControllerBoxView.addSubview(inquiryForEachClassViewController.view)
+            
+            
             mainTabBarView.allClassInquiryButton.setImage(UIImage(named: "GOOUT_AllClassInquiryButtonImage"), for: .normal)
             mainTabBarView.addButton.setImage(UIImage(named: "GOOUT_SelectedMyClassInquiryButtonImage"), for: .normal)
             mainTabBarView.myClassInquiryButton.setImage(UIImage(named: "GOOUT_MyPageImage"), for: .normal)

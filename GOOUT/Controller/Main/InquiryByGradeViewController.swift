@@ -13,6 +13,8 @@ import DropDown
 class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Properties
+    var curGrand = 0
+    
     lazy var dropLabelBtn = UIButton().then {
         $0.backgroundColor = .white
         $0.addTarget(self, action: #selector(showGradeDropDown), for: .touchUpInside)
@@ -50,6 +52,7 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         }
         $0.selectionAction = { [unowned self] (index: Int, item: String) in
             gradeLabel.text = item
+            self.curGrand = index+1
         }
     }
     
@@ -546,29 +549,29 @@ class InquiryByGradeViewController : UIViewController, UITableViewDelegate, UITa
         earlyLeaveInfoView.isHidden = true
     }
 }
-
-//MARK: - Preview
-#if DEBUG
-import SwiftUI
-struct InquiryByGradeViewControllerRepresentable: UIViewControllerRepresentable {
-    
-func updateUIViewController(_ uiView: UIViewController,context: Context) {
-        // leave this empty
-}
-    @available(iOS 13.0.0, *)
-    func makeUIViewController(context: Context) -> UIViewController{
-        InquiryByGradeViewController()
-    }
-}
-@available(iOS 13.0, *)
-struct InquiryByGradeViewControllerRepresentable_PreviewProvider: PreviewProvider {
-    static var previews: some View {
-        Group {
-            InquiryByGradeViewControllerRepresentable()
-                .ignoresSafeArea()
-                .previewDisplayName(/*@START_MENU_TOKEN@*/"Preview"/*@END_MENU_TOKEN@*/)
-                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
-        }
-        
-    }
-} #endif
+//
+////MARK: - Preview
+//#if DEBUG
+//import SwiftUI
+//struct InquiryByGradeViewControllerRepresentable: UIViewControllerRepresentable {
+//
+//func updateUIViewController(_ uiView: UIViewController,context: Context) {
+//        // leave this empty
+//}
+//    @available(iOS 13.0.0, *)
+//    func makeUIViewController(context: Context) -> UIViewController{
+//        InquiryByGradeViewController()
+//    }
+//}
+//@available(iOS 13.0, *)
+//struct InquiryByGradeViewControllerRepresentable_PreviewProvider: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            InquiryByGradeViewControllerRepresentable()
+//                .ignoresSafeArea()
+//                .previewDisplayName(/*@START_MENU_TOKEN@*/"Preview"/*@END_MENU_TOKEN@*/)
+//                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+//        }
+//
+//    }
+//} #endif
