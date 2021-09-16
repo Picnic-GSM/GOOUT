@@ -21,11 +21,12 @@ class API {
     static let shared: API = API() // 싱글톤 패턴
     
     func request(url: String, method: HTTPMethod, parameter: [String: Any]? = nil, completion: @escaping (APIResult<Any>) -> Void) {
-        // TokenManager 만들어서 Token 있으면 header에 넣고, 없으면 [ : ] 이렇게 보냄
-        var header: HTTPHeaders = [ : ]
+        // TokenManager 만들어서 Token 있으면 header에 넣고, 없으면 [ : ] 이렇게 보냄headers:
+        var header: HTTPHeaders = [:]
         AF.request("\(Config.baseURL)\(url)",method: method, parameters: parameter, encoding: JSONEncoding.default, headers: header).responseJSON { response in
             switch response.result {
             case .success(let value):
+                
                 print(value)
                 guard let data = response.data else { return }
                 guard let status = response.response?.statusCode else { return }

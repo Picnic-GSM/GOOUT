@@ -283,10 +283,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @objc
     func clickSignUpButton(_ sender: UIButton) {
         updateSignUp()
-        let model: studentModel = studentModel(name: "",
-                                               email: emailContainer.textField.text!,
-                                               password: passwordContainer.textField.text!,
-                                               grade: 0, class: 0, s_number: 0)
+        let model: studentModel = studentModel(
+            name: "", // ?
+            email: emailContainer.textField.text!,
+            password: passwordContainer.textField.text!,
+            grade: 0, class: 0, s_number: 0)
+        print(model)
         let controller = InformationViewController()
         controller.model = model
         self.navigationController?.pushViewController(controller, animated: true)
