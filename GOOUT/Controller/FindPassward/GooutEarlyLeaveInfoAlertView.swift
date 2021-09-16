@@ -38,6 +38,7 @@ class GooutEarlyLeaceInfoAlertView : UIView{
         $0.layer.cornerRadius = 10
         $0.time.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
         $0.time.text = "10:11 - 12:10"
+        
     }
     
     lazy var reasonTextView = UITextView().then{
