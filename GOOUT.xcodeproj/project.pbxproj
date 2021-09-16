@@ -31,6 +31,7 @@
 		AAD95ADF26EC453F004E4580 /* EarlyLeaveListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD95ADE26EC453F004E4580 /* EarlyLeaveListTableCell.swift */; };
 		B83AE46926EA2A3200ED0C9B /* emailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83AE46826EA2A3200ED0C9B /* emailTextFieldView.swift */; };
 		B85521CD26E0E6D700F32432 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */; };
+		B871B6DC26F3035C003E9775 /* numberCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871B6DB26F3035C003E9775 /* numberCellView.swift */; };
 		B87DA40C26E0C9B2005A4DAB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */; };
 		BD1049E426F2C71900AB1713 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1049E326F2C71900AB1713 /* Config.swift */; };
 		BD1049E626F2C78500AB1713 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1049E526F2C78500AB1713 /* API.swift */; };
@@ -78,6 +79,7 @@
 		B84CEB1826E8FC200074A1F6 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B871B6D926F0DC7E003E9775 /* Font */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Font; path = ../Font; sourceTree = "<group>"; };
+		B871B6DB26F3035C003E9775 /* numberCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = numberCellView.swift; sourceTree = "<group>"; };
 		B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BD1049E326F2C71900AB1713 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		BD1049E526F2C78500AB1713 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 			children = (
 				EEFD615826DE06F90032EDBF /* requestConfirmationCell.swift */,
 				EE63E21E26E0DEB700F75CDA /* PleaseCheckYourReturnHomeTableCell.swift */,
+				B871B6DB26F3035C003E9775 /* numberCellView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				6AB0369726DC58A100D1F80E /* MainTabBarView.swift in Sources */,
 				EEFD615B26DE1A5A0032EDBF /* RequestStatus.swift in Sources */,
 				C8E905E126E0ECBD002427B3 /* ShowPasswordViewController.swift in Sources */,
+				B871B6DC26F3035C003E9775 /* numberCellView.swift in Sources */,
 				6AA3A56426D8B4FA00CA03F3 /* InquiryByGradeViewController.swift in Sources */,
 				EE63E21D26E09B1700F75CDA /* EarlyLeaveTimeToGoOutView.swift in Sources */,
 				EEFD615926DE06F90032EDBF /* requestConfirmationCell.swift in Sources */,
