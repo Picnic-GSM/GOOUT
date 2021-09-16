@@ -142,7 +142,6 @@
 		6A879A5426F2BBE700B4D7BA /* GooutEarlyLeave */ = {
 			isa = PBXGroup;
 			children = (
-				EEBADAD326F2BDB6009409C1 /* GooutEarlyLeaveInfoAlertView.swift */,
 				EEFD615526DDA1690032EDBF /* InquiryForEachClassViewController.swift */,
 				6AB0369A26DCBB2700D1F80E /* AddViewController.swift */,
 			);
@@ -245,6 +244,7 @@
 				EEB6FA4526E274CC008087B9 /* noHistoryView .swift */,
 				A89BFE8B26EA1AB6003627BD /* getAuthCodeView.swift */,
 				6A85BBA726F1BA5600151E39 /* GooutEarlyLeaveInfoView.swift */,
+				EEBADAD326F2BDB6009409C1 /* GooutEarlyLeaveInfoAlertView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
