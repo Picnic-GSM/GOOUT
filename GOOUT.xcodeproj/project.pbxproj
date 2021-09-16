@@ -32,6 +32,8 @@
 		B83AE46926EA2A3200ED0C9B /* emailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83AE46826EA2A3200ED0C9B /* emailTextFieldView.swift */; };
 		B85521CD26E0E6D700F32432 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */; };
 		B87DA40C26E0C9B2005A4DAB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */; };
+		BD1049E426F2C71900AB1713 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1049E326F2C71900AB1713 /* Config.swift */; };
+		BD1049E626F2C78500AB1713 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1049E526F2C78500AB1713 /* API.swift */; };
 		C895AA5D26EF29BF003392F2 /* WriteCodeTextfieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C895AA5C26EF29BF003392F2 /* WriteCodeTextfieldView.swift */; };
 		C8E8FBB426E783990064D362 /* EnterDistributioncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E8FBB326E783990064D362 /* EnterDistributioncode.swift */; };
 		C8E905E126E0ECBD002427B3 /* ShowPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E905E026E0ECBD002427B3 /* ShowPasswordViewController.swift */; };
@@ -77,6 +79,8 @@
 		B85521CC26E0E6D700F32432 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B871B6D926F0DC7E003E9775 /* Font */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Font; path = ../Font; sourceTree = "<group>"; };
 		B87DA40B26E0C9B2005A4DAB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		BD1049E326F2C71900AB1713 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		BD1049E526F2C78500AB1713 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		C895AA5C26EF29BF003392F2 /* WriteCodeTextfieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCodeTextfieldView.swift; sourceTree = "<group>"; };
 		C8E8FBB326E783990064D362 /* EnterDistributioncode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterDistributioncode.swift; sourceTree = "<group>"; };
 		C8E905E026E0ECBD002427B3 /* ShowPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPasswordViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 		6AA3A55E26D8B4FA00CA03F3 /* GOOUT */ = {
 			isa = PBXGroup;
 			children = (
+				BD1049E226F2C6EE00AB1713 /* Network */,
 				6AA3A57A26DA52D400CA03F3 /* Font */,
 				6AA3A57626DA506A00CA03F3 /* Extension */,
 				46F571B826E1A797005F81AE /* Modal */,
@@ -263,6 +268,15 @@
 				6AB0369C26DCCF1200D1F80E /* FugazOne-Regular.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		BD1049E226F2C6EE00AB1713 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BD1049E326F2C71900AB1713 /* Config.swift */,
+				BD1049E526F2C78500AB1713 /* API.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		EEFD615726DE06D90032EDBF /* Cell */ = {
@@ -405,6 +419,7 @@
 				6A03994426F094AC00D12952 /* MainViewController.swift in Sources */,
 				6AB0369B26DCBB2700D1F80E /* AddViewController.swift in Sources */,
 				6AA3A56026D8B4FA00CA03F3 /* AppDelegate.swift in Sources */,
+				BD1049E426F2C71900AB1713 /* Config.swift in Sources */,
 				46F570AA26DCCD60005F81AE /* SigninVIewController.swift in Sources */,
 				B83AE46926EA2A3200ED0C9B /* emailTextFieldView.swift in Sources */,
 				C895AA5D26EF29BF003392F2 /* WriteCodeTextfieldView.swift in Sources */,
@@ -421,6 +436,7 @@
 				6AA3A57926DA509700CA03F3 /* Extension.swift in Sources */,
 				C8E8FBB426E783990064D362 /* EnterDistributioncode.swift in Sources */,
 				EEBADAD426F2BDB6009409C1 /* GooutEarlyLeaveInfoAlertView.swift in Sources */,
+				BD1049E626F2C78500AB1713 /* API.swift in Sources */,
 				AA478B5626EF943D009C628B /* EarlyLeaveListHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
