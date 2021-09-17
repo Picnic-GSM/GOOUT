@@ -272,7 +272,9 @@ class AddViewController: UIViewController{
                                                                              "name":um.name,
                                                                              "status":0,
                                                                              "access":false,
-                                                                             "classNumber":"\(um.grade)학년 \(um.class)반 \(um.s_number)번"])
+                                                                             "completed":false,
+                                                                             "classNumber":"\(um.grade)학년 \(um.class)반 \(um.s_number)번",
+                                                                             "uid":um.uid])
                 
             }
             dismiss(animated: true, completion: nil)

@@ -83,8 +83,14 @@ class InquiryForEachClassViewController : UIViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        fetchAccessUser()
-        fetchEarly()
+        DispatchQueue.main.async {
+            self.fetchAccessUser()
+            
+        }
+        DispatchQueue.main.async {
+            self.fetchEarly()
+        }
+        
     }
 
     
@@ -96,17 +102,21 @@ class InquiryForEachClassViewController : UIViewController{
         let db = Firestore.firestore()
         requestConfirmationCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
         print(sender.tag)
-        accessAgree.remove(at: sender.tag)
         print(accessAgree)
+        print(accessAgree.remove(at: sender.tag))
+        
         let uid = accessAgree[sender.tag].uid
         db.collection("goout").document(uid).delete()
     }
     @objc func SaveAndCloseCollectionViewItem(sender:UIButton){
         let db = Firestore.firestore()
         requestConfirmationCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
-        accessAgree.remove(at: sender.tag)
+        print(accessAgree)
+        print(accessGoHome)
         print(sender.tag)
-        let uid = accessAgree[sender.tag].uid
+        print(accessAgree.remove(at: sender.tag))
+        
+        var uid: String = accessAgree[sender.tag].uid
         db.collection("goout").document(uid).updateData(["access" : true])
     }
     //MARK: - Helper
@@ -211,6 +221,7 @@ class InquiryForEachClassViewController : UIViewController{
             })
             self.requestConfirmationCollectionView.reloadData()
         }
+        print(accessAgree)
     }
     
     func fetchEarly(){

@@ -84,8 +84,10 @@ class EnterDistributioncode: UIViewController {
                     print(err.localizedDescription)
                     return
                 }
-                let nextVC = MainViewController()
-                self.navigationController?.pushViewController(nextVC, animated: true)
+                let controller = MainViewController()
+                controller.modalPresentationStyle = .fullScreen
+                
+                self.present(controller, animated: true, completion: nil)
             }
         }else{
             
