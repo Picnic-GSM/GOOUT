@@ -8,8 +8,15 @@
 import UIKit
 import SnapKit
 import Then
+import Alamofire
+import Firebase
 
 class InformationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    var model: userModel?
+    
+    var grade = 0
+    var `class` = 0
+    var s_num = 0
     
     lazy var numList:  [String] = ["1번", "2번", "3번", "4번", "5번", "6번", "7번", "8번", "9번", "10번", "11번", "12번", "13번", "14번", "15번", "16번", "17번", "18번", "19번", "20번"]
     
@@ -181,6 +188,11 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
         numList.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.s_num = indexPath.row + 1
+        print(s_num)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: numberCellView.identifier, for: indexPath) as? numberCellView else {
             return UICollectionViewCell()
@@ -309,8 +321,11 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             grade1Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
             grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.grade = 1
+            print(grade)
         }else {
             grade1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
@@ -321,8 +336,10 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             grade2Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
             grade1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.grade = 2
         }else {
             grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
@@ -333,8 +350,10 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             grade3Button.setTitleColor(.rgb(red: 255, green: 172, blue: 183), for: .normal)
             grade1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             grade2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.grade = 3
         }else {
             grade3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
@@ -346,8 +365,11 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.class = 1
+            print(self.class)
         }else {
             class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
@@ -359,8 +381,10 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.class = 2
         }else {
             class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
@@ -372,8 +396,10 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.class = 3
         }else {
             class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
@@ -385,14 +411,45 @@ class InformationViewController: UIViewController, UICollectionViewDelegate, UIC
             class1Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class2Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
             class3Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            self.class = 4
         }else {
             class4Button.setTitleColor(.rgb(red: 108, green: 108, blue: 108), for: .normal)
+            
         }
     }
     
     @objc
     func signUpButtonClicked(sender:UIButton){
-        let nextVC = SigninViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        guard let model = model else { return }
+        if self.grade == 0 || self.class == 0 || self.s_num == 0{
+            return
+        }
+        do{
+            try Auth.auth().signOut()
+        }catch{
+            print("dfzd")
+        }
+        print( model )
+        Auth.auth().createUser(withEmail: model.email, password: model.password) { res, err in
+            
+            Auth.auth().signIn(withEmail: model.email, password: model.password)
+            
+            let mod: [String:Any] = ["email":model.email,
+                         "password":model.password,
+                         "name":model.name,
+                         "grade":self.grade,
+                         "class":self.class,
+                         "s_number":self.s_num,
+                         "uid":Auth.auth().currentUser!.uid]
+            
+            Firestore.firestore().collection("users").addDocument(data: mod)
+            
+            self.navigationController?.pushViewController(SigninViewController(), animated: true)
+        }
+        
+        
+        
+
+
     }
 }

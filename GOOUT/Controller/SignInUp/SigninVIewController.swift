@@ -8,6 +8,8 @@
 import UIKit
 import Then
 import SnapKit
+import Firebase
+import Alamofire
 
 class SigninViewController: UIViewController{
     // MARK: - Properties
@@ -65,7 +67,7 @@ class SigninViewController: UIViewController{
     }
     
     let loginFailedMessage = UILabel().then {
-        $0.text = "회원정보가 일치하지 않습니다!"
+        $0.text = "데이터가 일치하지 않습니다!"
         $0.dynamicFont(fontSize: 10, currentFontName: "Apple SD Gothic Neo")
         $0.isHidden = true
         $0.textColor = .red
@@ -94,7 +96,11 @@ class SigninViewController: UIViewController{
         configureShadow()
         addTextFieldObservers()
         
-        
+        do{
+            try Auth.auth().signOut()
+        }catch{
+            print("dl dho dh")
+        }
         loginBtn.addTarget(self, action: #selector(loginBtnClicked(sender:)), for: .touchUpInside)
         makeAccountBtn.addTarget(self, action: #selector(makeAccountBtnClicked(sender:)), for: .touchUpInside)
         findPasswordButton.addTarget(self, action: #selector(findPasswordButtonClicked(sender:)), for: .touchUpInside)
@@ -132,12 +138,29 @@ class SigninViewController: UIViewController{
       }
     }
     
+    
+    
     @objc func loginBtnClicked(sender:UIButton){
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        let nextVC = MainViewController()
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: true, completion: nil)
+        Auth.auth().signIn(withEmail: email, password: password){ res,err in
+            if let err = err {
+                self.invalidMessage()
+                print(err.localizedDescription)
+                return
+            }
+            print(Auth.auth().currentUser!.uid)
+            let controller = MainViewController()
+            controller.modalPresentationStyle = .fullScreen
+            
+            
+            self.present(controller, animated: true, completion: nil)
+        }
+        
+        
+    }
+    func invalidMessage(){
+        self.loginFailedMessage.isHidden = false
+        let dispatchTime = DispatchTime.now()+2
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {self.loginFailedMessage.isHidden = true})
     }
     
     @objc func findPasswordButtonClicked(sender:UIButton){
@@ -215,7 +238,7 @@ class SigninViewController: UIViewController{
         }
         
         teacherButton.snp.makeConstraints {
-            $0.top.equalTo(loginBtn.snp.bottom).offset(self.formBound.height*0.016)
+            $0.top.equalTo(loginFailedMessage.snp.bottom).offset(self.formBound.height*0.016)
             $0.centerX.equalTo(formView)
         }
         

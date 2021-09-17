@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Firebase
 class MyPageViewController: UIViewController {
     
     //MARK: - Properties
@@ -31,6 +31,7 @@ class MyPageViewController: UIViewController {
     
     lazy var logOutImageButton = UIButton().then{
         $0.setImage(UIImage(named: "GOOUT_LogOutImage"), for: .normal)
+        $0.addTarget(self, action: #selector(logOutButtonClicked(sender:)), for: .touchUpInside)
     }
     
     lazy var logOutLabel = UILabel().then{
@@ -47,9 +48,13 @@ class MyPageViewController: UIViewController {
     }
     
     @objc func logOutButtonClicked(sender:UIButton){
-        let vc = SigninViewController()
-        vc.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
-        self.present(vc, animated: true, completion: nil)
+        do{
+            try Auth.auth().signOut()
+        }catch{
+            print("ERR")
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: - layoutSetting

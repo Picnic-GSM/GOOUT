@@ -29,10 +29,14 @@ struct GoingOutEarlyLeaveCellModel{
     let time : receivedTime
     let reason : String?
 }
+
+
 struct receivedTime{
     let startClock : time?
     let finishClock : time?
 }
+
+
 struct time{
     let oclock : Int?
     let minute : Int?
@@ -40,7 +44,6 @@ struct time{
 
 //MARK: - 귀가완료 tableView 정보
 struct FinishedGoingHome {
-    let viewColor : UIColor?
     let name : String?
     let number : Int?
     let time : receivedTime?

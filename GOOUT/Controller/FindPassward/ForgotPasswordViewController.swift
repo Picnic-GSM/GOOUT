@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import Firebase
 
 class ForgotPasswordViewController: UIViewController{
     
@@ -51,23 +52,24 @@ class ForgotPasswordViewController: UIViewController{
     }
     
     @objc func checkbuttonClicked(sender:UIButton){
-        self.addChild(testViewController)
-        testViewController.view.frame = view.frame
-        self.view.addSubview(testViewController.view)
-        
-        UIView.animate(withDuration: 0.3) {
-            self.passwordlabel.alpha = 0
-            self.sublable.alpha = 0
-            self.sublable2.alpha = 0
-            self.emailtext.alpha = 0
-            self.checkbutton.alpha = 0
-            
-            self.testViewController.textfieldView.alpha = 1
-            self.testViewController.resendButton.alpha = 1
-            self.testViewController.certificationTextField.alpha = 1
-            self.testViewController.checkbutton.alpha = 1
-            self.testViewController.inputLabel.alpha = 1
-        }
+        verfi()
+//        self.addChild(testViewController)
+//        testViewController.view.frame = view.frame
+//        self.view.addSubview(testViewController.view)
+//
+//        UIView.animate(withDuration: 0.3) {
+//            self.passwordlabel.alpha = 0
+//            self.sublable.alpha = 0
+//            self.sublable2.alpha = 0
+//            self.emailtext.alpha = 0
+//            self.checkbutton.alpha = 0
+//
+//            self.testViewController.textfieldView.alpha = 1
+//            self.testViewController.resendButton.alpha = 1
+//            self.testViewController.certificationTextField.alpha = 1
+//            self.testViewController.checkbutton.alpha = 1
+//            self.testViewController.inputLabel.alpha = 1
+//        }
     }
     
     func location(){
@@ -84,7 +86,6 @@ class ForgotPasswordViewController: UIViewController{
             mak.top.equalTo(bound.height*0.12)
             mak.left.equalTo(bound.width*0.11)
             mak.height.equalTo(bound.height*0.03)
-            mak.width.equalTo(bound.width*0.488)
         }
             
         passwordlabel.textColor = .white
@@ -179,4 +180,22 @@ class ForgotPasswordViewController: UIViewController{
         border.frame = CGRect(x: 0, y: bound.height*0.03, width: emailtext.frame.width, height: 1)
         border.backgroundColor = UIColor.white.cgColor
     }
+    
+    func verfi(){
+        Service.getUser(email: emailtext.text ?? "") { um in
+            Auth.auth().signIn(withEmail: um.email, password: um.password) { res, err in
+                print(res?.user.uid ?? "")
+                let controller = MainViewController()
+                controller.modalPresentationStyle = .fullScreen
+                
+                DispatchQueue.main.async {
+                    self.present(controller, animated: true, completion: nil)
+                }
+               
+                
+            }
+        }
+        
+    }
+    
 }
