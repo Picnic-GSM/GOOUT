@@ -17,6 +17,10 @@ struct gradeModel {
     var endTime: String
     var reason: String
     var access: Bool
+    var completed: Int
+    var onClear: Bool
+    var uid: String
+    
     init(dict: [String:Any]){
         self.name = dict["name"] as? String ?? ""
         self.status = dict["status"] as? Int ?? 1
@@ -27,5 +31,8 @@ struct gradeModel {
         self.endTime = dict["endTime"] as? String ?? ""
         self.reason = dict["reason"] as? String ?? ""
         self.access = dict["access"] as? Bool ?? false
+        self.completed = dict["completed"] as? Int ?? 0
+        self.onClear = dict["onClear"] as? Bool ?? false
+        self.uid = dict["uid"] as? String ?? ""
     }
 }

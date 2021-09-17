@@ -16,28 +16,24 @@ class GooutEarlyLeaceInfoAlertView : UIView{
     
     let requestStatus  : RequestStatus = {
        let view = RequestStatus()
-        view.status.backgroundColor = .red
-        view.label.text = "외출 요청"
+        view.status.backgroundColor = .clear
         view.label.dynamicFont(fontSize: 10, currentFontName: "AppleSDGothicNeo-Regular")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     lazy var nameLabel = UILabel().then{
-        $0.text = "변웅섭"
         $0.textColor = UIColor.rgb(red: 97, green: 97, blue: 97)
         $0.dynamicFont(fontSize: 18, currentFontName: "AppleSDGothicNeo-SemiBold")
     }
 
     let numberLabel = UILabel().then{
-        $0.text = "3학년 1반 1번"
         $0.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-Thin")
     }
     
     let timeLabelButton = EarlyLeaveTimeToGoOutView().then{
         $0.layer.cornerRadius = 10
         $0.time.dynamicFont(fontSize: 14, currentFontName: "AppleSDGothicNeo-SemiBold")
-        $0.time.text = "10:11 - 12:10"
 
     }
     
@@ -45,7 +41,6 @@ class GooutEarlyLeaceInfoAlertView : UIView{
         $0.isEditable = false
         $0.textAlignment = .left
         $0.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-Thin")
-        $0.text = "밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥밥"
     }
     
     lazy var closeButton = UIButton().then{
@@ -96,6 +91,7 @@ class GooutEarlyLeaceInfoAlertView : UIView{
         self.kindShowView.addSubview(closeButton)
     }
     func location(){
+        timeLabelButton.sizeToFit()
         bgview.snp.makeConstraints { (make) in
             make.top.right.left.bottom.equalToSuperview()
         }
@@ -122,7 +118,7 @@ class GooutEarlyLeaceInfoAlertView : UIView{
             make.top.equalTo(numberLabel.snp.bottom).offset(frame.height/81.2)
             make.centerX.equalToSuperview()
             make.height.equalTo(bounds.height/27.06667)
-            make.width.equalTo(bounds.width/2.8846)
+            make.width.equalTo(timeLabelButton.frame.width)
         }
         reasonTextView.snp.makeConstraints { (make) in
             make.top.equalTo(timeLabelButton.snp.bottom).offset(bounds.height/62.4615)

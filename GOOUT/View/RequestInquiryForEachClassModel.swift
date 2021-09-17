@@ -44,7 +44,6 @@ struct time{
 
 //MARK: - 귀가완료 tableView 정보
 struct FinishedGoingHome {
-    let viewColor : UIColor?
     let name : String?
     let number : Int?
     let time : receivedTime?
