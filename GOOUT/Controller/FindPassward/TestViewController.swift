@@ -167,8 +167,6 @@ class TestViewController: UIViewController{
             make.height.equalToSuperview().dividedBy(27.06)
         }
         
-
-        
         showPasswardLabel.alpha = 0
         goToLoginButton.alpha = 0
         showBackgroundView.alpha = 0
