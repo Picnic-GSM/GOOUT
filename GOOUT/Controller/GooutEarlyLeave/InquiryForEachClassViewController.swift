@@ -95,7 +95,9 @@ class InquiryForEachClassViewController : UIViewController{
     @objc func CloseCollectionViewItem(sender:UIButton){
         let db = Firestore.firestore()
         requestConfirmationCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
+        print(sender.tag)
         accessAgree.remove(at: sender.tag)
+        print(accessAgree)
         let uid = accessAgree[sender.tag].uid
         db.collection("goout").document(uid).delete()
     }
@@ -103,6 +105,7 @@ class InquiryForEachClassViewController : UIViewController{
         let db = Firestore.firestore()
         requestConfirmationCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
         accessAgree.remove(at: sender.tag)
+        print(sender.tag)
         let uid = accessAgree[sender.tag].uid
         db.collection("goout").document(uid).updateData(["access" : true])
     }
