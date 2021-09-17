@@ -143,7 +143,7 @@ class PutInformationViewController: UIViewController, UICollectionViewDelegate, 
         addKeyboardNotifications()
         removeKeyboardNotifications()
         
-        loginButton.addTarget(self, action: #selector(signUpButtonClicked(sender:)), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(signInButtonClicked(sender:)), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(signUpButtonClicked(sender:)), for: .touchUpInside)
     }
   
@@ -452,6 +452,12 @@ class PutInformationViewController: UIViewController, UICollectionViewDelegate, 
     @objc
     func signUpButtonClicked(sender:UIButton){
         let nextVC = MainViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    @objc
+    func signInButtonClicked(sender:UIButton) {
+        let nextVC = SigninViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
