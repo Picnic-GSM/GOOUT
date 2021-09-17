@@ -103,7 +103,6 @@ class InquiryForEachClassViewController : UIViewController{
         requestConfirmationCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
         print(sender.tag)
         print(accessAgree)
-        print(accessAgree.remove(at: sender.tag))
         
         let uid = accessAgree[sender.tag].uid
         db.collection("goout").document(uid).delete()
@@ -114,9 +113,8 @@ class InquiryForEachClassViewController : UIViewController{
         print(accessAgree)
         print(accessGoHome)
         print(sender.tag)
-        print(accessAgree.remove(at: sender.tag))
         
-        var uid: String = accessAgree[sender.tag].uid
+        let uid: String = accessAgree[sender.tag].uid
         db.collection("goout").document(uid).updateData(["access" : true])
     }
     //MARK: - Helper

@@ -84,7 +84,6 @@ class ForgotPasswordViewController: UIViewController{
             mak.top.equalTo(bound.height*0.12)
             mak.left.equalTo(bound.width*0.11)
             mak.height.equalTo(bound.height*0.03)
-            mak.width.equalTo(bound.width*0.488)
         }
             
         passwordlabel.textColor = .white
