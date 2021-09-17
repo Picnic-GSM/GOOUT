@@ -96,7 +96,11 @@ class SigninViewController: UIViewController{
         configureShadow()
         addTextFieldObservers()
         
-        
+        do{
+            try Auth.auth().signOut()
+        }catch{
+            print("dl dho dh")
+        }
         loginBtn.addTarget(self, action: #selector(loginBtnClicked(sender:)), for: .touchUpInside)
         makeAccountBtn.addTarget(self, action: #selector(makeAccountBtnClicked(sender:)), for: .touchUpInside)
         findPasswordButton.addTarget(self, action: #selector(findPasswordButtonClicked(sender:)), for: .touchUpInside)

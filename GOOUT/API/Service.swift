@@ -23,7 +23,15 @@ class Service{
         
     }
     
-    static func getByGrade(completion: @escaping(gradeModel) -> Void){
-        
+    static func getUser(email: String, completion: @escaping(userModel) -> Void){
+        let db = Firestore.firestore()
+        db.collection("users").whereField("email", isEqualTo: email).getDocuments { snapshot, err in
+            if let err = err{
+                print(err.localizedDescription)
+                return
+            }
+            let model = userModel(dict: snapshot!.documents[0].data())
+            completion(model)
+        }
     }
 }

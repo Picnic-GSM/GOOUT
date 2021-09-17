@@ -35,7 +35,9 @@ class TestViewController: UIViewController{
         ckbtn.layer.cornerRadius = 10
         ckbtn.dynamicFont(fontSize: 12, currentFontName: "AppleSDGothicNeo-SemiBold")
         ckbtn.layer.masksToBounds = true
+        
     }
+    
     
     var certificationTextField = UITextField().then { text in
         text.backgroundColor = .white
@@ -172,6 +174,7 @@ class TestViewController: UIViewController{
         showBackgroundView.alpha = 0
         
     }
+
     
 }
 
